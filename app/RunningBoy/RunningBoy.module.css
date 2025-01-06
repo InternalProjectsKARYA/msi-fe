@@ -1,0 +1,116 @@
+.scene {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to top, #228b22 40%, #87ceeb 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .boy {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: run 5s linear infinite;
+  }
+  
+  .head {
+    width: 40px;
+    height: 40px;
+    background: #ffc107;
+    border-radius: 50%;
+  }
+  
+  .body {
+    width: 30px;
+    height: 50px;
+    background: #000;
+    margin-top: -5px;
+  }
+  
+  .arm {
+    width: 10px;
+    height: 40px;
+    background: #ffc107;
+    position: absolute;
+    top: 10px;
+    border-radius: 10px;
+    animation: arm-swing 1s linear infinite;
+  }
+  
+  .arm.left {
+    left: -20px;
+  }
+  
+  .arm.right {
+    right: -20px;
+    animation-delay: 0.5s;
+  }
+  
+  .leg {
+    width: 10px;
+    height: 50px;
+    background: #000;
+    position: absolute;
+    top: 50px;
+    animation: leg-swing 1s linear infinite;
+  }
+  
+  .leg.left {
+    left: -10px;
+  }
+  
+  .leg.right {
+    right: -10px;
+    animation-delay: 0.5s;
+  }
+  
+  .bag {
+    width: 30px;
+    height: 40px;
+    background: #8b4513;
+    position: absolute;
+    top: 10px;
+    left: -40px;
+    border-radius: 5px;
+    animation: bag-bounce 1s linear infinite;
+  }
+  
+  @keyframes run {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  @keyframes arm-swing {
+    0%, 100% {
+      transform: rotate(20deg);
+    }
+    50% {
+      transform: rotate(-20deg);
+    }
+  }
+  
+  @keyframes leg-swing {
+    0%, 100% {
+      transform: rotate(-20deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+  }
+  
+  @keyframes bag-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  

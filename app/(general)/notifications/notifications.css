@@ -1,0 +1,15 @@
+
+
+.notificationstyling ul {
+    list-style-type: disc; /* Bullets */
+    margin-left: 20px;
+  }
+ 
+  ol {
+    list-style-type: decimal; /* Numbers */
+    margin-left: 20px;
+  }
+ 
+  li {
+    margin-bottom: 5px; /* Space between list items */
+  }

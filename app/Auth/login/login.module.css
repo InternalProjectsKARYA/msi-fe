@@ -1,0 +1,32 @@
+@keyframes slideInFromRight {
+    0% {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animateSlideIn {
+    animation: slideInFromRight 2s ease forwards;
+  }
+  .img {
+    width: '60%';
+  }
+  
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-60%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .animateSlideTop {
+    animation: slideInFromTop 3s ease forwards;
+  }
+ 

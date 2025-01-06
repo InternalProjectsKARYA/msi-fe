@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FiCheck, FiX, FiEye, FiEyeOff } from "react-icons/fi";
@@ -22,7 +22,7 @@ import { useToast } from "@/components/ui/use-toast";
 export default function SetPassword() {
   const router = useRouter();
   const { toast } = useToast();
-  const searchParams = useSearchParams();
+ 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
@@ -42,12 +42,7 @@ export default function SetPassword() {
   // Function to check if a requirement is met
   const checkRequirement = (requirement) => requirement.test.test(password);
 
-  React.useEffect(() => {
-    const emailParam = searchParams.get('email');
-    if (emailParam) {
-      setEmail(emailParam);
-    }
-  }, [searchParams]);
+ 
 
   // Submit handler
   const handleResetPassword = async () => {

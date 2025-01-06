@@ -12,6 +12,16 @@ function RoleBasedPermissions() {
     updateFeatureFlag(role, key, !featureFlags[role][key]);
   };
 
+  // Ensure featureFlags is defined
+  if (!featureFlags || typeof featureFlags !== "object") {
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-2xl font-bold mb-6">Role-Based Feature Visibility</h1>
+        <p className="text-red-500">Feature flags are not available.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Role-Based Feature Visibility</h1>

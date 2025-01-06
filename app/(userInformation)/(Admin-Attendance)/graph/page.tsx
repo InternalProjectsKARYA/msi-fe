@@ -146,7 +146,7 @@ const areaChartConfig = {
   } satisfies ChartConfig
 
 
-export function ChartDashboard() {
+export default function ChartDashboard() {
   const [timeRange, setTimeRange] = React.useState("90d")
 
   const totalVisitors = React.useMemo(() => {

@@ -14,7 +14,8 @@ import {
 import StudentAttendance from "../admin-studentattendance/page";
 import TeacherAttendance from "../admin-teacherattendance/page";
 import StaffAttendance from "../admin-staffattendance/page";
-import { ChartDashboard } from "../graph/page";
+import ChartDashboard from "../graph/page";
+ 
  
  
 

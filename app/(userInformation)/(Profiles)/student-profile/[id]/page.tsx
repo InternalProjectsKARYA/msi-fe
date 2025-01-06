@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TeacherData from "../../../teacherData/page";
 import TeacherAttendance from "../../../teacherattendance/page";
 import TimeTable from "../../../teacher-timetable/page";
-import { BooksTakenGrid } from "@/app/(libraryManagement)/library/bookstaken/page";
+// import { BooksTakenGrid } from "@/app/(libraryManagement)/library/bookstaken/page";
 import StudentLeaves from "../../../leaves/page";
 import StudentData from "../../../studentData/page";
 import StudentAttendance from "../../../studentattendance/page";
@@ -125,7 +125,7 @@ const StudentProfile = () => {
     <TabsTrigger value="Attendance"  >Attendance</TabsTrigger>
     <TabsTrigger value="Leaves"  >Leaves</TabsTrigger>
     <TabsTrigger value="Routine"  >Routine</TabsTrigger>
-    <TabsTrigger value="BooksTakenGrid"  >Library</TabsTrigger>
+    {/* <TabsTrigger value="BooksTakenGrid"  >Library</TabsTrigger> */}
   </TabsList>
 
   <TabsContent value="Personal">
@@ -144,9 +144,9 @@ const StudentProfile = () => {
   <StudentTimeTable />
   </div>
   </TabsContent>
-  <TabsContent value="BooksTakenGrid">
+  {/* <TabsContent value="BooksTakenGrid">
   <BooksTakenGrid />
-  </TabsContent>
+  </TabsContent> */}
  
 </Tabs>
 </div>

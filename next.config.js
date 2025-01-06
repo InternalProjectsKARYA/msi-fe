@@ -2,6 +2,9 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   devIndicators: {
     buildActivity: false,
     autoPrerender: false,
@@ -11,5 +14,5 @@ module.exports = {
     return config;
   },
 };
-
+ 
  

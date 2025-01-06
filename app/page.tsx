@@ -6,6 +6,7 @@ import Image from "next/image";
 import MyImage from "../public/school2.jpg";
 import Link from "next/link";
 import BookImage from "../public/student3.jpg";
+import BookImageSecond from '../public/student1.jpg';
 import MiddleImage from '../public/student1.jpg'
  
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,7 +15,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import AOS from 'aos';
-import Logo from '../public/Website-Logo.png';
+import Logo from '../public/logoitaly.jpeg';
  
 import 'aos/dist/aos.css';
 import { Button } from "@/components/ui/button";
@@ -26,97 +27,81 @@ const teachers = [
   {
     id: 1,
     image: "/full-body.avif",  
-    name: "Silva",
+    name: "Sharma",
     title: "Founder",
   },
   {
     id: 2,
     image: "/teacherr1.avif",
-    name: "Andre Silva",
+    name: "Pooja Singh",
     title: "Director",
    
   },
   {
     id: 3,
     image: "/positive-.avif",  
-    name: "Josse Kathrin",
+    name: "Neha Gupta",
     title: "Chairman",
   },
   {
-    id: 1,
+    id: 4,
     image: "/full-body.avif",  
+    name: "Sharma",
     title: "Founder",
   },
   {
-    id: 2,
+    id: 5,
     image: "/teacherr1.avif",
-    name: "Andre Silva",
+    name: "Pooja Singh",
     title: "Director",
    
   },
   {
-    id: 3,
+    id: 6,
     image: "/positive-.avif",  
-    name: "Josse Kathrin",
+    name: "Neha Gupta",
     title: "Chairman",
   },
-  {
-    id: 1,
-    image: "/full-body.avif",  
-    title: "Founder",
-  },
-  {
-    id: 2,
-    image: "/teacherr1.avif",
-    name: "Andre Silva",
-    title: "Director",
-   
-  },
-  {
-    id: 3,
-    image: "/positive-.avif",  
-    name: "Josse Kathrin",
-    title: "Chairman",
-  },
+ 
 ];
 const servicesData = [
   {
-    icon: <GraduationCap className="h-8 w-8 text-teal-500" />,
+    icon: <GraduationCap className="h-8 w-8 text-orange-500" />,
   
     title: "Special Education",
     description:
       "Providing personalized learning paths to help students with unique needs excel academically.",
   },
   {
-    icon: <Languages className="h-8 w-8 text-teal-500" />,
+    icon: <Languages className="h-8 w-8 text-orange-500" />,
  
     title: "Language Lessons",
     description:
       "Language classes for global communication and cultural understanding.",
   },
   {
-    icon: <Utensils className="h-8 w-8 text-teal-500" />,
+    icon: <Utensils className="h-8 w-8 text-orange-500" />,
    
     title: "Meals Provided",
     description:
       "Nutritious meals for students to ensure a healthy learning environment.",
   },
   {
-    icon: <Book className="h-8 w-8 text-teal-500" />,
+    icon: <Book className="h-8 w-8 text-orange-500" />,
     
     title: "Bookmarks",
     description:
       "Providing essential academic materials and curated content for better learning.",
   },
   {
-    icon: <Calendar className="h-8 w-8 text-teal-500" />,
+    icon: <Calendar className="h-8 w-8 text-orange-500" />,
     
     title: "Full Day Sessions",
     description:
       "Engaging sessions to ensure students make the most of their school hours.",
   },
   {
-    icon: <Users className="h-8 w-8 text-teal-500" />,
+    icon: <Users className="h-8 w-8 text-orange-500" />,
     
     title: "Meet a Volunteer",
     description:
@@ -210,7 +195,7 @@ const Navbar = () => {
  
  
         {/* Desktop Navigation */}
-        <nav    className="hidden md:flex space-x-6 items-center">
+        <nav    className="hidden md:flex space-x-6 items-center" style={{ color: "white" }}>
           <Link href="/" className="hover:text-gray-300 text-lg transition duration-200">
             Home
           </Link>
@@ -249,12 +234,12 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <nav className="md:hidden bg-gray-800 border-t border-gray-700">
-          <ul className="flex flex-col items-center py-4 space-y-4">
+          <ul className="flex flex-col items-center py-4 space-y-4" style={{ color: "white" }}>
             <li>
               <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-300 hover:text-white text-lg transition"
+                className="text-gray-300  text-white text-lg transition"
               >
                 Home
               </Link>
@@ -263,7 +248,7 @@ const Navbar = () => {
               <Link
                 href="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-300 hover:text-white text-lg transition"
+                className="text-gray-300 text-white text-lg transition"
               >
                 About Us
               </Link>
@@ -361,10 +346,10 @@ const Navbar = () => {
       {/* Right Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-left'>
         <h5 className="text-lg font-medium text-gray-600 mb-2">About Our School</h5>
-        <div className="h-[2px] w-16 bg-teal-500 mb-4 mx-auto md:mx-0"></div>
+        <div className="h-[2px] w-36 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
      
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Karyahub is a <span className="text-teal-500">trusted & leading institution.</span>
+          Karyahub is a <span className="text-orange-500">trusted & leading institution.</span>
        
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6">
@@ -385,11 +370,10 @@ const Navbar = () => {
       {/* Left Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
         <h5 className="text-lg font-medium text-gray-600 mb-2">About Karyahub</h5>
-        <div className="h-[2px] w-16 bg-teal-500 mb-4 mx-auto md:mx-0"></div>
+        <div className="h-[2px] w-32 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
   
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          A Place Where <span className="text-teal-500">Excellence Meets Education.</span>
-      
+          A Place Where <span className="text-orange-500">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6">
           Karyahub School is committed to providing exceptional education that nurtures
@@ -407,7 +391,7 @@ const Navbar = () => {
       {/* Right Image Section */}
       <div className="flex-1" data-aos='fade-left'>
         <Image
-          src={BookImage}
+          src={BookImageSecond}
           alt="Students learning in school"
           className="w-full h-[400px] object-contain"
           priority
@@ -420,7 +404,7 @@ const Navbar = () => {
       {/* Section Header */}
       <div className="text-center">
         <h2 className="text-4xl font-bold text-gray-900 mb-2">Our Teachers</h2>
-        <div className="h-[2px] w-16 bg-teal-500 mx-auto mb-4"></div>
+        <div className="h-[2px] w-16 bg-orange-500 mx-auto mb-4"></div>
      
         <p className="text-gray-600 mb-6">
           Meet the incredible faculty members shaping the future of our students.
@@ -464,7 +448,7 @@ const Navbar = () => {
       {/* View All Button */}
       <div className="text-center mt-8">
        
-        <Button  variant={"secondary"} className="px-6 py-3    font-medium text-sm    transition">
+        <Button  variant={"default"} className="px-6 py-3    font-medium text-sm    transition">
           All Teachers
         </Button>
        
@@ -476,7 +460,7 @@ const Navbar = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-4">Our Services</h2>
-        <div className="h-[2px] w-16 bg-teal-500 mb-8 mx-auto"></div>
+        <div className="h-[2px] w-16 bg-orange-500 mb-8 mx-auto"></div>
  
         <p className="text-gray-600 mb-12">
           Explore the services we offer to help our students achieve excellence.
@@ -531,7 +515,7 @@ const Navbar = () => {
         {/* Title */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold">Contact With Us</h2>
-          <div className="h-[2px] w-16 bg-teal-500 mx-auto my-4"></div>
+          <div className="h-[2px] w-16 bg-orange-500 mx-auto my-4"></div>
     
           <p className="text-gray-600">
             Feel free to get in touch with us for any queries or information.
@@ -604,7 +588,7 @@ const Navbar = () => {
           
             <Button
               type="submit"
-              className="px-6 py-3 bg-teal-500 text-white font-medium rounded hover:bg-blue-600 transition"
+              className="px-6 py-3 bg-orange-500 text-white font-medium rounded hover:bg-blue-600 transition"
            
             >
               Send Message
@@ -632,21 +616,21 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Candidate Info */}
         <div>
-          <h3 className="text-lg font-bold mb-4">Candidate Info</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Candidate Info</h3>
           <p className="text-gray-300 mb-4">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag.
           </p>
           <ul className="space-y-2">
             <li className="flex items-center">
-              <span className="text-teal-500 mr-2">📍</span> Road-7, House-62, Dhaka.
+              <span className="text-orange-500 mr-2">📍</span> Road-7, House-62, Dhaka.
            
             </li>
             <li className="flex items-center">
-              <span className="text-teal-500 mr-2">📞</span> +770 698 784 235
+              <span className="text-orange-500 mr-2">📞</span> +770 698 784 235
           
             </li>
             <li className="flex items-center">
-              <span className="text-teal-500 mr-2">📧</span> exam@gmail.com
+              <span className="text-orange-500 mr-2">📧</span> exam@gmail.com
            
             </li>
           </ul>
@@ -654,35 +638,35 @@ const Navbar = () => {
  
         {/* Quick Link */}
         <div>
-          <h3 className="text-lg font-bold mb-4">Quick Link</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Quick Link</h3>
           <ul className="space-y-2">
             <li>
              
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Search Engine Optimization
               </a>
             </li>
             <li>
              
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Pay Per Click Management
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Real Time Analytics
               </a>
             </li>
             <li>
           
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Free SEO Analysis
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Company & Contact Info
               </a>
             </li>
@@ -691,13 +675,13 @@ const Navbar = () => {
  
         {/* Popular Post */}
         <div>
-          <h3 className="text-lg font-bold mb-4">Popular Post</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Popular Post</h3>
           <ul className="space-y-4">
             <li className="flex space-x-4">
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                
-                <a href="#" className="block text-white hover:text-teal-500 font-medium">
+                <a href="#" className="block text-white hover:text-orange-500 font-medium">
                   3 Ways to Transform Your Blog Into
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -707,7 +691,7 @@ const Navbar = () => {
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                 
-                <a href="#" className="block text-white hover:text-teal-500 font-medium">
+                <a href="#" className="block text-white hover:text-orange-500 font-medium">
                   How Important Is Design To Business
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -717,7 +701,7 @@ const Navbar = () => {
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                 
-                <a href="#" className="block text-white hover:text-teal-500 font-medium">
+                <a href="#" className="block text-white hover:text-orange-500 font-medium">
                   Your Small Business Web Design Solution
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -728,35 +712,35 @@ const Navbar = () => {
  
         {/* Help Link */}
         <div>
-          <h3 className="text-lg font-bold mb-4">Help Link</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Help Link</h3>
           <ul className="space-y-2">
             <li>
              
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Search Engine Optimization
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Pay Per Click Management
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Real Time Analytics
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Free SEO Analysis
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-teal-500 transition">
+              <a href="#" className="hover:text-orange-500 transition">
                 Company & Contact Info
               </a>
             </li>
@@ -770,18 +754,18 @@ const Navbar = () => {
           <p className="text-gray-400 text-sm text-center md:text-left">
             © Eduzone 2024. All Rights Reserved.
           </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">F</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">X</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">L</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">P</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">T</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">F</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">X</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">L</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">P</a>
-            <a href="#" className="text-teal-500 text-lg hover:text-red-700 transition">T</a>
-          </div>
+          {/* <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">F</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">X</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">L</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">P</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">T</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">F</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">X</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">L</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">P</a>
+            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">T</a>
+          </div> */}
         </div>
       </div>
     </footer>

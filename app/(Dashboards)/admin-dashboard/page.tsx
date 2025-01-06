@@ -39,6 +39,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { toast, Toaster } from 'sonner';
 import axios from 'axios';
 import useThemeStore from '@/components/ThemeContext';
+import Dashboard from '../dashboard/page';
  
 type Request = {
   id: string
@@ -80,9 +81,9 @@ interface User {
 }
 
 
-const Dashboard = () => {
+const AdminDashboard = () => {
   const router = useRouter(); 
-  const { Id } = useAuthContext();
+ 
   const incrementNotifications = useThemeStore((state) => state.incrementNotifications);
   const [user, setUser] = useState<User | null>(null);
  
@@ -103,6 +104,7 @@ const Dashboard = () => {
   };
 
  
+  const [isLoading, setIsLoading] = useState(true);
 
  
  
@@ -315,7 +317,29 @@ const chartData = [
   { browser: "present", visitors: 346, fill: "var(--color-Absent)" },
   { browser: "absent", visitors: 30, fill: "var(--color-present)" },
 ]
+const stats = [
+  {
+    title: "Fee Collected till date",
+    amount: "4,56,640 /-",
+    percentage: 1.2,
+  },
+  {
+    title: "Students Dues",
+    amount: "45,890 /-",
+    percentage: 0.2,
+  },
+  {
+    title: "Total Outstanding",
+    amount: "4,96,684 /-",
+    percentage: 1.9,
+  },
+];
 
+const getBadgeClass = (percentage: number) => {
+  if (percentage > 0) return "bg-green-100 text-green-800";
+  if (percentage < 0) return "bg-red-100 text-red-800";
+  return "bg-blue-100 text-blue-800";
+};
 const Attendence = [
   {
     title: 'Emergency',
@@ -595,63 +619,76 @@ const chartConfig = {
             {/* Left Column - Events and Bar Chart */}
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
-  <CardContent>
-    <div className="flex justify-between py-5">
+            <div className="flex justify-between  bg-[#dcf0f9] p-4">
       <h1 className="text-xl font-semibold">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
       </Link>
     </div>
-    <Separator className="mb-2" />
-    {fetchedAnnouncements.slice(0, 4).map((event, index) => (
-    <div
-    className={`border-l-4 px-3 py-1 my-4 ${
-      index % 4 === 0
-        ? "border-blue-500"
-        : index % 4 === 1
-        ? "border-green-500"
-        : index % 4 === 2
-        ? "border-yellow-500"
-        : "border-red-500"
-    }`}
-    key={index}
-  >
-    <div className="flex gap-4">
-      <div className="text-sm">
-        <p className="text-left text-lg font-semibold">{event.event_title}</p>
-        <p className="text-sm text-gray-500 flex items-center">
-          <CalendarDays className="w-3 mr-1" />
-          {new Date(event.event_start_date).toLocaleDateString()}
-        </p>
-      </div>
-    </div>
-    <Separator />
-    <div className="flex my-3 justify-between">
-      <p className="text-sm text-gray-500 flex items-center">
-        <Clock className="w-3 mr-2" />
-        {event.event_start_time || "N/A"} - {event.event_end_time || "N/A"}
-      </p>
-      <div className="flex -space-x-2">
-        {[...Array(3)].map((_, idx) => (
-          <Avatar className="h-[30px] w-[30px]" key={idx}>
-            <AvatarImage
-              src="https://github.com/shadcn.png"
-              alt="@shadcn"
-            />
-          </Avatar>
-        ))}
-      </div>
-    </div>
-  </div>
+  <CardContent className='  '>
   
-    ))}
+    
+  {fetchedAnnouncements.slice(0, 4).map((event, index) => (
+        <div
+          className={`border-l-4 px-3 py-1 my-4 ${
+            index % 4 === 0
+              ? "border-l-blue-500"
+              : index % 4 === 1
+              ? "border-l-green-500"
+              : index % 4 === 2
+              ? "border-l-yellow-500"
+              : "border-l-red-500"
+          }`}
+          key={index}
+        >
+          <div className="flex gap-4">
+            <div className="text-sm">
+              <p className="text-left text-lg font-semibold">{event.event_title}</p>
+              <p className="text-sm text-gray-500 flex items-center">
+                <CalendarDays className="w-3 mr-1" />
+                {new Date(event.event_start_date).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+          <div 
+            className={`border-b-2 mt-2 ${
+              index % 4 === 0
+                ? "border-blue-500"
+                : index % 4 === 1
+                ? "border-green-500"
+                : index % 4 === 2
+                ? "border-yellow-500"
+                : "border-red-500"
+            }`}
+          />
+          <div className="flex my-2 justify-between">
+            <p className="text-sm text-gray-500 flex items-center">
+              <Clock className="w-3 mr-2" />
+              {event.event_start_time || "N/A"} - {event.event_end_time || "N/A"}
+            </p>
+            <div className="flex -space-x-2">
+              {[...Array(3)].map((_, idx) => (
+                <Avatar className="h-[30px] w-[30px]" key={idx}>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                </Avatar>
+              ))}
+            </div>
+          </div>
+     
+        </div>
+      ))}
+  
+    
   </CardContent>
 </Card>
 
  
 <Card>
-      <CardHeader>
-        <div className='flex justify-between items-center mb-3'>
+      <CardHeader className='p-0'>
+        <div className='flex justify-between items-center mb-3 bg-[#fce7f3] p-4'>
         <CardTitle>Teacher & Student Attendance</CardTitle>
         <Button className='cursor-pointer' variant={"outline"}  onClick={handleChartClick}>{dateRange}</Button>
         </div>
@@ -692,12 +729,14 @@ const chartConfig = {
             {/* Right Column - Attendance and Carousel */}
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
 
-            <Card className="w-full p-4">
-            <CardHeader className='p-2'>
-                  <h1 className="font-semibold md:text-lg  ">Quick Announcement</h1>
+            <Card className="w-full ">
+            <CardHeader className='p-4 bg-[#ebf1e3]'>
+                  <h1 className="font-semibold md:text-xl  ">Quick Announcement</h1>
               
                 </CardHeader>
             
+            <div className='px-4'>
+
             
                 <Tabs defaultValue="All" className="w-full mt-2">
                   <TabsList>
@@ -721,15 +760,15 @@ const chartConfig = {
               </div>
 
               {/* Send Button */}
-              <div className='flex justify-end'>
+              <div className='flex justify-end mb-4'>
               <Button  onClick={() => setIsAnnouncementDialogOpen(true)}>Send</Button>
               </div>
-          
+              </div>
               </Card>
 
               <Card className="">
       {/* Header Section */}
-      <CardHeader className="flex  flex-row justify-between p-4 mb-0 bg-[#c0b9cc]">
+      <CardHeader className="flex  flex-row justify-between p-3   bg-[#e1dde6]">
         <CardTitle className="text-xl font-semibold">Leave Requests</CardTitle>
         <div className='space-x-2'>
         <Link href="/admin-leave">
@@ -811,19 +850,19 @@ const chartConfig = {
 
     </Card>
   
-              <Card >
+              <Card  className='p-0'>
          
-          <CardContent className="w-full  px-3 pt-2">
+          <CardContent className="w-full  p-0 ">
           <Tabs defaultValue="student" className="w-full">
-            <div className='flex items-center justify-between'>
-            <CardHeader className='py-3 px-3'>
+            <div className='flex items-center justify-between bg-[#fbeddf] px-5'>
+            <CardHeader className=' p-4 '>
             <CardTitle>Leaves Graph</CardTitle>
             <CardDescription>
               Please review the leaves.
             </CardDescription>
           </CardHeader >
 
-          <TabsList>
+          <TabsList >
                     <TabsTrigger value="student">Student</TabsTrigger>
                     <TabsTrigger value="teacher">Teacher</TabsTrigger>
                     <TabsTrigger value="staff">Staff</TabsTrigger>
@@ -831,30 +870,44 @@ const chartConfig = {
             </div>
                  
                   <TabsContent value="student">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 ">
-          {Attendence.map((data, index) => (
-            <div
-              className="flex justify-center bg-gray-100 dark:bg-gray-800 rounded items-center h-[70px]"
-              key={index}
-            >
-              <div>
-                <p className="text-center">{data.count}</p>
-                <p>{data.title}</p>
-              </div>
-            </div>
-          ))}
+                  <div className="flex my-4">
+  {/* Left half: Attendance list */}
+  <div className="w-1/2 flex flex-col gap-4 p-4">
+    {Attendence.map((data, index) => (
+      <div
+        className="flex justify-center bg-gray-100 dark:bg-gray-800 rounded items-center h-[70px]"
+        key={index}
+      >
+        <div>
+          <p className="text-center">{data.count}</p>
+          <p>{data.title}</p>
         </div>
+      </div>
+    ))}
+  </div>
 
-                    <div className="flex justify-center">
-                      <ChartContainer config={chartConfig} className="w-full max-w-[250px] aspect-square">
-                        <PieChart>
-                          <Pie data={chartData} dataKey="visitors" nameKey="browser" innerRadius={65} strokeWidth={10} />
-                        </PieChart>
-                      </ChartContainer>
-                    </div>
+  {/* Right half: Pie chart */}
+  <div className="w-1/2 flex justify-center items-center">
+    <ChartContainer
+      config={chartConfig}
+      className="w-full max-w-[250px] aspect-square"
+    >
+      <PieChart>
+        <Pie
+          data={chartData}
+          dataKey="visitors"
+          nameKey="browser"
+          innerRadius={65}
+          strokeWidth={10}
+        />
+      </PieChart>
+    </ChartContainer>
+  </div>
+</div>
+
                   </TabsContent>
                 </Tabs>
-                <div className='flex justify-center'>
+                <div className='flex justify-center my-4'>
                 <Button variant={"outline"}>View details</Button>
                 </div>
           </CardContent>
@@ -877,8 +930,8 @@ const chartConfig = {
             </div> */}
   
     <Card>
-                <CardHeader className='p-4 pl-5'>
-                  <h1 className="font-semibold md:text-lg">Quick Links</h1>
+                <CardHeader className='p-4 pl-5 bg-[#f9dddf]'>
+                  <h1 className="font-semibold md:text-xl">Quick Links</h1>
                 </CardHeader>
               
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
@@ -988,8 +1041,38 @@ const chartConfig = {
           <CarouselNext className="absolute right-4 top-1/2" />
         </Carousel>
       </Card>
+
+
+    
     </div>
- 
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+      {stats.map((stat, index) => {
+        const isPositive = stat.percentage > 0;
+
+        return (
+          <Card key={index} className="bg-white">
+            <CardHeader className="pb-2">
+              <h3 className="text-sm font-medium text-muted-foreground">
+                {stat.title}
+              </h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex justify-between items-baseline">
+                <span className="text-xl font-semibold">{stat.amount}</span>
+                <span
+                  className={`px-2 py-0.5 rounded text-xs ${getBadgeClass(
+                    stat.percentage
+                  )}`}
+                >
+                  {isPositive ? "↑" : ""}
+                  {Math.abs(stat.percentage)}%
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
               </div>
  
           </div>
@@ -1095,4 +1178,4 @@ const chartConfig = {
   );
 };
 
-export default Dashboard;
+export default AdminDashboard;

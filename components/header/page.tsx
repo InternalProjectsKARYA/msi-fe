@@ -52,40 +52,16 @@ interface EventData {
 const Header: React.FC = () => {
   const { Id } = useAuthContext();
   const notification = useThemeStore((state) => state.notifications);
-  const [user, setUser] = useState<UserType | null>(null);
+ 
   const router = useRouter();
-  const [notifications, setNotifications] = useState<EventData[]>([]);
+ 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axiosInstance.get<{ user: UserType }>(`/get_user/?user_id=${Id}`);
-        setUser(response.data.user);
-      } catch (error: any) {
-        console.error("Error fetching user details:", error.response ? error.response.data : error.message);
-      }
-    };
-
-    fetchUserDetails();
-  }, [Id]);
-
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const response = await axiosInstance.get('/events');
-        setNotifications(response.data.data);
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
-    };
-    fetchNotifications();
-  }, []);
+ 
+ 
 
   const handleLogout = () => {
-    localStorage.removeItem("user_id");
-    localStorage.removeItem('token');
     router.push('/Auth/login');
   };
 
@@ -97,18 +73,135 @@ const Header: React.FC = () => {
     setSelectedEvent(event);
     setIsDialogOpen(true);
   };
+  const [notifications, setNotifications] = useState<EventData[]>([]);
+ // Add static data inside the useEffect for notifications
+ useEffect(() => {
+  const staticNotifications = [
+    {
+      event_id: 1,
+      user_id: "user123",
+      event_title: "School Annual Day",
+      event_category: "Event",
+      event_start_date: "2024-12-20",
+      event_end_date: "2024-12-20",
+      event_start_time: "10:00 AM",
+      event_end_time: "01:00 PM",
+      event_for: ["Students", "Teachers"],
+      event_description: "Join us for the School Annual Day celebrations!",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-01T10:00:00Z",
+      updated_tstamp: null,
+      user_name: "Admin",
+    },
+    {
+      event_id: 2,
+      user_id: "user124",
+      event_title: "Parent-Teacher Meeting",
+      event_category: "Meeting",
+      event_start_date: "2024-12-15",
+      event_end_date: "2024-12-15",
+      event_start_time: "09:00 AM",
+      event_end_time: "12:00 PM",
+      event_for: ["Parents", "Teachers"],
+      event_description: "Discuss your child's progress with their teachers.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-05T11:00:00Z",
+      updated_tstamp: null,
+      user_name: "Admin",
+    },
+    {
+      event_id: 3,
+      user_id: "user125",
+      event_title: "Science Exhibition",
+      event_category: "Exhibition",
+      event_start_date: "2024-12-18",
+      event_end_date: "2024-12-18",
+      event_start_time: "11:00 AM",
+      event_end_time: "02:00 PM",
+      event_for: ["Students", "Parents"],
+      event_description: "Explore innovative projects created by students.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-03T09:00:00Z",
+      updated_tstamp: null,
+      user_name: "Teacher",
+    },
+    {
+      event_id: 4,
+      user_id: "user126",
+      event_title: "Sports Day",
+      event_category: "Sports",
+      event_start_date: "2024-12-22",
+      event_end_date: "2024-12-22",
+      event_start_time: "08:00 AM",
+      event_end_time: "05:00 PM",
+      event_for: ["Students", "Teachers"],
+      event_description: "Compete in a variety of sports and activities.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-06T08:00:00Z",
+      updated_tstamp: null,
+      user_name: "Coach",
+    },
+    {
+      event_id: 5,
+      user_id: "user127",
+      event_title: "Art Competition",
+      event_category: "Competition",
+      event_start_date: "2024-12-19",
+      event_end_date: "2024-12-19",
+      event_start_time: "10:00 AM",
+      event_end_time: "12:00 PM",
+      event_for: ["Students"],
+      event_description: "Showcase your artistic talents in this competition.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-07T10:30:00Z",
+      updated_tstamp: null,
+      user_name: "Art Teacher",
+    },
+    {
+      event_id: 6,
+      user_id: "user128",
+      event_title: "Math Olympiad",
+      event_category: "Competition",
+      event_start_date: "2024-12-21",
+      event_end_date: "2024-12-21",
+      event_start_time: "09:00 AM",
+      event_end_time: "11:00 AM",
+      event_for: ["Students"],
+      event_description: "Test your mathematical skills and compete for prizes.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-10T11:00:00Z",
+      updated_tstamp: null,
+      user_name: "Math Department",
+    },
+    {
+      event_id: 7,
+      user_id: "user129",
+      event_title: "Christmas Carnival",
+      event_category: "Festival",
+      event_start_date: "2024-12-25",
+      event_end_date: "2024-12-25",
+      event_start_time: "04:00 PM",
+      event_end_time: "09:00 PM",
+      event_for: ["Students", "Parents", "Teachers"],
+      event_description: "Celebrate Christmas with fun games and food stalls.",
+      attachment_url: null,
+      event_status: true,
+      created_tstamp: "2024-12-15T14:00:00Z",
+      updated_tstamp: null,
+      user_name: "Admin",
+    },
+  ];
 
-  const SkeletonDemo = () => (
-    <div className="flex items-center space-x-2 dark:text-white">
-      <div className="space-y-1">
-        <Skeleton className="h-2 w-[120px] bg-gray-300 dark:bg-gray-700" />
-        <Skeleton className="h-2 w-[80px] bg-gray-300 dark:bg-gray-700" />
-      </div>
-      <Avatar className="w-6 h-6">
-        <AvatarImage src="https://github.com/shadcn.png" alt="User Avatar" />
-      </Avatar>
-    </div>
-  );
+  setNotifications(staticNotifications);
+}, []);
+
+
 
   const formatDate = (date: string) => {
     return format(new Date(date), 'MMMM d, yyyy');
@@ -163,16 +256,14 @@ const Header: React.FC = () => {
               </div>
        
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="mt-5 p-4 w-[300px] lg:w-[450px]" align="end">
+            <DropdownMenuContent className="mt-5 p-4 w-[300px] lg:w-[400px]" align="end">
               <DropdownMenuLabel className="flex items-center justify-between w-full">
                 <div>
                   <p className="text-lg">Notifications ({notifications.length})</p>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <Button variant="outline" className="cursor-pointer">
-                    Mark All As Read
-                  </Button>
-                  <Link href="/announcements" className="flex-grow">
+                <div className="flex gap-2 items-center " >
+                 
+                  <Link href="/announcements" className="flex-grow text-xs">
                     <Button>View All</Button>
                   </Link>
                 </div>
@@ -210,40 +301,37 @@ const Header: React.FC = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center space-x-1 dark:text-white h-8 p-2 bg-white dark:bg-neutral-900">
-                {user?.user_name ? (
+               
                   <div className="flex items-center space-x-2 dark:text-white">
                     <span className="hidden text-black dark:text-white lg:block text-sm font-medium">
-                      {user.user_name}
+                    <p className="font-medium">User</p>
+                   
                     </span>
                     <Avatar className="w-6 h-6">
                       <AvatarImage
                         src="https://github.com/shadcn.png"
-                        alt={user.user_name}
+                       
                       />
                     </Avatar>
                   </div>
-                ) : (
-                  <SkeletonDemo />
-                )}
+               
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-3">
-              {user?.user_name ? (
+              
                 <DropdownMenuLabel className="flex items-center dark:text-white gap-3 p-2">
                   <Avatar className="w-10 h-10">
                     <AvatarImage
                       src="https://github.com/shadcn.png"
-                      alt={user.user_name}
+                      
                     />
                   </Avatar>
                   <div>
-                    <p className="font-medium">{user.user_name}</p>
-                    <p className="text-sm text-gray-500">{user.email_id}</p>
+                    <p className="font-medium">User</p>
+                    <p className="text-sm text-gray-500">Userexample@gmail.com</p>
                   </div>
                 </DropdownMenuLabel>
-              ) : (
-                <SkeletonDemo />
-              )}
+           
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleProfile} className="flex items-center space-x-2 cursor-pointer">
                 <User className="w-4 h-4" />

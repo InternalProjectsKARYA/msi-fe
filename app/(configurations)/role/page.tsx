@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from "react";
 import {
   ColumnDef,
-  ColumnFiltersState,
   SortingState,
   VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, MoreVertical, Download } from "lucide-react";
@@ -18,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
- 
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuItem,
@@ -41,104 +39,84 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Label } from '@/components/ui/label';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import axiosInstance from '@/lib/axiosInstance';
-import { useToast } from "@/components/ui/use-toast";
+import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-// Define data type
 export type Roles = {
   role_id: string;
   role_name: string;
   role_status: boolean;
 };
 
-// Main Component
 export default function Role() {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [roles, setRoles] = useState<Roles[]>([
+    { role_id: "1", role_name: "Admin", role_status: true },
+    { role_id: "2", role_name: "Teacher", role_status: false },
+    { role_id: "3", role_name: "Student", role_status: true },
+  ]);
   const [selectedRole, setSelectedRole] = useState<Roles | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [roles, setRoles] = useState<Roles[]>([]);
-  const [roleName, setRoleName] = useState('');
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchRoles = async () => {
-      try {
-        const response = await axiosInstance.get(`/get_all_roles/`);
-        setRoles(response.data.roles);
-      } catch (error: any) {
-        console.error("Error fetching roles:", error.response ? error.response.data : error.message);
-      }
-    };
-    fetchRoles();
-  }, []);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [roleName, setRoleName] = useState("");
 
   const handleEditClick = (role: Roles) => {
     setSelectedRole(role);
     setIsDialogOpen(true);
   };
 
-  const handleEditRole = async () => {
+  const handleEditRole = () => {
     if (selectedRole) {
-      try {
-        // Create the data object to send to the backend
-        const updatedRoleData = {
-          role_name: selectedRole.role_name,
-          role_status: selectedRole.role_status,
-        };
-
-        // Send PUT request to update role
-        const response = await axiosInstance.put(`/update_role/?role_id=${selectedRole.role_id}`,
-          updatedRoleData,
-        );
-
-        if (response.status === 200) {
-          // Update role in state
-          setRoles((prevRoles) =>
-            prevRoles.map((role) =>
-              role.role_id === selectedRole.role_id
-                ? { ...role, ...updatedRoleData }
-                : role
-            )
-          );
-
-          toast({
-            title: 'Success',
-            description: 'Role updated successfully.',
-            variant: 'default',
-          });
-          setIsDialogOpen(false); // Close the dialog
-        }
-      } catch (error) {
-        toast({
-          title: 'Error',
-          description: 'An error occurred while updating the role.',
-          variant: 'destructive',
-        });
-        console.error(error);
-      }
+      setRoles((prevRoles) =>
+        prevRoles.map((role) =>
+          role.role_id === selectedRole.role_id
+            ? { ...role, role_name: selectedRole.role_name, role_status: selectedRole.role_status }
+            : role
+        )
+      );
+      setIsDialogOpen(false);
     }
   };
 
+  const handleAddRole = () => {
+    const newRole: Roles = {
+      role_id: String(roles.length + 1),
+      role_name: roleName,
+      role_status: false,
+    };
+    setRoles((prevRoles) => [...prevRoles, newRole]);
+    setIsSheetOpen(false);
+    setRoleName("");
+  };
 
   const columns: ColumnDef<Roles>[] = [
-    {
-      id: "sno",
-      header: "S.NO",
-      cell: (info) => info.row.index + 1,
-    },
+    { id: "sno", header: "S.NO", cell: (info) => info.row.index + 1 },
     {
       accessorKey: "role_name",
       header: ({ column }) => (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() =>
+            column.toggleSorting(column.getIsSorted() === "asc")
+          }
         >
           Role
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -168,7 +146,10 @@ export default function Role() {
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="start">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => handleEditClick(row.original)} className="cursor-pointer">
+            <DropdownMenuItem
+              onClick={() => handleEditClick(row.original)}
+              className="cursor-pointer"
+            >
               Edit
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -184,52 +165,12 @@ export default function Role() {
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
+    state: { sorting, columnFilters, columnVisibility },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
   });
 
-  const handleRole = async () => {
-    try {
-      const response = await axiosInstance.post('/create_role/', {
-        role_name: roleName,
-      });
-
-      if (response.status === 200) {
-        const newRole: Roles = {
-          role_id: response.data.role_id,
-          role_name: roleName,
-          role_status: false,
-        };
-
-        setRoles((prevRoles) => [...prevRoles, newRole]); // Add new role to state
-
-        toast({
-          title: 'Success',
-          description: 'Role created successfully.',
-          variant: 'default',
-        });
-
-        setIsSheetOpen(false);
-        setRoleName('');
-      }
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: 'An error occurred: ' + (error.message || 'Unknown error.'),
-        variant: 'destructive',
-      });
-    }
-  };
-
-
   return (
-
     <div className="p-6">
       <div className="w-full">
         <div className="flex items-center py-4">
@@ -245,7 +186,10 @@ export default function Role() {
             <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
               <Download className="h-5 w-5" />
             </Button>
-            <Button onClick={() => setIsSheetOpen(true)} className="w-32 hover:bg-opacity-90 flex items-center space-x-2">
+            <Button
+              onClick={() => setIsSheetOpen(true)}
+              className="w-32 hover:bg-opacity-90 flex items-center space-x-2"
+            >
               <span>Add role</span>
             </Button>
           </div>
@@ -257,7 +201,7 @@ export default function Role() {
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className='bg-gray-200 text-black'>
+                    <TableHead key={header.id} className="bg-gray-200 text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -289,32 +233,26 @@ export default function Role() {
         </div>
 
         <div className="flex items-center justify-end space-x-2 py-4">
-          <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
-          </div>
-          <div className="space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              Previous
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              Next
-            </Button>
-          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
         </div>
       </div>
 
-      {/* Sheet Component */}
+      {/* Sheet for adding a new role */}
       <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
         <SheetContent>
           <SheetHeader>
@@ -323,7 +261,9 @@ export default function Role() {
           </SheetHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center">
-              <Label htmlFor="role" className="text-left">Role</Label>
+              <Label htmlFor="role" className="text-left">
+                Role
+              </Label>
               <Input
                 id="role"
                 placeholder="Enter role name"
@@ -331,41 +271,56 @@ export default function Role() {
                 onChange={(e) => setRoleName(e.target.value)}
                 className="col-span-3"
               />
-
             </div>
           </div>
           <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit" onClick={handleRole}>Save changes</Button>
+              <Button type="submit" onClick={handleAddRole}>
+                Save changes
+              </Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
       </Sheet>
 
-      {/* Dialog for editing profile */}
+      {/* Dialog for editing a role */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit role</DialogTitle>
             <DialogDescription>
-              Make changes to the role and status here. Click save when you're done.
+              Make changes to the role here. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center">
-              <Label htmlFor="editRole" className="text-left">Role</Label>
+              <Label htmlFor="editRole" className="text-left">
+                Role
+              </Label>
               <Input
                 id="editRole"
-                value={selectedRole?.role_name || ''}
-                onChange={(e) => setSelectedRole(prev => ({ ...prev!, role_name: e.target.value }))}
+                value={selectedRole?.role_name || ""}
+                onChange={(e) =>
+                  setSelectedRole((prev) => ({
+                    ...prev!,
+                    role_name: e.target.value,
+                  }))
+                }
                 className="col-span-3"
               />
             </div>
             <div className="grid grid-cols-4 items-center">
-              <Label htmlFor="editStatus" className="text-left">Status</Label>
+              <Label htmlFor="editStatus" className="text-left">
+                Status
+              </Label>
               <Select
-                value={selectedRole?.role_status ? "Inactive" : "Active"} 
-                onValueChange={(value) => setSelectedRole(prev => ({ ...prev!, role_status: value === "Inactive" }))} 
+                value={selectedRole?.role_status ? "Inactive" : "Active"}
+                onValueChange={(value) =>
+                  setSelectedRole((prev) => ({
+                    ...prev!,
+                    role_status: value === "Inactive",
+                  }))
+                }
               >
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select status" />
@@ -373,22 +328,20 @@ export default function Role() {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Status</SelectLabel>
-                    <SelectItem value="Active">Active</SelectItem>   
-                    <SelectItem value="Inactive">Inactive</SelectItem> 
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Inactive">Inactive</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
-
-
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={handleEditRole}>Save changes</Button>
+            <Button type="submit" onClick={handleEditRole}>
+              Save changes
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
-
-
   );
 }

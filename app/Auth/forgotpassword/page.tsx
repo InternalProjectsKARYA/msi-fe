@@ -47,20 +47,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 justify-center  ">
-        <div style={ {marginLeft:'-30%'}}> 
-  <video
-          className=" h-40  "
-          src="/videos/pencil.mp4" // Path to your video
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <track kind="captions" />
-          Your browser does not support the video tag.
-        </video>
-  </div>
+    <div className="flex flex-col items-center   justify-center h-screen ">
+ 
       <Card className="flex   p-5">
       <div>
       <Image src={MyImage} alt="Description of the image" width={400} height={200} />

@@ -80,77 +80,57 @@ export default function ClassAndSectionTables() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const { toast } = useToast();
-  // Class state
-  const [classTableData, setClassTableData] = useState<ClassType[]>([]);
-  // const [newClass, setNewClass] = useState("");
-  const [newStatus, setNewStatus] = useState<"Active" | "Inactive">("Active");
-  const [selectedClass, setSelectedClass] = useState<ClassType | null>(null);
+
   const [isClassDialogOpen, setIsClassDialogOpen] = useState(false);
   const [isClassSheetOpen, setIsClassSheetOpen] = useState(false);
-  const [selectedClassStatus, setSelectedClassStatus] = useState<"Active" | "Inactive">("Active");
-  const [standard, setStandard] = useState('');
-
-  // Section state
-  const [sectionTableData, setSectionTableData] = useState<Section[]>([]);
-  const [newSection, setNewSection] = useState("");
-  const [newSectionStatus, setNewSectionStatus] = useState<"Active" | "Inactive">("Active");
-  const [selectedSection, setSelectedSection] = useState<Section | null>(null);
+  
   const [isSectionDialogOpen, setIsSectionDialogOpen] = useState(false);
   const [isSectionSheetOpen, setIsSectionSheetOpen] = useState(false);
-  const [selectedSectionStatus, setSelectedSectionStatus] = useState<"Active" | "Inactive">("Active");
-  const [section, setSection] = useState('');
 
-  useEffect(() => {
-    const fetchClasses = async () => {
-      try {
-        const response = await axiosInstance.get(`/get_all_class/`);
-        setClassTableData(response.data.classes);
-      } catch (error: any) {
-        console.error("Error fetching classes:", error.response ? error.response.data : error.message);
-      }
-    };
-    fetchClasses();
-  }, []);
+  const [editingClass, setEditingClass] = useState<ClassType | null>(null);
+const [editingSection, setEditingSection] = useState<Section | null>(null);
 
-  useEffect(() => {
-    const fetchSections = async () => {
-      try {
-        const response = await axiosInstance.get(`/get_all_section/`);
-        setSectionTableData(response.data.sections);
-      } catch (error: any) {
-        console.error("Error fetching sections:", error.response ? error.response.data : error.message);
-      }
-    };
-    fetchSections();
-  }, []);
+// Edit handlers
+const handleEditClass = (classItem: ClassType) => {
+  setEditingClass(classItem);
+  setIsClassDialogOpen(true);
+};
 
-  const handleClassEditClick = (classItem: ClassType) => {
-    setSelectedClass(classItem);
-    // setNewClass(classItem.class_standards);
-    setNewStatus(classItem.status ? "Inactive" : "Active"); // Invert logic here
-    setIsClassDialogOpen(true);
-  };
+const handleEditSection = (sectionItem: Section) => {
+  setEditingSection(sectionItem);
+  setIsSectionDialogOpen(true);
+};
+
+// Reset state when dialogs are closed
+const resetEditingState = () => {
+  setEditingClass(null);
+  setEditingSection(null);
+};
 
 
-  const handleSectionEditClick = (sectionItem: Section) => {
-    setSelectedSection(sectionItem);
-    setNewSection(sectionItem.section_name);
-    setNewSectionStatus(sectionItem.status ? "Inactive" : "Active"); // Invert logic here
-    setIsSectionDialogOpen(true);
-  };
+
+  const [classTableData, setClassTableData] = useState<ClassType[]>([
+    { class_id: "1", class_standards: "1st Grade", status: true },
+    { class_id: "2", class_standards: "2nd Grade", status: false },
+  ]);
+
+  const [sectionTableData, setSectionTableData] = useState<Section[]>([
+    { section_id: "A", section_name: "Shakthi", status: true },
+    { section_id: "B", section_name: "Sahithi", status: false },
+  ]);
+
+
+
+
+
 
 
   const classColumns: ColumnDef<ClassType>[] = [
-    {
-      id: "sno",
-      header: "S.NO",
-      cell: (info) => info.row.index + 1,
-    },
+    { id: "sno", header: "S.NO", cell: (info) => info.row.index + 1 },
     {
       accessorKey: "class_standards",
       header: ({ column }) => (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        <Button variant="ghost" onClick={() => column.toggleSorting()}>
           Class
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -160,11 +140,7 @@ export default function ClassAndSectionTables() {
     {
       accessorKey: "status",
       header: "Status",
-      cell: ({ row }) => (
-        <div className="capitalize">
-          {row.getValue("status") ? "Inactive" : "Active"}
-        </div>
-      ),
+      cell: ({ row }) => (row.getValue("status") ? "Inactive" : "Active"),
     },
     {
       id: "actions",
@@ -173,13 +149,14 @@ export default function ClassAndSectionTables() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="start">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => handleClassEditClick(row.original)}>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleEditClass(row.original)}>
+            Edit
+          </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
@@ -187,15 +164,11 @@ export default function ClassAndSectionTables() {
   ];
 
   const sectionColumns: ColumnDef<Section>[] = [
-    {
-      id: "sno",
-      header: "S.NO",
-      cell: (info) => info.row.index + 1,
-    },
+    { id: "sno", header: "S.NO", cell: (info) => info.row.index + 1 },
     {
       accessorKey: "section_name",
       header: ({ column }) => (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        <Button variant="ghost" onClick={() => column.toggleSorting()}>
           Section
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -205,11 +178,7 @@ export default function ClassAndSectionTables() {
     {
       accessorKey: "status",
       header: "Status",
-      cell: ({ row }) => (
-        <div className="capitalize">
-          {row.getValue("status") ? "Inactive" : "Active"}
-        </div>
-      ),
+      cell: ({ row }) => (row.getValue("status") ? "Inactive" : "Active"),
     },
     {
       id: "actions",
@@ -218,21 +187,23 @@ export default function ClassAndSectionTables() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="start">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => handleSectionEditClick(row.original)}>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleEditSection(row.original)}>
+            Edit
+          </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
     },
   ];
 
+
   const classTable = useReactTable({
-    data: classTableData || [],
+    data: classTableData,
     columns: classColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -244,7 +215,7 @@ export default function ClassAndSectionTables() {
   });
 
   const sectionTable = useReactTable({
-    data: sectionTableData || [],
+    data: sectionTableData,
     columns: sectionColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -255,121 +226,6 @@ export default function ClassAndSectionTables() {
     onColumnFiltersChange: setColumnFilters,
   });
 
-  const handleAddClass = async () => {
-    try {
-      const newClass: ClassType = {
-        class_standards: standard,
-        status: newStatus === "Inactive",
-      };
-
-      const response = await axiosInstance.post('/create_class/', newClass);
-
-      if (response.status === 200) {
-        setClassTableData((prev) => [...prev, newClass]);
-        toast({
-          title: 'Success',
-          description: 'Class created successfully.',
-          variant: 'default',
-        });
-        setIsClassSheetOpen(false);
-        setStandard('');
-      }
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: 'An error occurred: ' + (error.message || 'Unknown error.'),
-        variant: 'destructive',
-      });
-    }
-  };
-
-  const handleAddSection = async () => {
-    try {
-      const newSection: Section = {
-        section_name: section,
-        status: newSectionStatus === "Inactive",
-      };
-
-      const response = await axiosInstance.post('/create_section/', newSection);
-
-      if (response.status === 200) {
-        setSectionTableData((prev) => [...prev, newSection]);
-        toast({
-          title: 'Success',
-          description: 'Section created successfully.',
-          variant: 'default',
-        });
-        setIsSectionSheetOpen(false);
-        setSection('');
-      }
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: 'An error occurred: ' + (error.message || 'Unknown error.'),
-        variant: 'destructive',
-      });
-    }
-  };
-
-  const handleEditClass = async () => {
-    if (!selectedClass) return; // Prevents error if no class is selected
-
-    const ClassData = {
-      class_standards: selectedClass.class_standards,
-      status: newStatus === "Inactive", // Invert logic: Active = false, Inactive = true
-    };
-
-    const newEntry = {
-      ...selectedClass,
-      status: newStatus === "Inactive",  // Update the status field
-    };
-
-    try {
-      const response = await axiosInstance.put(`/update_class/?class_id=${selectedClass.class_id}`, ClassData);
-      if (response.status === 200) {
-        setClassTableData((prev) =>
-          prev.map((cls) => cls.class_standards === selectedClass.class_standards ? newEntry : cls)
-        );
-        toast({ title: 'Success', description: 'Class updated successfully.', variant: 'default' });
-        setIsClassDialogOpen(false);
-        // setNewClass("");
-        setNewStatus("Active");
-      }
-    } catch (error: any) {
-      toast({ title: 'Error', description: 'An error occurred: ' + (error.message || 'Unknown error.'), variant: 'destructive' });
-    }
-  };
-
-
-
-  const handleEditSection = async () => {
-    if (!selectedSection) return; // Prevents error if no section is selected
-
-    const SectionData = {
-      section_name: newSection,
-      status: newSectionStatus === "Inactive", // Invert logic: Active = false, Inactive = true
-    };
-
-    const newEntry = {
-      ...selectedSection,
-      status: newSectionStatus === "Inactive",  // Update the status field
-    };
-
-    try {
-      const response = await axiosInstance.put(`/update_section/?section_id=${selectedSection.section_id}`, SectionData);
-      if (response.status === 200) {
-        setSectionTableData((prev) =>
-          prev.map((sec) => sec.section_name === selectedSection.section_name ? newEntry : sec)
-        );
-        toast({ title: 'Success', description: 'Section updated successfully.', variant: 'default' });
-        setIsSectionDialogOpen(false);
-        setNewSection("");
-        setNewSectionStatus("Active");
-      }
-    } catch (error: any) {
-      toast({ title: 'Error', description: 'An error occurred: ' + (error.message || 'Unknown error.'), variant: 'destructive' });
-    }
-  };
 
 
   return (
@@ -440,12 +296,12 @@ export default function ClassAndSectionTables() {
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center">
                 <Label htmlFor="class" className="text-left">Class</Label>
-                <Input id="class" placeholder="Enter class name" value={standard} onChange={(e) => setStandard(e.target.value)} className="col-span-3" />
+                <Input id="class" placeholder="Enter class name" className="col-span-3" />
               </div>
             </div>
             <SheetFooter>
               <SheetClose asChild>
-                <Button type="submit" onClick={handleAddClass}>Save changes</Button>
+                <Button type="submit">Save changes</Button>
               </SheetClose>
             </SheetFooter>
           </SheetContent>
@@ -518,12 +374,12 @@ export default function ClassAndSectionTables() {
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center">
                 <Label htmlFor="section" className="text-left">Section</Label>
-                <Input id="section" placeholder="Enter section name" value={section} onChange={(e) => setSection(e.target.value)} className="col-span-3" />
+                <Input id="section" placeholder="Enter section name"  className="col-span-3" />
               </div>
             </div>
             <SheetFooter>
               <SheetClose asChild>
-                <Button type="submit" onClick={handleAddSection}>Save changes</Button>
+                <Button type="submit">Save changes</Button>
               </SheetClose>
             </SheetFooter>
           </SheetContent>
@@ -544,14 +400,13 @@ export default function ClassAndSectionTables() {
               <Label htmlFor="class" className="text-left">Class</Label>
               <Input
                 id="class"
-                value={selectedClass?.class_standards || ''}
-                onChange={(e) => setSelectedClass({ ...selectedClass, class_standards: e.target.value })}
+                
                 className="col-span-3"
               />
             </div>
             <div className="grid grid-cols-4 items-center">
               <Label htmlFor="status" className="text-left">Status</Label>
-              <Select value={selectedClassStatus} onValueChange={(value) => setSelectedClassStatus(value as "Active" | "Inactive")}>
+              <Select >
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
@@ -566,7 +421,7 @@ export default function ClassAndSectionTables() {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={handleEditClass}>Save changes</Button>
+            <Button type="submit">Save changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -585,14 +440,13 @@ export default function ClassAndSectionTables() {
               <Label htmlFor="section" className="text-left">Section</Label>
               <Input
                 id="section"
-                value={selectedSection?.section_name || ''}
-                onChange={(e) => setSelectedSection({ ...selectedSection, section_name: e.target.value })}
+              
                 className="col-span-3"
               />
             </div>
             <div className="grid grid-cols-4 items-center">
               <Label htmlFor="status" className="text-left">Status</Label>
-              <Select value={selectedSectionStatus} onValueChange={(value) => setSelectedSectionStatus(value as "Active" | "Inactive")}>
+              <Select >
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
@@ -607,7 +461,7 @@ export default function ClassAndSectionTables() {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={handleEditSection}>Save changes</Button>
+            <Button type="submit" >Save changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

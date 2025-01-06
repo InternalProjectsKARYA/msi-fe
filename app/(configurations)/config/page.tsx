@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Card, CardContent, CardDescription, CardFooter,
@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import {
-    TooltipProvider, 
+  TooltipProvider, 
 } from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,10 +15,6 @@ import { Switch } from '@/components/ui/switch';
 import { Toaster } from '@/components/ui/sonner';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
-import axiosInstance from "@/lib/axiosInstance";
-import { useFeatureFlags } from "../../../context/FeatureFlagProvider";
- 
-
 
 const WeekdaysDropdown = ({ value, onChange }) => (
   <select className="dropdown border border-gray-300 rounded p-2" value={value} onChange={onChange}>
@@ -44,58 +40,23 @@ const OptionalDay = ({ value, onChange }) => (
 
 const Config = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const { flags, updateFeatureFlag } = useFeatureFlags();
 
-  const handleToggle = () => {
-    updateFeatureFlag("showSpecialCard", !flags.showSpecialCard);
-  };
-
+  // Static form data replacing API integration
   const [formData, setFormData] = useState({
-    plain_password: "",
-    school_name: "",
-    school_email: "",
-    school_contact: "",
+    plain_password: "MySchoolItaly@123",
+    school_name: "My School Itay",
+    school_email: "info@myschoolitaly.com",
+    school_contact: "+91 9876534321",
     days_180_flag: false,
     school_logo: null,
-    prefix_id: "",
-    leavesettings: { weekoffType: "default", customDays: [] },
+    prefix_id: "SCH",
+    leavesettings: { weekoffType: ["Saturday", "Sunday"], customDays: ["1", "Saturday", "3", "Saturday", "2"] },
   });
+
   const [showOption1, setShowOption1] = useState(true);
   const [showOption2, setShowOption2] = useState(false);
-  const [config, setConfig] = useState(null);
 
   const customDays = formData.leavesettings.customDays || [];
-
-  useEffect(() => {
-    const fetchConfig = async () => {
-      try {
-        const response = await axiosInstance.get("/get_config");
-        if (response.status === 200) {
-          const data = response.data.data;
-          setConfig(data);
-
-          setFormData((prevData) => ({
-            ...prevData,
-            plain_password: data.plain_password || "",
-            school_name: data.school_name || "",
-            school_email: data.school_email || "",
-            school_contact: data.school_contact || "",
-            prefix_id: data.prefix_id || "",
-            leavesettings: {
-              ...data.leavesettings,
-              weekoffType: data.leavesettings.weekoffType || ["", ""], // Ensure it's an array with two empty strings
-              customDays: data.leavesettings.customDays || [], // Initialize customDays as an empty array if undefined
-            },
-          }));
-        }
-      } catch (error) {
-        console.error("Error fetching configuration:", error);
-      }
-    };
-
-    fetchConfig();
-  }, []);
-
 
   // Weekday change function for both default and customizable settings
   const handleWeekdayChange = (index, value) => {
@@ -123,8 +84,6 @@ const Config = () => {
     }));
   };
 
-
-
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -134,43 +93,11 @@ const Config = () => {
     }
   };
 
-
-
-  const handleSubmit = async () => {
-    if (!config) return;
-
-    // Prepare the data to send as a normal JSON object
-    const dataToSend = {
-      plain_password: formData.plain_password,
-      school_name: formData.school_name,
-      school_email: formData.school_email,
-      school_contact: formData.school_contact,
-      days_180_flag: formData.days_180_flag,
-      school_logo: formData.school_logo, // Add this if you're sending it in a different format
-      prefix_id: formData.prefix_id,
-      leavesettings: formData.leavesettings,  // Send leavesettings as an object (not stringified)
-    };
-
-    try {
-      const response = await axiosInstance.put(`/update_config/${config.config_id}`, dataToSend, {
-        headers: {
-          'Content-Type': 'application/json',  // Make sure the content type is set to JSON
-        },
-      });
-
-      if (response.status === 200) {
-        toast("Settings Saved", { description: "Your configuration has been updated." });
-      } else {
-        toast("Error", { description: response.data.message || "Failed to save settings." });
-      }
-    } catch (error) {
-      toast("Error", { description: "An unexpected error occurred." });
-      console.error("Error saving configuration:", error);
-    }
+  const handleSubmit = () => {
+    // Replace API call with static data submission logic
+    console.log("Form Data Submitted: ", formData);
+    toast("Settings Saved", { description: "Your configuration has been updated." });
   };
-
-
-
 
   return (
     <main className="flex grid grid-cols-1 lg:grid-cols-1">
@@ -183,8 +110,7 @@ const Config = () => {
             <form>
               <div className="grid gap-6">
 
-                <div className='flex flex-1 flex-wrap gap-10'>
-  
+                <div className="flex flex-1 flex-wrap gap-10">
                   <div className="flex flex-col gap-y-4">
                     {/* 180 Days Flag */}
                     <div className="flex items-center gap-x-4 mt-4">
@@ -225,20 +151,19 @@ const Config = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center space-x-4  ">
-      <span className="text-gray-700 font-medium">Leave request: </span>
-      <Switch
-        checked={flags.showSpecialCard}
-        onCheckedChange={handleToggle}
-        className={`${
-          flags.showSpecialCard ? "bg-blue-600" : "bg-gray-300"
-        }`}
-      />
-      <span className="font-semibold">
-        {flags.showSpecialCard ? "Enabled" : "Disabled"}
-      </span>
-     
-    </div>
+                <div className="flex items-center space-x-4">
+                  <span className="text-gray-700 font-medium">Leave request: </span>
+                  <Switch
+                    checked={formData.days_180_flag}
+                    onCheckedChange={(checked) => setFormData({ ...formData, days_180_flag: checked })}
+                    className={`${
+                      formData.days_180_flag ? "bg-blue-600" : "bg-gray-300"
+                    }`}
+                  />
+                  <span className="font-semibold">
+                    {formData.days_180_flag ? "Enabled" : "Disabled"}
+                  </span>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-x-10">
                   <div className="flex flex-row items-center space-x-4">
                     <Label htmlFor="DefaultPassword" className="w-32 md:w-48 font-medium whitespace-nowrap">
@@ -327,18 +252,15 @@ const Config = () => {
                         <div className="flex items-center gap-2">
                           Every
                           <WeekdaysDropdown
-                            value={formData.leavesettings.weekoffType[0] || ""}  // Provide fallback value (empty string)
-                            onChange={(e) => handleWeekdayDefaultChange("weekoffType", [e.target.value, formData.leavesettings.weekoffType[1]])}  // Update first weekday
+                            value={formData.leavesettings.weekoffType[0] || ""}
+                            onChange={(e) => handleWeekdayDefaultChange("weekoffType", [e.target.value, formData.leavesettings.weekoffType[1]])}
                           />{' - '}
                           <WeekdaysDropdown
-                            value={formData.leavesettings.weekoffType[1] || ""}  // Provide fallback value (empty string)
-                            onChange={(e) => handleWeekdayDefaultChange("weekoffType", [formData.leavesettings.weekoffType[0], e.target.value])}  // Update second weekday
+                            value={formData.leavesettings.weekoffType[1] || ""}
+                            onChange={(e) => handleWeekdayDefaultChange("weekoffType", [formData.leavesettings.weekoffType[0], e.target.value])}
                           />
                         </div>
                       )}
-
-
-
                       {showOption2 && (
                         <div className="flex flex-wrap items-center gap-2">
                           Every
@@ -364,7 +286,6 @@ const Config = () => {
                           />
                         </div>
                       )}
-
                     </div>
                   </CardContent>
                 </div>

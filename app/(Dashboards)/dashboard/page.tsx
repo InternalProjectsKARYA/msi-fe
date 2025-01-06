@@ -1,47 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/lib/AuthProvider";
+ 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardHeader } from "@/components/ui/card";
 
 const Dashboard = () => {
-  const { role, isAuthenticated } = useAuthContext();
-  const router = useRouter();
-  const [loading, setLoading] = useState(true); // Manage loading state
-
-  useEffect(() => {
-    
-  
-  
-  
-    let redirectTo = "";
-    switch (role) {
-      case "role_1":
-        redirectTo = "/admin-dashboard";
-        break;
-      case "role_3":
-        redirectTo = "/teacher-dashboard";
-        break;
-      case "role_4":
-        redirectTo = "/student-dashboard";
-        break;
-      case "role_5":
-        redirectTo = "/parent-dashboard";
-        break;
-      default:
-        redirectTo = "/admin-dashboard";
-        break;
-    }
-  
-    setTimeout(() => {
-      router.push(redirectTo);
-      setLoading(false);
-    }, 2000);
-  }, [role, isAuthenticated, router]);
-  
-
-  if (loading) {
+  {
     return (
       <div className="space-y-3">
         {/* Header Skeleton */}

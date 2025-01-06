@@ -93,11 +93,11 @@ export function AppSidebar() {
               href: "/student-dashboard",
               icon: <Users className="h-4 w-4" />, // Updated icon
             },
-            {
-              label: "Parent Dashboard",
-              href: "/parent-dashboard",
-              icon: <UserCheck className="h-4 w-4" />, // Updated icon
-            },
+            // {
+            //   label: "Parent Dashboard",
+            //   href: "/parent-dashboard",
+            //   icon: <UserCheck className="h-4 w-4" />, // Updated icon
+            // },
           ],
         },
       ],
@@ -165,8 +165,8 @@ export function AppSidebar() {
             { label: "Publisher", href: "/library/publisher" },
             { label: "Book Management", href: "/library/bookmanagement" },
             { label: "Catalog Management", href: "/library/catalog" },
-            // { label: "Book Assign", href: "/library/bookassign" },
-            // { label: "Library Card", href: "/library/libraryCard" },
+            { label: "Book Assign", href: "/library/bookassign" },
+            { label: "Library Card", href: "/library/libraryCard" },
           ],
         },
       ],

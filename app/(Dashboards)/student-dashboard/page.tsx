@@ -10,15 +10,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import backgroundImage from "../../../public/schoolitaly.c4.jpg";
+import Image from 'next/image'
 import physics from '../../../public/Physics.webp'
 import maths from '../../../public/maths.jpg'
 import chemistry from '../../../public/Chemistry.jpg'
 import english from '../../../public/English.jpg'
-import Image from 'next/image'
+import Link from 'next/link';
 import { useAuthContext } from "@/lib/AuthProvider";  
 import axiosInstance from "@/lib/axiosInstance";  
  
-import {       CalendarArrowUpIcon, CalendarDays, Clock,  GraduationCapIcon, Mail, MessageCircle, ScrollText } from 'lucide-react';
+import {       CalendarArrowUpIcon, CalendarDays, Clock,  GraduationCapIcon, Mail, MessageCircle, ScrollText, Sun, Trophy, Users } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -87,34 +89,106 @@ const leaveStatusDatastudent = [
   { type: "Fever", date: "16 Jun 2024", status: "Approved", color: "bg-green-400", iconBg: "bg-red-100", iconColor: "text-red-500" },
   { type: "Casual Leave", date: "16 Jun 2024", status: "Declined", color: "bg-red-400", iconBg: "bg-blue-100", iconColor: "text-blue-500" },
 ];
-const Schedulesstudent=[
+const NoticeBoard = [
+  {
+    type: "Exam Schedule Released",
+    icon: CalendarDays,
+    date: "10 Jun 2024",
+    bg_color: "bg-green-100",
+    text_color: "text-green-500",
+  },
+  {
+    type: "New Syllabus Instructions",
+    icon: BookOpen,
+    date: "15 Jun 2024",
+    bg_color: "bg-blue-100",
+    text_color: "text-blue-500",
+  },
+  {
+    type: "Holiday Notification",
+    icon: Sun,
+    date: "20 Jun 2024",
+    bg_color: "bg-yellow-100",
+    text_color: "text-yellow-500",
+  },
+  {
+    type: "Parent-Teacher Meeting",
+    icon: Users,
+    date: "25 Jun 2024",
+    bg_color: "bg-red-100",
+    text_color: "text-red-500",
+  },
+  {
+    type: "Sports Day Announcement",
+    icon: Trophy,
+    date: "30 Jun 2024",
+    bg_color: "bg-purple-100",
+    text_color: "text-purple-500",
+  },
+];
+
+  const fetchedAnnouncements = [
     {
-      event:"parent,Techers Meeting",
-      data:'15 July 2024',
-      // icon:UserRoundPen
-    },{
-      event:"parent,Techers Meeting",
-      data:'15 July 2024',
-      // icon:UserRoundPen
-    },{
-      event:"Vacation Meeting",
-      data:'7-july-2024',
-      // icon:UserRoundPen
-    }
-  ]
+      event_title: "School Annual Day",
+      event_start_date: "2024-12-20",
+      event_start_time: "10:00 AM",
+      event_end_time: "01:00 PM",
+    },
+    {
+      event_title: "Parent-Teacher Meeting",
+      event_start_date: "2024-12-15",
+      event_start_time: "09:00 AM",
+      event_end_time: "12:00 PM",
+    },
+    {
+      event_title: "Science Exhibition",
+      event_start_date: "2024-12-18",
+      event_start_time: "11:00 AM",
+      event_end_time: "02:00 PM",
+    },
+ 
+  ];
 
  
 
- 
-
-  const TeachersSN = [
-    { name: "John Doe", subject: "Mathematics", avatar: "JD" },
-    { name: "Jane Smith", subject: "Biology", avatar: "JS" },
-    { name: "Bob Johnson", subject: "Physics", avatar: "BJ" },
-    { name: "Alice Brown", subject: "Chemistry", avatar: "AB" },
-    { name: "Charlie Davis", subject: "English", avatar: "CD" },
-    { name: "Eva Wilson", subject: "History", avatar: "EW" },
-  ]
+  const TodaysClasses = [
+    {
+      time: "09:00 - 09:45",
+      className: "Class V, B",
+      teacherName: "John Doe",
+      subject: "Mathematics",
+      avatar: "JD",
+    },
+    {
+      time: "10:00 - 10:45",
+      className: "Class IV, C",
+      teacherName: "Jane Smith",
+      subject: "Biology",
+      avatar: "JS",
+    },
+    {
+      time: "11:30 - 12:15",
+      className: "Class III, A",
+      teacherName: "Bob Johnson",
+      subject: "Physics",
+      avatar: "BJ",
+    },
+    {
+      time: "01:30 - 02:15",
+      className: "Class VI, D",
+      teacherName: "Alice Brown",
+      subject: "Chemistry",
+      avatar: "AB",
+    },
+    {
+      time: "02:30 - 03:15",
+      className: "Class VII, E",
+      teacherName: "Charlie Davis",
+      subject: "English",
+      avatar: "CD",
+    },
+  ];
+  
   
 
   return (
@@ -131,50 +205,95 @@ const Schedulesstudent=[
     </div>
   </CardHeader> 
 
-  {/* Admin Welcome Message Card */}
-  <Card className="text-[#1ABE17] bg-[#e8f9e9] dark:bg-gray-800 border border-[#1ABE17] dark:border-white rounded-full">
-    <CardHeader className="p-2 px-4">
-      <div className="flex items-center">
-        <CardContent className="p-0 pl-4 flex items-center space-x-2">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="https://github.com/shadcn.png" alt="Avatar" />
-          </Avatar>
-          <p className="text-sm dark:text-white">Have a good day at work</p>
-        </CardContent>
-      </div>
-      <div className="flex flex-col items-end absolute right-10">
-        <div className="text-xs text-[#1ABE17] dark:text-white pr-5">X</div>
+ 
+
+  {/* Profile and Quick Actions */}
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  {/* Profile Card */}
+  <Card className="text-white bg-[#351C5A] dark:bg-gray-800 relative overflow-hidden p-4 shadow-md rounded-lg">
+    <Image
+      src={backgroundImage}
+      alt="Background"
+      className="absolute inset-0 w-full h-full object-cover z-0"
+      style={{ opacity: 0.5 }}
+    />
+    <CardHeader className="relative z-10 p-4">
+      <div className="flex flex-col sm:flex-row sm:items-center">
+        <div className="bg-white py-3 px-4 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold text-black">
+            Let's get started, {user?.user_name || "Student"}!
+          </h2>
+          <CardContent className="p-0">
+            <p className="text-sm text-black">Have a good day at work.</p>
+          </CardContent>
+        </div>
       </div>
     </CardHeader>
   </Card>
 
-  {/* Profile and Quick Actions */}
-  <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-    {/* Profile Card */}
-    <Card className="text-white bg-[#365082] dark:bg-gray-800 relative overflow-hidden p-5 col-span-1">
-
-    <div className="absolute top-0 left-0 right-0 bottom-0 z-0 overflow-hidden">
-    <div className="absolute top-[-25%] left-[-5%] w-16 h-16 border-4 border-yellow-400 dark:border-white rounded-full"></div>
-    <div className="absolute bottom-[-20%] right-[36%] w-14 h-14 border-4 border-purple-400 dark:border-white rounded-full"></div>
-    <div className="absolute bottom-[-18%] right-[30%] w-16 h-16 border-4 border-green-400 dark:border-white rounded-full"></div>
-  </div>
-      <div className="flex justify-between items-center">
-        <div className="flex space-x-3 pl-5">
-          <Avatar className="w-16 h-16">
-            <AvatarImage src="https://github.com/shadcn.png" alt="Avatar" />
-          </Avatar>
-          <div>
-           
-            <p className="text-lg font-semibold">{user?.user_name}</p>
-            <p className="text-sm text-gray-400">Class: IIIC | Roll No: 36547</p>
-          </div>
+  {/* Info Cards Section */}
+  <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {/* Apply Leave and Raise a Request Section */}
+    <div className="md:col-span-1 flex flex-col gap-4">
+      <Card className="flex justify-between items-center border p-4 h-[60px]  bg-[#d5e2c5] rounded-lg shadow-sm">
+        <div className="flex items-center space-x-2">
+          <Calendar1 className="w-5 h-5" />
+          <p className="text-sm font-medium">Apply Leave</p>
         </div>
-        <Button  variant={"secondary"}>Edit Profile</Button>
-      </div>
-    </Card>
+        <ChevronRight className="w-5 h-5" />
+      </Card>
+      <Card className="flex justify-between items-center border p-4 h-[60px] rounded-lg  bg-[#ffebb0] shadow-sm">
+        <div className="flex items-center space-x-2">
+          <Calendar1 className="w-5 h-5" />
+          <p className="text-sm font-medium">Raise a Request</p>
+        </div>
+        <ChevronRight className="w-5 h-5" />
+      </Card>
+    </div>
 
-    {/* Quick Actions */}
-    <div className="col-span-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+    {/* Medical Leaves and Casual Leaves Section */}
+    <div className="md:col-span-3 flex flex-col md:flex-row gap-4">
+      <Card className="p-4 w-full rounded-lg shadow-sm">
+        <div className="text-center space-y-2">
+          <div className="flex justify-center">
+            <Calendar1 className="w-8 h-8 border p-1 rounded-full" />
+          </div>
+          <p className="font-semibold text-base">Medical Leaves</p>
+        </div>
+        <div className="flex justify-between text-sm mt-4">
+          <p>
+            Used: <span className="font-medium">05</span>
+          </p>
+          <p>
+            Available: <span className="font-medium">10</span>
+          </p>
+        </div>
+      </Card>
+
+      <Card className="p-4 w-full rounded-lg shadow-sm">
+        <div className="text-center space-y-2">
+          <div className="flex justify-center">
+            <Calendar1 className="w-8 h-8 border p-1 rounded-full" />
+          </div>
+          <p className="font-semibold text-base">Casual Leaves</p>
+        </div>
+        <div className="flex justify-between text-sm mt-4">
+          <p>
+            Used: <span className="font-medium">05</span>
+          </p>
+          <p>
+            Available: <span className="font-medium">10</span>
+          </p>
+        </div>
+      </Card>
+    </div>
+  </div>
+</div>
+
+  <div  className='relative my-5 '>
+
+        {/* Quick Actions */}
+        <div className="col-span-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
       {[
         { icon: ScrollText, label: 'Pay Fees', color: 'bg-blue-700' },
         { icon: GraduationCapIcon, label: 'Exam Result', color: 'bg-green-700' },
@@ -191,108 +310,182 @@ const Schedulesstudent=[
         </Card>
       ))}
     </div>
-  </div>
-  <div  className='relative my-5 '>
-  <Card className="w-full max-w-6xl mx-auto my-8">
-      <CardHeader className="border-b">
-        <CardTitle className="text-2xl font-bold">Class Faculties</CardTitle>
+  <Card className="w-full   mx-auto my-8">
+      <CardHeader className="  bg-[#d1fae5] p-4">
+        <CardTitle className="text-xl font-semibold">Todays Classes</CardTitle>
       </CardHeader>
-      <CardContent className="p-6  px-4">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
+      <CardContent className="p-6">
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+         <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-50" />
+                 <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-50" />
+            <CarouselContent className="-ml-2 md:-ml-4">
+              
+            {TodaysClasses.map((classItem, index) => (
+  <CarouselItem
+    key={index}
+    className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
+  >
+    <div className="p-4 border rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-card">
+      {/* Header Section */}
+      <div className="flex items-center space-x-4">
+        <Avatar className="h-12 w-12">
+          <AvatarImage
+            src={`https://api.dicebear.com/6.x/initials/svg?seed=${classItem.avatar}`}
+            alt={classItem.teacherName}
+          />
+          <AvatarFallback>{classItem.avatar}</AvatarFallback>
+        </Avatar>
+        <div>
+          <h3 className="text-lg font-semibold">{classItem.className}</h3>
+          <p className="text-sm text-muted-foreground">
+            {classItem.teacherName} - {classItem.subject}
+          </p>
+        </div>
+      </div>
+
+      {/* Class Details Section */}
+      <div className="mt-4">
+        <div className="flex justify-around">
+          <p className="text-sm text-muted-foreground">Time:</p>
+          <p className="text-sm font-semibold">{classItem.time}</p>
+        </div>
+        <div className="flex justify-around mt-2">
+          <p className="text-sm text-muted-foreground">Subject:</p>
+          <p className="text-sm font-semibold">{classItem.subject}</p>
+        </div>
+        <div className="flex justify-around mt-2">
+          <p className="text-sm text-muted-foreground">Teacher:</p>
+          <p className="text-sm font-semibold">{classItem.teacherName}</p>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="mt-4 flex justify-between">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-[calc(50%-0.25rem)]"
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {TeachersSN.map((faculty, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="p-4 border rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-card">
-                  <div className="flex items-center space-x-4">
-                    <Avatar className="h-12 w-12">
-                      <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${faculty.avatar}`} alt={faculty.name} />
-                      <AvatarFallback>{faculty.avatar}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h3 className="text-lg font-semibold">{faculty.name}</h3>
-                      <p className="text-sm text-muted-foreground">{faculty.subject}</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 flex justify-between">
-                    <Button variant="outline" size="sm" className="w-[calc(50%-0.25rem)]">
-                      <Mail className="mr-2 h-4 w-4" />
-                      Email
-                    </Button>
-                    <Button variant="outline" size="sm" className="w-[calc(50%-0.25rem)]">
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      Chat
-                    </Button>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-12 top-1/2 transform -translate-y-1/2" />
-          <CarouselNext className="hidden md:flex -right-12 top-1/2 transform -translate-y-1/2" />
-        </Carousel>
+          <Mail className="mr-2 h-4 w-4" />
+          Email
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-[calc(50%-0.25rem)]"
+        >
+          <MessageCircle className="mr-2 h-4 w-4" />
+          Chat
+        </Button>
+      </div>
+    </div>
+  </CarouselItem>
+))}
+
+            </CarouselContent>
+         
+          </Carousel>
+        </div>
       </CardContent>
     </Card>
+
+    
 </div>
   {/* Main Content */}
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 my-5">
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 my-4">
     {/* Left Column: Upcoming Events */}
     <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
-      <Card>
-        <CardContent>
-          <div className="flex justify-between py-5">
-            <h1 className="text-xl font-semibold">Upcoming Events</h1>
-           
-          </div>
-          <Separator className="mb-2" />
-          {Schedulesstudent.map((data, index) => (
-            <div className="border-l-4 p-3 my-4" key={index}>
-              <div className="flex gap-4 m-2">
-                <div className="text-sm">
-                  <p className="text-center">{data.event}</p>
-                  <p className="text-sm text-gray-500 flex items-center">
-                    <CalendarDays className="w-3" />
-                    {data.data}
-                  </p>
-                </div>
-              </div>
-              <Separator />
-              <div className="flex my-3 justify-between">
-                <p className="text-sm text-gray-500 flex items-center">
-                  <Clock className="w-3 mr-2" /> 9:10AM-10:15AM
-                </p>
-                <div className="flex -space-x-2">
-                  {[...Array(3)].map((_, idx) => (
-                    <Avatar className="h-[30px] w-[30px]" key={idx}>
-                      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                    </Avatar>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+            <Card>
+            <div className="flex justify-between   bg-[#fce7f3] p-4">
+      <h1 className="text-xl font-semibold">Upcoming Events</h1>
+      <Link href="/announcements">
+        <Button variant="outline" size="sm">View All</Button>
+      </Link>
     </div>
+  <CardContent className='  '>
+  
+    
+  {fetchedAnnouncements.slice(0, 4).map((event, index) => (
+        <div
+          className={`border-l-4 px-3 py-1 my-2 ${
+            index % 4 === 0
+              ? "border-l-blue-500"
+              : index % 4 === 1
+              ? "border-l-green-500"
+              : index % 4 === 2
+              ? "border-l-yellow-500"
+              : "border-l-red-500"
+          }`}
+          key={index}
+        >
+          <div className="flex gap-4">
+            <div className="text-sm">
+              <p className="text-left text-lg font-semibold my-3">{event.event_title}</p>
+              <p className="text-sm text-gray-500 flex items-center">
+                <CalendarDays className="w-3 mr-1" />
+                {new Date(event.event_start_date).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+          <div 
+            className={`border-b-2 mt-2 ${
+              index % 4 === 0
+                ? "border-blue-500"
+                : index % 4 === 1
+                ? "border-green-500"
+                : index % 4 === 2
+                ? "border-yellow-500"
+                : "border-red-500"
+            }`}
+          />
+          <div className="flex my-2 justify-between">
+            <p className="text-sm text-gray-500 flex items-center">
+              <Clock className="w-3 mr-2" />
+              {event.event_start_time || "N/A"} - {event.event_end_time || "N/A"}
+            </p>
+            <div className="flex -space-x-2">
+              {[...Array(3)].map((_, idx) => (
+                <Avatar className="h-[30px] w-[30px]" key={idx}>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                </Avatar>
+              ))}
+            </div>
+          </div>
+     
+        </div>
+      ))}
+  
+    
+  </CardContent>
+</Card>
+
+ 
+ 
+            </div>
 
     {/* Right Column */}
     <div className="col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Attendance and Leave Status */}
-      <Card className="p-4">
-        <div className="flex justify-between items-center mb-4">
+      <Card className="p-0">
+        <div className="flex justify-between p-4 items-center bg-[#dcf0f9] mb-4 ">
           <h2 className="text-xl font-semibold">Leave Status</h2>
           <Button variant="ghost" className="p-0 border-none">
             <span className="sr-only">Open menu</span>
             <Calendar1 />This month <ChevronDown />
           </Button>
         </div>
-        <Separator />
-        <div className="space-y-4 mt-4">
+      
+        <div className="space-y-4 mt-4 px-5">
         {leaveStatusDatastudent.map((leave, index) => (
   <div key={index} className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-4">
     <div className={`flex items-center justify-center w-10 h-10 ${leave.iconBg} rounded-full`}>
@@ -313,8 +506,8 @@ const Schedulesstudent=[
         <Calendar    className="w-full" />
       </Card> */}
         <Card >
-            <div className='flex items-center justify-between w-full p-4  border-b'>
-                      <p className='text-lg font-semibold'>Home Works</p>
+            <div className='flex items-center justify-between w-full p-4   bg-[#fef3c7]'>
+                      <p className='text-lg font-semibold '>Home Works</p>
                       <div>
                       <DropdownMenu>
       <DropdownMenuTrigger asChild ><Button variant="ghost"  className='p-0 border-none'>
@@ -393,29 +586,32 @@ const Schedulesstudent=[
 
    
     <Card className="col-span-1">
-<div className='flex items-center justify-between w-full  p-4 border-b'>
+<div className='flex items-center justify-between w-full  p-4  bg-[#ecfccb]'>
                       <p className='text-base font-semibold'>Notice board</p>
-                      <Button variant="secondary">View All</Button>
+                      <Button variant="outline">View All</Button>
                   </div>
                   <div className='p-5'>
-                  {NoticeBoardstudent.map((data, index) => (
-  <div className="flex justify-between py-3 border-b items-center" key={index}>
-    <div className="flex space-x-2 items-center">
-      <div className={`w-8 h-8 rounded-full ${data.bg_color} flex items-center justify-center`}>
-        <data.icon className={`w-3 h-3 ${data.text_color}`} />
-      </div>
-      <div>
-        <p className="font-medium">{data.type}</p>
-        <span className="flex text-sm text-gray-500 items-center gap-2">
-          <Calendar1 className="w-4 h-4" /> Added On: {data.date}
-        </span>
-      </div>
-    </div>
-    <div>
-      <ChevronRight className="w-4 h-4" />
-    </div>
-  </div>
-))}
+                  {
+                                          NoticeBoard.map((data,index)=>{
+                                            return(
+                                              <div className=' flex justify-between py-3 border-b items-center' key={index}>
+                                              <div className='flex space-x-2 items-center'>
+                                                <div className={`w-8 h-8 rounded-full ${data.bg_color} flex items-center justify-center`}>
+                                                     <data.icon className={`w-3 h-3 ${data.text_color}`}/>
+                                                </div>
+                                                <div>
+                                                  <p className='font-medium '>{data.type}</p>
+                                                 <span className='flex text-sm text-gray-500 items-center gap-2'><Calendar1 className='w-4 h-4'/> Added On :{data.date}</span>
+                                                </div>
+                                                <div></div>
+                                              </div>
+                                              <div>
+                                                <ChevronRight className='w-4 h-4'/>
+                                              </div>
+                                            </div>
+                                            )
+                                          })
+                                        }
 
                    </div>
                    </Card>

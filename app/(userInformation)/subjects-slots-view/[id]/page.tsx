@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { Clock, LogIn, LogOut } from "lucide-react";
 import {
@@ -19,8 +18,11 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+ 
 
-const Page = () => {
+const SubjectSlots = () => {
+  const router = useRouter();
   const [activeBatch, setActiveBatch] = useState<"batch1" | "batch2" | "batch3" | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [punchInTime, setPunchInTime] = useState<string | null>(null);
@@ -28,6 +30,9 @@ const Page = () => {
   const [timeLeft, setTimeLeft] = useState(20 * 60); // 20 minutes in seconds
   const [timerActive, setTimerActive] = useState(false);
 
+  const handleAssessment = () => {
+    router.push('/assesment-new');  
+  };
   const itemsPerPage = 10;
 
   const handleBatchClick = (batch: "batch1" | "batch2" | "batch3") => {
@@ -120,6 +125,14 @@ const Page = () => {
           >
             Batch 3
           </Button>
+        </div>
+        <div>
+          <Button onClick={handleAssessment}>
+            Do Assessment
+          </Button>
+        </div>
+        <div>
+
         </div>
       </div>
 
@@ -234,4 +247,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default SubjectSlots;

@@ -131,7 +131,7 @@ const TimetableCreator = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex flex-col p-6">
+      <div className="flex flex-col  ">
         <div className="flex justify-between items-center mb-6">
           <div className="text-left">
             <h1 className="text-2xl font-bold">ClassRoom Timetable Planner</h1>

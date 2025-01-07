@@ -131,14 +131,14 @@ export function AppSidebar() {
           icon: <UserCheck className="h-4 w-4" />,
           hasSubmenu: true,
           subItems: [
-            { label: "Schedule", href: "/teacher-timetable" },
+            // { label: "Schedule", href: "/teacher-timetable" },
             {
               label: "Holidays",
               href: "/holidaysEvent",
-              icon: <FiCalendar className="h-4 w-4" />,
+             
             },
             { label: "Attendance", href: "/teacherattendance" },
-            { label: "Subjects Slots", href: "/subjects-slots" },
+            { label: "Schedule", href: "/subjects-slots" },
             { label: "Leaves", href: "/leaves" },
             { label: "Assessment", href: "/teacher-assessment" },
           ],

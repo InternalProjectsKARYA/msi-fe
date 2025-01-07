@@ -10,6 +10,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+ 
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import backgroundImage from "../../../public/schoolitaly.c4.jpg";
 import Image from 'next/image'
 import physics from '../../../public/Physics.webp'
@@ -20,7 +37,7 @@ import Link from 'next/link';
 import { useAuthContext } from "@/lib/AuthProvider";  
 import axiosInstance from "@/lib/axiosInstance";  
  
-import {       CalendarArrowUpIcon, CalendarDays, Clock,  GraduationCapIcon, Mail, MessageCircle, ScrollText, Sun, Trophy, Users } from 'lucide-react';
+import {       Briefcase, Calendar, CalendarArrowUpIcon, CalendarDays, Clock,  GraduationCapIcon, Mail, MessageCircle, ScrollText, Sun, Trophy, Users } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -49,27 +66,40 @@ interface User {
 
 
 
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+  },
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+ 
+} satisfies ChartConfig
+
 const StudentDashboard = () => {
  
  
   const { Id } = useAuthContext();
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axiosInstance.get(`/get_user/?user_id=${Id}`);
-        setUser(response.data.user); // Store user data
-      } catch (error: any) {
-        console.error("Error fetching user details:", error.response ? error.response.data : error.message);
-      }
-    };
-
-    fetchUserDetails();
-  }, [Id]);
+  const subjects = [
+    { name: "Mathematics", scores: { test1: 55, test2: 52, quarterly: 48, halfyearly: 91, annually: 95 } },
+    { name: "Physics", scores: { test1: 78, test2: 84, quarterly: 87, halfyearly: 89, annually: 93 } },
+    { name: "Chemistry", scores: { test1: 60, test2: 66, quarterly: 58, halfyearly: 30, annually: 92 } },
+    { name: "Biology", scores: { test1: 82, test2: 90, quarterly: 85, halfyearly: 48, annually: 91 } },
+    { name: "History", scores: { test1: 32, test2: 56, quarterly: 38, halfyearly: 50, annually: 83 } },
+    { name: "Geography", scores: { test1: 78, test2: 81, quarterly: 83, halfyearly: 66, annually: 89 } },
+    { name: "English", scores: { test1: 98, test2: 32, quarterly: 10, halfyearly: 93, annually: 96 } },
+    { name: "Hindi", scores: { test1: 46, test2: 81, quarterly: 79, halfyearly: 32, annually: 85 } },
+  ];
 
  
-
+  const [timeRange, setTimeRange] = React.useState("test1");
+  const filteredData = subjects.map((subject) => ({
+    name: subject.name,
+    score: subject.scores[timeRange],
+  }));
   const homeWorkstudent=[{subject:'Physics',content:'Write About theory Of Pendulum',name:'Balaji Rao',due:'15 jan 2024',color:' text-blue-500',image:physics},
     {subject:'Chemistry',content:'cahnge of elements',name:'Lavanya Gopal',due:'15 jan 2024',color:' text-green-500',image:chemistry},
     {subject:'Maths',content:'problem to solve apge 21',name:'Harika Reddy',due:'15 jan 2024',color:' text-red-500',image:maths},
@@ -77,10 +107,7 @@ const StudentDashboard = () => {
   ]
  // Sample fees reminder data
  
-const NoticeBoardstudent=[{type:' new Syllabus Instructions',icon:Bus, date:'15 jun 2024',bg_color:'bg-blue-100', text_color:'text-blue-500'},
-  {type:'new Syllabus Instructions',icon:Bus,date:'15 jun 2024',bg_color:'bg-blue-100', text_color:'text-blue-500'},
-  {type:'new Syllabus Instructions',icon:Bus, date:'15 jun 2024',bg_color:'bg-blue-100', text_color:'text-blue-500'},
-  {type:'new Syllabus Instructions',icon:Bus, date:'15 jun 2024',bg_color:'bg-blue-100', text_color:'text-blue-500'}] 
+ 
   // Sample data for leave statuses
 const leaveStatusDatastudent = [
   { type: "Emergency Leave", date: "15 Jun 2024", status: "Pending", color: "bg-blue-400", iconBg: "bg-red-100", iconColor: "text-red-500" },
@@ -118,13 +145,7 @@ const NoticeBoard = [
     bg_color: "bg-red-100",
     text_color: "text-red-500",
   },
-  {
-    type: "Sports Day Announcement",
-    icon: Trophy,
-    date: "30 Jun 2024",
-    bg_color: "bg-purple-100",
-    text_color: "text-purple-500",
-  },
+ 
 ];
 
   const fetchedAnnouncements = [
@@ -149,7 +170,7 @@ const NoticeBoard = [
  
   ];
 
- 
+
 
   const TodaysClasses = [
     {
@@ -188,12 +209,31 @@ const NoticeBoard = [
       avatar: "CD",
     },
   ];
-  
+  const leaveTypes = [
+    {
+      type: "Medical Leaves",
+      icon: Calendar,
+      used: 5,
+      available: 10,
+      color: "bg-blue-50 dark:bg-blue-950",
+      iconColor: "text-blue-500",
+      barColor: "bg-blue-500",
+    },
+    {
+      type: "Casual Leaves",
+      icon: Briefcase,
+      used: 5,
+      available: 10,
+      color: "bg-green-50 dark:bg-green-950",
+      iconColor: "text-green-500",
+      barColor: "bg-green-500",
+    },
+  ]
   
 
   return (
   
-<div className="space-y-6">
+<div className="space-y-4">
 
   {/* Dashboard Header */}
   <CardHeader className="p-0 px-2">
@@ -235,14 +275,14 @@ const NoticeBoard = [
   <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     {/* Apply Leave and Raise a Request Section */}
     <div className="md:col-span-1 flex flex-col gap-4">
-      <Card className="flex justify-between items-center border p-4 h-[60px]  bg-[#d5e2c5] rounded-lg shadow-sm">
+      <Card className="flex justify-between items-center border p-4 h-[65px]  bg-[#d5e2c5] rounded-lg shadow-sm">
         <div className="flex items-center space-x-2">
           <Calendar1 className="w-5 h-5" />
           <p className="text-sm font-medium">Apply Leave</p>
         </div>
         <ChevronRight className="w-5 h-5" />
       </Card>
-      <Card className="flex justify-between items-center border p-4 h-[60px] rounded-lg  bg-[#ffebb0] shadow-sm">
+      <Card className="flex justify-between items-center border p-4 h-[65px] rounded-lg  bg-[#ffebb0] shadow-sm">
         <div className="flex items-center space-x-2">
           <Calendar1 className="w-5 h-5" />
           <p className="text-sm font-medium">Raise a Request</p>
@@ -252,67 +292,72 @@ const NoticeBoard = [
     </div>
 
     {/* Medical Leaves and Casual Leaves Section */}
-    <div className="md:col-span-3 flex flex-col md:flex-row gap-4">
-      <Card className="p-4 w-full rounded-lg shadow-sm">
-        <div className="text-center space-y-2">
-          <div className="flex justify-center">
-            <Calendar1 className="w-8 h-8 border p-1 rounded-full" />
-          </div>
-          <p className="font-semibold text-base">Medical Leaves</p>
-        </div>
-        <div className="flex justify-between text-sm mt-4">
-          <p>
-            Used: <span className="font-medium">05</span>
-          </p>
-          <p>
-            Available: <span className="font-medium">10</span>
-          </p>
-        </div>
-      </Card>
-
-      <Card className="p-4 w-full rounded-lg shadow-sm">
-        <div className="text-center space-y-2">
-          <div className="flex justify-center">
-            <Calendar1 className="w-8 h-8 border p-1 rounded-full" />
-          </div>
-          <p className="font-semibold text-base">Casual Leaves</p>
-        </div>
-        <div className="flex justify-between text-sm mt-4">
-          <p>
-            Used: <span className="font-medium">05</span>
-          </p>
-          <p>
-            Available: <span className="font-medium">10</span>
-          </p>
-        </div>
-      </Card>
+    <div className="md:col-span-3 grid md:grid-cols-2 gap-4">
+      {leaveTypes.map((leave, index) => (
+        <Card key={index} className={`overflow-hidden ${leave.color}`}>
+          <CardContent className="p-4">
+            <div className="flex items-center space-x-4">
+              <div className={`p-3 rounded-full ${leave.color} ${leave.iconColor}`}>
+                <leave.icon className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">{leave.type}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {leave.used} used / {leave.available} available
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+              <div 
+                className={`h-full ${leave.barColor}`} 
+                style={{ width: `${(leave.used / leave.available) * 100}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-sm mt-2">
+              <p>Used: <span className="font-medium">{leave.used}</span></p>
+              <p>Available: <span className="font-medium">{leave.available}</span></p>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   </div>
 </div>
 
-  <div  className='relative my-5 '>
+  <div  className='relative  '>
 
         {/* Quick Actions */}
         <div className="col-span-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-      {[
-        { icon: ScrollText, label: 'Pay Fees', color: 'bg-blue-700' },
-        { icon: GraduationCapIcon, label: 'Exam Result', color: 'bg-green-700' },
-        { icon: Calendar1, label: 'Calendar', color: 'bg-yellow-700' },
-        { icon: CalendarArrowUpIcon, label: 'Attendance', color: 'bg-red-700' },
-      ].map((action, index) => (
-        <Card className="flex items-center p-5" key={index}>
-          <div className="flex items-center space-x-4">
-            <div className={`h-8 w-8 flex items-center justify-center border ${action.color}`}>
-              <action.icon className="w-4 h-4 text-white" />
-            </div>
-            <p className="font-semibold text-lg">{action.label}</p>
-          </div>
-        </Card>
-      ))}
-    </div>
-  <Card className="w-full   mx-auto my-8">
+  {[
+    { icon: ScrollText, label: 'Pay Fees', color: 'bg-blue-700' },
+    { icon: GraduationCapIcon, label: 'Exam Result', color: 'bg-green-700' },
+    { icon: Calendar1, label: 'Calendar', color: 'bg-yellow-700' },
+    { icon: CalendarArrowUpIcon, label: 'Attendance', color: 'bg-red-700' },
+  ].map((action, index) => (
+    <Card
+      key={index}
+      className="relative p-4 flex items-start rounded-lg overflow-hidden shadow"
+    >
+      <div className="flex items-center space-x-4">
+        {/* Icon with matching background */}
+        <div className={`h-10 w-10 flex items-center justify-center rounded-full ${action.color}`}>
+          <action.icon className="w-5 h-5 text-white" />
+        </div>
+        {/* Label */}
+        <p className="font-semibold text-lg">{action.label}</p>
+      </div>
+      {/* Curved Bottom Line */}
+      <div
+        className={`absolute bottom-0 left-0 w-full h-1 ${action.color}`}
+       
+      />
+    </Card>
+  ))}
+</div>
+
+  <Card className="w-full   mx-auto my-5">
       <CardHeader className="  bg-[#d1fae5] p-4">
-        <CardTitle className="text-xl font-semibold">Todays Classes</CardTitle>
+        <CardTitle className="text-xl font-semibold dark:text-black">Todays Classes</CardTitle>
       </CardHeader>
       <CardContent className="p-6">
         <div className="relative">
@@ -404,7 +449,7 @@ const NoticeBoard = [
     <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
             <div className="flex justify-between   bg-[#fce7f3] p-4">
-      <h1 className="text-xl font-semibold">Upcoming Events</h1>
+      <h1 className="text-xl font-semibold dark:text-black">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
       </Link>
@@ -478,7 +523,7 @@ const NoticeBoard = [
       {/* Attendance and Leave Status */}
       <Card className="p-0">
         <div className="flex justify-between p-4 items-center bg-[#dcf0f9] mb-4 ">
-          <h2 className="text-xl font-semibold">Leave Status</h2>
+          <h2 className="text-xl font-semibold dark:text-black">Leave Status</h2>
           <Button variant="ghost" className="p-0 border-none">
             <span className="sr-only">Open menu</span>
             <Calendar1 />This month <ChevronDown />
@@ -487,7 +532,7 @@ const NoticeBoard = [
       
         <div className="space-y-4 mt-4 px-5">
         {leaveStatusDatastudent.map((leave, index) => (
-  <div key={index} className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-4">
+  <div key={index} className="flex items-center bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-4">
     <div className={`flex items-center justify-center w-10 h-10 ${leave.iconBg} rounded-full`}>
       <Clock className={`w-5 h-5 ${leave.iconColor}`} />
     </div>
@@ -507,7 +552,7 @@ const NoticeBoard = [
       </Card> */}
         <Card >
             <div className='flex items-center justify-between w-full p-4   bg-[#fef3c7]'>
-                      <p className='text-lg font-semibold '>Home Works</p>
+                      <p className='text-lg font-semibold dark:text-black'>Home Works</p>
                       <div>
                       <DropdownMenu>
       <DropdownMenuTrigger asChild ><Button variant="ghost"  className='p-0 border-none'>
@@ -587,7 +632,7 @@ const NoticeBoard = [
    
     <Card className="col-span-1">
 <div className='flex items-center justify-between w-full  p-4  bg-[#ecfccb]'>
-                      <p className='text-base font-semibold'>Notice board</p>
+                      <p className='text-base font-semibold dark:text-black'>Notice board</p>
                       <Button variant="outline">View All</Button>
                   </div>
                   <div className='p-5'>
@@ -615,9 +660,68 @@ const NoticeBoard = [
 
                    </div>
                    </Card>
+                   <Card>
+  <CardHeader className="flex items-center gap-2 space-y-0   p-4 sm:flex-row bg-[#f9dddf]">
+    <div className="grid flex-1 gap-1 text-center sm:text-left ">
+      <CardTitle className='dark:text-black'>Student Exam Results</CardTitle>
+      <CardDescription>Showing scores for {timeRange.toUpperCase()}</CardDescription>
+    </div>
+    <Select value={timeRange} onValueChange={setTimeRange} >
+      <SelectTrigger className="w-[160px] rounded-lg sm:ml-auto dark:text-black" aria-label="Select a value">
+        <SelectValue placeholder="Select Test" />
+      </SelectTrigger>
+      <SelectContent className="rounded-xl dark:text-black">
+        <SelectItem value="test1" className="rounded-lg">Test 1</SelectItem>
+        <SelectItem value="test2" className="rounded-lg">Test 2</SelectItem>
+        <SelectItem value="quarterly" className="rounded-lg">Quarterly</SelectItem>
+        <SelectItem value="halfyearly" className="rounded-lg">Half Yearly</SelectItem>
+        <SelectItem value="annually" className="rounded-lg">Annually</SelectItem>
+      </SelectContent>
+    </Select>
+  </CardHeader>
+  <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+    <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+      <AreaChart data={filteredData}>
+        <defs>
+          <linearGradient id="fillSubjects" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="var(--color-desktop)" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="var(--color-desktop)" stopOpacity={0.1} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="name"
+          tickLine={false}
+          axisLine={false}
+          tickMargin={8}
+          minTickGap={32}
+          tickFormatter={(value) => value}
+        />
+        <ChartTooltip
+          cursor={false}
+          content={
+            <ChartTooltipContent
+              labelFormatter={(value) => value}
+              indicator="dot"
+            />
+          }
+        />
+        <Area
+          dataKey="score"
+          type="natural"
+          fill="url(#fillSubjects)"
+          stroke="var(--color-desktop)"
+          stackId="a"
+        />
+        <ChartLegend content={<ChartLegendContent />} />
+      </AreaChart>
+    </ChartContainer>
+  </CardContent>
+</Card>;
+
   </div>
   <div className="grid grid-cols-1 gap-4  ">
-   
+ 
   </div>
 </div>
   )};

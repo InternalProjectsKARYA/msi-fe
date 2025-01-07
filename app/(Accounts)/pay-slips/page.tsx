@@ -125,7 +125,7 @@ export default function SchoolPayrollComponent() {
                       <DropdownMenuContent align="end">
                         <div>
                           <p className="text-sm font-medium p-2">Actions</p>
-                          <DropdownMenuItem className="hover:bg-gray-100 rounded-md px-3 py-2">
+                          <DropdownMenuItem className="hover:bg-gray-50 rounded-md px-3 py-2">
                             View Deductions
                           </DropdownMenuItem>
                         </div>

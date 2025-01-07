@@ -272,7 +272,7 @@ export default function ChatInterface() {
                   <div
                     className={`p-2 my-1 rounded ${
                       message.role === "user"
-                        ? "bg-gray-100 text-black"
+                        ? "bg-gray-50 text-black"
                         : "bg-blue-100 text-black"
                     }`}
                   >

@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
         <header className=' z-50 sticky bg-white dark:bg-black dark:shadow top-0'>
         <Header />
         </header>
-          <main className="flex-1   p-5 bg-gray-100 dark:bg-neutral-800">
+          <main className="flex-1   p-5 bg-gray-50 dark:bg-neutral-800">
             {children}
           </main>
           <div className="">

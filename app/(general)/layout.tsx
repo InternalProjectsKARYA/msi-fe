@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
         <Header />
         </header>
         <Separator />
-        <main className="flex-1 overflow-y-auto w-full p-5  bg-gray-100 dark:bg-neutral-800  dark:bg-gray-800">
+        <main className="flex-1 overflow-y-auto w-full p-5  bg-gray-50 dark:bg-neutral-800  dark:bg-gray-800">
           {children}  
         </main>
         

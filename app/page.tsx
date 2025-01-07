@@ -171,11 +171,11 @@ const Navbar = () => {
   return (
     <>
       <header
-        className="relative min-h-[90vh] bg-cover bg-center"
+        className="relative min-h-screen bg-cover bg-center"
         style={{ backgroundImage: `url(${MyImage.src})` }}
       >
         {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/50"></div>
  
         {/* Topbar */}
         <div className="fixed top-0 left-0 w-full text-white z-50 shadow-md p-2 bg-neutral-900 backdrop-blur-md">
@@ -190,19 +190,19 @@ const Navbar = () => {
     width={150} // Adjust width for better alignment
     height={120} // Adjust height for better alignment
   />
-   {/* <span className="text-white dark:text-white text-2xl">KARYAHUB</span> */}
+   {/* <span className="text-white dark:text-white text-2xl">My School Italy</span> */}
 </Link>
  
  
         {/* Desktop Navigation */}
         <nav    className="hidden md:flex space-x-6 items-center" style={{ color: "white" }}>
-          <Link href="/" className="hover:text-gray-300 text-lg transition duration-200">
+          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
             Home
           </Link>
-          <Link href="/about" className="hover:text-gray-300 text-lg transition duration-200">
+          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
             About Us
           </Link>
-          <Link href="/admissions" className="hover:text-gray-300 text-lg transition duration-200">
+          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
             Admissions
           </Link>
  
@@ -210,10 +210,10 @@ const Navbar = () => {
         
           <Button
             onClick={handleLoginClick}
-            variant={"secondary"}
+            variant={"default"}
            
           
-            className="ml-4 px-4 py-2       transition duration-200 text-sm font-medium"
+            className="text-m font-semibold"
           >
             Login
           </Button>
@@ -286,7 +286,7 @@ const Navbar = () => {
         {/* Text Content */}
         <div className="absolute inset-0 flex flex-col justify-center items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto">
           <div    >
-          <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-md">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-md ">
             Welcome to My School Italy
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
@@ -295,14 +295,14 @@ const Navbar = () => {
           </div>
        
           <div className="mt-6 flex gap-4">
-            <Link href="/admissions">
-              <Button  variant={"default"} className="px-6 py-3   text-sm font-medium rounded   transition">
+            <Link href="">
+              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition">
         
                 Apply Now
               </Button>
            
             </Link>
-            <Link href="/about">
+            <Link href="">
               <Button variant={"outline"}>
               
                 Learn More
@@ -315,16 +315,16 @@ const Navbar = () => {
  
       {/* Cards Section */}
       <section className=" py-16">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 ">
           {cardData.map((card, index) => (
             <div
               data-aos='fade-down' data-aos-duration={`${300 + index * 300}`}
               key={index}
-              className="bg-gray-100   text-center rounded-lg shadow-lg p-6"
+              className="bg-gray-50   text-center rounded-lg shadow-lg p-6 dark:text-black"
             >
               <div className="text-4xl mb-4">{card.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-              <p className="text-sm">{card.description}</p>
+              <h3 className="text-xl font-semibold mb-2 dark:text-black">{card.title}</h3>
+              <p className="text-sm dark:text-black">{card.description}</p>
             </div>
           ))}
         </div>
@@ -345,16 +345,16 @@ const Navbar = () => {
  
       {/* Right Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-left'>
-        <h5 className="text-lg font-medium text-gray-600 mb-2">About Our School</h5>
+        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About Our School</h5>
         <div className="h-[2px] w-36 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
      
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Karyahub is a <span className="text-orange-500">trusted & leading institution.</span>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
+          My School Italy is a <span className="text-orange-500">trusted & leading institution.</span>
        
         </h2>
-        <p className="text-gray-600 leading-relaxed mb-6">
-          Karyahub School is dedicated to providing top-notch education with an emphasis on
-          Karyahub School is dedicated to providing top-notch education with an emphasis on
+        <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
+          My School Italy School is dedicated to providing top-notch education with an emphasis on
+          My School Italy School is dedicated to providing top-notch education with an emphasis on
           holistic development. Our skilled educators and well-structured curriculum aim to nurture
           creativity, critical thinking, and excellence. Join us to shape your child's bright future.
         </p>
@@ -369,15 +369,15 @@ const Navbar = () => {
     <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
       {/* Left Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
-        <h5 className="text-lg font-medium text-gray-600 mb-2">About Karyahub</h5>
-        <div className="h-[2px] w-32 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
+        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About My School Italy</h5>
+        <div className="h-[2px] w-44 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
   
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          A Place Where <span className="text-orange-500">Excellence Meets Education.</span>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
+          A Place Where <span className="text-orange-500 ">Excellence Meets Education.</span>
         </h2>
-        <p className="text-gray-600 leading-relaxed mb-6">
-          Karyahub School is committed to providing exceptional education that nurtures
-          Karyahub School is committed to providing exceptional education that nurtures
+        <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
+          My School Italy School is committed to providing exceptional education that nurtures
+          My School Italy School is committed to providing exceptional education that nurtures
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
         </p>
@@ -403,10 +403,10 @@ const Navbar = () => {
    <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
       {/* Section Header */}
       <div className="text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Our Teachers</h2>
-        <div className="h-[2px] w-16 bg-orange-500 mx-auto mb-4"></div>
+        <h2 className="text-4xl font-bold text-gray-900 mb-2 dark:text-white">Our Teachers</h2>
+        <div className="h-[2px] w-52 bg-orange-500 mx-auto mb-4"></div>
      
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 mb-6 dark:text-white">
           Meet the incredible faculty members shaping the future of our students.
         </p>
       </div>
@@ -459,8 +459,8 @@ const Navbar = () => {
  
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">Our Services</h2>
-        <div className="h-[2px] w-16 bg-orange-500 mb-8 mx-auto"></div>
+        <h2 className="text-4xl font-bold mb-4 dark:text-black">Our Services</h2>
+        <div className="h-[2px] w-48 bg-orange-500 mb-8 mx-auto"></div>
  
         <p className="text-gray-600 mb-12">
           Explore the services we offer to help our students achieve excellence.
@@ -471,7 +471,7 @@ const Navbar = () => {
           <div className="flex flex-col gap-10 space-y-10">
             {servicesData.slice(0, 3).map((service, index) => (
               <div key={index} data-aos='fade-down'data-aos-duration={`${300 + index * 300}`} className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full">
+                <div className="flex items-center justify-center w-16 h-16 bg-gray-50 rounded-full">
                   {service.icon}
                 </div>
                 <div>
@@ -495,7 +495,7 @@ const Navbar = () => {
           <div className="flex flex-col gap-10 space-y-10"  >
             {servicesData.slice(3).map((service, index) => (
               <div key={index} data-aos='fade-down'data-aos-duration={`${300 + index * 300}`} className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full">
+                <div className="flex items-center justify-center w-16 h-16 bg-gray-50 rounded-full">
                   {service.icon}
                 </div>
                 <div>
@@ -515,9 +515,9 @@ const Navbar = () => {
         {/* Title */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold">Contact With Us</h2>
-          <div className="h-[2px] w-16 bg-orange-500 mx-auto my-4"></div>
+          <div className="h-[2px] w-72 bg-orange-500 mx-auto my-4"></div>
     
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-white">
             Feel free to get in touch with us for any queries or information.
           </p>
         </div>
@@ -527,7 +527,7 @@ const Navbar = () => {
           {/* Address */}
           <div className="bg-white p-6 shadow-md rounded-md text-center">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-100 flex items-center justify-center rounded-full">
+              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
                 <span className="text-xl text-gray-700">📍</span>
               </div>
             </div>
@@ -537,7 +537,7 @@ const Navbar = () => {
           {/* Phone */}
           <div className="bg-white p-6 shadow-md rounded-md text-center">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-100 flex items-center justify-center rounded-full">
+              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
                 <span className="text-xl text-gray-700">📞</span>
               </div>
             </div>
@@ -548,7 +548,7 @@ const Navbar = () => {
           {/* Email */}
           <div className="bg-white p-6 shadow-md rounded-md text-center">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-100 flex items-center justify-center rounded-full">
+              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
                 <span className="text-xl text-gray-700">📧</span>
               </div>
             </div>
@@ -587,8 +587,8 @@ const Navbar = () => {
           <div className="col-span-1 md:col-span-2 text-center">
           
             <Button
-              type="submit"
-              className="px-6 py-3 bg-orange-500 text-white font-medium rounded hover:bg-blue-600 transition"
+             variant={"default"}
+              className="     "
            
             >
               Send Message
@@ -600,7 +600,7 @@ const Navbar = () => {
     </section>
     <section className="relative w-full h-[40vh] mb-5 pb-5">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243646.90510355335!2d78.24323639274954!3d17.412608636694827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ae058f89a5%3A0xdcb857c29158809e!2sKaryahub%20Solutions%20Private%20Limited!5e0!3m2!1sen!2sin!4v1732021118898!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243646.90510355335!2d78.24323639274954!3d17.412608636694827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ae058f89a5%3A0xdcb857c29158809e!2sMy School Italy%20Solutions%20Private%20Limited!5e0!3m2!1sen!2sin!4v1732021118898!5m2!1sen!2sin"
         width="600"
         height="450"
         style={{ border: 0 }}
@@ -608,7 +608,7 @@ const Navbar = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full"
-        title="Karyahub Solutions Location"
+        title="My School Italy Solutions Location"
       ></iframe>
     </section>
  

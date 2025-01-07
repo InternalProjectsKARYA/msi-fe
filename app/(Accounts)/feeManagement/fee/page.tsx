@@ -229,7 +229,7 @@ function Fee() {
 
       {/* Display JSON Data Below Table */}
       {/* {outputJson && (
-        <pre className="mt-6 bg-gray-100 p-4 rounded-md">
+        <pre className="mt-6 bg-gray-50 p-4 rounded-md">
           {JSON.stringify(outputJson, null, 2)}
         </pre>
       )} */}

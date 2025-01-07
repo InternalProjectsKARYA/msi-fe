@@ -46,41 +46,9 @@ export default function SetPassword() {
 
   // Submit handler
   const handleResetPassword = async () => {
-    if (password === confirmPassword && requirements.every(checkRequirement)) {
-      try {
-        const response = await axiosInstance.put(`/reset_password?email=${encodeURIComponent(email)}`, {
-          new_password: password,
-          confirm_password: confirmPassword,
-        });
-
-        if (response.status === 200) {
-          toast({
-            title: 'Success',
-            description: 'Password reset successful. Please log in.',
-            variant: 'default',
-          });
+ 
           router.push('/Auth/login');
-        } else {
-          toast({
-            title: 'Info',
-            description: 'Unexpected status code: ' + response.status,
-            variant: 'default',
-          });
-        }
-      } catch (error:any) {
-        toast({
-          title: 'Error',
-          description: 'An error occurred: ' + (error.response?.data?.message || error.message),
-          variant: 'destructive',
-        });
-      }
-    } else {
-      toast({
-        title: 'Error',
-        description: 'Passwords do not match or requirements are not met.',
-        variant: 'destructive',
-      });
-    }
+        
   };
 
   return (

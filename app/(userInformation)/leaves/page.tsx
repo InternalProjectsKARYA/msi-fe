@@ -219,7 +219,7 @@ function StudentLeaves() {
               <li
                 key={employee.users_id}
                 onClick={() => handleAddEmployee(employee)}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-50 cursor-pointer"
               >
                 {employee.users_fullname}
               </li>
@@ -231,7 +231,7 @@ function StudentLeaves() {
             {selectedEmployees.map((employee) => (
               <li
                 key={employee.users_id}
-                className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-lg shadow-sm"
+                className="flex items-center justify-between bg-gray-50 px-4 py-2 rounded-lg shadow-sm"
               >
                 {employee.users_fullname}
                 <CircleX

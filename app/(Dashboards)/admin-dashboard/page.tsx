@@ -5,11 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge'; // You can use this for the update status
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import axiosInstance from "@/lib/axiosInstance"; 
+ 
 import Image from 'next/image'
 import backgroundImage from "../../../public/schoolitaly.c4.jpg";
  
-import {  Pie, PieChart, ResponsiveContainer } from "recharts"
+import {  Pie, PieChart,   } from "recharts"
  
 import {     BookOpenCheck,    CalendarArrowUpIcon, CalendarDays, Check, Clock,   FilePen, GraduationCapIcon, ScrollText, Star, Trophy, X } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -30,16 +30,16 @@ import {
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import   { useRouter } from 'next/navigation';
-import { useAuthContext } from "@/lib/AuthProvider"; 
+ 
 import { Calendar1,ChevronDown    } from 'lucide-react'
 import { GraduationCap, Users, UserCog, BookOpen } from 'lucide-react'
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
  
 import { toast, Toaster } from 'sonner';
-import axios from 'axios';
+ 
 import useThemeStore from '@/components/ThemeContext';
-import Dashboard from '../dashboard/page';
+ 
  
 type Request = {
   id: string
@@ -54,15 +54,7 @@ type Request = {
   toDate: string
 }
 
-interface LeaveRequest {
-  id: string;
-  name: string;
-  role: string;
-  type: "Emergency" | "Casual";
-  leaveDate: string;
-  applyDate: string;
-  avatar: string;
-} 
+ 
 
 export type Details = {
   id: string;
@@ -104,7 +96,7 @@ const AdminDashboard = () => {
   };
 
  
-  const [isLoading, setIsLoading] = useState(true);
+ 
 
  
  
@@ -154,21 +146,21 @@ const AdminDashboard = () => {
 const performerData = {
   bestPerformers: [
     {
-      name: "John Smith",
+      name: "Harshitha K",
       subject: "Mathematics",
       grade: "A+",
       score: "98%",
       imageUrl: "/student1.jpg"
     },
     {
-      name: "Emma Davis",
+      name: "Harshitha K",
       subject: "Science",
       grade: "A+",
       score: "97%",
       imageUrl: "/student1.jpg"
     },
     {
-      name: "Michael Johnson",
+      name: "Harshitha K",
       subject: "English",
       grade: "A",
       score: "95%",
@@ -177,21 +169,21 @@ const performerData = {
   ],
   starStudents: [
     {
-      name: "Sarah Wilson",
+      name: "Muskaan MD",
       subject: "History",
       grade: "A+",
       score: "96%",
       imageUrl: "/student2.jpg"
     },
     {
-      name: "David Brown",
+      name: "Muskaan MD",
       subject: "Physics",
       grade: "A",
       score: "94%",
       imageUrl: "/student2.jpg"
     },
     {
-      name: "Lisa Anderson",
+      name: "Muskaan MD",
       subject: "Chemistry",
       grade: "A+",
       score: "97%",
@@ -276,7 +268,7 @@ const fetchedAnnouncements = [
   const requests: Request[] = [
     {
       id: '1',
-      name: 'John Doe',
+      name: 'Gautami B',
       avatar: "/teacher.avif",
       type: 'Emergency',
       role: 'Software Engineer',
@@ -288,7 +280,7 @@ const fetchedAnnouncements = [
     },
     {
       id: '2',
-      name: 'Jane Smith',
+      name: 'Amurtha V',
       avatar: "/teacherr1.avif",
       type: 'Regular',
       role: 'Product Manager',
@@ -523,46 +515,46 @@ const chartConfig = {
             </CardHeader>
           </Card>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-1 ">
   {data.map((item, index) => (
     <Card
       key={index}
-      className={`relative overflow-hidden ${
+      className={`relative overflow-hidden  ${
         item.title === "Total Students"
-          ? "bg-[#d5e2c5]"
+          ? "bg-[#d5e2c5] dark:bg-black  "
           : item.title === "Total Teaching Staff"
-          ? "bg-[#f4b9bc]"
+          ? "bg-[#f4b9bc] dark:bg-black "
           : item.title === "Total Non-Teaching Staff"
-          ? "bg-[#ffebb0] text-white"
+          ? "bg-[#ffebb0] text-white dark:bg-black "
           : item.title === "Total Subjects"
-          ? "bg-[#b6e1f3] text-white"
+          ? "bg-[#b6e1f3] text-white dark:bg-black "
           :""
       }`}
     >
       <CardHeader
         className={`flex flex-row items-center justify-between pb-2 ${
           item.title === "Total Students"
-            ? "bg-[#d5e2c5]"
+            ? "bg-[#d5e2c5] dark:bg-black "
             : item.title === "Total Teaching Staff"
-            ? "bg-[#f4b9bc]"
+            ? "bg-[#f4b9bc] dark:bg-black "
             : item.title === "Total Non-Teaching Staff"
-          ? "bg-[#ffebb0] text-white"
+          ? "bg-[#ffebb0] text-white dark:bg-black "
           : item.title === "Total Subjects"
-          ? "bg-[#b6e1f3] text-white"
+          ? "bg-[#b6e1f3] text-white dark:bg-black "
           :""
         }`}
       >
-        <div className="flex items-center space-x-2 my-2">
+        <div className="flex items-center space-x-2 my-2  ">
           <div
-            className="p-3 rounded-lg"
+            className="p-3 rounded-lg "
             style={{ backgroundColor: item.badge.color }}
           >
             <item.icon
-              className="w-8 h-8"
+              className="w-8 h-8 "
               style={{
                 color:
-                  item.title === "Total Students"
-                    ? "#C8D6AB"  
+                  item.title === "Total Students "
+                    ? "#C8D6AB   "  
                     : item.title === "Total Teaching Staff"
                     ? "#E6A8B5"  
                     : item.title === "Total Non-Teaching Staff"
@@ -579,7 +571,7 @@ const chartConfig = {
           </div>
         </div>
         <div
-          className="mt-3 px-2 py-1 rounded-full text-sm font-semibold"
+          className="mt-3 px-2 py-1 rounded-full text-sm font-semibold  "
           style={{
             color: item.badge.color,
             backgroundColor: `${item.badge.color}20`, // Light background for badge
@@ -619,7 +611,7 @@ const chartConfig = {
             {/* Left Column - Events and Bar Chart */}
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
-            <div className="flex justify-between  bg-[#dcf0f9] p-4">
+            <div className="flex justify-between  bg-[#dcf0f9] dark:bg-neutral-800 p-4">
       <h1 className="text-xl font-semibold">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
@@ -630,14 +622,14 @@ const chartConfig = {
     
   {fetchedAnnouncements.slice(0, 4).map((event, index) => (
         <div
-          className={`border-l-4 px-3 py-1 my-4 ${
+          className={`border-l-4 px-3 py-1 my-4 dark:border-l-gray-500 ${
             index % 4 === 0
-              ? "border-l-blue-500"
+              ? "border-l-blue-500 dark:border-l-gray-500"
               : index % 4 === 1
-              ? "border-l-green-500"
+              ? "border-l-green-500 dark:border-l-gray-500"
               : index % 4 === 2
-              ? "border-l-yellow-500"
-              : "border-l-red-500"
+              ? "border-l-yellow-500 dark:border-l-gray-500"
+              : "border-l-red-500 dark:border-l-gray-500"
           }`}
           key={index}
         >
@@ -651,14 +643,14 @@ const chartConfig = {
             </div>
           </div>
           <div 
-            className={`border-b-2 mt-2 ${
+            className={`border-b-2 mt-2    ${
               index % 4 === 0
-                ? "border-blue-500"
+                ? "border-blue-500 dark:border-gray-500"
                 : index % 4 === 1
-                ? "border-green-500"
+                ? "border-green-500 dark:border-gray-500"
                 : index % 4 === 2
-                ? "border-yellow-500"
-                : "border-red-500"
+                ? "border-yellow-500 dark:border-gray-500"
+                : "border-red-500 dark:border-gray-500"
             }`}
           />
           <div className="flex my-2 justify-between">
@@ -688,7 +680,7 @@ const chartConfig = {
  
 <Card>
       <CardHeader className='p-0'>
-        <div className='flex justify-between items-center mb-3 bg-[#fce7f3] p-4'>
+        <div className='flex justify-between items-center mb-3 bg-[#fce7f3] dark:bg-neutral-800 p-4'>
         <CardTitle>Teacher & Student Attendance</CardTitle>
         <Button className='cursor-pointer' variant={"outline"}  onClick={handleChartClick}>{dateRange}</Button>
         </div>
@@ -730,7 +722,7 @@ const chartConfig = {
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
 
             <Card className="w-full ">
-            <CardHeader className='p-4 bg-[#ebf1e3]'>
+            <CardHeader className='p-4 bg-[#ebf1e3] dark:bg-neutral-800'>
                   <h1 className="font-semibold md:text-xl  ">Quick Announcement</h1>
               
                 </CardHeader>
@@ -768,7 +760,7 @@ const chartConfig = {
 
               <Card className="">
       {/* Header Section */}
-      <CardHeader className="flex  flex-row justify-between p-3   bg-[#e1dde6]">
+      <CardHeader className="flex  flex-row justify-between p-3   bg-[#e1dde6] dark:bg-neutral-800">
         <CardTitle className="text-xl font-semibold">Leave Requests</CardTitle>
         <div className='space-x-2'>
         <Link href="/admin-leave">
@@ -854,7 +846,7 @@ const chartConfig = {
          
           <CardContent className="w-full  p-0 ">
           <Tabs defaultValue="student" className="w-full">
-            <div className='flex items-center justify-between bg-[#fbeddf] px-5'>
+            <div className='flex items-center justify-between bg-[#fbeddf] dark:bg-neutral-800 px-5'>
             <CardHeader className=' p-4 '>
             <CardTitle>Leaves Graph</CardTitle>
             <CardDescription>
@@ -875,7 +867,7 @@ const chartConfig = {
   <div className="w-1/2 flex flex-col gap-4 p-4">
     {Attendence.map((data, index) => (
       <div
-        className="flex justify-center bg-gray-100 dark:bg-gray-800 rounded items-center h-[70px]"
+        className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
         key={index}
       >
         <div>
@@ -930,7 +922,7 @@ const chartConfig = {
             </div> */}
   
     <Card>
-                <CardHeader className='p-4 pl-5 bg-[#f9dddf]'>
+                <CardHeader className='p-4 pl-5 bg-[#f9dddf] dark:bg-neutral-800'>
                   <h1 className="font-semibold md:text-xl">Quick Links</h1>
                 </CardHeader>
               
@@ -938,13 +930,13 @@ const chartConfig = {
                 {QuickLinks.map((item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col items-center justify-center p-3 rounded-lg ${item.bg_color} dark:bg-gray-800 w-full h-[10vh] cursor-pointer`}
+                  className={`flex flex-col items-center justify-center p-3 rounded-lg dark:bg-nuetral-800 ${item.bg_color} dark:bg-gray-800 w-full h-[10vh] cursor-pointer`}
                   onClick={() => router.push(item.link)}
                 >
-                  <div className={`flex items-center justify-center w-10 h-10 ${item.icon_color} rounded-full shadow-md`}>
+                  <div className={`flex items-center justify-center w-10 h-10 ${item.icon_color} dark:bg-gray-500  rounded-full shadow-md`}>
                     <item.Icon className="w-4 h-4 text-white" />
                   </div>
-                  <p className="mt-2 text-sm text-gray-700">{item.title}</p>
+                  <p className="mt-2 text-sm text-gray-700 dark:text-white">{item.title}</p>
                 </div>
               ))}
                 </div>
@@ -1050,7 +1042,7 @@ const chartConfig = {
         const isPositive = stat.percentage > 0;
 
         return (
-          <Card key={index} className="bg-white">
+          <Card key={index} className="bg-white dark:bg-black">
             <CardHeader className="pb-2">
               <h3 className="text-sm font-medium text-muted-foreground">
                 {stat.title}

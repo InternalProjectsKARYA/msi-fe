@@ -123,7 +123,7 @@ export function FormSidebar() {
                     )}
  
                     {item.hasSubmenu && openSubmenu === item.label && (
-                      <div className="ml-2 transition-all space-y-1 bg-gray-100 dark:bg-gray-800 rounded">
+                      <div className="ml-2 transition-all space-y-1 bg-gray-50 dark:bg-gray-800 rounded">
                         <SidebarMenu>
                           {item.subItems.map((subItem) => (
                             <SidebarMenuItem key={subItem.label}>

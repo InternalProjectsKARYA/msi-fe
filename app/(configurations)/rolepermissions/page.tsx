@@ -31,7 +31,7 @@ const RoleBasedPermissions = () => {
               {Object.entries(featureFlags[role]).map(([key, isVisible]) => (
                 <div
                   key={key}
-                  className="flex items-center justify-between p-2 bg-gray-100 rounded-lg dark:bg-neutral-800"
+                  className="flex items-center justify-between p-2 bg-gray-50 rounded-lg dark:bg-neutral-800"
                 >
                   <span className="text-sm font-medium capitalize">
                     {key.replace("show", "")}

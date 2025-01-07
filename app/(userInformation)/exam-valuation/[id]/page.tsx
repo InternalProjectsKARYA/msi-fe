@@ -52,7 +52,7 @@ export default function TeacherValuation() {
         Evaluate the answers submitted by the student and provide feedback.
       </p>
    {/* Student Details */}
-   <div className="mb-6 grid grid-cols-2 gap-4 mb-6 bg-gray-100 p-4 rounded-md shadow-sm">
+   <div className="mb-6 grid grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-md shadow-sm">
             <p className="text-sm font-medium text-gray-800">
               <strong>Name:</strong> {sampleQuestion.studentName}
             </p>
@@ -83,7 +83,7 @@ export default function TeacherValuation() {
                   className={`flex items-center justify-between px-4 py-2 rounded-md ${
                     option.value === sampleQuestion.studentAnswer
                       ? "bg-yellow-100"
-                      : "bg-gray-100"
+                      : "bg-gray-50"
                   }`}
                 >
                   <span className="text-black text-lg">{option.value}</span>

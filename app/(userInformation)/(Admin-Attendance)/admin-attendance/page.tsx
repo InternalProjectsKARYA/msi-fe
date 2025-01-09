@@ -34,7 +34,7 @@ export default function AdminAttendance() {
     <>
       <Tabs defaultValue="Graph" className=" ">
        
-      <TabsList className="grid w-2/3 sm:w-2/3 gap-3 grid-cols-4">
+      <TabsList className="grid w-2/1 sm:w-1/2 gap-3 grid-cols-4">
   <TabsTrigger value="Graph" className="text-center">
     Graph
   </TabsTrigger>

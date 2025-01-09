@@ -170,6 +170,7 @@ const Navbar = () => {
  
   return (
     <>
+    <div className="container-fluid w-full overflow-hidden">
       <header
         className="relative min-h-screen bg-cover bg-center"
         style={{ backgroundImage: `url(${MyImage.src})` }}
@@ -178,11 +179,10 @@ const Navbar = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/50"></div>
  
         {/* Topbar */}
-        <div className="fixed top-0 left-0 w-full text-white z-50 shadow-md p-2 bg-neutral-900 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <div className=" absolute right-0  top-0    w-full  text-white z-50 shadow-md p-2 bg-neutral-900 backdrop-blur-md">
+      <div className="  flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-4 text-2xl font-bold tracking-wide">
- 
   <Image
     src={Logo}
     className="  "
@@ -209,13 +209,13 @@ const Navbar = () => {
           {/* Login Button */}
         
           <Button
-            onClick={handleLoginClick}
+            // onClick={handleLoginClick}
             variant={"default"}
            
           
             className="text-m font-semibold"
           >
-            Login
+             Contact Us
           </Button>
         
         </nav>
@@ -226,14 +226,14 @@ const Navbar = () => {
           className="md:hidden flex items-center justify-center text-gray-200 hover:text-gray-400 transition"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
         </Button>
       
       </div>
  
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden bg-gray-800 border-t border-gray-700">
+        <nav className="md:hidden bg-gray-800 border-t w-full border-gray-700">
           <ul className="flex flex-col items-center py-4 space-y-4" style={{ color: "white" }}>
             <li>
               <Link
@@ -267,14 +267,14 @@ const Navbar = () => {
              
               <Button
                variant={"secondary"}
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleLoginClick();
-                }}
+                // onClick={() => {
+                //   setIsMobileMenuOpen(false);
+                //   handleLoginClick();
+                // }}
                 className="px-6 py-2    transition duration-200 text-sm font-medium"
                
               >
-                Login
+                Contact Us
             
               </Button>
             </li>
@@ -295,17 +295,16 @@ const Navbar = () => {
           </div>
        
           <div className="mt-6 flex gap-4">
-            <Link href="">
-              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition">
+            
+              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition"    onClick={handleLoginClick}>
         
-                Apply Now
+                Login
               </Button>
-           
-            </Link>
+            
             <Link href="">
               <Button variant={"outline"}>
               
-                Learn More
+              Enrol Child
               </Button>
              
             </Link>
@@ -510,7 +509,7 @@ const Navbar = () => {
     </section>
  
  
-    <section className="py-16">
+    <section className="py-16 ">
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
         {/* Title */}
         <div className="text-center mb-12">
@@ -598,9 +597,9 @@ const Navbar = () => {
         </form>
       </div>
     </section>
-    <section className="relative w-full h-[40vh] mb-5 pb-5">
+    <section className="relative w-full h-[40vh] mb-5 pb-5 max-w-7xl mx-auto">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243646.90510355335!2d78.24323639274954!3d17.412608636694827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ae058f89a5%3A0xdcb857c29158809e!2sMy School Italy%20Solutions%20Private%20Limited!5e0!3m2!1sen!2sin!4v1732021118898!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.8200864367905!2d78.3761349!3d17.4683232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93c69d117a9d%3A0xcb96668338dda37c!2sMy%20School%20ITALY%20%7C%20Hitex!5e0!3m2!1sen!2sin!4v1736426341876!5m2!1sen!2sin" width="600" height="450" 
         width="600"
         height="450"
         style={{ border: 0 }}
@@ -769,6 +768,7 @@ const Navbar = () => {
         </div>
       </div>
     </footer>
+    </div>
     </>
   );
 };

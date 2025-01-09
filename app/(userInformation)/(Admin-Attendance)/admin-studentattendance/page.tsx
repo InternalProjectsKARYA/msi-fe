@@ -161,9 +161,10 @@ const StudentAttendance = () => {
   return (
     <div className="grid grid-cols-1 gap-4">
       <Card>
-        <div className="flex items-center justify-between w-full px-5 py-3 border-b">
+        <div className="flex flex-wrap  items-center justify-between w-full px-5 py-3 border-b">
           <p className="text-lg font-semibold">Student Attendance List</p>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <div>
             <Input
               type="text"
               placeholder="Search..."
@@ -171,10 +172,12 @@ const StudentAttendance = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="max-w-sm"
             />
-            <DropdownMenu>
+           </div>
+           <div>
+           <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">
-                  Filter by Class <ChevronDown className="ml-2 h-4 w-4" />
+                  Filter by Class <ChevronDown className="  h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -186,6 +189,8 @@ const StudentAttendance = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+           </div>
+         
           </div>
         </div>
         <Table>

@@ -146,9 +146,10 @@ const StaffAttendance = () => {
   return (
     <div className="grid grid-cols-1 gap-4">
       <Card>
-        <div className="flex items-center justify-between w-full px-5 py-3 border-b">
+        <div className="flex flex-wrap items-center justify-between w-full px-5 py-3 border-b">
           <p className="text-lg font-semibold">Staff Attendance List</p>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <div>
             <Input
               type="text"
               placeholder="Search..."
@@ -156,6 +157,8 @@ const StaffAttendance = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="max-w-sm"
             />
+            </div>
+            <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">
@@ -171,6 +174,9 @@ const StaffAttendance = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+              </div>
+         
+         
           </div>
         </div>
         <Table>

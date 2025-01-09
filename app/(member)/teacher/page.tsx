@@ -94,7 +94,7 @@ export default function TeachersGridAndList() {
             accessorKey: "Teacher",
             header: ({ column }) => (
                 <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    Teacher Name <ArrowUpDown />
+                    Teacher Name 
                 </Button>
             ),
             cell: ({ row }) => (
@@ -210,7 +210,7 @@ export default function TeachersGridAndList() {
   {teacherTableData.map((teacher, index) => (
     <Card
       key={teacher.id}
-      data-aos="flip-right"
+      data-aos="fade-up"
       data-aos-duration={`${300 + index * 300}`}
       className="p-4 shadow-md"
     >
@@ -225,14 +225,14 @@ export default function TeachersGridAndList() {
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
+              {/* <DropdownMenuItem
                 onClick={() => {
                   handleTeacherEditClick(teacher);
                   setTeacherDialogOpen(true);
                 }}
               >
                 Edit
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

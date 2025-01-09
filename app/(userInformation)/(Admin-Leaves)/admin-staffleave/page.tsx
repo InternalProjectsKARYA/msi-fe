@@ -26,7 +26,7 @@ const StaffLeaveRequests = () => {
       days: 2,
       reason: "Flu",
       approvedBy: "HR",
-      staffName: "Sarah Connor",
+      staffName: "Rajesh Kumar",
       status: "Approved",
     },
     {
@@ -38,7 +38,7 @@ const StaffLeaveRequests = () => {
       days: 11,
       reason: "Family Function",
       approvedBy: "HR Manager",
-      staffName: "Mark Smith",
+      staffName: "Sita Rani",
       status: "Pending",
     },
     {
@@ -50,7 +50,7 @@ const StaffLeaveRequests = () => {
       days: 2,
       reason: "Urgent Work",
       approvedBy: "HR",
-      staffName: "Linda Johnson",
+      staffName: "Vijay Kumar",
       status: "Rejected",
     },
     {
@@ -62,10 +62,83 @@ const StaffLeaveRequests = () => {
       days: 3,
       reason: "Personal Work",
       approvedBy: "HR Manager",
-      staffName: "Michael Brown",
+      staffName: "Priya Devi",
       status: "Approved",
     },
+    {
+      id: "5",
+      staffId: "ST005",
+      leaveType: "Sick Leave",
+      from: "2024-12-01",
+      to: "2024-12-02",
+      days: 2,
+      reason: "Flu",
+      approvedBy: "HR",
+      staffName: "Ravi Shankar",
+      status: "Approved",
+    },
+    {
+      id: "6",
+      staffId: "ST006",
+      leaveType: "Annual Leave",
+      from: "2024-12-05",
+      to: "2024-12-10",
+      days: 6,
+      reason: "Family Vacation",
+      approvedBy: "Principal",
+      staffName: "Lakshmi Narayan",
+      status: "Pending",
+    },
+    {
+      id: "7",
+      staffId: "ST007",
+      leaveType: "Emergency Leave",
+      from: "2024-12-03",
+      to: "2024-12-04",
+      days: 2,
+      reason: "Medical Emergency",
+      approvedBy: "HR",
+      staffName: "Hari Prasad",
+      status: "Rejected",
+    },
+    {
+      id: "8",
+      staffId: "ST008",
+      leaveType: "Casual Leave",
+      from: "2024-12-12",
+      to: "2024-12-13",
+      days: 2,
+      reason: "Personal Work",
+      approvedBy: "HR Manager",
+      staffName: "Anjali Reddy",
+      status: "Approved",
+    },
+    {
+      id: "9",
+      staffId: "ST009",
+      leaveType: "Sick Leave",
+      from: "2024-12-01",
+      to: "2024-12-02",
+      days: 2,
+      reason: "Flu",
+      approvedBy: "HR",
+      staffName: "Karthik Venkatesh",
+      status: "Approved",
+    },
+    {
+      id: "10",
+      staffId: "ST010",
+      leaveType: "Annual Leave",
+      from: "2024-12-05",
+      to: "2024-12-10",
+      days: 6,
+      reason: "Family Vacation",
+      approvedBy: "Principal",
+      staffName: "Aishwarya Lakshmi",
+      status: "Pending",
+    },
   ];
+  
 
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
@@ -88,19 +161,22 @@ const StaffLeaveRequests = () => {
   const totalPages = Math.ceil(filteredData.length / entriesPerPage);
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold">Staff Leave Requests</h2>
-        <Input
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="max-w-xs"
-        />
-      </div>
-
-      <Card className="rounded-md border">
-        <Table>
+    <div className="grid grid-cols-12 gap-4">
+    {/* Header Section */}
+    <div className="col-span-12 flex justify-between items-center">
+      <h2 className="text-lg font-semibold">Staff Leave Requests</h2>
+      <Input
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="max-w-xs"
+      />
+    </div>
+  
+    {/* Table Section */}
+    <div className="col-span-12">
+      <Card className="rounded-md border overflow-x-auto">
+        <Table className="table-auto w-full min-w-full">
           <TableHeader>
             <TableRow className="bg-gray-200">
               <TableHead>Staff ID</TableHead>
@@ -162,47 +238,49 @@ const StaffLeaveRequests = () => {
           </TableBody>
         </Table>
       </Card>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-between mt-4">
-        <div className="text-sm text-gray-700">
-          Showing{" "}
-          {Math.min((currentPage - 1) * entriesPerPage + 1, filteredData.length)}{" "}
-          to {Math.min(currentPage * entriesPerPage, filteredData.length)} of{" "}
-          {filteredData.length} entries
-        </div>
-        <div className="flex items-center space-x-2">
+    </div>
+  
+    {/* Pagination Section */}
+    <div className="col-span-12 flex items-center justify-between mt-4">
+      <div className="text-sm text-gray-700">
+        Showing{" "}
+        {Math.min((currentPage - 1) * entriesPerPage + 1, filteredData.length)}{" "}
+        to {Math.min(currentPage * entriesPerPage, filteredData.length)} of{" "}
+        {filteredData.length} entries
+      </div>
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        {[...Array(totalPages)].map((_, idx) => (
           <Button
-            variant="outline"
+            key={idx}
+            variant={currentPage === idx + 1 ? "default" : "outline"}
             size="sm"
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(idx + 1)}
           >
-            Previous
+            {idx + 1}
           </Button>
-          {[...Array(totalPages)].map((_, idx) => (
-            <Button
-              key={idx}
-              variant={currentPage === idx + 1 ? "default" : "outline"}
-              size="sm"
-              onClick={() => setCurrentPage(idx + 1)}
-            >
-              {idx + 1}
-            </Button>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </Button>
-        </div>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
       </div>
     </div>
+  </div>
+  
   );
 };
 

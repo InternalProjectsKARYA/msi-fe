@@ -140,7 +140,7 @@ export default function AnnouncementsList() {
 
   return (
     <>
-      <Card className="space-y-6 p-5">
+      <Card className="space-y-6   p-5">
       <CardHeader className="p-0">
           <CardTitle className="flex items-center gap-2">
             <Calendar className="text-blue-600 h-5 w-5" />

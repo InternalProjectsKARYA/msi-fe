@@ -198,19 +198,32 @@ export default function CatalogManagement() {
   });
 
   return (
-    <div >
-      <h2 className="text-xl font-semibold">Catalog Management</h2>
-      <div className="w-full">
-        <div className="flex items-center py-4">
-          <Input placeholder="Filter by Catalog Type..." className="max-w-sm" />
-          <div className="ml-auto space-x-4 flex">
-            <Button variant="ghost" className="h-10 w-10 p-0">
-              <Download className="h-5 w-5" />
-            </Button>
-            <Button onClick={() => openSheet()}>Add Catalog</Button>
-          </div>
-        </div>
-
+    <div className="space-y-6">
+    {/* Title Section */}
+    <h2 className="text-xl font-semibold">Catalog Management</h2>
+  
+    {/* Search Bar and Actions */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+      {/* Search Input */}
+      <div className="col-span-12 lg:col-span-6">
+        <Input
+          placeholder="Filter by Catalog Type..."
+          className="w-full sm:max-w-sm"
+        />
+      </div>
+  
+      {/* Actions */}
+      <div className="col-span-12 lg:col-span-6 flex justify-end space-x-4">
+        <Button variant="ghost" className="h-10 w-10 p-0">
+          <Download className="h-5 w-5" />
+        </Button>
+        <Button onClick={() => openSheet()}>Add Catalog</Button>
+      </div>
+    </div>
+  
+    {/* Table Section */}
+    <div className="grid grid-cols-12 gap-4">
+      <div className="col-span-12">
         <Table>
           <TableHeader className="bg-gray-200">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -227,58 +240,80 @@ export default function CatalogManagement() {
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
-
-      {/* Add/Edit Catalog Sheet */}
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>{selectedCatalog ? "Edit Catalog" : "Add Catalog"}</SheetTitle>
-            <SheetDescription>Fill in the details below to {selectedCatalog ? "update" : "add"} a catalog.</SheetDescription>
-          </SheetHeader>
-          <div className="py-4 space-y-4">
-            <Input placeholder="Catalog Type" value={catalogType} onChange={(e) => setCatalogType(e.target.value)} />
-            <Input placeholder="Catalog Name" value={catalogName} onChange={(e) => setCatalogName(e.target.value)} />
-            <Input type="date" placeholder="Purchase Date" value={purchaseDate} onChange={(e) => setPurchaseDate(e.target.value)} />
-            <Select value={publisherId} onValueChange={setPublisherId}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select Publisher" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Publisher</SelectLabel>
-                  {publishers.map((publisher) => (
-                    <SelectItem key={publisher.publisher_id} value={publisher.publisher_id}>
-                      {publisher.publisher_name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <Select value={status} onValueChange={(value) => setStatus(value as "Active" | "Inactive")}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Status</SelectLabel>
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Inactive">Inactive</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-          <SheetFooter>
-            <Button onClick={saveCatalog}>{selectedCatalog ? "Update" : "Save"}</Button>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
     </div>
+  
+    {/* Add/Edit Catalog Sheet */}
+    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>{selectedCatalog ? "Edit Catalog" : "Add Catalog"}</SheetTitle>
+          <SheetDescription>
+            Fill in the details below to {selectedCatalog ? "update" : "add"} a catalog.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="py-4 space-y-4">
+          <Input
+            placeholder="Catalog Type"
+            value={catalogType}
+            onChange={(e) => setCatalogType(e.target.value)}
+          />
+          <Input
+            placeholder="Catalog Name"
+            value={catalogName}
+            onChange={(e) => setCatalogName(e.target.value)}
+          />
+          <Input
+            type="date"
+            placeholder="Purchase Date"
+            value={purchaseDate}
+            onChange={(e) => setPurchaseDate(e.target.value)}
+          />
+          <Select value={publisherId} onValueChange={setPublisherId}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select Publisher" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Publisher</SelectLabel>
+                {publishers.map((publisher) => (
+                  <SelectItem key={publisher.publisher_id} value={publisher.publisher_id}>
+                    {publisher.publisher_name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Select
+            value={status}
+            onValueChange={(value) => setStatus(value as "Active" | "Inactive")}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Status</SelectLabel>
+                <SelectItem value="Active">Active</SelectItem>
+                <SelectItem value="Inactive">Inactive</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <SheetFooter>
+          <Button onClick={saveCatalog}>{selectedCatalog ? "Update" : "Save"}</Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  </div>
+  
   );
 }

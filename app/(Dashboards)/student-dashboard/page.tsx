@@ -47,6 +47,7 @@ import {
 } from "@/components/ui/carousel"
  
 import { Calendar1,ChevronDown ,Bus ,BookOpen ,Salad ,Receipt,  ChevronRight   } from 'lucide-react'
+import { useRouter } from 'next/navigation';
  
 export type Details = {
   id: string;
@@ -80,9 +81,9 @@ const chartConfig = {
 const StudentDashboard = () => {
  
  
-  const { Id } = useAuthContext();
+ 
   const [user, setUser] = useState<User | null>(null);
-
+  const router = useRouter();
   const subjects = [
     { name: "Mathematics", scores: { test1: 55, test2: 52, quarterly: 48, halfyearly: 91, annually: 95 } },
     { name: "Physics", scores: { test1: 78, test2: 84, quarterly: 87, halfyearly: 89, annually: 93 } },
@@ -176,39 +177,40 @@ const NoticeBoard = [
     {
       time: "09:00 - 09:45",
       className: "Class V, B",
-      teacherName: "John Doe",
+      teacherName: "Rajesh Kumar",
       subject: "Mathematics",
-      avatar: "JD",
+      avatar: "RK",
     },
     {
       time: "10:00 - 10:45",
       className: "Class IV, C",
-      teacherName: "Jane Smith",
+      teacherName: "Anitha Reddy",
       subject: "Biology",
-      avatar: "JS",
+      avatar: "AR",
     },
     {
       time: "11:30 - 12:15",
       className: "Class III, A",
-      teacherName: "Bob Johnson",
+      teacherName: "Venkatesh Rao",
       subject: "Physics",
-      avatar: "BJ",
+      avatar: "VR",
     },
     {
       time: "01:30 - 02:15",
       className: "Class VI, D",
-      teacherName: "Alice Brown",
+      teacherName: "Lakshmi Priya",
       subject: "Chemistry",
-      avatar: "AB",
+      avatar: "LP",
     },
     {
       time: "02:30 - 03:15",
       className: "Class VII, E",
-      teacherName: "Charlie Davis",
+      teacherName: "Karthik Subramanian",
       subject: "English",
-      avatar: "CD",
+      avatar: "KS",
     },
   ];
+  
   const leaveTypes = [
     {
       type: "Medical Leaves",
@@ -275,7 +277,7 @@ const NoticeBoard = [
   <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     {/* Apply Leave and Raise a Request Section */}
     <div className="md:col-span-1 flex flex-col gap-4">
-      <Card className="flex justify-between items-center border p-4 h-[65px]  bg-[#d5e2c5] rounded-lg shadow-sm">
+      <Card className="flex justify-between items-center border p-4 h-[65px]  bg-[#d5e2c5] rounded-lg shadow-sm cursor-pointer" onClick={() => router.push('/leaves')}>
         <div className="flex items-center space-x-2">
           <Calendar1 className="w-5 h-5" />
           <p className="text-sm font-medium">Apply Leave</p>
@@ -355,91 +357,93 @@ const NoticeBoard = [
   ))}
 </div>
 
-  <Card className="w-full   mx-auto my-5">
-      <CardHeader className="  bg-[#d1fae5] p-4">
-        <CardTitle className="text-xl font-semibold dark:text-black">Todays Classes</CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-         <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-50" />
-                 <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-50" />
-            <CarouselContent className="-ml-2 md:-ml-4">
-              
+<div className="grid grid-cols-12 gap-4">
+  <Card className="col-span-12  my-5">
+    <CardHeader className="bg-[#d1fae5] p-4">
+      <CardTitle className="text-xl font-semibold dark:text-black">
+        Today's Classes
+      </CardTitle>
+    </CardHeader>
+    <CardContent className="p-6">
+      <div className="relative">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-50" />
+          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-50" />
+          <CarouselContent className="flex gap-4">
             {TodaysClasses.map((classItem, index) => (
-  <CarouselItem
-    key={index}
-    className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
-  >
-    <div className="p-4 border rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-card">
-      {/* Header Section */}
-      <div className="flex items-center space-x-4">
-        <Avatar className="h-12 w-12">
-          <AvatarImage
-            src={`https://api.dicebear.com/6.x/initials/svg?seed=${classItem.avatar}`}
-            alt={classItem.teacherName}
-          />
-          <AvatarFallback>{classItem.avatar}</AvatarFallback>
-        </Avatar>
-        <div>
-          <h3 className="text-lg font-semibold">{classItem.className}</h3>
-          <p className="text-sm text-muted-foreground">
-            {classItem.teacherName} - {classItem.subject}
-          </p>
-        </div>
-      </div>
+              <CarouselItem
+                key={index}
+                className="flex-shrink-0 basis-full sm:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-4 border rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-card">
+                  {/* Header Section */}
+                  <div className="flex items-center space-x-4">
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage
+                        src={`https://api.dicebear.com/6.x/initials/svg?seed=${classItem.avatar}`}
+                        alt={classItem.teacherName}
+                      />
+                      <AvatarFallback>{classItem.avatar}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h3 className="text-lg font-semibold">{classItem.className}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {classItem.teacherName} - {classItem.subject}
+                      </p>
+                    </div>
+                  </div>
 
-      {/* Class Details Section */}
-      <div className="mt-4">
-        <div className="flex justify-around">
-          <p className="text-sm text-muted-foreground">Time:</p>
-          <p className="text-sm font-semibold">{classItem.time}</p>
-        </div>
-        <div className="flex justify-around mt-2">
-          <p className="text-sm text-muted-foreground">Subject:</p>
-          <p className="text-sm font-semibold">{classItem.subject}</p>
-        </div>
-        <div className="flex justify-around mt-2">
-          <p className="text-sm text-muted-foreground">Teacher:</p>
-          <p className="text-sm font-semibold">{classItem.teacherName}</p>
-        </div>
-      </div>
+                  {/* Class Details Section */}
+                  <div className="mt-4">
+                    <div className="flex justify-between">
+                      <p className="text-sm text-muted-foreground">Time:</p>
+                      <p className="text-sm font-semibold">{classItem.time}</p>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                      <p className="text-sm text-muted-foreground">Subject:</p>
+                      <p className="text-sm font-semibold">{classItem.subject}</p>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                      <p className="text-sm text-muted-foreground">Teacher:</p>
+                      <p className="text-sm font-semibold">{classItem.teacherName}</p>
+                    </div>
+                  </div>
 
-      {/* Action Buttons */}
-      <div className="mt-4 flex justify-between">
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-[calc(50%-0.25rem)]"
-        >
-          <Mail className="mr-2 h-4 w-4" />
-          Email
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-[calc(50%-0.25rem)]"
-        >
-          <MessageCircle className="mr-2 h-4 w-4" />
-          Chat
-        </Button>
+                  {/* Action Buttons */}
+                  <div className="mt-4 flex justify-between">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-[calc(50%-0.25rem)]"
+                    >
+                      <Mail className="mr-2 h-4 w-4" />
+                      Email
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-[calc(50%-0.25rem)]"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Chat
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
-    </div>
-  </CarouselItem>
-))}
+    </CardContent>
+  </Card>
+</div>
 
-            </CarouselContent>
-         
-          </Carousel>
-        </div>
-      </CardContent>
-    </Card>
 
     
 </div>

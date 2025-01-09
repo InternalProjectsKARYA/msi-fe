@@ -402,176 +402,198 @@ export default function BookAssign() {
   // };
 
   return (
-    <div className="p-6">
-      {/* Assign Table */}
-      <div>
-        <h2 className="text-xl font-semibold">Book Assign</h2>
-        <div className="w-full">
-          <div className="flex items-center py-4">
-            <Input
-              placeholder="Filter by Book..."
-              value={(classTable.getColumn("book_id")?.getFilterValue() as string) ?? ""}
-              onChange={(e) => classTable.getColumn("book_id")?.setFilterValue(e.target.value)}
-              className="max-w-sm"
-            />
-            <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
-              <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
-                <Download className="h-5 w-5" />
-              </Button>
-              <Button onClick={() => setIsAssignSheetOpen(true)} className="w-32 hover:bg-opacity-90 flex items-center space-x-2">
-                <span>Assign</span>
-              </Button>
-            </div>
-          </div>
-
-          <Table>
-            <TableHeader>
-              {classTable.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-gray-200 dark:bg-gray-800">
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableHead>
+    <div className="space-y-6">
+    {/* Title Section */}
+    <h2 className="text-xl font-semibold">Book Assign</h2>
+  
+    {/* Search Bar and Actions */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+      {/* Search Input */}
+      <div className="col-span-12 lg:col-span-6">
+        <Input
+          placeholder="Filter by Book..."
+          value={(classTable.getColumn("book_id")?.getFilterValue() as string) ?? ""}
+          onChange={(e) => classTable.getColumn("book_id")?.setFilterValue(e.target.value)}
+          className="w-full sm:max-w-sm"
+        />
+      </div>
+  
+      {/* Actions */}
+      <div className="col-span-12 lg:col-span-6 flex justify-end space-x-4">
+        <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
+          <Download className="h-5 w-5" />
+        </Button>
+        <Button
+          onClick={() => setIsAssignSheetOpen(true)}
+          className="w-32 hover:bg-opacity-90 flex items-center space-x-2"
+        >
+          <span>Assign</span>
+        </Button>
+      </div>
+    </div>
+  
+    {/* Table Section */}
+    <div className="grid grid-cols-12 gap-4">
+      <div className="col-span-12">
+        <Table>
+          <TableHeader>
+            {classTable.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className="bg-gray-200 dark:bg-gray-800"
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {classTable.getRowModel().rows.length ? (
+              classTable.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {classTable.getRowModel().rows.length ? (
-                classTable.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={classColumns.length} className="h-24 text-center">
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-
-        {/* Assign Sheet */}
-        <Sheet open={isAssignSheetOpen} onOpenChange={setIsAssignSheetOpen}>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Assign a New Book</SheetTitle>
-              <SheetDescription>Fill in the details for book assignment below.</SheetDescription>
-            </SheetHeader>
-            <div className="grid gap-4 py-4">
-              <Label htmlFor="userDropdown" className="text-left">
-                Select User
-              </Label>
-              <Select value={userId} onValueChange={(value) => setUserId(value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select User" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Select User</SelectLabel>
-                    {users && users.length > 0 ? (
-                      users.map((user) => (
-                        <SelectItem key={user.user_id} value={user.user_id}>
-                          {user.user_name}
-                        </SelectItem>
-                      ))
-                    ) : (
-                      <SelectItem disabled>No users available</SelectItem>
-                    )}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-
-              <Label htmlFor="bookDropdown" className="text-left">
-                Select Book
-              </Label>
-              <Select value={bookId} onValueChange={(value) => setBookId(value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Book" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Books</SelectLabel>
-                    {books.map((book) => (
-                      <SelectItem key={book.book_id} value={book.book_id}>
-                        {book.book_name}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-
-              {/* Start Date Input */}
-              <Label htmlFor="startDate" className="text-left">
-                Start Date
-              </Label>
-              <Input
-                id="startDate"
-                type="date"
-                value={selectedStartDate}
-                onChange={(e) => setSelectedStartDate(e.target.value)}
-              />
-
-              {/* End Date Input */}
-              <Label htmlFor="endDate" className="text-left">
-                End Date
-              </Label>
-              <Input
-                id="endDate"
-                type="date"
-                value={selectedEndDate}
-                onChange={(e) => setSelectedEndDate(e.target.value)}
-              />
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">
-                  Save Changes
-                </Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={classColumns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
-
-      {/* Edit Assign Dialog */}
-      <Dialog open={isAssignDialogOpen} onOpenChange={setAssignDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit Assign</DialogTitle>
-            <DialogDescription>
-              Make changes to the assignment details here. Click save when you're done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            {/* End Date Field */}
-            <div className="grid grid-cols-4 items-center">
-              <Label htmlFor="endDate" className="text-left">
-                End Date
-              </Label>
-              <Input
-                id="endDate"
-                type="date"
-                value={selectedEndDate}
-                onChange={(e) => setSelectedEndDate(e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button type="submit" onClick={() => setAssignDialogOpen(false)}>
-              Save Changes
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
+  
+    {/* Assign Sheet */}
+    <Sheet open={isAssignSheetOpen} onOpenChange={setIsAssignSheetOpen}>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Assign a New Book</SheetTitle>
+          <SheetDescription>
+            Fill in the details for book assignment below.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          {/* Select User */}
+          <Label htmlFor="userDropdown" className="text-left">
+            Select User
+          </Label>
+          <Select value={userId} onValueChange={(value) => setUserId(value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select User" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Select User</SelectLabel>
+                {users && users.length > 0 ? (
+                  users.map((user) => (
+                    <SelectItem key={user.user_id} value={user.user_id}>
+                      {user.user_name}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <SelectItem disabled>No users available</SelectItem>
+                )}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+  
+          {/* Select Book */}
+          <Label htmlFor="bookDropdown" className="text-left">
+            Select Book
+          </Label>
+          <Select value={bookId} onValueChange={(value) => setBookId(value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select Book" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Books</SelectLabel>
+                {books.map((book) => (
+                  <SelectItem key={book.book_id} value={book.book_id}>
+                    {book.book_name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+  
+          {/* Start Date */}
+          <Label htmlFor="startDate" className="text-left">
+            Start Date
+          </Label>
+          <Input
+            id="startDate"
+            type="date"
+            value={selectedStartDate}
+            onChange={(e) => setSelectedStartDate(e.target.value)}
+          />
+  
+          {/* End Date */}
+          <Label htmlFor="endDate" className="text-left">
+            End Date
+          </Label>
+          <Input
+            id="endDate"
+            type="date"
+            value={selectedEndDate}
+            onChange={(e) => setSelectedEndDate(e.target.value)}
+          />
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save Changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  
+    {/* Edit Assign Dialog */}
+    <Dialog open={isAssignDialogOpen} onOpenChange={setAssignDialogOpen}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit Assign</DialogTitle>
+          <DialogDescription>
+            Make changes to the assignment details here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          {/* End Date Field */}
+          <div className="grid grid-cols-4 items-center">
+            <Label htmlFor="endDate" className="text-left">
+              End Date
+            </Label>
+            <Input
+              id="endDate"
+              type="date"
+              value={selectedEndDate}
+              onChange={(e) => setSelectedEndDate(e.target.value)}
+              className="col-span-3"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit" onClick={() => setAssignDialogOpen(false)}>
+            Save Changes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  </div>
+  
   );
 }

@@ -82,9 +82,9 @@ const EventCalendar = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 ">
       <Card className="col-span-1 lg:col-span-12 space-y-6">
-        <div className="flex flex-row items-center justify-between bg-[#f4b9bc]">
+        <div className="flex flex-wrap items-center p-4 gap-4 justify-between bg-[#f4b9bc]">
           <div>
-            <CardHeader className="">
+            <CardHeader className="p-0">
               <h2 className="text-xl font-bold">Holidays</h2>
               <CardDescription className="text-sm text-gray-600">
              
@@ -93,7 +93,7 @@ const EventCalendar = () => {
               </CardDescription>
             </CardHeader>
           </div>
-          <Button onClick={handleAddEvent} className="btn w-32 mr-5 bg-[#da1e28]">
+          <Button onClick={handleAddEvent} className="btn w-32 bg-[#da1e28]">
             Add Holiday
           </Button>
         </div>

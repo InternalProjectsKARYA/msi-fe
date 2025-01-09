@@ -51,11 +51,12 @@ export default function SchoolPayrollComponent() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold tracking-tight">Payroll Management</h2>
-     
-      {/* Search Bar */}
-      <div className="flex flex-col sm:flex-row justify-between gap-4">
-        <div className="flex space-x-4">
+    <h2 className="text-2xl font-semibold tracking-tight">Payroll Management</h2>
+  
+    {/* Search and Filters Section */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* Search Input and Total Button */}
+      <div className="lg:col-span-6 flex flex-col sm:flex-row gap-4">
         <Input
           type="text"
           placeholder="Search by name..."
@@ -66,122 +67,122 @@ export default function SchoolPayrollComponent() {
           }}
           className="sm:w-72"
         />
-        <Button variant={"outline"}>
-            Total : $53,32,000 /-
+        <Button variant="outline">
+          Total: $53,32,000 /-
         </Button>
-        </div>
-     
-        <div className="space-x-4">
+      </div>
+  
+      {/* Month Picker and Generate Report */}
+      <div className="lg:col-span-6 flex flex-col sm:flex-row gap-4 justify-end">
         <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn(
-            "w-full sm:w-64 justify-start text-left font-normal",
-            !selectedMonth && "text-muted-foreground"
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedMonth ? selectedMonth : <span>Pick a month</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-64 p-0" align="start">
-        <div className="grid grid-cols-2  gap-2 p-2">
-          {months.map((month) => (
-            <button
-              key={month}
-              className="px-4 py-2 text-sm rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary"
-              onClick={() => {
-                setSelectedMonth(month);
-                setOpen(false);
-              }}
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className={`w-full sm:w-64 justify-start text-left font-normal ${
+                !selectedMonth && "text-muted-foreground"
+              }`}
             >
-              {month}
-            </button>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
-    <Button className="" variant={"outline"}>
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {selectedMonth ? selectedMonth : <span>Pick a month</span>}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-64 p-0" align="start">
+            <div className="grid grid-cols-2 gap-2 p-2">
+              {months.map((month) => (
+                <button
+                  key={month}
+                  className="px-4 py-2 text-sm rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary"
+                  onClick={() => {
+                    setSelectedMonth(month);
+                    setOpen(false);
+                  }}
+                >
+                  {month}
+                </button>
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
+        <Button variant="outline">
           <Download className="h-4 w-4 mr-2" />
           Generate Report
         </Button>
-        </div>
-   
-      </div>
-
-      {/* Table */}
-      <Card className="rounded-md w-full">
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-gray-200">
-              <TableHead>Name</TableHead>
-              <TableHead>Position</TableHead>
-              <TableHead className="text-right">Salary</TableHead>
-              <TableHead className="text-right">Deductions</TableHead>
-              <TableHead className="text-right">Net Pay</TableHead>
-              <TableHead className="text-right">Payment Date</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {paginatedData.map((staff) => (
-              <TableRow key={staff.id}>
-                <TableCell>{staff.name}</TableCell>
-                <TableCell>{staff.position}</TableCell>
-                <TableCell className="text-right">${staff.salary.toLocaleString()}</TableCell>
-                <TableCell className="text-right">${staff.deductions.toLocaleString()}</TableCell>
-                <TableCell className="text-right">${staff.netPay.toLocaleString()}</TableCell>
-                <TableCell className="text-right">{staff.paymentDate}</TableCell>
-                <TableCell className="text-right">
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Card>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-between mt-4">
-        <div className="text-sm text-gray-700">
-          Showing{" "}
-          {Math.min((currentPage - 1) * rowsPerPage + 1, filteredData.length)}{" "}
-          to {Math.min(currentPage * rowsPerPage, filteredData.length)} of{" "}
-          {filteredData.length} entries
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </Button>
-          {[...Array(totalPages)].map((_, idx) => (
-            <Button
-              key={idx}
-              variant={currentPage === idx + 1 ? "default" : "outline"}
-              size="sm"
-              onClick={() => setCurrentPage(idx + 1)}
-            >
-              {idx + 1}
-            </Button>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </Button>
-        </div>
       </div>
     </div>
+  
+    {/* Table Section */}
+    <Card className="rounded-md w-full">
+      <Table>
+        <TableHeader>
+          <TableRow className="bg-gray-200">
+            <TableHead>Name</TableHead>
+            <TableHead>Position</TableHead>
+            <TableHead className="text-right">Salary</TableHead>
+            <TableHead className="text-right">Deductions</TableHead>
+            <TableHead className="text-right">Net Pay</TableHead>
+            <TableHead className="text-right">Payment Date</TableHead>
+            <TableHead className="text-right">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {paginatedData.map((staff) => (
+            <TableRow key={staff.id}>
+              <TableCell>{staff.name}</TableCell>
+              <TableCell>{staff.position}</TableCell>
+              <TableCell className="text-right">${staff.salary.toLocaleString()}</TableCell>
+              <TableCell className="text-right">${staff.deductions.toLocaleString()}</TableCell>
+              <TableCell className="text-right">${staff.netPay.toLocaleString()}</TableCell>
+              <TableCell className="text-right">{staff.paymentDate}</TableCell>
+              <TableCell className="text-right">
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                  <span className="sr-only">Open menu</span>
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
+  
+    {/* Pagination Section */}
+    <div className="flex flex-col sm:flex-row justify-between items-center mt-4">
+      <div className="text-sm text-gray-700">
+        Showing{" "}
+        {Math.min((currentPage - 1) * rowsPerPage + 1, filteredData.length)}{" "}
+        to {Math.min(currentPage * rowsPerPage, filteredData.length)} of{" "}
+        {filteredData.length} entries
+      </div>
+      <div className="flex items-center space-x-2 mt-4 sm:mt-0">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        {[...Array(totalPages)].map((_, idx) => (
+          <Button
+            key={idx}
+            variant={currentPage === idx + 1 ? "default" : "outline"}
+            size="sm"
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </Button>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  </div>
+  
   );
 }

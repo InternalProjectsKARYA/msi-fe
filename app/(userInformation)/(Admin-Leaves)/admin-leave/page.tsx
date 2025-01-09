@@ -56,52 +56,59 @@ const LeaveManagement = () => {
    
 
   return (
-    <div className="space-y-6">
-      {/* Leave Stats */}
-      <div>
-        <h2 className="text-lg font-semibold mb-4">Leaves Today</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="p-4 bg-[#c0b9cc]">
-            <div className="text-4xl font-bold">{leaveStats.totalLeaves}</div>
-            <div className="text-lg font-semibold  text-gray-600">Total Applied Leaves</div>
-          </Card>
-          <Card className="p-4 bg-[#f4b9bc]">
-            <div className="text-4xl font-bold">{leaveStats.teacherLeaves}</div>
-            <div className="text-lg font-semibold text-gray-600">Teachers Leaves</div>
-          </Card>
-          <Card className="p-4 bg-[#d5e2c5]">
-            <div className="text-4xl font-bold">{leaveStats.studentLeaves}</div>
-            <div className="text-lg font-semibold text-gray-600">Students Leaves</div>
-          </Card>
-          <Card className="p-4 bg-[#ffebb0]">
-            <div className="text-4xl font-bold">{leaveStats.nonTeachingStaffLeaves}</div>
-            <div className="text-lg font-semibold text-gray-600">Non-Teaching Staff Leaves</div>
-          </Card>
-        
-        </div>
+    <div className="space-y-6 alignitems-left text-left">
+    {/* Leave Stats Section */}
+    <div>
+      <h2 className="text-lg font-semibold mb-4">Leaves Today</h2>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* Total Applied Leaves */}
+        <Card className="p-4 bg-[#c0b9cc] text-center shadow-md">
+          <div className="text-4xl font-bold">{leaveStats.totalLeaves}</div>
+          <div className="text-lg font-semibold text-gray-700">Total Applied Leaves</div>
+        </Card>
+        {/* Teacher Leaves */}
+        <Card className="p-4 bg-[#f4b9bc] text-center shadow-md">
+          <div className="text-4xl font-bold">{leaveStats.teacherLeaves}</div>
+          <div className="text-lg font-semibold text-gray-700">Teacher Leaves</div>
+        </Card>
+        {/* Student Leaves */}
+        <Card className="p-4 bg-[#d5e2c5] text-center shadow-md">
+          <div className="text-4xl font-bold">{leaveStats.studentLeaves}</div>
+          <div className="text-lg font-semibold text-gray-700">Student Leaves</div>
+        </Card>
+        {/* Non-Teaching Staff Leaves */}
+        <Card className="p-4 bg-[#ffebb0] text-center shadow-md">
+          <div className="text-4xl font-bold">{leaveStats.nonTeachingStaffLeaves}</div>
+          <div className="text-lg font-semibold text-gray-700">Non-Teaching Staff Leaves</div>
+        </Card>
       </div>
-      <Tabs defaultValue="Teacher" className="">
-       
-       <TabsList className="grid w-[20%] bg-gray-200 grid-cols-3">
-      
-         <TabsTrigger value="Teacher">Teacher</TabsTrigger>
-         <TabsTrigger value="Student">Student</TabsTrigger>
-         <TabsTrigger value="Staff">Staff</TabsTrigger>
-       </TabsList>
-     
-       <TabsContent value="Teacher">
-  <AdminTeacherAttendance />
-       </TabsContent>
-       <TabsContent value="Student">
- <StudentLeaveRequests />
-       </TabsContent>
-       <TabsContent value="Staff">
- <StaffLeaveRequests />
-       </TabsContent>
-     </Tabs>
-     
-    
     </div>
+  
+    {/* Tabs Section */}
+    <Tabs defaultValue="Teacher" className="w-full">
+    <TabsList className="grid grid-cols-3 gap-4 w-full sm:w-2/3 mx-auto">
+      <TabsTrigger value="Teacher" className="text-left">Teacher</TabsTrigger>
+      <TabsTrigger value="Student" className="text-left">Student</TabsTrigger>
+      <TabsTrigger value="Staff" className="text-left">Staff</TabsTrigger>
+    </TabsList>
+
+    {/* Teacher Tab Content */}
+    <TabsContent value="Teacher" className="pt-4">
+      <AdminTeacherAttendance />
+    </TabsContent>
+
+    {/* Student Tab Content */}
+    <TabsContent value="Student" className="pt-4">
+      <StudentLeaveRequests />
+    </TabsContent>
+
+    {/* Staff Tab Content */}
+    <TabsContent value="Staff" className="pt-4">
+      <StaffLeaveRequests />
+    </TabsContent>
+  </Tabs>
+  </div>
+  
   );
 };
 

@@ -3,8 +3,7 @@
 import * as React from "react"
 import { TrendingUp } from 'lucide-react'
 import { Label, Pie, PieChart, Bar, BarChart, CartesianGrid, XAxis, Line, LineChart, Area, AreaChart, Dot, ResponsiveContainer, YAxis } from "recharts"
-import Image from 'next/image'
-import backgroundImage from "../../../../public/Frames-01.png";
+
 import {
   Card,
   CardContent,
@@ -171,178 +170,179 @@ export default function ChartDashboard() {
     })
   }, [timeRange])
   return (
-    <div className="grid gap-4">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {/* Pie Chart */}
-        <Card className="flex flex-col">
-     
-          <CardHeader className="items-center pb-0">
-    
-            <CardTitle> Teachers Attendance</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-1 pb-0">
-    
-            <ChartContainer
-              config={pieChartConfig}
-              className="mx-auto aspect-square max-h-[250px]"
+<div className="grid gap-6">
+  {/* Full-Width Container */}
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    {/* Pie Chart */}
+    <Card className="col-span-12 lg:col-span-4 flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Teachers Attendance</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={pieChartConfig}
+          className="mx-auto aspect-square max-h-[250px]"
+        >
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={pieChartData}
+              dataKey="Teachers"
+              nameKey="browser"
+              innerRadius={60}
+              strokeWidth={5}
             >
-              <PieChart>
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent hideLabel />}
-                />
-                <Pie
-                  data={pieChartData}
-                  dataKey="Teachers"
-                  nameKey="browser"
-                  innerRadius={60}
-                  strokeWidth={5}
-                >
-                  <Label
-                    content={({ viewBox }) => {
-                      if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                        return (
-                          <text
-                            x={viewBox.cx}
-                            y={viewBox.cy}
-                            textAnchor="middle"
-                            dominantBaseline="middle"
-                          >
-                            <tspan
-                              x={viewBox.cx}
-                              y={viewBox.cy}
-                              className="fill-foreground text-3xl font-bold"
-                            >
-                              {totalVisitors.toLocaleString()}
-                            </tspan>
-                            <tspan
-                              x={viewBox.cx}
-                              y={(viewBox.cy || 0) + 24}
-                              className="fill-muted-foreground"
-                            >
-                                Teachers
-                            </tspan>
-                          </text>
-                        )
-                      }
-                    }}
-                  />
-                </Pie>
-              </PieChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex-col gap-2 text-sm">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="leading-none text-muted-foreground">
-              Showing total Teachers for the last 6 months
-            </div>
-          </CardFooter>
-        </Card>
-
-        {/* Bar Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Students Attendance</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={barChartConfig}>
-              <BarChart accessibilityLayer data={barChartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dashed" />}
-                />
-                <Bar dataKey="Teachers" fill="var(--color-Teachers)" radius={5} />
-               
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex-col items-start gap-2 text-sm">
-            <div className="flex gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="leading-none text-muted-foreground">
-              Showing total Students for the last 6 months
-            </div>
-          </CardFooter>
-        </Card>
-
-        {/* Line Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Non-Teaching staff Attendance</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={lineChartConfig}>
-              <LineChart
-                accessibilityLayer
-                data={lineChartData}
-                margin={{
-                  top: 24,
-                  left: 24,
-                  right: 24,
-                }}
-              >
-                <CartesianGrid vertical={false} />
-                <ChartTooltip
-                  cursor={false}
-                  content={
-                    <ChartTooltipContent
-                      indicator="line"
-                      nameKey="Teachers"
-                      hideLabel
-                    />
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className="fill-foreground text-3xl font-bold"
+                        >
+                          {totalVisitors.toLocaleString()}
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-muted-foreground"
+                        >
+                          Teachers
+                        </tspan>
+                      </text>
+                    );
                   }
-                />
-                <Line
-                  dataKey="Teachers"
-                  type="natural"
-                  stroke="var(--color-Teachers)"
-                  strokeWidth={2}
-                  dot={({ payload, ...props }) => (
-                    <Dot
-                      key={payload.browser}
-                      r={5}
-                      cx={props.cx}
-                      cy={props.cy}
-                      fill={payload.fill}
-                      stroke={payload.fill}
-                    />
-                  )}
-                />
-              </LineChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex-col items-start gap-2 text-sm">
-            <div className="flex gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="leading-none text-muted-foreground">
-              Showing total Non-Teaching for the last 6 months
-            </div>
-          </CardFooter>
-        </Card>
-      </div>
+                }}
+              />
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2 font-medium leading-none">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total Teachers for the last 6 months
+        </div>
+      </CardFooter>
+    </Card>
 
-      {/* Area Chart */}
-      <Card>
+    {/* Bar Chart */}
+    <Card className="col-span-12 lg:col-span-4">
+      <CardHeader>
+        <CardTitle>Students Attendance</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={barChartConfig}>
+          <BarChart accessibilityLayer data={barChartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
+            <Bar dataKey="Teachers" fill="var(--color-Teachers)" radius={5} />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total Students for the last 6 months
+        </div>
+      </CardFooter>
+    </Card>
+
+    {/* Line Chart */}
+    <Card className="col-span-12 lg:col-span-4">
+      <CardHeader>
+        <CardTitle>Non-Teaching Staff Attendance</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={lineChartConfig}>
+          <LineChart
+            accessibilityLayer
+            data={lineChartData}
+            margin={{
+              top: 24,
+              left: 24,
+              right: 24,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <ChartTooltip
+              cursor={false}
+              content={
+                <ChartTooltipContent
+                  indicator="line"
+                  nameKey="Teachers"
+                  hideLabel
+                />
+              }
+            />
+            <Line
+              dataKey="Teachers"
+              type="natural"
+              stroke="var(--color-Teachers)"
+              strokeWidth={2}
+              dot={({ payload, ...props }) => (
+                <Dot
+                  key={payload.browser}
+                  r={5}
+                  cx={props.cx}
+                  cy={props.cy}
+                  fill={payload.fill}
+                  stroke={payload.fill}
+                />
+              )}
+            />
+          </LineChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total Non-Teaching for the last 6 months
+        </div>
+      </CardFooter>
+    </Card>
+
+    {/* Area Chart */}
+    <Card className="col-span-12">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Overall Members Graph</CardTitle>
           <CardDescription>
-            Showing total members for the last {timeRange === "90d" ? "3 months" : timeRange === "30d" ? "30 days" : "7 days"}
+            Showing total members for the last{" "}
+            {timeRange === "90d"
+              ? "3 months"
+              : timeRange === "30d"
+              ? "30 days"
+              : "7 days"}
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -374,16 +374,40 @@ export default function ChartDashboard() {
             <AreaChart data={filteredData}>
               <defs>
                 <linearGradient id="fillTeachers" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-Teachers)" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="var(--color-Teachers)" stopOpacity={0.1} />
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-Teachers)"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-Teachers)"
+                    stopOpacity={0.1}
+                  />
                 </linearGradient>
                 <linearGradient id="fillNonTeaching" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-NonTeaching)" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="var(--color-NonTeaching)" stopOpacity={0.1} />
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-NonTeaching)"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-NonTeaching)"
+                    stopOpacity={0.1}
+                  />
                 </linearGradient>
                 <linearGradient id="fillStudents" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-Students)" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="var(--color-Students)" stopOpacity={0.1} />
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-Students)"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-Students)"
+                    stopOpacity={0.1}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid vertical={false} />
@@ -394,11 +418,11 @@ export default function ChartDashboard() {
                 tickMargin={8}
                 minTickGap={32}
                 tickFormatter={(value) => {
-                  const date = new Date(value)
+                  const date = new Date(value);
                   return date.toLocaleDateString("en-US", {
                     month: "short",
                     day: "numeric",
-                  })
+                  });
                 }}
               />
               <YAxis hide />
@@ -411,7 +435,7 @@ export default function ChartDashboard() {
                         month: "long",
                         day: "numeric",
                         year: "numeric",
-                      })
+                      });
                     }}
                     indicator="dot"
                   />
@@ -444,6 +468,8 @@ export default function ChartDashboard() {
         </ChartContainer>
       </CardContent>
     </Card>
-    </div>
+  </div>
+</div>
+
   )
 }

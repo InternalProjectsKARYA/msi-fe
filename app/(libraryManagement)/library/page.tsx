@@ -36,16 +36,16 @@ const WelcomeCard = () => {
   };
 
   const recentlyAddedBooks: Book[] = [
-    { book_id: "1", book_name: "To Kill a Mockingbird", book_author: "Harper Lee", publisher_name: "J. B. Lippincott & Co.", start_date: "", end_date: "" },
-    { book_id: "2", book_name: "1984", book_author: "George Orwell", publisher_name: "Secker & Warburg", start_date: "", end_date: "" },
-    { book_id: "3", book_name: "The Great Gatsby", book_author: "F. Scott Fitzgerald", publisher_name: "Charles Scribner's Sons", start_date: "", end_date: "" },
-    { book_id: "4", book_name: "Pride and Prejudice", book_author: "Jane Austen", publisher_name: "T. Egerton, Whitehall", start_date: "", end_date: "" },
-    { book_id: "5", book_name: "The Catcher in the Rye", book_author: "J.D. Salinger", publisher_name: "Little, Brown and Company", start_date: "", end_date: "" },
-    { book_id: "6", book_name: "Moby-Dick", book_author: "Herman Melville", publisher_name: "Harper & Brothers", start_date: "", end_date: "" },
-    { book_id: "7", book_name: "The Hobbit", book_author: "J.R.R. Tolkien", publisher_name: "George Allen & Unwin", start_date: "", end_date: "" },
-    { book_id: "8", book_name: "Fahrenheit 451", book_author: "Ray Bradbury", publisher_name: "Ballantine Books", start_date: "", end_date: "" },
-    { book_id: "9", book_name: "Jane Eyre", book_author: "Charlotte Brontë", publisher_name: "Smith, Elder & Co.", start_date: "", end_date: "" },
-    { book_id: "10", book_name: "The Odyssey", book_author: "Homer", publisher_name: "Ancient Greek Publication", start_date: "", end_date: "" },
+    { book_id: "1", book_name: "To Kill a Mockingbird", book_author: "Harper Lee", publisher_name: "J. B. Lippincott & Co."},
+    { book_id: "2", book_name: "1984", book_author: "George Orwell", publisher_name: "Secker & Warburg"  },
+    { book_id: "3", book_name: "The Great Gatsby", book_author: "F. Scott Fitzgerald", publisher_name: "Charles Scribner's Sons"},
+    { book_id: "4", book_name: "Pride and Prejudice", book_author: "Jane Austen", publisher_name: "T. Egerton, Whitehall"},
+    { book_id: "5", book_name: "The Catcher in the Rye", book_author: "J.D. Salinger", publisher_name: "Little, Brown and Company"},
+    { book_id: "6", book_name: "Moby-Dick", book_author: "Herman Melville", publisher_name: "Harper & Brothers"},
+    { book_id: "7", book_name: "The Hobbit", book_author: "J.R.R. Tolkien", publisher_name: "George Allen & Unwin"},
+    { book_id: "8", book_name: "Fahrenheit 451", book_author: "Ray Bradbury", publisher_name: "Ballantine Books"},
+    { book_id: "9", book_name: "Jane Eyre", book_author: "Charlotte Brontë", publisher_name: "Smith, Elder & Co."},
+    { book_id: "10", book_name: "The Odyssey", book_author: "Homer", publisher_name: "Ancient Greek Publication"},
   ];
 
   const assignedBooks: Book[] = [

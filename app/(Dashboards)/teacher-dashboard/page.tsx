@@ -196,22 +196,11 @@ const TeacherDashboard = () => {
     },
   ];
   
-
-  const Schedules=[
-    {
-      event:"parent,Techers Meeting",
-      data:'15 July 2024',
-      // icon:UserRoundPen
-    },{
-      event:"parent,Techers Meeting",
-      data:'15 July 2024',
-      // icon:UserRoundPen
-    },{
-      event:"Vacation Meeting",
-      data:'7-july-2024',
-      // icon:UserRoundPen
-    }
-  ]
+  const chartColors = {
+    completed: "hsl(var(--chart-1))", // Reusable color variable for "Completed"
+    pending: "hsl(var(--chart-2))",   // Reusable color variable for "Pending"
+  };
+  
   
 
 
@@ -316,42 +305,65 @@ const handleEditProfile =() => {
     </CardHeader>
   </Card>
 
-  {/* Syllabus Card */}
-  <Card className="flex flex-row col-span-1">
-  <CardContent className="flex-1 pb-0 p-0 mt-2">
-  <ChartContainer
-    config={chartConfig}
-    className="aspect-square h-[150px]  "
-  >
-    <PieChart>
-      <ChartTooltip
-        cursor={false}
-        content={<ChartTooltipContent hideLabel />}
-      />
-      <Pie
-        data={chartData}
-        dataKey="visitors"
-        nameKey="browser"
-        innerRadius={30}
-        strokeWidth={5}
-      />
-    </PieChart>
-  </ChartContainer>
-</CardContent>
+  <Card className="flex flex-col md:flex-row items-center md:items-start gap-4 pt-6 pl-6 space-x-4 shadow-md rounded-lg bg-card text-card-foreground">
+      {/* Chart Section */}
+      <CardContent className="flex justify-center items-center w-full md:w-1/3">
+        <ChartContainer
+          config={{
+            completed: { color: chartColors.completed },
+            pending: { color: chartColors.pending },
+          }}
+          className="aspect-square h-[110px] w-[120px]"
+        >
+          <PieChart>
+            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <Pie
+              data={[
+                { name: "Completed", value: 95, fill: chartColors.completed },
+                { name: "Pending", value: 5, fill: chartColors.pending },
+              ]}
+              dataKey="value"
+              innerRadius={35}
+              outerRadius={55}
+              strokeWidth={3}
+            />
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
 
-    <CardFooter className="flex-col gap-2 text-sm items-left justify-center p-0 mr-10 whitespace-nowrap">
-      <h2 className="font-semibold text-xl items-left">Syllabus</h2>
-      <p className="text-green-500">Completed: 95%</p>
-      <p className="text-red-500">Pending: 5%</p>
-    </CardFooter>
-  </Card>
+      {/* Details Section */}
+      <div className="flex flex-col gap-2 items-center md:items-start w-full mt-3 md:w-2/3">
+        <CardHeader className="p-0">
+          <CardTitle className="text-lg font-semibold">Syllabus</CardTitle>
+        </CardHeader>
+        <div className="flex items-center gap-2">
+          <span
+            className="inline-block w-3 h-3 rounded-full"
+            style={{ backgroundColor: chartColors.completed }}
+          ></span>
+          <p className="text-sm">
+            <strong>Completed:</strong> 95%
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span
+            className="inline-block w-3 h-3 rounded-full"
+            style={{ backgroundColor: chartColors.pending }}
+          ></span>
+          <p className="text-sm">
+            <strong>Pending:</strong> 5%
+          </p>
+        </div>
+      </div>
+    </Card>
+
 
   {/* Info Cards */}
-  <div className="col-span-2 grid grid-cols-2 md:grid-cols-2 gap-4">
+  <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
   {data.map((item, index) => (
     <Card
       key={index}
-      className={`relative overflow-hidden ${
+      className={`relative overflow-hidden  ${
         item.title === "Total Students"
           ? "bg-[#d5e2c5] dark:bg-black"
           : item.title === "Total Classes"
@@ -359,7 +371,7 @@ const handleEditProfile =() => {
           : ""
       }`}
     >
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
+      <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div className="flex items-center space-x-2 my-2">
           <div
             className="p-3 rounded-lg"
@@ -402,45 +414,65 @@ const handleEditProfile =() => {
 </div>
 </div>
 
-
-<Card className="w-full">
-      <div className="px-6 py-4 flex items-center justify-between  bg-[#fce7f3] dark:bg-neutral-800">
-        <h2 className="text-xl font-semibold">Today's Class</h2>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <ChevronLeft className="h-4 w-4 cursor-pointer" />
-          <span>16 May 2024</span>
-          <ChevronRight className="h-4 w-4 cursor-pointer" />
-        </div>
+<div className="grid grid-cols-12 gap-4">
+  <Card className="col-span-12 w-full overflow-hidden">
+    <div className="px-6 py-4 flex items-center justify-between bg-[#fce7f3] dark:bg-neutral-800">
+      <h2 className="text-xl font-semibold">Today's Class</h2>
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <ChevronLeft className="h-4 w-4 cursor-pointer" />
+        <span>16 May 2024</span>
+        <ChevronRight className="h-4 w-4 cursor-pointer" />
       </div>
+    </div>
 
-      <div className="p-6 relative">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {classes.map((classItem, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/5 py-1">
-                <Card className="p-4 border-0 shadow-md ">
-                  <div 
-                    className={`inline-flex px-3 py-1 rounded-md text-white text-sm mb-3 
-                      ${classItem.variant === 'red' ? 'bg-red-500' : 'bg-blue-500'}`}
-                  >
-                    {classItem.time}
-                  </div>
-                  <div className="font-medium">{classItem.className}</div>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2" />
-          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
-        </Carousel>
-      </div>
-    </Card>
+    <div className="p-6">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="flex gap-2">
+          {classes.map((classItem, index) => (
+            <CarouselItem
+              key={index}
+              className="flex-shrink-0 basis-full sm:basis-1/2 lg:basis-1/6 p-2"
+            >
+              <Card className="p-4 border-0 shadow-md">
+                <div
+                  className={`inline-flex px-3 py-1 rounded-md text-white text-sm mb-3 
+                    ${
+                      classItem.variant === "red"
+                        ? "bg-red-500"
+                        : classItem.variant === "blue"
+                        ? "bg-blue-500"
+                        : classItem.variant === "green"
+                        ? "bg-green-500"
+                        : classItem.variant === "orange"
+                        ? "bg-orange-500"
+                        : classItem.variant === "purple"
+                        ? "bg-purple-500"
+                        : "bg-yellow-500"
+                    }`}
+                >
+                  {classItem.time}
+                </div>
+                <div className="font-medium">{classItem.className}</div>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2" />
+        <CarouselNext className="absolute right-0 top-1/4 translate-y-1/2 translate-x-1/2" />
+      </Carousel>
+    </div>
+  </Card>
+</div>
+
+
+
+
 
   {/* Lessons and Syllabus */}
   <Card className='w-full'>

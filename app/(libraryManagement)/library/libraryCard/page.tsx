@@ -235,50 +235,68 @@ export default function LibraryCard() {
   // }
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold">Library Cards</h2>
-      <div className="w-full">
-        <div className="flex items-center py-4">
-          <Input
-            placeholder="Filter by name..."
-            value={(classTable.getColumn("user")?.getFilterValue() as string) ?? ""}
-            onChange={(e) => classTable.getColumn("user")?.setFilterValue(e.target.value)}
-            className="max-w-sm"
-          />
-        </div>
-        <Table>
-          <TableHeader>
-            {classTable.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 dark:bg-gray-800">
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
+  <div className="space-y-6">
+  {/* Title Section */}
+  <h2 className="text-xl font-semibold">Library Cards</h2>
+
+  {/* Search Bar */}
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+    <div className="col-span-12 lg:col-span-6">
+      <Input
+        placeholder="Filter by name..."
+        value={(classTable.getColumn("user")?.getFilterValue() as string) ?? ""}
+        onChange={(e) => classTable.getColumn("user")?.setFilterValue(e.target.value)}
+        className="w-full sm:max-w-sm"
+      />
+    </div>
+  </div>
+
+  {/* Table Section */}
+  <div className="grid grid-cols-12 gap-4">
+    <div className="col-span-12">
+      <Table>
+        <TableHeader>
+          {classTable.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead
+                  key={header.id}
+                  className="bg-gray-200 dark:bg-gray-800"
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext())}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {classTable.getRowModel().rows.length ? (
+            classTable.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
                 ))}
               </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {classTable.getRowModel().rows.length ? (
-              classTable.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={classColumns.length} className="h-24 text-center">
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell
+                colSpan={classColumns.length}
+                className="h-24 text-center"
+              >
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
+  </div>
+</div>
+
   );
 }

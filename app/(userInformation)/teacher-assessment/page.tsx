@@ -138,7 +138,8 @@ export default function StudentAssessmentTable() {
   });
 
   return (
-    <div  >
+    <div className="grid grid-cols-12 gap-4">
+    <div className="col-span-12">
       <h2 className="text-xl font-semibold mb-4">Student Assessment Details</h2>
       <Card>
         <CardHeader>
@@ -149,16 +150,12 @@ export default function StudentAssessmentTable() {
                 Track the progress and performance of your students across various subjects.
               </CardDescription>
             </div>
-            <Button type="button" onClick={() => alert("Add Assessment")}>
-              Add Assessment
-            </Button>
           </div>
         </CardHeader>
         <CardContent>
           <div className="w-full mb-4">
             <Input
               placeholder="Search by student name..."
-           
               className="max-w-sm"
             />
           </div>
@@ -205,5 +202,7 @@ export default function StudentAssessmentTable() {
         </CardContent>
       </Card>
     </div>
+  </div>
+  
   );
 }

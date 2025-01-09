@@ -133,215 +133,213 @@ export default  function StudentAttendance() {
  
  
   return (
-    <div className="hidden flex-col md:flex">
-      <div className="flex-1 space-y-4 ">
-     
-        <Tabs defaultValue="weekly" className="space-y-4">
-      
-          <TabsContent value="weekly" className="space-y-4">
-         
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-           {/* Bar Chart */}
-           <Card>
-      <CardHeader className="flex flex-row justify-between items-center">
-        <div>
-          <CardTitle>Students Attendance</CardTitle>
-          <CardDescription>{filter === "Weekly" ? "Weekly Overview" : "January - June 2024"}</CardDescription>
-        </div>
-        <div className="flex gap-2 ">
-          <Button
-            variant={filter === "Weekly" ? "default" : "outline"}
-            onClick={() => setFilter("Weekly")}
-          >
-            Weekly
-          </Button>
-          <Button
-            variant={filter === "Monthly" ? "default" : "outline"}
-            onClick={() => setFilter("Monthly")}
-          >
-            Monthly
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent>
-      <ChartContainer config={filter === "Weekly" ? { Students: { label: "Students" } } : { Students: { label: "Students"  } }}>
+    <>
+    <div className="space-y-4">
+      <Tabs defaultValue="weekly" className="space-y-4">
+        <TabsContent value="weekly" className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Bar Chart Section */}
+            <Card className="col-span-1 md:col-span-2 lg:col-span-1">
+              <CardHeader className="flex flex-row justify-between items-center">
+                <div>
+                  <CardTitle>Students Attendance</CardTitle>
+                  <CardDescription>
+                    {filter === "Weekly" ? "Weekly Overview" : "January - June 2024"}
+                  </CardDescription>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant={filter === "Weekly" ? "default" : "outline"}
+                    onClick={() => setFilter("Weekly")}
+                  >
+                    Weekly
+                  </Button>
+                  <Button
+                    variant={filter === "Monthly" ? "default" : "outline"}
+                    onClick={() => setFilter("Monthly")}
+                  >
+                    Monthly
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer
+                  config={
+                    filter === "Weekly"
+                      ? { Students: { label: "Students" } }
+                      : { Students: { label: "Students" } }
+                  }
+                >
+                  <BarChart data={data} width={500} height={300}>
+                    <CartesianGrid vertical={false} />
+                    <XAxis
+                      dataKey={filter === "Weekly" ? "week" : "month"}
+                      tickLine={false}
+                      tickMargin={10}
+                      axisLine={false}
+                      tickFormatter={(value) => value.slice(0, 3)}
+                    />
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent indicator="dashed" />}
+                    />
+                    <Bar dataKey="Students" fill="hsl(var(--chart-1))" radius={5} />
+                  </BarChart>
+                </ChartContainer>
+              </CardContent>
+              <CardFooter className="flex-col items-start gap-2 text-sm">
+                <div className="flex gap-2 font-medium leading-none">
+                  Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+                </div>
+                <div className="leading-none text-muted-foreground">
+                  {filter === "Weekly"
+                    ? "Showing total students for the last 4 weeks."
+                    : "Showing total students for the last 6 months."}
+                </div>
+              </CardFooter>
+            </Card>
 
-          <BarChart data={data} width={500} height={300}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey={filter === "Weekly" ? "week" : "month"}
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <Bar dataKey="Students" fill="hsl(var(--chart-1))" radius={5} />
-          </BarChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          {filter === "Weekly"
-            ? "Showing total students for the last 4 weeks."
-            : "Showing total students for the last 6 months."}
-        </div>
-      </CardFooter>
-    </Card>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1">
-  <Card className="flex items-center">
-    <CardHeader className="flex flex-row items-center justify-between space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="bg-blue-200 p-3 rounded-full">
-          <Clock className="w-6 h-6 text-blue-600" />
-        </div>
-        <div>
-          <CardTitle className="text-sm font-medium">Hours Spent</CardTitle>
-          <p className="text-sm text-muted-foreground">Time dedicated to learning this week.</p>
-        </div>
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold flex justify-end">42</div>
-    </CardContent>
-  </Card>
+            {/* Metrics Section */}
+            <div className="col-span-1 space-y-4">
+              <Card className="flex items-center">
+                <CardHeader className="flex-1">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-blue-200 p-3 rounded-full">
+                      <Clock className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-sm font-medium">Hours Spent</CardTitle>
+                      <CardDescription>
+                        Time dedicated to learning this week.
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">42</div>
+                </CardContent>
+              </Card>
 
-  <Card className="flex items-center">
-    <CardHeader className="flex flex-row items-center justify-between space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="bg-yellow-200 p-3 rounded-full">
-          <Trophy className="w-6 h-6 text-yellow-600" />
-        </div>
-        <div>
-          <CardTitle className="text-sm font-medium">Overall Result</CardTitle>
-          <p className="text-sm text-muted-foreground">Cumulative score across all tasks and activities.</p>
-        </div>
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold flex justify-end">220</div>
-    </CardContent>
-  </Card>
+              <Card className="flex items-center">
+                <CardHeader className="flex-1">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-yellow-200 p-3 rounded-full">
+                      <Trophy className="w-6 h-6 text-yellow-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-sm font-medium">Overall Result</CardTitle>
+                      <CardDescription>
+                        Cumulative score across all tasks and activities.
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">220</div>
+                </CardContent>
+              </Card>
 
-  <Card className="flex items-center">
-    <CardHeader className="flex flex-row items-center justify-between space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="bg-green-200 p-3 rounded-full">
-          <CheckCircle className="w-6 h-6 text-green-600" />
-        </div>
-        <div>
-          <CardTitle className="text-sm font-medium">Completed</CardTitle>
-          <p className="text-sm text-muted-foreground">Total tasks and assignments successfully completed.</p>
-        </div>
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold flex justify-end">20</div>
-    </CardContent>
-  </Card>
+              <Card className="flex items-center">
+                <CardHeader className="flex-1">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-green-200 p-3 rounded-full">
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-sm font-medium">Completed</CardTitle>
+                      <CardDescription>
+                        Total tasks and assignments successfully completed.
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">20</div>
+                </CardContent>
+              </Card>
 
-  <Card className="flex items-center">
-    <CardHeader className="flex flex-row items-center justify-between space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="bg-purple-200 p-3 rounded-full">
-          <BookOpen className="w-6 h-6 text-purple-600" />
-        </div>
-        <div>
-          <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
-          <p className="text-sm text-muted-foreground">The total number of courses enrolled in.</p>
-        </div>
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold flex justify-end">22</div>
-    </CardContent>
-  </Card>
-</div>
-
-
-
-
-
-<Card className="p-6 shadow-md rounded-lg bg-white">
-  <div className="flex justify-between items-center mb-6">
-    <h3 className="text-xl font-semibold text-gray-800">  Statistics</h3>
-    <p className="text-sm text-gray-500">Overview of progress</p>
-  </div>
-  <div className="flex flex-col items-center justify-around">
-    {/* Pie Chart Section */}
-    <div className="relative w-48 h-48 flex justify-center items-center">
-      <PieChart width={180} height={180}>
-        <Pie
-          data={pieChartData}
-          cx="50%"
-          cy="50%"
-          innerRadius={60}
-          outerRadius={80}
-          dataKey="value"
-          paddingAngle={5}
-        >
-          {pieChartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.color} />
-          ))}
-        </Pie>
-      </PieChart>
-      {/* Centered Text */}
-      <div className="absolute text-center">
-        <h4 className="text-2xl font-bold text-gray-800">22</h4>
-        <p className="text-sm text-gray-500">Total Progress</p>
-      </div>
-    </div>
-
-    {/* Legend Section */}
-    <div className="space-y-3">
-      {pieChartData.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center space-x-3 bg-gray-50 rounded-lg px-3 py-2 shadow-sm"
-        >
-          <span
-            className="w-4 h-4 rounded-full"
-            style={{ backgroundColor: item.color }}
-          ></span>
-          <span className="text-sm font-medium text-gray-700">
-            {item.name}: <span className="font-bold">{item.value}%</span>
-          </span>
-        </div>
-      ))}
-    </div>
-  </div>
-</Card>
-
-            
+              <Card className="flex items-center">
+                <CardHeader className="flex-1">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-purple-200 p-3 rounded-full">
+                      <BookOpen className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
+                      <CardDescription>
+                        The total number of courses enrolled in.
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">22</div>
+                </CardContent>
+              </Card>
             </div>
-  
-          </TabsContent>
-        </Tabs>
 
-        <div>
-
-        <Card className="col-span-1 lg:col-span-8 space-y-6">
-        <div className="flex flex-row items-center justify-between">
-          <div>
-            <CardHeader>
-              <h2 className="text-xl font-bold">Early & Lates</h2>
-              <CardDescription className="text-sm text-gray-600">
-              
-                  View all the Early & Late logins , logouts in this calendar.
-              
-              </CardDescription>
-            </CardHeader>
+            {/* Pie Chart Section */}
+            <Card className="col-span-1">
+              <CardHeader>
+                <CardTitle>Statistics</CardTitle>
+                <CardDescription>Overview of progress</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col items-center justify-around">
+                  <div className="relative w-48 h-48 flex justify-center items-center">
+                    <PieChart width={180} height={180}>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        dataKey="value"
+                        paddingAngle={5}
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                    <div className="absolute text-center">
+                      <h4 className="text-2xl font-bold text-gray-800">22</h4>
+                      <p className="text-sm text-gray-500">Total Progress</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3 mt-4">
+                    {pieChartData.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center space-x-3 bg-gray-50 rounded-lg px-3 py-2 shadow-sm"
+                      >
+                        <span
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        ></span>
+                        <span className="text-sm font-medium text-gray-700">
+                          {item.name}: <span className="font-bold">{item.value}%</span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-       
-        </div>
+        </TabsContent>
+      </Tabs>
+
+      {/* Calendar Section */}
+      <Card className="col-span-1 lg:col-span-3 space-y-6">
+        <CardHeader>
+          <CardTitle>Early & Lates</CardTitle>
+          <CardDescription>
+            View all the Early & Late logins, logouts in this calendar.
+          </CardDescription>
+        </CardHeader>
         <CardContent>
-          <div style={{ height: "75vh", marginTop: "10px" }}>
+          <div style={{ height: "75vh" }}>
             <Calendar
               localizer={localizer}
               events={events}
@@ -362,9 +360,8 @@ export default  function StudentAttendance() {
           </div>
         </CardContent>
       </Card>
-        </div>
-      </div>
     </div>
+  </>
   )
 }
 

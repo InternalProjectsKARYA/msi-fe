@@ -231,10 +231,10 @@ const Header: React.FC = () => {
       /> */}
         <div className='flex items-center gap-2 ml-auto'>
           <div className='flex gap-2'>
-            <Input
+            {/* <Input
               placeholder="ask..."
               className="max-w-sm h-8 bg-white"
-            />
+            /> */}
             <Button onClick={() => router.push("/ai-chat")} className='h-8'>Ask AI</Button>
           </div>
           <ModeToggle />

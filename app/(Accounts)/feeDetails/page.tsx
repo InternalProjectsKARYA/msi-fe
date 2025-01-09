@@ -197,7 +197,7 @@ const FeeDetails = () => {
  
     <div className="space-y-6  ">
       {/* Info Cards for Students, Teachers, etc */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Total Students Card */}
         <Card className="  shadow-lg rounded-md">
           <CardHeader className="p-5">

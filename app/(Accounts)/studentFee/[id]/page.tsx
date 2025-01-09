@@ -83,24 +83,33 @@ export default function StudentFee() {
   });
 
   return (
-    <div className="p-6">
-      {/* Student Info Section */}
-      <div className="mb-4 flex flex-col items-start space-y-1">
-        <span className="text-lg font-semibold">Student ID: {studentID}</span>
-        <span className="text-lg font-semibold">Name:  </span>
-      </div>
+    <div className="space-y-6">
+  {/* Grid Container: Student Info & Payment Table */}
+  <div className="grid grid-cols-1   gap-4">
+    {/* Student Info Section */}
+    <div className="col-span-1 lg:col-span-4 space-y-1 flex flex-col">
+      <span className="text-lg font-semibold">Student ID: {studentID}</span>
+      <span className="text-lg font-semibold">Name: {/* Add student name here */}</span>
+    </div>
 
-      {/* Payment Table */}
+    {/* Payment Table Section */}
+    <div className="col-span-12 lg:col-span-8">
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 text-black">
+                  <TableHead
+                    key={header.id}
+                    className="bg-gray-200 text-black"
+                  >
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -112,7 +121,10 @@ export default function StudentFee() {
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -128,5 +140,8 @@ export default function StudentFee() {
         </Table>
       </div>
     </div>
+  </div>
+</div>
+
   );
 }

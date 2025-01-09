@@ -11,7 +11,7 @@ import backgroundImage from "../../../public/schoolitaly.c4.jpg";
  
 import {  Pie, PieChart,   } from "recharts"
  
-import {     BookOpenCheck,    CalendarArrowUpIcon, CalendarDays, Check, Clock,   FilePen, GraduationCapIcon, ScrollText, Star, Trophy, X } from 'lucide-react';
+import {     BookOpenCheck,    CalendarArrowUpIcon, CalendarCheck, CalendarDays, Check, Clock,   FilePen, GraduationCapIcon, MessageCircle, ScrollText, Star, Trophy, X } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   ChartConfig,
@@ -97,7 +97,20 @@ const AdminDashboard = () => {
 
  
  
-
+  const chartConfig = {
+    visitors: {
+      label: "Visitors",
+    },
+    present: {
+      label: "Present",
+      color: "hsl(var(--green-500))", 
+    },
+    absent: {
+      label: "Absent",
+      color: "hsl(var(--red-500))",  
+    },
+  };
+  
  
  
  
@@ -221,50 +234,51 @@ const fetchedAnnouncements = [
 
  
  
-  const QuickLinks = [
-    {
-      title: 'Calendar',
-      Icon: Calendar1,
-      bg_color: 'bg-green-100',
-      icon_color: 'bg-green-700',
-      link: '/holidaysEvent',
-    },
-    {
-      title: 'Result',
-      Icon: GraduationCapIcon,
-      bg_color: 'bg-blue-100',
-      icon_color: 'bg-blue-700',
-      link: '/exams',
-    },
-    {
-      title: 'Attendance',
-      Icon: CalendarArrowUpIcon,
-      bg_color: 'bg-yellow-100', 
-      icon_color: 'bg-yellow-700',
-      link: '/studentattendance',
-    },
-    {
-      title: 'Fees',
-      Icon: ScrollText,
-      bg_color: 'bg-teal-100',
-      icon_color: 'bg-teal-700',
-      link: '/feeDetails',
-    },
-    {
-      title: 'HomeWork',
-      Icon: BookOpenCheck,
-      bg_color: 'bg-red-100',
-      icon_color: 'bg-red-700',
-      // link: '/homework',
-    },
-    {
-      title: 'Report',
-      Icon: FilePen,
-      bg_color: 'bg-sky-100',
-      icon_color: 'bg-sky-700',
-      // link: '/report',
-    },
-  ];
+const QuickLinks = [
+  {
+    title: 'Calendar',
+    Icon: Calendar1,
+    bg_color: 'bg-red-100',
+    icon_color: 'bg-red-700',
+    link: '/holidaysEvent',
+  },
+  {
+    title: 'Result',
+    Icon: GraduationCapIcon,
+    bg_color: 'bg-blue-100',
+    icon_color: 'bg-blue-700',
+    link: '/exams',
+  },
+  {
+    title: 'Attendance',
+    Icon: CalendarArrowUpIcon,
+    bg_color: 'bg-yellow-100',
+    icon_color: 'bg-yellow-700',
+    link: '/studentattendance',
+  },
+  {
+    title: 'Fees',
+    Icon: ScrollText,
+    bg_color: 'bg-purple-100',
+    icon_color: 'bg-purple-700',
+    link: '/feeDetails',
+  },
+  {
+    title: 'Leaves',
+    Icon: CalendarCheck,
+    bg_color: 'bg-teal-100',
+    icon_color: 'bg-teal-700',
+    link: '/admin-leave',
+  },
+  {
+    title: 'Conversation',
+    Icon: MessageCircle,
+    bg_color: 'bg-orange-100',
+    icon_color: 'bg-orange-700',
+    link: '/chat',
+  },
+];
+
   const requests: Request[] = [
     {
       id: '1',
@@ -332,20 +346,50 @@ const getBadgeClass = (percentage: number) => {
   if (percentage < 0) return "bg-red-100 text-red-800";
   return "bg-blue-100 text-blue-800";
 };
-const Attendence = [
-  {
-    title: 'Emergency',
-    count: 28
-  },
-  {
-    title: 'Absent',
-    count: 1
-  },
-  {
-    title: 'Late',
-    count: 1
-  }
-]
+ 
+
+/* Student Data */
+const studentAttendance = [
+  { title: "Emergency", count: 28 },
+  { title: "Absent", count: 1 },
+  { title: "Late", count: 1 },
+];
+
+// Fake "student" pie chart data
+const studentChartData = [
+  { browser: "Emergency", visitors: 28, fill: "hsl(var(--chart-1))" },
+  { browser: "Absent", visitors: 1, fill: "hsl(var(--chart-2))" },
+  { browser: "Late", visitors: 1, fill: "hsl(var(--chart-3))" },
+];
+
+/* Teacher Data */
+const teacherAttendance = [
+  { title: "Medical", count: 4 },
+  { title: "Sick", count: 2 },
+  { title: "Late", count: 5 },
+];
+
+// Fake "teacher" pie chart data
+const teacherChartData = [
+  { browser: "Medical", visitors: 4, fill: "hsl(var(--chart-1))" },
+  { browser: "Sick", visitors: 2, fill: "hsl(var(--chart-2))" },
+  { browser: "Late", visitors: 5, fill: "hsl(var(--chart-3))" },
+];
+
+/* Staff Data */
+const staffAttendance = [
+  { title: "Casual", count: 10 },
+  { title: "Short Leave", count: 2 },
+  { title: "Late", count: 3 },
+];
+
+// Fake "staff" pie chart data
+const staffChartData = [
+  { browser: "Casual", visitors: 10, fill: "hsl(var(--chart-1))" },
+  { browser: "Short Leave", visitors: 2, fill: "hsl(var(--chart-2))" },
+  { browser: "Late", visitors: 3, fill: "hsl(var(--chart-3))" },
+];
+
 
 const [isFirstHalf, setIsFirstHalf] = useState(true)
   
@@ -386,19 +430,7 @@ const chartConfigGraph = {
   },
 } satisfies ChartConfig
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  present: {
-    label: "present",
-    color: "hsl(var(--chart-1))",
-  },
-  Absent: {
-    label: "absent",
-    color: "hsl(var(--chart-2))",
-  },
-} satisfies ChartConfig
+ 
 
 
   return (
@@ -777,7 +809,7 @@ const chartConfig = {
 
       {/* Content Section */}
       <CardContent className="p-4">
-        <div className="space-y-2">
+        <div className="space-y-5">
           {requests.map((request) => (
             <Card 
               key={request.id} 
@@ -842,70 +874,132 @@ const chartConfig = {
 
     </Card>
   
-              <Card  className='p-0'>
-         
-          <CardContent className="w-full  p-0 ">
-          <Tabs defaultValue="student" className="w-full">
-            <div className='flex items-center justify-between bg-[#fbeddf] dark:bg-neutral-800 px-5'>
-            <CardHeader className=' p-4 '>
-            <CardTitle>Leaves Graph</CardTitle>
-            <CardDescription>
-              Please review the leaves.
-            </CardDescription>
-          </CardHeader >
+    <Card className="p-0">
+      <CardContent className="w-full p-0">
+        <Tabs defaultValue="student" className="w-full">
+          {/* Header Row */}
+          <div className="flex items-center justify-between bg-[#fbeddf] dark:bg-neutral-800">
+            <CardHeader>
+              <CardTitle>Leaves Graph</CardTitle>
+            </CardHeader>
 
-          <TabsList >
-                    <TabsTrigger value="student">Student</TabsTrigger>
-                    <TabsTrigger value="teacher">Teacher</TabsTrigger>
-                    <TabsTrigger value="staff">Staff</TabsTrigger>
-                  </TabsList>
+            <TabsList>
+              <TabsTrigger value="student">Student</TabsTrigger>
+              <TabsTrigger value="teacher">Teacher</TabsTrigger>
+              <TabsTrigger value="staff">Staff</TabsTrigger>
+            </TabsList>
+          </div>
+
+          {/* Student Tab */}
+          <TabsContent value="student">
+            <div className="flex flex-wrap my-4">
+              {/* Left half: Attendance list */}
+              <div className="w-1/2 flex flex-col gap-4 p-2">
+                {studentAttendance.map((data, index) => (
+                  <div
+                    className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
+                    key={index}
+                  >
+                    <div>
+                      <p className="text-center">{data.count}</p>
+                      <p>{data.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right half: Pie chart */}
+              <div className="w-1/2 flex justify-center items-center">
+                <ChartContainer config={chartConfig} className="w-full max-w-[250px] aspect-square">
+                  <PieChart>
+                    <Pie
+                      data={studentChartData}
+                      dataKey="visitors"
+                      nameKey="browser"
+                      innerRadius={65}
+                      strokeWidth={10}
+                    />
+                  </PieChart>
+                </ChartContainer>
+              </div>
             </div>
-                 
-                  <TabsContent value="student">
-                  <div className="flex my-4">
-  {/* Left half: Attendance list */}
-  <div className="w-1/2 flex flex-col gap-4 p-4">
-    {Attendence.map((data, index) => (
-      <div
-        className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
-        key={index}
-      >
-        <div>
-          <p className="text-center">{data.count}</p>
-          <p>{data.title}</p>
+          </TabsContent>
+
+          {/* Teacher Tab */}
+          <TabsContent value="teacher">
+            <div className="flex flex-wrap my-4">
+              {/* Left half: Attendance list */}
+              <div className="w-1/2 flex flex-col gap-4 p-2">
+                {teacherAttendance.map((data, index) => (
+                  <div
+                    className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
+                    key={index}
+                  >
+                    <div>
+                      <p className="text-center">{data.count}</p>
+                      <p>{data.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right half: Pie chart */}
+              <div className="w-1/2 flex justify-center items-center">
+                <ChartContainer config={chartConfig} className="w-full max-w-[250px] aspect-square">
+                  <PieChart>
+                    <Pie
+                      data={teacherChartData}
+                      dataKey="visitors"
+                      nameKey="browser"
+                      innerRadius={65}
+                      strokeWidth={10}
+                    />
+                  </PieChart>
+                </ChartContainer>
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Staff Tab */}
+          <TabsContent value="staff">
+            <div className="flex flex-wrap my-4">
+              {/* Left half: Attendance list */}
+              <div className="w-1/2 flex flex-col gap-4 p-2">
+                {staffAttendance.map((data, index) => (
+                  <div
+                    className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
+                    key={index}
+                  >
+                    <div>
+                      <p className="text-center">{data.count}</p>
+                      <p>{data.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right half: Pie chart */}
+              <div className="w-1/2 flex justify-center items-center">
+                <ChartContainer config={chartConfig} className="w-full max-w-[250px] aspect-square">
+                  <PieChart>
+                    <Pie
+                      data={staffChartData}
+                      dataKey="visitors"
+                      nameKey="browser"
+                      innerRadius={65}
+                      strokeWidth={10}
+                    />
+                  </PieChart>
+                </ChartContainer>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+        <div className="flex justify-center my-4">
+          <Button variant={"outline"}>View details</Button>
         </div>
-      </div>
-    ))}
-  </div>
-
-  {/* Right half: Pie chart */}
-  <div className="w-1/2 flex justify-center items-center">
-    <ChartContainer
-      config={chartConfig}
-      className="w-full max-w-[250px] aspect-square"
-    >
-      <PieChart>
-        <Pie
-          data={chartData}
-          dataKey="visitors"
-          nameKey="browser"
-          innerRadius={65}
-          strokeWidth={10}
-        />
-      </PieChart>
-    </ChartContainer>
-  </div>
-</div>
-
-                  </TabsContent>
-                </Tabs>
-                <div className='flex justify-center my-4'>
-                <Button variant={"outline"}>View details</Button>
-                </div>
-          </CardContent>
-          
-              
-              </Card>
+      </CardContent>
+    </Card>
 
     
             </div>

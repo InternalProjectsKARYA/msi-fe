@@ -110,7 +110,7 @@ export default function StudentsGridAndList() {
       accessorKey: "Student",
       header: ({ column }) => (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          Student Name <ArrowUpDown className=" " />
+          Student Name  
         </Button>
       ),
       cell: ({ row }) => (
@@ -268,14 +268,14 @@ export default function StudentsGridAndList() {
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
+              {/* <DropdownMenuItem
                 onClick={() => {
                   handleStudentEditClick(student);
                   setStudentDialogOpen(true);
                 }}
               >
                 Edit
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

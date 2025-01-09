@@ -58,14 +58,18 @@ export default function User() {
   return (
     <>
       <Tabs defaultValue="Teacher" className=" ">
-        <div className="right-10 absolute">
-          <Button onClick={() => setIsUserSheetOpen(true)}>Add Member</Button>
-        </div>
-        <TabsList className="grid w-[20%] bg-gray-200 grid-cols-3">
+        <div className="flex flex-wrap justify-between">
+       
+        <TabsList className="grid grid-cols-3 gap-2  w-1/2 md:w-2/3 ">
           <TabsTrigger value="Teacher">Teacher</TabsTrigger>
           <TabsTrigger value="Student">Student</TabsTrigger>
           <TabsTrigger value="Staff">Staff</TabsTrigger>
         </TabsList>
+        <div className=" ">
+          <Button onClick={() => setIsUserSheetOpen(true)}>Add Member</Button>
+        </div>
+        </div>
+     
 
         <TabsContent value="Teacher">
           <TeachersGridAndList />

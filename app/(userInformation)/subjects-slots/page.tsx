@@ -11,16 +11,17 @@ import { useRouter } from "next/navigation";
 
 // Updated Subject data with specific names and dull colors
 const subjects = [
-  { name: "Mathematics", color: "bg-slate-200" },
-  { name: "Physics", color: "bg-green-100" },
-  { name: "English Literature", color: "bg-blue-100" },
-  { name: "World History", color: "bg-yellow-100" },
-  { name: "Geography", color: "bg-teal-100" },
-  { name: "Fine Arts", color: "bg-pink-100" },
-  { name: "Music Theory", color: "bg-purple-100" },
-  { name: "Physical Education", color: "bg-orange-100" },
-  { name: "Computer Science", color: "bg-cyan-100" },
+  { name: "Mathematics", color: "bg-red-200" },
+  { name: "Physics", color: "bg-blue-200" },
+  { name: "English Literature", color: "bg-yellow-200" },
+  { name: "World History", color: "bg-green-200" },
+  { name: "Geography", color: "bg-purple-200" },
+  { name: "Fine Arts", color: "bg-pink-200" },
+  { name: "Music Theory", color: "bg-indigo-200" },
+  { name: "Physical Education", color: "bg-orange-200" },
+  { name: "Computer Science", color: "bg-teal-200" },
 ];
+
 
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const timeSlots = [
@@ -159,9 +160,9 @@ const TimetableCreator = () => {
             <tbody>
               {weekDays.map((day) => (
                 <tr key={day}>
-                  <td className="p-2 border font-semibold text-sm">{day}</td>
+                  <td className="p-5 border font-semibold text-sm">{day}</td>
                   {timeSlots.map((slot) => (
-                    <td key={`${day}-${slot}`} className="p-0 border">
+                    <td key={`${day}-${slot}`} className="p-2 border">
                       <TimeSlot
                         day={day}
                         timeSlot={slot}

@@ -45,187 +45,201 @@ export default function SchoolPayrollComponent() {
   );
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold tracking-tight">Payslip Management</h2>
+<div className="space-y-6">
+  <h2 className="text-2xl font-semibold tracking-tight">Payslip Management</h2>
 
-      {/* Search and Year Picker */}
-      <div className="flex flex-col sm:flex-row justify-between gap-4">
-        <div className="rounded-md">
-          <h3 className="text-lg font-semibold">Teacher: John Doe</h3>
-          <p className="text-sm text-gray-600">Position: Math Teacher</p>
-        </div>
-        <div className="space-x-4">
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-full sm:w-64 justify-start text-left font-normal",
-                  !selectedYear && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-semibold">Year :</span> {''}
-                {selectedYear ? selectedYear : <span>Pick a year</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-64 p-0" align="start">
-              <div className="grid grid-cols-2 gap-2 p-2">
-                {years.map((year) => (
-                  <button
-                    key={year}
-                    className="px-4 py-2 text-sm rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary"
-                    onClick={() => {
-                      setSelectedYear(year.toString());
-                      setOpen(false);
-                    }}
-                  >
-                    {year}
-                  </button>
-                ))}
-              </div>
-            </PopoverContent>
-          </Popover>
-          <Button className="" variant={"outline"}>
-            <Download className="h-4 w-4 mr-2" />
-            Generate Report
+  {/* Search and Year Picker */}
+  <div className="flex flex-col sm:flex-row justify-between gap-4">
+    {/* Teacher Info */}
+    <div className="rounded-md">
+      <h3 className="text-lg font-semibold">Teacher: John Doe</h3>
+      <p className="text-sm text-gray-600">Position: Math Teacher</p>
+    </div>
+
+    {/* Year Picker & Generate Report */}
+    <div className="space-x-4 flex">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-full sm:w-64 justify-start text-left font-normal",
+              !selectedYear && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            <span className="font-semibold">Year :</span>{" "}
+            {selectedYear ? selectedYear : "Pick a year"}
           </Button>
-        </div>
-      </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-64 p-0" align="start">
+          <div className="grid grid-cols-2 gap-2 p-2">
+            {years.map((year) => (
+              <button
+                key={year}
+                className="px-4 py-2 text-sm rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary"
+                onClick={() => {
+                  setSelectedYear(year.toString());
+                  setOpen(false);
+                }}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+      <Button variant={"outline"}>
+        <Download className="h-4 w-4 mr-2" />
+        Generate Report
+      </Button>
+    </div>
+  </div>
 
-      {/* Salary and Deductions Tables */}
-      <div className="grid grid-cols-3 gap-4">
-        {/* Salary Table */}
-        <Card className="rounded-md col-span-2 w-full">
-          <h3 className="text-lg font-semibold p-4">Salary Details</h3>
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-gray-200">
-                <TableHead>Month</TableHead>
-                <TableHead>Salary</TableHead>
-                <TableHead className="text-right">Net Pay</TableHead>
-                <TableHead className="text-right">Payment Date</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+  {/* Main Grid: Salary Table & Deductions Card */}
+  <div className="grid grid-cols-12 gap-4">
+    {/* Salary Table (col-span-8) */}
+    <div className="col-span-12 lg:col-span-8">
+      <Card className="rounded-md w-full">
+        <h3 className="text-lg font-semibold p-4">Salary Details</h3>
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-gray-200">
+              <TableHead>Month</TableHead>
+              <TableHead>Salary</TableHead>
+              <TableHead className="text-right">Net Pay</TableHead>
+              <TableHead className="text-right">Payment Date</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {paginatedData.map((staff) => (
+              <TableRow key={staff.id}>
+                <TableCell>{staff.month}</TableCell>
+                <TableCell>${staff.salary.toLocaleString()}</TableCell>
+                <TableCell className="text-right">
+                  ${staff.netPay.toLocaleString()}
+                </TableCell>
+                <TableCell className="text-right">{staff.paymentDate}</TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="h-8 w-8 p-0">
+                        <span className="sr-only">Open menu</span>
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <div>
+                        <p className="text-sm font-medium p-2">Actions</p>
+                        <DropdownMenuItem className="hover:bg-gray-50 rounded-md px-3 py-2">
+                          View Deductions
+                        </DropdownMenuItem>
+                      </div>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
               </TableRow>
-            </TableHeader>
-            <TableBody>
-              {paginatedData.map((staff) => (
-                <TableRow key={staff.id}>
-                  <TableCell>{staff.month}</TableCell>
-                  <TableCell>${staff.salary.toLocaleString()}</TableCell>
-                  <TableCell className="text-right">${staff.netPay.toLocaleString()}</TableCell>
-                  <TableCell className="text-right">{staff.paymentDate}</TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <span className="sr-only">Open menu</span>
-                          <MoreVertical className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <div>
-                          <p className="text-sm font-medium p-2">Actions</p>
-                          <DropdownMenuItem className="hover:bg-gray-50 rounded-md px-3 py-2">
-                            View Deductions
-                          </DropdownMenuItem>
-                        </div>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Card>
-
-  {/* Deductions Table - 2/3 width */}
-  <Card className="rounded-md col-span-1 w-full p-6">
-  <h3 className="text-lg font-semibold">Deductions for May</h3>
-  <p className="text-sm text-muted-foreground mb-6">Salary deductions for the month of May.</p>
-  <div className="flex items-center justify-between py-3 border-b">
-    <div>
-      <p className="text-sm font-medium">Late Attendance</p>
-      <p className="text-xs text-muted-foreground">Deduction applied for arriving late on multiple occasions.</p>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
     </div>
-    <p className="text-sm font-medium text-red-500">-$1,200</p>
-  </div>
-  <div className="flex items-center justify-between py-3 border-b">
-    <div>
-      <p className="text-sm font-medium">Unapproved Leave</p>
-      <p className="text-xs text-muted-foreground">Salary adjustment for unapproved leave taken during the month.</p>
+
+    {/* Deductions Card (col-span-4) */}
+    <div className="col-span-12 lg:col-span-4">
+      <Card className="rounded-md w-full p-6">
+        <h3 className="text-lg font-semibold">Deductions for May</h3>
+        <p className="text-sm text-muted-foreground mb-6">
+          Salary deductions for the month of May.
+        </p>
+        <div className="flex items-center justify-between py-3 border-b">
+          <div>
+            <p className="text-sm font-medium">Late Attendance</p>
+            <p className="text-xs text-muted-foreground">
+              Deduction applied for arriving late on multiple occasions.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-red-500">-$1,200</p>
+        </div>
+        <div className="flex items-center justify-between py-3 border-b">
+          <div>
+            <p className="text-sm font-medium">Unapproved Leave</p>
+            <p className="text-xs text-muted-foreground">
+              Salary adjustment for unapproved leave taken during the month.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-red-500">-$2,200</p>
+        </div>
+        <div className="flex items-center justify-between py-3 border-b">
+          <div>
+            <p className="text-sm font-medium">Lost Teaching Materials</p>
+            <p className="text-xs text-muted-foreground">
+              Replacement cost for teaching materials lost during the term.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-red-500">-$800</p>
+        </div>
+        <div className="flex items-center justify-between py-3 border-b">
+          <div>
+            <p className="text-sm font-medium">Missed Parent-Teacher Meetings</p>
+            <p className="text-xs text-muted-foreground">
+              Penalty for missing mandatory parent-teacher meetings.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-red-500">-$1,000</p>
+        </div>
+        <div className="flex items-center justify-between py-3">
+          <div>
+            <p className="text-sm font-medium">Delayed Submission of Reports</p>
+            <p className="text-xs text-muted-foreground">
+              Fine imposed for late submission of academic reports.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-red-500">-$500</p>
+        </div>
+      </Card>
     </div>
-    <p className="text-sm font-medium text-red-500">-$2,200</p>
   </div>
-  <div className="flex items-center justify-between py-3 border-b">
-    <div>
-      <p className="text-sm font-medium">Lost Teaching Materials</p>
-      <p className="text-xs text-muted-foreground">Replacement cost for teaching materials lost during the term.</p>
+
+  {/* Pagination */}
+  <div className="flex items-center justify-between mt-4">
+    <div className="text-sm text-gray-700">
+      Showing{" "}
+      {Math.min((currentPage - 1) * rowsPerPage + 1, filteredData.length)}{" "}
+      to {Math.min(currentPage * rowsPerPage, filteredData.length)} of{" "}
+      {filteredData.length} entries
     </div>
-    <p className="text-sm font-medium text-red-500">-$800</p>
-  </div>
-  <div className="flex items-center justify-between py-3 border-b">
-    <div>
-      <p className="text-sm font-medium">Missed Parent-Teacher Meetings</p>
-      <p className="text-xs text-muted-foreground">Penalty for missing mandatory parent-teacher meetings.</p>
+    <div className="flex items-center space-x-2">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+      >
+        Previous
+      </Button>
+      {[...Array(totalPages)].map((_, idx) => (
+        <Button
+          key={idx}
+          variant={currentPage === idx + 1 ? "default" : "outline"}
+          size="sm"
+          onClick={() => setCurrentPage(idx + 1)}
+        >
+          {idx + 1}
+        </Button>
+      ))}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        disabled={currentPage === totalPages}
+      >
+        Next
+      </Button>
     </div>
-    <p className="text-sm font-medium text-red-500">-$1,000</p>
   </div>
-  <div className="flex items-center justify-between py-3">
-    <div>
-      <p className="text-sm font-medium">Delayed Submission of Reports</p>
-      <p className="text-xs text-muted-foreground">Fine imposed for late submission of academic reports.</p>
-    </div>
-    <p className="text-sm font-medium text-red-500">-$500</p>
-  </div>
-</Card>
-
-
-
-
-
 </div>
 
-    
-
-      {/* Pagination */}
-      <div className="flex items-center justify-between mt-4">
-        <div className="text-sm text-gray-700">
-          Showing{" "}
-          {Math.min((currentPage - 1) * rowsPerPage + 1, filteredData.length)}{" "}
-          to {Math.min(currentPage * rowsPerPage, filteredData.length)} of{" "}
-          {filteredData.length} entries
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </Button>
-          {[...Array(totalPages)].map((_, idx) => (
-            <Button
-              key={idx}
-              variant={currentPage === idx + 1 ? "default" : "outline"}
-              size="sm"
-              onClick={() => setCurrentPage(idx + 1)}
-            >
-              {idx + 1}
-            </Button>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
-    </div>
   );
 }

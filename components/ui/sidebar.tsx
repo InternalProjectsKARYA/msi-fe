@@ -18,7 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-
+const MOBILE_TABLET_BREAKPOINT = 1024
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
@@ -32,6 +32,7 @@ type SidebarContext = {
   setOpen: (open: boolean) => void
   openMobile: boolean
   setOpenMobile: (open: boolean) => void
+  isMobileOrTablet: boolean
   isMobile: boolean
   toggleSidebar: () => void
 }
@@ -69,35 +70,47 @@ const SidebarProvider = React.forwardRef<
   ) => {
     const isMobile = useIsMobile()
     const [openMobile, setOpenMobile] = React.useState(false)
+    const [windowWidth, setWindowWidth] = React.useState(
+      typeof window !== "undefined" ? window.innerWidth : 1920
+    )
+    React.useEffect(() => {
+      if (typeof window !== "undefined") {
+        const handleResize = () => setWindowWidth(window.innerWidth)
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+      }
+    }, [])
+    const isMobileOrTablet = windowWidth <= MOBILE_TABLET_BREAKPOINT
 
-    // This is the internal state of the sidebar.
+    const localDefaultOpen = isMobileOrTablet ? false : defaultOpen
+
+    
     // We use openProp and setOpenProp for control from outside the component.
     const [_open, _setOpen] = React.useState(defaultOpen)
     const open = openProp ?? _open
     const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
         if (setOpenProp) {
-          return setOpenProp?.(
+          return setOpenProp(
             typeof value === "function" ? value(open) : value
           )
         }
-
         _setOpen(value)
 
-        // This sets the cookie to keep the sidebar state.
+        // Save the new sidebar state in a cookie for persistence
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
       },
       [setOpenProp, open]
     )
 
-    // Helper to toggle the sidebar.
-    const toggleSidebar = React.useCallback(() => {
-      return isMobile
-        ? setOpenMobile((open) => !open)
-        : setOpen((open) => !open)
-    }, [isMobile, setOpen, setOpenMobile])
+  // Toggle logic
+  const toggleSidebar = React.useCallback(() => {
+    return isMobileOrTablet
+      ? setOpenMobile((open) => !open)
+      : setOpen((open) => !open)
+  }, [isMobileOrTablet, setOpen, setOpenMobile])
 
-    // Adds a keyboard shortcut to toggle the sidebar.
+    // Keyboard shortcut: CTRL/CMD + b
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
@@ -116,18 +129,17 @@ const SidebarProvider = React.forwardRef<
     // We add a state so that we can do data-state="expanded" or "collapsed".
     // This makes it easier to style the sidebar with Tailwind classes.
     const state = open ? "expanded" : "collapsed"
-
     const contextValue = React.useMemo<SidebarContext>(
       () => ({
         state,
         open,
         setOpen,
-        isMobile,
         openMobile,
         setOpenMobile,
+        isMobileOrTablet,
         toggleSidebar,
       }),
-      [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+      [state, open, setOpen, openMobile, setOpenMobile, isMobileOrTablet, toggleSidebar]
     )
 
     return (
@@ -176,7 +188,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const {isMobileOrTablet, isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
     if (collapsible === "none") {
       return (
@@ -192,7 +204,26 @@ const Sidebar = React.forwardRef<
         </div>
       )
     }
-
+ // If it's mobile or tablet, we use the off-canvas sheet approach
+ if (isMobileOrTablet) {
+  return (
+    <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
+      <SheetContent
+        data-sidebar="sidebar"
+        data-mobile="true"
+        className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+        style={
+          {
+            "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+          } as React.CSSProperties
+        }
+        side={side}
+      >
+        <div className="flex h-full w-full flex-col bg-white">{children}</div>
+      </SheetContent>
+    </Sheet>
+  )
+}
     if (isMobile) {
       return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
@@ -222,7 +253,7 @@ const Sidebar = React.forwardRef<
         data-variant={variant}
         data-side={side}
       >
-        {/* This is what handles the sidebar gap on desktop */}
+      
         <div
           className={cn(
             "duration-200 relative h-svh  w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
@@ -555,7 +586,7 @@ const SidebarMenuButton = React.forwardRef<
     ref
   ) => {
     const Comp = asChild ? Slot : "button"
-    const { isMobile, state } = useSidebar()
+    const { isMobileOrTablet, isMobile, state } = useSidebar()
 
     const button = (
       <Comp
@@ -584,7 +615,7 @@ const SidebarMenuButton = React.forwardRef<
         <TooltipContent
           side="right"
           align="center"
-          hidden={state !== "collapsed" || isMobile}
+          hidden={state !== "collapsed" || isMobile || isMobileOrTablet}
           {...tooltip}
         />
       </Tooltip>

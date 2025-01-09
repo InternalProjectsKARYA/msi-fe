@@ -32,14 +32,23 @@ export default function AdminAttendance() {
  
   return (
     <>
-      <Tabs defaultValue="Graph" className="">
+      <Tabs defaultValue="Graph" className=" ">
        
-        <TabsList className="grid w-[20%] bg-gray-200 grid-cols-4">
-        <TabsTrigger value="Graph">Graph</TabsTrigger>
-          <TabsTrigger value="Teacher">Teacher</TabsTrigger>
-          <TabsTrigger value="Student">Student</TabsTrigger>
-          <TabsTrigger value="Staff">Staff</TabsTrigger>
-        </TabsList>
+      <TabsList className="grid w-2/3 sm:w-2/3 gap-3 grid-cols-4">
+  <TabsTrigger value="Graph" className="text-center">
+    Graph
+  </TabsTrigger>
+  <TabsTrigger value="Teacher" className="text-center">
+    Teacher
+  </TabsTrigger>
+  <TabsTrigger value="Student" className="text-center">
+    Student
+  </TabsTrigger>
+  <TabsTrigger value="Staff" className="text-center">
+    Staff
+  </TabsTrigger>
+</TabsList>
+
         <TabsContent value="Graph">
         <ChartDashboard />
         </TabsContent>

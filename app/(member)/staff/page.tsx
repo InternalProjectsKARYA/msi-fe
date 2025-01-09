@@ -92,7 +92,7 @@ export default function StaffsGridAndList() {
       accessorKey: "Staff",
       header: ({ column }) => (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-            Name <ArrowUpDown className=" " />
+            Name 
         </Button>
       ),
       cell: ({ row }) => (
@@ -240,7 +240,7 @@ export default function StaffsGridAndList() {
           {staffTableData.map((staff, index) => (
             <Card
               key={staff.id}
-              data-aos="flip-right"
+              data-aos="zoom-in"
               data-aos-duration={`${300 + index * 300}`}
               className="p-4 shadow-md"
             >
@@ -255,14 +255,14 @@ export default function StaffsGridAndList() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent side="right" align="start">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem
+                      {/* <DropdownMenuItem
                         onClick={() => {
                           handleStaffEditClick(staff);
                           setStaffDialogOpen(true);
                         }}
                       >
                         Edit
-                      </DropdownMenuItem>
+                      </DropdownMenuItem> */}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>

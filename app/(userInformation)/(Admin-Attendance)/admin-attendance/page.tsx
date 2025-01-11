@@ -38,14 +38,15 @@ export default function AdminAttendance() {
   <TabsTrigger value="Graph" className="text-center">
     Graph
   </TabsTrigger>
-  <TabsTrigger value="Teacher" className="text-center">
-    Teacher
-  </TabsTrigger>
   <TabsTrigger value="Student" className="text-center">
     Student
   </TabsTrigger>
+  <TabsTrigger value="Teacher" className="text-center">
+    Teaching Staff
+  </TabsTrigger>
+
   <TabsTrigger value="Staff" className="text-center">
-    Staff
+    Non-Teaching Staff
   </TabsTrigger>
 </TabsList>
 

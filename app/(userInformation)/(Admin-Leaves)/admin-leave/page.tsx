@@ -85,11 +85,12 @@ const LeaveManagement = () => {
     </div>
   
     {/* Tabs Section */}
-    <Tabs defaultValue="Teacher" className="w-full">
+    <Tabs defaultValue="Student" className="w-full">
     <TabsList className="grid grid-cols-3 gap-4 w-full sm:w-2/3 mx-auto">
-      <TabsTrigger value="Teacher" className="text-left">Teacher</TabsTrigger>
-      <TabsTrigger value="Student" className="text-left">Student</TabsTrigger>
-      <TabsTrigger value="Staff" className="text-left">Staff</TabsTrigger>
+    <TabsTrigger value="Student" className="text-left">Student</TabsTrigger>
+      <TabsTrigger value="Teacher" className="text-left">Teaching Staff</TabsTrigger>
+    
+      <TabsTrigger value="Staff" className="text-left">Non-Teaching Staff</TabsTrigger>
     </TabsList>
 
     {/* Teacher Tab Content */}

@@ -119,7 +119,7 @@ const AdminDashboard = () => {
  
   const data = [
     {
-      title: "Total Students",
+      title: "Students",
       total: "3654",
       active: "3643",
       inactive: "11",
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
       icon: GraduationCap
     },
     {
-      title: "Total Teaching Staff",
+      title: "Teaching Staff",
       total: "284",
       active: "254",
       inactive: "30",
@@ -135,7 +135,7 @@ const AdminDashboard = () => {
       icon: Users
     },
     {
-      title: "Total Non-Teaching Staff",
+      title: "Non-Teaching Staff",
       total: "162",
       active: "161",
       inactive: "02",
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
       icon: UserCog
     },
     {
-      title: "Total Subjects",
+      title: "Subjects",
       total: "82",
       active: "81",
       inactive: "01",
@@ -335,7 +335,7 @@ const stats = [
     percentage: 0.2,
   },
   {
-    title: "Total Outstanding",
+    title: "Outstanding",
     amount: "4,96,684 /-",
     percentage: 1.9,
   },
@@ -552,26 +552,26 @@ const chartConfigGraph = {
     <Card
       key={index}
       className={`relative overflow-hidden  ${
-        item.title === "Total Students"
+        item.title === "Students"
           ? "bg-[#d5e2c5] dark:bg-black  "
-          : item.title === "Total Teaching Staff"
+          : item.title === "Teaching Staff"
           ? "bg-[#f4b9bc] dark:bg-black "
-          : item.title === "Total Non-Teaching Staff"
+          : item.title === "Non-Teaching Staff"
           ? "bg-[#ffebb0] text-white dark:bg-black "
-          : item.title === "Total Subjects"
+          : item.title === "Subjects"
           ? "bg-[#b6e1f3] text-white dark:bg-black "
           :""
       }`}
     >
       <CardHeader
         className={`flex flex-row items-center justify-between pb-2 ${
-          item.title === "Total Students"
+          item.title === "Students"
             ? "bg-[#d5e2c5] dark:bg-black "
-            : item.title === "Total Teaching Staff"
+            : item.title === "Teaching Staff"
             ? "bg-[#f4b9bc] dark:bg-black "
-            : item.title === "Total Non-Teaching Staff"
+            : item.title === "Non-Teaching Staff"
           ? "bg-[#ffebb0] text-white dark:bg-black "
-          : item.title === "Total Subjects"
+          : item.title === "Subjects"
           ? "bg-[#b6e1f3] text-white dark:bg-black "
           :""
         }`}
@@ -585,13 +585,13 @@ const chartConfigGraph = {
               className="w-8 h-8 "
               style={{
                 color:
-                  item.title === "Total Students "
+                  item.title === "Students "
                     ? "#C8D6AB   "  
-                    : item.title === "Total Teaching Staff"
+                    : item.title === "Teaching Staff"
                     ? "#E6A8B5"  
-                    : item.title === "Total Non-Teaching Staff"
+                    : item.title === "Non-Teaching Staff"
                     ? "#FFE0A6"  
-                    : item.title === "Total Subjects"
+                    : item.title === "Subjects"
                     ? "#B6A1C7"  
                     : "",
               }}

@@ -57,13 +57,14 @@ export default function User() {
   };
   return (
     <>
-      <Tabs defaultValue="Teacher" className=" ">
+      <Tabs defaultValue="Student" className=" ">
         <div className="flex flex-wrap justify-between">
        
         <TabsList className="grid grid-cols-3 gap-2  w-1/2 md:w-2/3 ">
-          <TabsTrigger value="Teacher">Teacher</TabsTrigger>
-          <TabsTrigger value="Student">Student</TabsTrigger>
-          <TabsTrigger value="Staff">Staff</TabsTrigger>
+        <TabsTrigger value="Student">Student</TabsTrigger>
+          <TabsTrigger value="Teacher">Teaching Staff</TabsTrigger>
+        
+          <TabsTrigger value="Staff">Non-Teaching Staff</TabsTrigger>
         </TabsList>
         <div className=" ">
           <Button onClick={() => setIsUserSheetOpen(true)}>Add Member</Button>

@@ -121,7 +121,7 @@ export function AppSidebar() {
           hasSubmenu: true,
           subItems: [
             { label: "Attendance", href: "/studentattendance" },
-            { label: "Work Sheet", href: "/student-assessment" },
+            { label: "Assessment", href: "/student-assessment-newgraph" },
             { label: "Leaves", href: "/leaves" },
             { label: "Schedule", href: "/student-timetable" },
           ],

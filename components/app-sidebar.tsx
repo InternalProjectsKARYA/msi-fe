@@ -150,7 +150,7 @@ export function AppSidebar() {
       items: [
         { label: "Members", href: "/user", icon: <Users className="h-4 w-4" /> },
         { label: "Payroll", href: "/pay-roll", icon: <FileText className="h-4 w-4" /> },
-        { label: "Affiliates", href: "/maps", icon: <MapPin className="h-4 w-4" /> },
+        { label: "School branches", href: "/maps", icon: <MapPin className="h-4 w-4" /> },
         // { label: "Forms", href: "/Registration", icon: <Users className="h-4 w-4" /> },
       ],
     },

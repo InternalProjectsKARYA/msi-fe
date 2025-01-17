@@ -151,7 +151,7 @@ const Config = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
+                {/* <div className="flex items-center space-x-4">
                   <span className="text-gray-700 font-medium">Leave request: </span>
                   <Switch
                     checked={formData.days_180_flag}
@@ -163,7 +163,7 @@ const Config = () => {
                   <span className="font-semibold">
                     {formData.days_180_flag ? "Enabled" : "Disabled"}
                   </span>
-                </div>
+                </div> */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-x-10">
                   <div className="flex flex-row items-center space-x-4">
                     <Label htmlFor="DefaultPassword" className="w-32 md:w-48 font-medium whitespace-nowrap">
@@ -247,7 +247,7 @@ const Config = () => {
                       </div>
                     </div>
 
-                    <div className='grid flex grid-cols-1 lg:grid-cols-12'>
+                    <div className='grid flex flex-wrap grid-cols-1 lg:grid-cols-1 mt-5'>
                       {showOption1 && (
                         <div className="flex items-center gap-2">
                           Every

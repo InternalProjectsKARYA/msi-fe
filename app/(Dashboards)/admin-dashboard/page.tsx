@@ -39,6 +39,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { toast, Toaster } from 'sonner';
  
 import useThemeStore from '@/components/ThemeContext';
+import BirthdayCard from '@/app/(others)/birthdaycard/page';
  
  
 type Request = {
@@ -1014,6 +1015,10 @@ const chartConfigGraph = {
 
 
             </div> */}
+
+            <div>
+              <BirthdayCard />
+            </div>
   
     <Card>
                 <CardHeader className='p-4 pl-5 bg-[#f9dddf] dark:bg-neutral-800'>
@@ -1131,7 +1136,12 @@ const chartConfigGraph = {
 
     
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+  
+              </div>
+              
+ 
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {stats.map((stat, index) => {
         const isPositive = stat.percentage > 0;
 
@@ -1159,10 +1169,6 @@ const chartConfigGraph = {
         );
       })}
     </div>
-              </div>
- 
-          </div>
- 
   <Dialog open={isAnnouncementDialogOpen} onOpenChange={setIsAnnouncementDialogOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>

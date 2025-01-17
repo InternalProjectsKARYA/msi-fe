@@ -44,6 +44,7 @@ import {
   Shield,
   UserCheck,
   Users,
+  Video,
 } from "lucide-react";
 
 interface NavbarItem {
@@ -110,6 +111,7 @@ export function AppSidebar() {
         { label: "Holidays", href: "/holidaysEvent", icon: <FiCalendar className="h-4 w-4" /> },
         { label: "Attendance", href: "/admin-attendance", icon: <ClipboardCheck className="h-4 w-4" /> },
         { label: "Leaves", href: "/admin-leave", icon: <LogOut className="h-4 w-4" /> },
+        { label: "CCTV", href: "/cctv", icon: <Video  className="h-4 w-4" /> },
       ],
     },
     {
@@ -124,6 +126,7 @@ export function AppSidebar() {
             { label: "Assessment", href: "/student-assessment-newgraph" },
             { label: "Leaves", href: "/leaves" },
             { label: "Schedule", href: "/student-timetable" },
+            { label: "CCTV", href: "/cctv-student", icon: <Video  className="h-4 w-4" /> },
           ],
         },
         {

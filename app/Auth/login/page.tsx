@@ -17,7 +17,7 @@ import axiosInstance from '@/lib/axiosInstance';
 import { useAuthContext } from '@/lib/AuthProvider';
 import { useToast } from "@/components/ui/use-toast";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import Loading from "@/app/loading/page";
+import Loading from "@/app/(others)/loading/page";
 import RunningBoy from "@/app/RunningBoy/page";
 import { toast } from 'sonner';
 import { Toaster } from 'sonner';

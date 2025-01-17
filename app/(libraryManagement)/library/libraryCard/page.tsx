@@ -1,29 +1,28 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import axiosInstance from "@/lib/axiosInstance"; // Ensure this points to your Axios setup
+import React, { useState } from "react"
 import {
   ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { ArrowUpDown, MoreVertical } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+  getPaginationRowModel,
+  SortingState,
+  getSortedRowModel,
+  ColumnFiltersState,
+  getFilteredRowModel,
+} from "@tanstack/react-table"
+import { ArrowUpDown, ChevronLeft, ChevronRight, Download, MoreVertical } from 'lucide-react'
+import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 import {
   Table,
   TableBody,
@@ -31,163 +30,100 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useRouter } from "next/navigation";
+} from "@/components/ui/table"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Label } from "@/components/ui/label"
 
-// Define data types
-export type Details = {
-  id: string;
-  user: string;
-  status: "Active" | "Inactive";
-};
+type LibraryCard = {
+  id: string
+  name: string
+  class: string
+  status: "Active" | "Inactive"
+  startDate: string
+  endDate: string
+}
 
-// Main Component
+const libraryCardData: LibraryCard[] = [
+  { id: "LC001", name: "John Doe", class: "1st Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC002", name: "Jane Smith", class: "2nd Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC003", name: "Alice Johnson", class: "3rd Standard", status: "Inactive", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC004", name: "Bob Williams", class: "4th Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC005", name: "Charlie Brown", class: "5th Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC006", name: "Diana Clark", class: "1st Standard", status: "Inactive", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC007", name: "Ethan Davis", class: "2nd Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC008", name: "Fiona Miller", class: "3rd Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC009", name: "George Wilson", class: "4th Standard", status: "Active", startDate: "2023-01-01", endDate: "2023-12-31" },
+  { id: "LC010", name: "Hannah Moore", class: "5th Standard", status: "Inactive", startDate: "2023-01-01", endDate: "2023-12-31" },
+]
+
 export default function LibraryCard() {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [classTableData, setClassTableData] = useState<Details[]>([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState<LibraryCard | null>(null)
+  const router = useRouter()
 
-  const router = useRouter();
-
-  // New Data to Add (Example)
-  const newData: Details[] = [
-    {
-      id: "card_1",
-      user: "Hwazkr",
-      status: "Active",
-    },
-    {
-      id: "card_2",
-      user: "Psaxqu",
-      status: "Inactive",
-    },
-    {
-      id: "card_3",
-      user: "Uetskw",
-      status: "Active",
-    },
-    {
-      id: "card_4",
-      user: "Bkrjdi",
-      status: "Active",
-    },
-    {
-      id: "card_5",
-      user: "Vnzxkr",
-      status: "Inactive",
-    },
-    {
-      id: "card_6",
-      user: "Gtwfji",
-      status: "Active",
-    },
-    {
-      id: "card_7",
-      user: "Mheczo",
-      status: "Inactive",
-    },
-    {
-      id: "card_8",
-      user: "Zxtpqi",
-      status: "Active",
-    },
-    {
-      id: "card_9",
-      user: "Uqynwe",
-      status: "Inactive",
-    },
-    {
-      id: "card_10",
-      user: "Kaqjzp",
-      status: "Active",
-    },
-    {
-      id: "card_11",
-      user: "Fgrptl",
-      status: "Inactive",
-    },
-    {
-      id: "card_12",
-      user: "Jlhxzw",
-      status: "Active",
-    },
-    {
-      id: "card_13",
-      user: "Yqwlsc",
-      status: "Inactive",
-    },
-    {
-      id: "card_14",
-      user: "Cbmwvn",
-      status: "Active",
-    },
-    {
-      id: "card_15",
-      user: "Lrcpdk",
-      status: "Inactive",
-    },
-  ];
-  
-
-  // Fetch data from API
-  // useEffect(() => {
-  //   const fetchLibraryCards = async () => {
-  //     try {
-  //       const response = await axiosInstance.get("/get_all_library_cards/");
-  //       const data = response.data.map((item: any) => ({
-  //         id: item.library_card_no,
-  //         user: item.user_id, // Adjust if needed
-  //         status: item.library_card_status === "Active" ? "Active" : "Inactive",
-  //       }));
-
-  //       // Adding additional records to existing data
-  //       setClassTableData([...data, ...newData]); // Merging old data with new data
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching library cards:", error);
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchLibraryCards();
-  // }, []);
-
-  // Class columns
-  const classColumns: ColumnDef<Details>[] = [
-    {
-      id: "Sno",
-      header: "S. No",
-      cell: ({ row }) => (
-        <Button variant="link" onClick={() => navigateToDetails(row.original.user)}>
-          {row.index + 1}
-        </Button>
-      ),
-    },
+  const columns: ColumnDef<LibraryCard>[] = [
     {
       accessorKey: "id",
-      header: ({ column }) => (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          Library Card Id <ArrowUpDown className="ml-2 h-4 w-4" />
+      header: "Card ID",
+      cell: ({ row }) => (
+        <Button variant="link" onClick={() => navigateToDetails(row.original.id)}>
+          {row.original.id}
         </Button>
       ),
-      cell: ({ row }) => row.getValue("id"),
     },
     {
-      accessorKey: "user",
+      accessorKey: "name",
       header: ({ column }) => (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          User Id <ArrowUpDown className="ml-2 h-4 w-4" />
+          Name <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
-      cell: ({ row }) => row.getValue("user"),
+    },
+    {
+      accessorKey: "class",
+      header: ({ column }) => (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Class <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
     },
     {
       accessorKey: "status",
       header: "Status",
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("status")}</div>
+      cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
+    },
+    {
+      accessorKey: "startDate",
+      header: ({ column }) => (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Start Date <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+    },
+    {
+      accessorKey: "endDate",
+      header: ({ column }) => (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          End Date <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
       ),
     },
     {
@@ -201,102 +137,208 @@ export default function LibraryCard() {
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side="right" align="start">
+          <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => handleClassEditClick(row.original)}>
+            <DropdownMenuItem onClick={() => handleEditClick(row.original)}>
               Edit
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
     },
-  ];
+  ]
 
-  const classTable = useReactTable({
-    data: newData,
-    columns: classColumns,
+  const table = useReactTable({
+    data: libraryCardData,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    state: { sorting, columnFilters, columnVisibility },
-  });
-
-  const handleClassEditClick = (classItem: Details) => {
-    // Handle edit logic if necessary
-  };
+    state: {
+      sorting,
+      columnFilters,
+    },
+  })
 
   const navigateToDetails = (id: string) => {
-    router.push(`/library/libraryCardDetails/${id}`);
-  };
+    router.push(`/library/libraryCardDetails/${id}`)
+  }
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  const handleEditClick = (card: LibraryCard) => {
+    setSelectedCard(card)
+    setIsDialogOpen(true)
+  }
 
   return (
-  <div className="space-y-6">
-  {/* Title Section */}
-  <h2 className="text-xl font-semibold">Library Cards</h2>
-
-  {/* Search Bar */}
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-    <div className="col-span-12 lg:col-span-6">
-      <Input
-        placeholder="Filter by name..."
-        value={(classTable.getColumn("user")?.getFilterValue() as string) ?? ""}
-        onChange={(e) => classTable.getColumn("user")?.setFilterValue(e.target.value)}
-        className="w-full sm:max-w-sm"
-      />
-    </div>
-  </div>
-
-  {/* Table Section */}
-  <div className="grid grid-cols-12 gap-4">
-    <div className="col-span-12">
-      <Table>
-        <TableHeader>
-          {classTable.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead
-                  key={header.id}
-                  className="bg-gray-200 dark:bg-gray-800"
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {classTable.getRowModel().rows.length ? (
-            classTable.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+    <div className=" ">
+      <h2 className="text-2xl font-bold mb-4">Library Cards</h2>
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter by name..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <Button variant="outline" className="ml-auto" onClick={() => {}}>
+          <Download className="mr-2 h-4 w-4" />
+          Export
+        </Button>
+      </div>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
                 ))}
               </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell
-                colSpan={classColumns.length}
-                className="h-24 text-center"
-              >
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
-  </div>
-</div>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
 
-  );
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit Library Card</DialogTitle>
+            <DialogDescription>
+              Make changes to the library card details here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          {selectedCard && (
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="name" className="text-right">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  defaultValue={selectedCard.name}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="class" className="text-right">
+                  Class
+                </Label>
+                <Select defaultValue={selectedCard.class}>
+                  <SelectTrigger className="col-span-3">
+                    <SelectValue placeholder="Select class" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="1st Standard">1st Standard</SelectItem>
+                      <SelectItem value="2nd Standard">2nd Standard</SelectItem>
+                      <SelectItem value="3rd Standard">3rd Standard</SelectItem>
+                      <SelectItem value="4th Standard">4th Standard</SelectItem>
+                      <SelectItem value="5th Standard">5th Standard</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="status" className="text-right">
+                  Status
+                </Label>
+                <Select defaultValue={selectedCard.status}>
+                  <SelectTrigger className="col-span-3">
+                    <SelectValue placeholder="Select status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="Active">Active</SelectItem>
+                      <SelectItem value="Inactive">Inactive</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="startDate" className="text-right">
+                  Start Date
+                </Label>
+                <Input
+                  id="startDate"
+                  type="date"
+                  defaultValue={selectedCard.startDate}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="endDate" className="text-right">
+                  End Date
+                </Label>
+                <Input
+                  id="endDate"
+                  type="date"
+                  defaultValue={selectedCard.endDate}
+                  className="col-span-3"
+                />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button type="submit" onClick={() => setIsDialogOpen(false)}>
+              Save changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
 }
+

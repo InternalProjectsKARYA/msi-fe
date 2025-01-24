@@ -305,57 +305,36 @@ const handleEditProfile =() => {
     </CardHeader>
   </Card>
 
-  <Card className="flex flex-col md:flex-row items-center md:items-start gap-4 pt-6 pl-6 space-x-4 shadow-md rounded-lg bg-card text-card-foreground">
-      {/* Chart Section */}
-      <CardContent className="flex justify-center items-center w-full md:w-1/3">
-        <ChartContainer
-          config={{
-            completed: { color: chartColors.completed },
-            pending: { color: chartColors.pending },
-          }}
-          className="aspect-square h-[110px] w-[120px]"
-        >
-          <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie
-              data={[
-                { name: "Completed", value: 95, fill: chartColors.completed },
-                { name: "Pending", value: 5, fill: chartColors.pending },
-              ]}
-              dataKey="value"
-              innerRadius={35}
-              outerRadius={55}
-              strokeWidth={3}
-            />
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
+  <Card className="flex flex-col md:flex-row items-center justify-center gap-4 p-0  shadow-md rounded-lg bg-card text-card-foreground w-full max-w-sm mx-auto">
+  {/* Chart Section */}
+  <CardContent className="flex flex-col justify-center items-center w-full p-0">
+    <CardHeader className="p-0">
+      <CardTitle className="text-lg font-semibold text-center">Syllabus</CardTitle>
+    </CardHeader>
+    <ChartContainer
+      config={{
+        completed: { color: chartColors.completed },
+        pending: { color: chartColors.pending },
+      }}
+      className="aspect-square h-[20vh] w-auto p-0"
+    >
+      <PieChart>
+        <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+        <Pie
+          data={[
+            { name: "Completed", value: 95, fill: chartColors.completed },
+            { name: "Pending", value: 5, fill: chartColors.pending },
+          ]}
+          dataKey="value"
+          innerRadius={35}
+          outerRadius={55}
+          strokeWidth={3}
+        />
+      </PieChart>
+    </ChartContainer>
+  </CardContent>
+</Card>
 
-      {/* Details Section */}
-      <div className="flex flex-col gap-2 items-center md:items-start w-full mt-3 md:w-2/3">
-        <CardHeader className="p-0">
-          <CardTitle className="text-lg font-semibold">Syllabus</CardTitle>
-        </CardHeader>
-        <div className="flex items-center gap-2">
-          <span
-            className="inline-block w-3 h-3 rounded-full"
-            style={{ backgroundColor: chartColors.completed }}
-          ></span>
-          <p className="text-sm">
-            <strong>Completed:</strong> 95%
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span
-            className="inline-block w-3 h-3 rounded-full"
-            style={{ backgroundColor: chartColors.pending }}
-          ></span>
-          <p className="text-sm">
-            <strong>Pending:</strong> 5%
-          </p>
-        </div>
-      </div>
-    </Card>
 
 
   {/* Info Cards */}

@@ -190,20 +190,20 @@ const BirthdayCard: React.FC = () => {
           className="absolute inset-0 w-full h-full z-0" 
           style={{ pointerEvents: 'none' }}
         />
-        <div className="relative z-10">
-          <div className="flex flex-col items-center">
+        <div className="relative z-10 ">
+          <div className="flex flex-col gap-4 items-center">
             <div>
-            <Avatar  className='h-[15vh] w-auto'>
+            <Avatar  className='h-[16vh] w-auto'>
       <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
             </div>
    
-            <h1 className="text-3xl font-bold text-white mb-2 text-center z-10">Happy Birthday</h1>
-            <h2 className="text-xl text-white  mb-4 text-center z-10">Muskaan </h2>
-            <p className="text-white  text-center mb-6 z-10">
+            <h1 className="text-3xl font-bold text-white   text-center z-10">Happy Birthday</h1>
+            <h2 className="text-xl text-white   text-center z-10">Muskaan </h2>
+            {/* <p className="text-white  text-center mb-6 z-10">
               Wishing you a day filled with joy, laughter, and unforgettable moments. May this year bring you success, happiness, and all the wonderful things you deserve!
-            </p>
+            </p> */}
          
           </div>
         </div>

@@ -159,7 +159,11 @@ const Navbar = () => {
   }, []);
  
   const handleLoginClick = () => {
-    router.push("/Auth/login");
+    router.push("/myschoolitaly");
+    setTimeout(() => {
+      router.push("/Auth/login");
+    }, 3000);
+   
   };
   useEffect(() => {
     AOS.init({

@@ -185,8 +185,8 @@ export function AppSidebar() {
     {
       sectionLabel: "Exams",
       items: [
-        { label: "Exam stats", href: "/exam-stats", icon: <FileText className="h-4 w-4" /> },
-        { label: "Exam Management", href: "/exams", icon: <FileText className="h-4 w-4" /> },
+        { label: "Exam stats", href: "/admin-examreports", icon: <FileText className="h-4 w-4" /> },
+        // { label: "Exam Management", href: "/exams", icon: <FileText className="h-4 w-4" /> },
         { label: "Report Card", href: "/report-cards", icon: <FileText className="h-4 w-4" /> },
       ],
     },

@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
       <header className=' z-50 sticky bg-white dark:bg-black dark:shadow top-0'>
         <Header />
         </header>
-        <div className="flex-1   p-5">{children}   </div> 
+        <div className="flex-1   ">{children}   </div> 
         {/* <Footer />   */}
   
 

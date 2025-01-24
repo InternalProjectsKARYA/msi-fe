@@ -183,7 +183,7 @@ const performerData = {
   ],
   starStudents: [
     {
-      name: "Muskaan MD",
+      name: "Mahima",
       subject: "History",
       grade: "A+",
       score: "96%",
@@ -1016,16 +1016,17 @@ const chartConfigGraph = {
 
             </div> */}
 
-            <div>
-              <BirthdayCard />
-            </div>
+<div className='cursor-pointer' onClick={() => router.push('./birthdaycards')}>
+  <BirthdayCard />
+</div>
+
   
     <Card>
                 <CardHeader className='p-4 pl-5 bg-[#f9dddf] dark:bg-neutral-800'>
                   <h1 className="font-semibold md:text-xl">Quick Links</h1>
                 </CardHeader>
               
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 py-8">
                 {QuickLinks.map((item, index) => (
                 <div
                   key={index}

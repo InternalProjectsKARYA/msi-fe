@@ -98,7 +98,7 @@ export default function ForgotPassword() {
  
            <CardContent className="p-2 sm:p-4 md:p-6">
             <div className=" text-center  pb-8">
-            <h2 className="text-4xl font-bold mb-6hidden lg:block">Welcome  Back! 👋</h2>
+            <h2 className="text-lg sm:text-xl md:text-xl lg:text-3xl font-bold mb-6hidden lg:block whitespace-nowrap">Welcome Back! 👋</h2>
             <p className=" ">Please sign in to your account</p>
             </div>
          
@@ -110,7 +110,7 @@ export default function ForgotPassword() {
                      placeholder="Email address"
                      value={email}
                      onChange={(e) => setEmail(e.target.value)}
-                     className="h-10 sm:h-11 md:h-12"
+                     className=""
                    />
                  </div>
                  <div className="flex flex-col space-y-1 relative">
@@ -120,12 +120,12 @@ export default function ForgotPassword() {
                      placeholder="Password"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
-                     className="h-10 sm:h-11 md:h-12"
+                     className="   "
                    />
                    <button
                      type="button"
                      onClick={() => setShowPassword(!showPassword)}  
-                     className="absolute right-3 top-2 sm:top-3 md:top-3 text-gray-500"
+                     className="absolute right-3 top-2 sm:top-1 md:top-1 text-gray-500"
                    >
                      {showPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}  
                    </button>

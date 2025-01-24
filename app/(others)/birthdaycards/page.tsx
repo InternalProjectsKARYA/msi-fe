@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Gift } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useEffect, useState } from "react"
 
 const wishesData = [
   {
@@ -75,6 +76,14 @@ const wishesData = [
 
 // Confetti component for decorative elements
 const Confetti = () => {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+    }
+  }, []);
+
   return (
     <div className="absolute inset-0 pointer-events-none">
       {[...Array(30)].map((_, i) => (
@@ -84,7 +93,7 @@ const Confetti = () => {
           initial={{
             opacity: 0,
             scale: 0,
-            x: Math.random() * window.innerWidth,
+            x: Math.random() * windowWidth,   
             y: -20,
           }}
           animate={{
@@ -101,14 +110,17 @@ const Confetti = () => {
         >
           <div
             className={`w-2 h-2 rounded-sm rotate-${Math.random() * 360} ${
-              ["bg-blue-400", "bg-red-400", "bg-yellow-400", "bg-green-400"][Math.floor(Math.random() * 4)]
+              ["bg-blue-400", "bg-red-400", "bg-yellow-400", "bg-green-400"][
+                Math.floor(Math.random() * 4)
+              ]
             }`}
           />
         </motion.div>
       ))}
     </div>
-  )
-}
+  );
+};
+
 
 const WishCard = ({ name, occasion, imageUrl, variant, pattern }) => {
   const patternStyle = {

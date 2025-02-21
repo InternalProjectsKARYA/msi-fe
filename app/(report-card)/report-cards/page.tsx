@@ -216,7 +216,14 @@ export default function AdvancedStudentResultsTable() {
   const handleTestClick = (studentId: string, testName: string) => {
     router.push(`/students/${studentId}/tests/${testName}`)
   }
+  const [userRole, setUserRole] = useState<string | null>(null);
+  
 
+  useEffect(() => {
+    // Retrieve the user role from localStorage
+    const storedRole = localStorage.getItem("userRole");
+    setUserRole(storedRole);
+  }, []);
   const calculateOverallPercentage = (grades: Student["grades"]) => {
     const gradeMapping: { [key: string]: number } = {
       "A++": 95, "A+": 90, "A": 85, "B+": 80, "B": 75, "C": 65, "D": 55, "F": 40
@@ -241,9 +248,12 @@ export default function AdvancedStudentResultsTable() {
             </div>
             <Dialog open={isAddExamReportDialogOpen} onOpenChange={setIsAddExamReportDialogOpen}>
               <DialogTrigger asChild>
-                <Button onClick={() => setIsAddExamReportDialogOpen(true)}>
-                  <Plus className="mr-2 h-4 w-4" /> Add Exam Report
-                </Button>
+               
+                {userRole === "admin" || userRole ==="teacher"  && (
+         <Button onClick={() => setIsAddExamReportDialogOpen(true)}>
+          Add Exam Report
+       </Button>
+      )}
               </DialogTrigger>
               <DialogContent className="sm:max-w-[625px]">
                 <DialogHeader>

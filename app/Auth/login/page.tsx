@@ -43,31 +43,72 @@ export default function ForgotPassword() {
 
   const handleLogin = async () => {
     if (!email) {
-      toast.error('Please enter any email to login');
+      toast.error("Please enter an email");
       return;
-    } else if (!password){
-      toast.error('Please enter any password to login');
+    } else if (!password) {
+      toast.error("Please enter a password");
       return;
     }
-
-   
-
-    setLoading(true);
-    router.push('/admin-dashboard');
-    toast.success('Login Successful');
-    setLoading(false); 
+  
+    // Password Check
+    if (password !== "School@55") {
+      toast.error("Invalid Password");
+      return;
+    }
+  
+    // Role-based authentication
+    const roles: { [key: string]: string } = {
+      "admin@gmail.com": "admin",
+      "student@gmail.com": "student", 
+      "teacher@gmail.com": "teacher",
+      "librarian@gmail.com": "librarian",
+      "accountant@gmail.com": "accountant",
+    };
+  
+    const userRole = roles[email];
+  
+    if (!userRole) {
+      toast.error("Invalid email or role not assigned");
+      return;
+    }
+  
+    // Store credentials in localStorage
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userRole", userRole);
+  
+    toast.success("Login Successful");
+  
+    // Redirect based on role
+    switch (userRole) {
+      case "admin":
+        router.push("/admin-dashboard");
+        break;
+      case "student":
+        router.push("/student-dashboard");
+        break;
+      case "teacher":
+        router.push("/teacher-dashboard");
+        break;
+      case "librarian":
+        router.push("/library");
+        break;
+      case "accountant":
+        router.push("/feeDetails");
+        break;
+      default:
+        router.push("/");
+    }
   };
+  
 
   return (
     <> 
-     <div className="absolute inset-0 z-0">
-        <AuroraBackgroundDemo />
-      </div>
+    
       <div className="flex flex-col items-center justify-center min-h-screen relative px-4">
      
      <Card className="relative z-10 flex w-full sm:w-[80%] md:w-[90%] lg:w-[80%] xl:w-[70%] h-auto sm:h-auto md:h-[60vh] flex-col md:flex-row overflow-hidden">
        {/* Image Column - Hidden on mobile and tablet, visible on larger screens */}
-       <div className="hidden lg:block relative w-full lg:w-[60%] h-full overflow-hidden">
+       <div className="hidden lg:block relative w-full lg:w-[60%] h-full overflow-hidden z-50">
          <Image
            src={MyImage}
            alt="School background"
@@ -88,6 +129,9 @@ export default function ForgotPassword() {
  
        {/* Login Form - Full width on mobile and tablet, partial width on larger screens */}
        <div className="flex items-center justify-center w-full lg:w-[40%] p-3 sm:p-5 md:p-8">
+       <div className="absolute inset-0 z-0">
+        <AuroraBackgroundDemo />
+      </div>
          <div className={`${styles.animateSlideIn} w-full max-w-md`}>
            <CardHeader className="text-center pt-3 sm:pt-4 md:pt-6 lg:hidden">
              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl font-bold mb-2" > MyschoolItaly</h1>
@@ -97,35 +141,55 @@ export default function ForgotPassword() {
            </CardHeader>
  
            <CardContent className="p-2 sm:p-4 md:p-6">
-            <div className=" text-center  pb-8">
-            <h2 className="text-lg sm:text-xl md:text-xl lg:text-3xl font-bold mb-6hidden lg:block whitespace-nowrap">Welcome Back! 👋</h2>
-            <p className=" ">Please sign in to your account</p>
-            </div>
+           <div className="text-center pb-8">
+  <h2 className="text-lg sm:text-xl md:text-xl lg:text-3xl font-bold mb-2 lg:block whitespace-nowrap">
+    Welcome Back! 👋
+  </h2>
+  <p className="">Please sign in to your account</p>
+
+  {/* ✅ List of Emails and Common Password in Two Columns */}
+  <div className="mt-4 text-xs text-gray-500 grid grid-cols-2 gap-x-6 gap-y-1 text-left justify-center max-w-sm mx-auto whitespace-nowrap">
+    <p><strong>Admin:</strong> admin@gmail.com</p>
+    <p><strong>Teacher:</strong> teacher@gmail.com</p>
+    <p><strong>Student:</strong> student@gmail.com</p>
+    <p><strong>Librarian:</strong> librarian@gmail.com</p>
+    <p><strong>Accountant:</strong> accountant@gmail.com</p>
+  </div>
+
+  {/* 🔒 Common Password Below */}
+  <p className="mt-2 text-xs text-gray-600">
+    <strong>🔒 Common Password:</strong> <span className="font-mono">School@55</span>
+  </p>
+</div>
+
+
+
+
          
              <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} onKeyDown={handleKeyDown}>
                <div className="grid w-full items-center gap-3 sm:gap-4 md:gap-6">
-                 <div className="flex flex-col space-y-1">
+                 <div className="flex flex-col space-y-1 z-50">
                    <Input
                      id="email"
                      placeholder="Email address"
                      value={email}
                      onChange={(e) => setEmail(e.target.value)}
-                     className=""
+                     className="z-50"
                    />
                  </div>
-                 <div className="flex flex-col space-y-1 relative">
+                 <div className="flex flex-col space-y-1 relative z-50">
                    <Input
                      id="password"
                      type={showPassword ? 'text' : 'password'}  
                      placeholder="Password"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
-                     className="   "
+                     className=" z-50  "
                    />
                    <button
                      type="button"
                      onClick={() => setShowPassword(!showPassword)}  
-                     className="absolute right-3 top-2 sm:top-1 md:top-1 text-gray-500"
+                     className="absolute right-3 top-2 sm:top-1 md:top-1 text-gray-500 z-50"
                    >
                      {showPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}  
                    </button>

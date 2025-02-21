@@ -3,11 +3,11 @@
 import React, { useEffect,useState, useRef } from "react";
 import { Book, Calendar, GraduationCap, Languages, Menu, Users, Utensils, X } from "lucide-react";
 import Image from "next/image";
-import MyImage from "../public/school2.jpg";
+import MyImage from "../public/myschool10.webp";
 import Link from "next/link";
-import BookImage from "../public/student3.jpg";
-import BookImageSecond from '../public/student1.jpg';
-import MiddleImage from '../public/student1.jpg'
+import BookImage from "../public/MYSCHOOL14.webp";
+import BookImageSecond from '../public/my-school-italy-1.webp';
+import MiddleImage from '../public/my-school-italy-1.webp'
  
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -18,7 +18,7 @@ import AOS from 'aos';
 import Logo from '../public/logoitaly.jpeg';
  
 import 'aos/dist/aos.css';
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
  
  
 // Menu items
@@ -162,7 +162,7 @@ const Navbar = () => {
     router.push("/myschoolitaly");
     setTimeout(() => {
       router.push("/Auth/login");
-    }, 3000);
+    }, 5000);
    
   };
   useEffect(() => {
@@ -194,7 +194,7 @@ const Navbar = () => {
     width={150} // Adjust width for better alignment
     height={120} // Adjust height for better alignment
   />
-   {/* <span className="text-white dark:text-white text-2xl">My School Italy</span> */}
+   {/* <span className="text-white dark:text-white text-2xl">My School ITALY</span> */}
 </Link>
  
  
@@ -291,7 +291,7 @@ const Navbar = () => {
         <div className="absolute inset-0 flex flex-col justify-center items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto">
           <div    >
           <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-md ">
-            Welcome to My School Italy
+            Welcome to My School ITALY
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
             A place where excellence meets education. Join us to build a brighter future for your child.
@@ -352,12 +352,12 @@ const Navbar = () => {
         <div className="h-[2px] w-36 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
      
         <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
-          My School Italy is a <span className="text-orange-500">trusted & leading institution.</span>
+          My School ITALY is a <span className="text-orange-500">trusted & leading institution.</span>
        
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          My School Italy School is dedicated to providing top-notch education with an emphasis on
-          My School Italy School is dedicated to providing top-notch education with an emphasis on
+          My School ITALY School is dedicated to providing top-notch education with an emphasis on
+          My School ITALY School is dedicated to providing top-notch education with an emphasis on
           holistic development. Our skilled educators and well-structured curriculum aim to nurture
           creativity, critical thinking, and excellence. Join us to shape your child's bright future.
         </p>
@@ -372,15 +372,15 @@ const Navbar = () => {
     <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
       {/* Left Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
-        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About My School Italy</h5>
+        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About My School ITALY</h5>
         <div className="h-[2px] w-44 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
   
         <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
           A Place Where <span className="text-orange-500 ">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          My School Italy School is committed to providing exceptional education that nurtures
-          My School Italy School is committed to providing exceptional education that nurtures
+          My School ITALY School is committed to providing exceptional education that nurtures
+          My School ITALY School is committed to providing exceptional education that nurtures
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
         </p>
@@ -611,7 +611,7 @@ const Navbar = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full"
-        title="My School Italy Solutions Location"
+        title="My School ITALY Solutions Location"
       ></iframe>
     </section>
  

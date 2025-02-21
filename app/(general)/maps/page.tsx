@@ -1,7 +1,7 @@
 "use client";
 
 import WorldMap from "@/components/ui/world-map";
-import { motion } from "motion/react";
+ 
 
 export default function WorldMapDemo() {
   return (
@@ -11,15 +11,13 @@ export default function WorldMapDemo() {
     Our{" "}
     <span className="text-neutral-400">
       {"Branches".split("").map((word, idx) => (
-        <motion.span
+        <span
           key={idx}
           className="inline-block"
-          initial={{ x: -10, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: idx * 0.04 }}
+       
         >
           {word}
-        </motion.span>
+        </span>
       ))}
     </span>
   </p>

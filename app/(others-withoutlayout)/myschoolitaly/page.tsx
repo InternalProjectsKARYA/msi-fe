@@ -8,7 +8,7 @@ export default function SparklesPreview() {
   return (
     <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden ">
       <div className="md:text-2xl text-sm lg:text-3xl font-bold text-center text-white  relative z-20" >
-        <FallingTextAnimation text="MySchoolItaly" /> 
+        <FallingTextAnimation text="MySchoolITALY" /> 
       </div>
       <div className="w-[90rem] h-40 relative">
         {/* Gradients */}

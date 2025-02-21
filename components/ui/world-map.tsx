@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "motion/react";
+ 
 import DottedMap from "dotted-map";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -65,7 +65,7 @@ export default function WorldMap({
           const endPoint = projectPoint(dot.end.lat, dot.end.lng);
           return (
             <g key={`path-group-${i}`}>
-              <motion.path
+              <div
                 d={createCurvedPath(startPoint, endPoint)}
                 fill="none"
                 stroke="url(#path-gradient)"
@@ -82,7 +82,7 @@ export default function WorldMap({
                   ease: "easeOut",
                 }}
                 key={`start-upper-${i}`}
-              ></motion.path>
+              ></div>
             </g>
           );
         })}

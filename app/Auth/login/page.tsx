@@ -106,7 +106,7 @@ export default function ForgotPassword() {
     
       <div className="flex flex-col items-center justify-center min-h-screen relative px-4">
      
-     <Card className="relative z-10 flex w-full sm:w-[80%] md:w-[90%] lg:w-[80%] xl:w-[70%] h-auto sm:h-auto md:h-[60vh] flex-col md:flex-row overflow-hidden">
+     <Card className="relative z-10 flex w-full sm:w-[80%] md:w-[90%] lg:w-[80%] xl:w-[70%]  h-[80vh] sm:h-auto md:h-[80vh] flex-col md:flex-row overflow-hidden">
        {/* Image Column - Hidden on mobile and tablet, visible on larger screens */}
        <div className="hidden lg:block relative w-full lg:w-[60%] h-full overflow-hidden z-50">
          <Image
@@ -119,7 +119,7 @@ export default function ForgotPassword() {
          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50 rounded-l-lg"></div>
          <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center space-y-4">
            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white whitespace-nowrap animateSlideIn">
-              MyschoolItaly
+              MyschoolITALY
            </h1>
            <p className="text-xl lg:text-2xl font-semibold text-white mt-2 animateFadeIn">
              Sign in to access your dashboard
@@ -134,7 +134,7 @@ export default function ForgotPassword() {
       </div>
          <div className={`${styles.animateSlideIn} w-full max-w-md`}>
            <CardHeader className="text-center pt-3 sm:pt-4 md:pt-6 lg:hidden">
-             <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl font-bold mb-2" > MyschoolItaly</h1>
+             <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl font-bold mb-2" > MyschoolITALY</h1>
              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-4">
                Sign in to access your dashboard
              </p>
@@ -157,9 +157,9 @@ export default function ForgotPassword() {
   </div>
 
   {/* 🔒 Common Password Below */}
-  <p className="mt-2 text-xs text-gray-600">
+  {/* <p className="mt-2 text-xs text-gray-600">
     <strong>🔒 Common Password:</strong> <span className="font-mono">School@55</span>
-  </p>
+  </p> */}
 </div>
 
 
@@ -181,7 +181,7 @@ export default function ForgotPassword() {
                    <Input
                      id="password"
                      type={showPassword ? 'text' : 'password'}  
-                     placeholder="Password"
+                     placeholder="Password: School@55"
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      className=" z-50  "

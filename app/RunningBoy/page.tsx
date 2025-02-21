@@ -18,7 +18,7 @@ const RunningBoy: React.FC<RunningBoyProps> = ({ className }) => {
   }
 
   return (
-    <div className={`fixed bottom-0 w-full h-[14vh] overflow-hidden ${className}`}>
+    <div className={`fixed bottom-0 w-full h-[10vh] overflow-hidden ${className}`}>
       <video
         className="absolute h-full w-full"
         src="/videos/boybg.webm" 

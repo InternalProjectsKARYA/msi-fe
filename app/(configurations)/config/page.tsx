@@ -44,7 +44,7 @@ const Config = () => {
   // Static form data replacing API integration
   const [formData, setFormData] = useState({
     plain_password: "MySchoolItaly@123",
-    school_name: "My School Itay",
+    school_name: "My School ITALY",
     school_email: "info@myschoolitaly.com",
     school_contact: "+91 9876534321",
     days_180_flag: false,

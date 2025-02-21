@@ -96,7 +96,7 @@ const StudentLeaveRequests = () => {
       placeholder="Search..."
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
-      className="max-w-xs"
+      className="max-w-xs bg-[#b6e1f3]"
     />
   </div>
 
@@ -105,7 +105,7 @@ const StudentLeaveRequests = () => {
     <Card className="rounded-md border overflow-x-auto">
       <Table className="table-auto w-full min-w-full">
         <TableHeader>
-          <TableRow className="bg-gray-200">
+          <TableRow className="bg-[#ffebb0]">
             <TableHead className="whitespace-nowrap">Student ID</TableHead>
             <TableHead className="whitespace-nowrap">Student Name</TableHead>
             <TableHead className="whitespace-nowrap">Leave Type</TableHead>
@@ -118,7 +118,7 @@ const StudentLeaveRequests = () => {
             <TableHead className="whitespace-nowrap">Action</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="bg-[#fff9e6]">
           {paginatedData.map((request) => (
             <TableRow key={request.id}>
               <TableCell className="whitespace-nowrap">{request.studentId}</TableCell>
@@ -181,6 +181,7 @@ const StudentLeaveRequests = () => {
         size="sm"
         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
         disabled={currentPage === 1}
+        className="bg-[#b6e1f3]"
       >
         Previous
       </Button>
@@ -201,6 +202,7 @@ const StudentLeaveRequests = () => {
           setCurrentPage((prev) => Math.min(prev + 1, totalPages))
         }
         disabled={currentPage === totalPages}
+        className="bg-[#159ED9]"
       >
         Next
       </Button>

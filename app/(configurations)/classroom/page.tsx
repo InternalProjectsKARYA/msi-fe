@@ -156,7 +156,7 @@ export default function Section() {
           onChange={(event) =>
             table.getColumn("class_standards")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm bg-[#f4b9bc]"
         />
         <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
           <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -177,14 +177,14 @@ export default function Section() {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} >
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 text-black" >
+                  <TableHead key={header.id} className="bg-[#d5e2c5] text-black" >
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#f2f6ec]">
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>

@@ -330,7 +330,7 @@ const FeeDetails = () => {
           onChange={(event) =>
             table.getColumn("adminNo")?.setFilterValue(event.target.value)
           }
-          className="w-full sm:max-w-sm"
+          className="w-full sm:max-w-sm bg-[#b6e1f3]"
         />
       </div>
     </div>
@@ -345,7 +345,7 @@ const FeeDetails = () => {
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="bg-gray-200 dark:bg-gray-800"
+                    className="bg-[#f6dabd] dark:bg-gray-800"
                   >
                     {header.isPlaceholder
                       ? null
@@ -358,7 +358,7 @@ const FeeDetails = () => {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className='bg-[#fcf3ea]'>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
@@ -392,6 +392,7 @@ const FeeDetails = () => {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className='bg-[#b6e1f3]'
           >
             Previous
           </Button>
@@ -400,6 +401,7 @@ const FeeDetails = () => {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className='bg-[#159ED9]'
           >
             Next
           </Button>

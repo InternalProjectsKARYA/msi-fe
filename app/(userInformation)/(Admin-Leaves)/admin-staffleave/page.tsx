@@ -169,7 +169,7 @@ const StaffLeaveRequests = () => {
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="max-w-xs"
+        className="max-w-xs bg-[#ebf1e3]"
       />
     </div>
   
@@ -178,7 +178,7 @@ const StaffLeaveRequests = () => {
       <Card className="rounded-md border overflow-x-auto">
         <Table className="table-auto w-full min-w-full">
           <TableHeader>
-            <TableRow className="bg-gray-200">
+            <TableRow className="bg-[#c0b9cc]">
               <TableHead>Staff ID</TableHead>
               <TableHead>Staff Name</TableHead>
               <TableHead>Leave Type</TableHead>
@@ -191,7 +191,7 @@ const StaffLeaveRequests = () => {
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#ebe8ef]">
             {paginatedData.map((request) => (
               <TableRow key={request.id}>
                 <TableCell>{request.staffId}</TableCell>
@@ -254,6 +254,7 @@ const StaffLeaveRequests = () => {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
+          className="bg-[#b6e1f3]"
         >
           Previous
         </Button>
@@ -274,6 +275,7 @@ const StaffLeaveRequests = () => {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
+          className="bg-[#159ED9]"
         >
           Next
         </Button>

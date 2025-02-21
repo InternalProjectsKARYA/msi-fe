@@ -150,13 +150,13 @@ const TeacherAttendance = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="max-w-sm"
+              className="max-w-sm bg-[#e8f5fb]"
             />
               </div>
               <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" className="bg-[#ebe8ef]">
                   Filter by Department <ChevronDown className="  h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -173,18 +173,18 @@ const TeacherAttendance = () => {
           </div>
         </div>
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-[#f6dabd]">
             {tableInstance.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 text-black text-left">
+                  <TableHead key={header.id} className=" text-black text-left">
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#fcf3ea]">
             {tableInstance.getRowModel().rows.length ? (
               tableInstance.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
@@ -217,6 +217,7 @@ const TeacherAttendance = () => {
             size="sm"
             onClick={() => tableInstance.previousPage()}
             disabled={!tableInstance.getCanPreviousPage()}
+            className="bg-[#b6e1f3]"
           >
             Previous
           </Button>
@@ -225,6 +226,7 @@ const TeacherAttendance = () => {
             size="sm"
             onClick={() => tableInstance.nextPage()}
             disabled={!tableInstance.getCanNextPage()}
+            className="bg-[#159ED9]"
           >
             Next
           </Button>

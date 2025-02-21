@@ -198,7 +198,7 @@ export default function BookAndSectionTables() {
       <div className="col-span-12 lg:col-span-6">
         <Input
           placeholder="Filter by Book Name..."
-          className="w-full sm:max-w-sm"
+          className="w-full sm:max-w-sm bg-[#f4b9bc]"
         />
       </div>
   
@@ -215,7 +215,7 @@ export default function BookAndSectionTables() {
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-12">
         <Table>
-          <TableHeader className="bg-gray-200">
+          <TableHeader className="bg-[#d5e2c5]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -226,7 +226,7 @@ export default function BookAndSectionTables() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#f2f6ec]">
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (

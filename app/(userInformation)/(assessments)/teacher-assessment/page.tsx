@@ -156,7 +156,7 @@ export default function StudentAssessmentTable() {
           <div className="w-full mb-4">
             <Input
               placeholder="Search by student name..."
-              className="max-w-sm"
+              className="max-w-sm bg-[#e1dde6]"
             />
           </div>
           <Table>
@@ -164,7 +164,7 @@ export default function StudentAssessmentTable() {
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-gray-200 dark:bg-neutral-900">
+                    <TableHead key={header.id} className=" bg-[#ffebb0]">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -176,7 +176,7 @@ export default function StudentAssessmentTable() {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-[#fff9e6]">
               {table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>

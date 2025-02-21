@@ -184,7 +184,7 @@ export default function Policy() {
               onChange={(event) =>
                 table.getColumn("police_description")?.setFilterValue(event.target.value)
               }
-              className="max-w-sm"
+              className="max-w-sm bg-[#c0b9cc]"
             />
             <DropdownMenu>
               <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
@@ -218,7 +218,7 @@ export default function Policy() {
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
-                      <TableHead key={header.id} className="bg-gray-200 text-black">
+                      <TableHead key={header.id} className="bg-[#f6dabd] text-black">
                         {header.isPlaceholder
                           ? null
                           : flexRender(header.column.columnDef.header, header.getContext())}
@@ -227,7 +227,7 @@ export default function Policy() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody>
+              <TableBody className='bg-[#fcf3ea]'>
                 {table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (

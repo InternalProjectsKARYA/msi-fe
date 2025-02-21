@@ -341,11 +341,11 @@ export default function AdvancedStudentResultsTable() {
       <div className="flex items-center justify-between">
         {/* <h2 className="text-xl font-bold">Student Results</h2> */}
         <div className="flex items-center space-x-2">
-          <Select onValueChange={(value) => setSelectedClass(value)}>
-            <SelectTrigger className="w-[180px]">
+          <Select onValueChange={(value) => setSelectedClass(value)} >
+            <SelectTrigger className="w-[180px] bg-[#f6dabd]">
               <SelectValue placeholder="Select class" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className=' bg-[#f6dabd]'>
               <SelectItem value="10A">Class 10A</SelectItem>
               <SelectItem value="10B">Class 10B</SelectItem>
               <SelectItem value="10C">Class 10C</SelectItem>
@@ -355,14 +355,14 @@ export default function AdvancedStudentResultsTable() {
             placeholder="Search by name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-[200px]"
+            className="w-[200px] bg-[#c0b9cc]"
           />
         </div>
       </div>
 
       <div className="rounded-md border">
         <Table>
-          <TableHeader className='bg-gray-200'>
+          <TableHeader className='bg-[#d5e2c5]'>
             <TableRow>
               <TableHead>Roll No</TableHead>
               <TableHead>Student</TableHead>
@@ -376,7 +376,7 @@ export default function AdvancedStudentResultsTable() {
               <TableHead>Overall %</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className='bg-[#f2f6ec]'>
             {currentStudents.map((student) => (
               <TableRow key={student.id}>
                 <TableCell>{student.rollNo}</TableCell>
@@ -419,6 +419,7 @@ export default function AdvancedStudentResultsTable() {
             variant="outline"
             onClick={() => setCurrentPage(page => Math.max(1, page - 1))}
             disabled={currentPage === 1}
+            className='bg-[#b6e1f3]'
           >
             <ChevronLeft className="h-4 w-4" />
             Previous
@@ -427,6 +428,7 @@ export default function AdvancedStudentResultsTable() {
             variant="outline"
             onClick={() => setCurrentPage(page => Math.min(totalPages, page + 1))}
             disabled={currentPage === totalPages}
+            className='bg-[#159ED9]'
           >
             Next
             <ChevronRight className="h-4 w-4" />

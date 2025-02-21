@@ -208,7 +208,7 @@ export default function CatalogManagement() {
       <div className="col-span-12 lg:col-span-6">
         <Input
           placeholder="Filter by Catalog Type..."
-          className="w-full sm:max-w-sm"
+          className="w-full sm:max-w-sm bg-[#f6dabd]"
         />
       </div>
   
@@ -225,7 +225,7 @@ export default function CatalogManagement() {
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-12">
         <Table>
-          <TableHeader className="bg-gray-200">
+          <TableHeader className="bg-[#b6e1f3]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -236,7 +236,7 @@ export default function CatalogManagement() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#e8f5fb]">
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (

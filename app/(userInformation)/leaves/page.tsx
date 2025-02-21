@@ -242,7 +242,7 @@ function StudentLeaves() {
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-[#fbeddf]"
       />
     </div>
 
@@ -250,7 +250,7 @@ function StudentLeaves() {
     <Card className="overflow-x-auto">
       <Table>
         <TableHeader>
-          <TableRow className="bg-gray-200 dark:bg-neutral-200">
+          <TableRow className="bg-[#b6e1f3] dark:bg-neutral-200">
             <TableHead>Name</TableHead>
             <TableHead>Leave Type</TableHead>
             <TableHead>From</TableHead>
@@ -259,7 +259,7 @@ function StudentLeaves() {
             <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="bg-[#e8f5fb]">
           {paginatedData.map((leave) => (
             <TableRow key={leave.id}>
               <TableCell>{leave.name}</TableCell>
@@ -300,6 +300,7 @@ function StudentLeaves() {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
+          className="bg-[#b6e1f3]"
         >
           Previous
         </Button>
@@ -320,6 +321,7 @@ function StudentLeaves() {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
+          className="bg-[#159ED9]"
         >
           Next
         </Button>

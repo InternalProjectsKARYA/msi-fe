@@ -414,7 +414,7 @@ export default function BookAssign() {
           placeholder="Filter by Book..."
           value={(classTable.getColumn("book_id")?.getFilterValue() as string) ?? ""}
           onChange={(e) => classTable.getColumn("book_id")?.setFilterValue(e.target.value)}
-          className="w-full sm:max-w-sm"
+          className="w-full sm:max-w-sm bg-[#c0b9cc]"
         />
       </div>
   
@@ -436,13 +436,13 @@ export default function BookAssign() {
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-12">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-[#f6dabd]">
             {classTable.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="bg-gray-200 dark:bg-gray-800"
+                    className=" dark:bg-gray-800"
                   >
                     {header.isPlaceholder
                       ? null
@@ -452,7 +452,7 @@ export default function BookAssign() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#fcf3ea]">
             {classTable.getRowModel().rows.length ? (
               classTable.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>

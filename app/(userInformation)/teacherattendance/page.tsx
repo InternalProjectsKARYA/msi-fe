@@ -89,33 +89,34 @@ const CustomToolbar = ({ date, onNavigate, onView }) => {
 const events = [
   {
     title: "Late",
-    start: new Date(2024, 11, 3),
-    end: new Date(2024, 11, 3),
+    start: new Date(2025, 1, 3), // February 3, 2025
+    end: new Date(2025, 1, 3),
     status: "Late",
     color: "#FFD8A8", // Lightened orange
   },
   {
     title: "On Time",
-    start: new Date(2024, 11, 9),
-    end: new Date(2024, 11, 9),
+    start: new Date(2025, 1, 9), // February 9, 2025
+    end: new Date(2025, 1, 9),
     status: "On Time",
     color: "#B6E7B0", // Lightened green
   },
   {
     title: "Absent",
-    start: new Date(2024, 11, 5),
-    end: new Date(2024, 11, 5),
+    start: new Date(2025, 1, 5), // February 5, 2025
+    end: new Date(2025, 1, 5),
     status: "Absent",
     color: "#FFA07A", // Lightened red
   },
   {
     title: "Holiday",
-    start: new Date(2024, 11, 6),
-    end: new Date(2024, 11, 6),
+    start: new Date(2025, 1, 6), // February 6, 2025
+    end: new Date(2025, 1, 6),
     status: "Holiday",
     color: "#A3C6D9", // Lightened blue
   },
 ];
+
 
 
 const CustomEvent = ({ event }) => (
@@ -387,7 +388,7 @@ export default  function TeacherAttendance() {
               events={events}
               startAccessor="start"
               endAccessor="end"
-              className="dark:bg-gray-800 rounded"
+              className="bg-[#fcf3ea] rounded"
               style={{ height: "100%", padding: "10px" }}
               views={["month", "week", "day"]}
               view={view}

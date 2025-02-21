@@ -154,6 +154,7 @@ export default function TeachersGridAndList() {
                 key={teacher.id}
                 data-aos="fade-up"
                 data-aos-duration={`${300 + index * 100}`}
+                className="bg-[#f9dddf]"
               >
                 <CardHeader className="flex flex-row justify-between items-center">
                   <Badge variant={teacher.status === "Active" ? "default" : "secondary"}>
@@ -197,7 +198,7 @@ export default function TeachersGridAndList() {
         <TabsContent value="list">
           <Card>
             <Table>
-              <TableHeader>
+              <TableHeader className="bg-[#f4b9bc]">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
@@ -213,7 +214,7 @@ export default function TeachersGridAndList() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody>
+              <TableBody className="bg-[#fbe9ea]">
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row, index) => (
                     <TableRow

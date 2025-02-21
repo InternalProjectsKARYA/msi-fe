@@ -182,7 +182,7 @@ export default function LibraryCard() {
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm bg-[#ffebb0]"
         />
         <Button variant="outline" className="ml-auto" onClick={() => {}}>
           <Download className="mr-2 h-4 w-4" />
@@ -191,7 +191,7 @@ export default function LibraryCard() {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-[#c0b9cc]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -207,7 +207,7 @@ export default function LibraryCard() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#ebe8ef]">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

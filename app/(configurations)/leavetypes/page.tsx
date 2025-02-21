@@ -184,7 +184,7 @@ export default function LeaveTypeSettings() {
             onChange={(event) =>
               table.getColumn("leave_name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm"
+            className="max-w-sm bg-[#d5e2c5]"
           />
 
 
@@ -206,7 +206,7 @@ export default function LeaveTypeSettings() {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 text-black">
+                  <TableHead key={header.id} className="bg-[#f4b9bc] text-black">
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -215,7 +215,7 @@ export default function LeaveTypeSettings() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#fbe9ea]">
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>

@@ -65,9 +65,9 @@ export default function SchoolPayrollComponent() {
             setSearchTerm(e.target.value);
             setCurrentPage(1); // Reset to first page when searching
           }}
-          className="sm:w-72"
+          className="sm:w-72 bg-[#fff9e6]"
         />
-        <Button variant="outline">
+        <Button variant="outline" className="bg-[#fbe9ea]">
           Total: $53,32,000 /-
         </Button>
       </div>
@@ -78,7 +78,7 @@ export default function SchoolPayrollComponent() {
           <PopoverTrigger asChild>
             <Button
               variant="outline"
-              className={`w-full sm:w-64 justify-start text-left font-normal ${
+              className={`w-full sm:w-64 justify-start text-left font-normal bg-[#c0b9cc] ${
                 !selectedMonth && "text-muted-foreground"
               }`}
             >
@@ -103,7 +103,7 @@ export default function SchoolPayrollComponent() {
             </div>
           </PopoverContent>
         </Popover>
-        <Button variant="outline">
+        <Button variant="outline" className="bg-[#f6dabd]">
           <Download className="h-4 w-4 mr-2" />
           Generate Report
         </Button>
@@ -114,7 +114,7 @@ export default function SchoolPayrollComponent() {
     <Card className="rounded-md w-full">
       <Table>
         <TableHeader>
-          <TableRow className="bg-gray-200">
+          <TableRow className="bg-[#b6e1f3]">
             <TableHead>Name</TableHead>
             <TableHead>Position</TableHead>
             <TableHead className="text-right">Salary</TableHead>
@@ -124,7 +124,7 @@ export default function SchoolPayrollComponent() {
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="bg-[#e8f5fb]">
           {paginatedData.map((staff) => (
             <TableRow key={staff.id}>
               <TableCell>{staff.name}</TableCell>
@@ -159,6 +159,7 @@ export default function SchoolPayrollComponent() {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
+          className="bg-[#b6e1f3]"
         >
           Previous
         </Button>
@@ -177,6 +178,7 @@ export default function SchoolPayrollComponent() {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
+          className="bg-[#159ED9]"
         >
           Next
         </Button>

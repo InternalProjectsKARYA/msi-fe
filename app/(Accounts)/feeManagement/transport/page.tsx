@@ -191,14 +191,14 @@ function Transport() {
               placeholder="Search by route..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full lg:w-1/3"
+              className="w-full lg:w-1/3 bg-[#f4b9bc]"
             />
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
             <Table>
-              <TableHeader className="bg-gray-200 dark:bg-gray-800">
+              <TableHeader className="bg-[#ffebb0] dark:bg-gray-800">
                 <TableRow>
                   <TableHead>Transport ID</TableHead>
                   <TableHead>Route</TableHead>
@@ -207,7 +207,7 @@ function Transport() {
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>
+              <TableBody className="bg-[#fff9e6]">
                 {filteredData.length > 0 ? (
                   filteredData.map((row) => (
                     <TableRow key={row.transport_id}>

@@ -155,13 +155,13 @@ const StaffAttendance = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="max-w-sm"
+              className="max-w-sm bg-[#ebf1e3]"
             />
             </div>
             <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" className="bg-[#fbeddf]">
                   Filter by Department <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -184,14 +184,14 @@ const StaffAttendance = () => {
             {tableInstance.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-gray-200 text-black text-left">
+                  <TableHead key={header.id} className="bg-[#b6e1f3] text-black text-left">
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-[#e8f5fb]">
             {tableInstance.getRowModel().rows.length ? (
               tableInstance.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
@@ -224,6 +224,7 @@ const StaffAttendance = () => {
             size="sm"
             onClick={() => tableInstance.previousPage()}
             disabled={!tableInstance.getCanPreviousPage()}
+            className="bg-[#b6e1f3]"
           >
             Previous
           </Button>
@@ -232,6 +233,7 @@ const StaffAttendance = () => {
             size="sm"
             onClick={() => tableInstance.nextPage()}
             disabled={!tableInstance.getCanNextPage()}
+            className="bg-[#159ED9]"
           >
             Next
           </Button>

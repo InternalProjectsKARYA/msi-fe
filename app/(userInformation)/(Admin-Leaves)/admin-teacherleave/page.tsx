@@ -241,7 +241,7 @@ const AdminTeacherAttendance = () => {
         placeholder="Search by name ..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="max-w-xs"
+        className="max-w-xs bg-[#c0b9cc]"
       />
     </div>
   
@@ -251,7 +251,7 @@ const AdminTeacherAttendance = () => {
         <div className="w-full overflow-x-auto">
           <Table className="table-auto min-w-full">
             <TableHeader>
-              <TableRow className="bg-[#f9dddf]">
+              <TableRow className="bg-[#f4b9bc]">
                 <TableHead className="whitespace-nowrap">ID</TableHead>
                 <TableHead className="whitespace-nowrap">Teacher</TableHead>
                 <TableHead className="whitespace-nowrap">Leave Type</TableHead>
@@ -264,7 +264,7 @@ const AdminTeacherAttendance = () => {
                 <TableHead className="whitespace-nowrap">Action</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-[#fbe9ea]">
               {paginatedData.map((request) => (
                 <TableRow key={request.id}>
                   <TableCell className="whitespace-nowrap">{request.teacherId}</TableCell>
@@ -328,6 +328,7 @@ const AdminTeacherAttendance = () => {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
+          className="bg-[#b6e1f3]"
         >
           Previous
         </Button>
@@ -348,6 +349,7 @@ const AdminTeacherAttendance = () => {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
+          className="bg-[#159ED9]"
         >
           Next
         </Button>

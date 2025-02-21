@@ -33,7 +33,7 @@ const ChatSidebar = ({ onChatSelect }) => {
   );
 
   return (
-    <div className="border-r rounded-lg border-gray-300 dark:bg-gray-800 bg-white p-4 h-full">
+    <div className="border-r rounded-lg border-gray-300  bg-[#fbe9ea] p-4 h-full">
       <h2 className="text-lg font-bold mb-3">All Chats</h2>
       <Input
         placeholder="Search ..."
@@ -103,7 +103,7 @@ const ChatArea = ({ selectedChat, onBack }) => {
             >
               Back
               </Button>
-    <div className="flex-1 flex flex-col p-2 dark:bg-gray-800 bg-white rounded-lg h-full">
+    <div className="flex-1 flex flex-col p-2  bg-[#fff6d9] rounded-lg h-full">
       <div className="flex-grow flex flex-col overflow-hidden">
         <CardHeader className="flex items-center justify-between">
           {/* On small screens, show a back button */}

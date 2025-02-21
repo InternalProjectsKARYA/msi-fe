@@ -76,11 +76,11 @@ const WelcomeCard = () => {
           {/* Info Cards for Students, Teachers, etc */}
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
             {/* Publishers Card */}
-            <Card className="shadow-lg rounded-md">
+            <Card className="shadow-lg rounded-md bg-[#f9dddf]">
               <CardHeader className="p-5">
                 <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex flex-row items-center">
-                    <FaBook className="ml-4 text-3xl" />
+                  <div className="flex flex-row items-center bg-[#da1e28] p-4 rounded">
+                    <FaBook className=" text-3xl text-[#f9dddf]" />
                   </div>
                   <h3 className="font-bold text-xl">Publishers</h3>
                 </div>
@@ -99,11 +99,11 @@ const WelcomeCard = () => {
             </Card>
 
             {/* Authors Card */}
-            <Card className="shadow-lg rounded-md">
+            <Card className="shadow-lg rounded-md bg-[#fff9e6]">
               <CardHeader className="p-5">
                 <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex flex-row items-center">
-                    <FaBookReader className="ml-4 text-3xl" />
+                  <div className="flex flex-row items-center p-4 rounded bg-[#ffc000]">
+                    <FaBookReader className=" text-3xl text-[#fff9e6]" />
                   </div>
                   <h3 className="font-bold text-xl">Authors</h3>
                 </div>
@@ -122,11 +122,11 @@ const WelcomeCard = () => {
             </Card>
 
             {/* Total Books Card */}
-            <Card className="shadow-lg rounded-md">
+            <Card className="shadow-lg rounded-md bg-[#f2f6ec] ">
               <CardHeader className="p-5">
                 <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex flex-row items-center">
-                    <FaBook className="ml-4 text-3xl" />
+                  <div className="flex flex-row items-center p-4 rounded bg-[#79a345]">
+                    <FaBook className=" text-3xl  text-[#f2f6ec]" />
                   </div>
                   <h3 className="font-bold text-xl">Total Books</h3>
                 </div>
@@ -145,11 +145,11 @@ const WelcomeCard = () => {
             </Card>
 
             {/* Catalog Card */}
-            <Card className="shadow-lg rounded-md">
+            <Card className="shadow-lg rounded-md bg-[#e8f5fb]">
               <CardHeader className="p-5">
                 <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex flex-row items-center">
-                    <FaChalkboardTeacher className="ml-4 text-3xl" />
+                  <div className="flex flex-row items-center p-4 bg-[#159ed9] rounded">
+                    <FaChalkboardTeacher className=" text-3xl text-[#e8f5fb]" />
                   </div>
                   <h3 className="font-bold text-xl">Catalog</h3>
                 </div>
@@ -168,11 +168,11 @@ const WelcomeCard = () => {
             </Card>
 
             {/* Book Assign Card */}
-            <Card className="shadow-lg rounded-md">
+            <Card className="shadow-lg rounded-md bg-[#fcf3ea]">
               <CardHeader className="p-5">
                 <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex flex-row items-center">
-                    <FaUsers className="ml-4 text-3xl" />
+                  <div className="flex flex-row items-center p-4 bg-[#e1872b] rounded">
+                    <FaUsers className=" text-3xl text-[#fcf3ea]" />
                   </div>
                   <h3 className="font-bold text-xl">Book Assign</h3>
                 </div>
@@ -197,7 +197,7 @@ const WelcomeCard = () => {
             <CardHeader className="p-3 px-4 text-xl font-bold">Recently added books</CardHeader>
             <div className='p-4'>
               <Table>
-                <TableHeader className='bg-gray-200 dark:bg-gray-800'>
+                <TableHeader className='bg-[#d5e2c5] dark:bg-gray-800'>
                   <TableRow>
                     <TableHead className="w-[100px]">S. No</TableHead>
                     <TableHead className="w-[200px]">Book Name</TableHead>
@@ -205,7 +205,7 @@ const WelcomeCard = () => {
                     <TableHead className="w-[300px]">Publisher Name</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className='bg-[#f2f6ec]'>
                   {recentlyAddedBooks.map((item, index) => (
                     <TableRow key={item.book_id}>
                       <TableCell className="font-medium">{index + 1}</TableCell>
@@ -233,7 +233,7 @@ const WelcomeCard = () => {
             <CardHeader className="p-3 px-4 text-xl font-bold">Books assigned to students</CardHeader>
             <div className='p-4'>
               <Table>
-                <TableHeader className='bg-gray-200 dark:bg-gray-800'>
+                <TableHeader className='bg-[#f6dabd] dark:bg-gray-800'>
                   <TableRow>
                     <TableHead className="w-[100px]">S. No</TableHead>
                     <TableHead className="w-[200px]">Book name</TableHead>
@@ -242,7 +242,7 @@ const WelcomeCard = () => {
                     <TableHead className="text-right">End date</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className='bg-[#fcf3ea]'>
                   {assignedBooks.map((item, index) => (
                     <TableRow key={item.book_id}>
                       <TableCell className="font-medium">{index + 1}</TableCell>

@@ -165,7 +165,7 @@ export default function Section() {
               onChange={(event) =>
                 table.getColumn("permission_name")?.setFilterValue(event.target.value)
               }
-              className="max-w-sm"
+              className="max-w-sm bg-[#ffebb0]"
             />
             <DropdownMenu>
               <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
@@ -194,7 +194,7 @@ export default function Section() {
                     {headerGroup.headers.map((header) => (
                       <TableHead
                         key={header.id}
-                        className="bg-gray-200 text-black"
+                        className="bg-[#c0b9cc] text-black"
                       >
                         {header.isPlaceholder
                           ? null
@@ -207,7 +207,7 @@ export default function Section() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody>
+              <TableBody className="bg-[#ebe8ef]">
                 {table.getRowModel().rows.length ? (
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id}>
@@ -241,6 +241,7 @@ export default function Section() {
               size="sm"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
+              className="bg-[#b6e1f3]"
             >
               Previous
             </Button>
@@ -249,6 +250,7 @@ export default function Section() {
               size="sm"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
+              className="bg-[#159ED9]"
             >
               Next
             </Button>

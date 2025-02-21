@@ -85,45 +85,40 @@ const CustomToolbar = ({ date, onNavigate, onView }) => {
   );
 };
 
-const events = [
-  {
-    title: "Late",
-    start: new Date(2024, 11, 3),
-    end: new Date(2024, 11, 3),
-    status: "Late",
-    color: "#FFA500",
-  },
+const attendanceEvents = [
   {
     title: "On Time",
-    start: new Date(2024, 11, 9),
-    end: new Date(2024, 11, 9),
-    status: "On Time",
-    color: "#32CD32",
+    start: new Date(2025, 1, 20, 9, 0), // Feb 20, 9:00 AM
+    end: new Date(2025, 1, 20, 9, 30),
+    status: "ontime",
+  },
+  {
+    title: "Late",
+    start: new Date(2025, 1, 21, 9, 30), // Feb 21, 9:30 AM
+    end: new Date(2025, 1, 21, 10, 0),
+    status: "late",
   },
   {
     title: "Absent",
-    start: new Date(2024, 11, 5),
-    end: new Date(2024, 11, 5),
-    status: "Absent",
-    color: "#FF6347",
-  },
-  {
-    title: "Holiday",
-    start: new Date(2024, 11, 6),
-    end: new Date(2024, 11, 6),
-    status: "Holiday",
-    color: "#4682B4",
+    start: new Date(2025, 1, 22, 9, 0), // Feb 22
+    end: new Date(2025, 1, 22, 17, 0),
+    status: "absent",
   },
 ];
 
-const CustomEvent = ({ event }) => (
-  <div
-    className="flex items-center justify-center w-full h-full text-white font-bold rounded"
-    style={{ backgroundColor: event.color }}
-  >
-    {event.status}
-  </div>
-);
+const CustomEvent = ({ event }) => {
+  const statusColors = {
+    ontime: "text-green-500 ",
+    late: "text-red-500 ",
+    absent: "text-gray-400 ",
+  };
+
+  return (
+    <div className={` rounded ${statusColors[event.status]}`}>
+      {event.title}
+    </div>
+  );
+};
 export default  function StudentAttendance() {
   const [filter, setFilter] = React.useState("Monthly"); // Toggle between "Weekly" and "Monthly"
  
@@ -342,10 +337,10 @@ export default  function StudentAttendance() {
           <div style={{ height: "75vh" }}>
             <Calendar
               localizer={localizer}
-              events={events}
+              events={attendanceEvents}
               startAccessor="start"
               endAccessor="end"
-              className="dark:bg-gray-800 rounded"
+              className="bg-[#fbe9ea] rounded"
               style={{ height: "100%", padding: "10px" }}
               views={["month", "week", "day"]}
               view={view}

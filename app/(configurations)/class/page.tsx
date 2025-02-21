@@ -239,24 +239,24 @@ const resetEditingState = () => {
               placeholder="Filter by class"
               value={(classTable.getColumn("class_standards")?.getFilterValue() as string) ?? ""}
               onChange={(e) => classTable.getColumn("class_standards")?.setFilterValue(e.target.value)}
-              className="max-w-sm"
+              className="max-w-sm bg-[#f6dabd]"
             />
             <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
               <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
                 <Download className="h-5 w-5" />
               </Button>
-              <Button onClick={() => setIsClassSheetOpen(true)} className="w-32 hover:bg-opacity-90 flex items-center space-x-2">
+              {/* <Button onClick={() => setIsClassSheetOpen(true)} className="w-32 hover:bg-opacity-90 flex items-center space-x-2">
                 <span>Add Class</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
 
           <Table>
-            <TableHeader>
+            <TableHeader >
               {classTable.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-gray-200 text-black">
+                    <TableHead key={header.id} className="bg-[#b6e1f3] text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -265,7 +265,7 @@ const resetEditingState = () => {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-[#e8f5fb]">
               {classTable.getRowModel().rows.length ? (
                 classTable.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
@@ -287,7 +287,7 @@ const resetEditingState = () => {
           </Table>
         </div>
 
-        <Sheet open={isClassSheetOpen} onOpenChange={setIsClassSheetOpen}>
+        {/* <Sheet open={isClassSheetOpen} onOpenChange={setIsClassSheetOpen}>
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Add a new Class</SheetTitle>
@@ -305,7 +305,7 @@ const resetEditingState = () => {
               </SheetClose>
             </SheetFooter>
           </SheetContent>
-        </Sheet>
+        </Sheet> */}
       </div>
 
       {/* Section Table */}
@@ -317,7 +317,7 @@ const resetEditingState = () => {
               placeholder="Filter by section"
               value={(sectionTable.getColumn("section_name")?.getFilterValue() as string) ?? ""}
               onChange={(e) => sectionTable.getColumn("section_name")?.setFilterValue(e.target.value)}
-              className="max-w-sm"
+              className="max-w-sm bg-[#c0b9cc]"
             />
             <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
               <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -334,7 +334,7 @@ const resetEditingState = () => {
               {sectionTable.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-gray-200 text-black">
+                    <TableHead key={header.id} className="bg-[#ffebb0] text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -343,7 +343,7 @@ const resetEditingState = () => {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-[#fff9e6]">
               {sectionTable.getRowModel().rows.length ? (
                 sectionTable.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>

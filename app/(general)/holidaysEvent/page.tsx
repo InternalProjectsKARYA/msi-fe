@@ -339,7 +339,7 @@ const EventCalendar = () => {
           <div style={{ height: "75vh", marginTop: "10px" }}>
             <Calendar
               localizer={localizer}
-              events={holidays}
+              // events={holidays}
               startAccessor="start"
               endAccessor="end"
               className="bg-[#e8f5fb] rounded"

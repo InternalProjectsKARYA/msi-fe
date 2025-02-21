@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardDescription,
@@ -133,6 +133,14 @@ export default function AnnouncementsList() {
     indexOfFirstItem,
     indexOfLastItem
   );
+  const [userRole, setUserRole] = useState<string | null>(null);
+ 
+
+  useEffect(() => {
+    // Retrieve the user role from localStorage
+    const storedRole = localStorage.getItem("userRole");
+    setUserRole(storedRole);
+  }, []);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -142,8 +150,8 @@ export default function AnnouncementsList() {
     <>
       <Card className="space-y-6   p-5">
       <CardHeader className="p-0">
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="text-blue-600 h-5 w-5" />
+          <CardTitle className="flex items-center gap-2 text-2xl">
+            <Calendar className="text-blue-600  " />
             Events & Announcements
           </CardTitle>
           <CardDescription>
@@ -151,16 +159,9 @@ export default function AnnouncementsList() {
           </CardDescription>
              {/* Action Buttons */}
              <div className="mt-4 sm:mt-0 sm:ml-4 flex  justify-end space-x-2">
-                <Button
-                  
-                  onClick={() => {
-                    
-                    setisEventDialogOpen(true);
-                  }}
-                   
-                >
-                  Add Events
-                </Button>
+             {userRole === "admin" || userRole ==="teacher"  && (
+        <Button onClick={() => setisEventDialogOpen(true)}>Add Events</Button>
+      )}
               </div>
         </CardHeader>
 

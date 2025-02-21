@@ -68,7 +68,14 @@ const EventCalendar = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
 
  
+  const [userRole, setUserRole] = useState<string | null>(null);
+ 
 
+  useEffect(() => {
+    // Retrieve the user role from localStorage
+    const storedRole = localStorage.getItem("userRole");
+    setUserRole(storedRole);
+  }, []);
   
   
 
@@ -93,9 +100,12 @@ const EventCalendar = () => {
               </CardDescription>
             </CardHeader>
           </div>
-          <Button onClick={handleAddEvent} className="btn w-32 bg-[#da1e28]">
-            Add Holiday
-          </Button>
+          
+          {userRole === "admin" && (
+        <Button onClick={handleAddEvent} className="btn w-32 bg-[#da1e28]">
+        Add Holiday
+      </Button>
+      )}
         </div>
         <CardContent>
           <div style={{ height: "75vh", marginTop: "10px" }}>

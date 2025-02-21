@@ -58,12 +58,25 @@ const Header: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
- 
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const role = localStorage.getItem("userRole");
+    const email = localStorage.getItem("userEmail");
+    setUserRole(role);
+    setUserEmail(email);
+  }, []);
  
 
   const handleLogout = () => {
-    router.push('/Auth/login');
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userRole");
+    setUserRole(null);
+    setUserEmail(null);
+    router.push("/Auth/login");
   };
+  
 
   const handleProfile = () => {
     router.push('/profile');
@@ -238,7 +251,7 @@ const Header: React.FC = () => {
             <Button onClick={() => router.push("/ai-chat")} className='h-8'>Ask AI</Button>
           </div>
           <ModeToggle />
-
+ 
           <DropdownMenu>
             <DropdownMenuTrigger  asChild>
             <div className="relative">
@@ -304,7 +317,7 @@ const Header: React.FC = () => {
                
                   <div className="flex items-center space-x-2 dark:text-white">
                     <span className="hidden text-black dark:text-white lg:block text-sm font-medium">
-                    <p className="font-medium">User</p>
+                    <p className="font-medium">{userRole ? userRole.toUpperCase() : "User"}</p>
                    
                     </span>
                     <Avatar className="w-6 h-6">
@@ -327,8 +340,9 @@ const Header: React.FC = () => {
                     />
                   </Avatar>
                   <div>
-                    <p className="font-medium">User</p>
-                    <p className="text-sm text-gray-500">Userexample@gmail.com</p>
+                  <p className="font-medium">{userRole ? userRole.toUpperCase() : "User"}</p>
+                  <p className="text-sm text-gray-500">{userEmail || "No Email Found"}</p>
+
                   </div>
                 </DropdownMenuLabel>
            

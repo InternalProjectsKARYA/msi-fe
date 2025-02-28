@@ -15,7 +15,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import AOS from 'aos';
-import Logo from '../../public/logoitaly.jpeg';
+import Logo from '../../public/Neuropi-logo.jpg';
  
 import 'aos/dist/aos.css';
 import { Button } from "../../components/ui/button";
@@ -67,42 +67,42 @@ const teachers = [
 ];
 const servicesData = [
   {
-    icon: <GraduationCap className="h-8 w-8 text-orange-500" />,
+    icon: <GraduationCap className="h-8 w-8 text-[#00D122]" />,
   
     title: "Special Education",
     description:
       "Providing personalized learning paths to help students with unique needs excel academically.",
   },
   {
-    icon: <Languages className="h-8 w-8 text-orange-500" />,
+    icon: <Languages className="h-8 w-8 text-[#00D122]" />,
  
     title: "Language Lessons",
     description:
       "Language classes for global communication and cultural understanding.",
   },
   {
-    icon: <Utensils className="h-8 w-8 text-orange-500" />,
+    icon: <Utensils className="h-8 w-8 text-[#00D122]" />,
    
     title: "Meals Provided",
     description:
       "Nutritious meals for students to ensure a healthy learning environment.",
   },
   {
-    icon: <Book className="h-8 w-8 text-orange-500" />,
+    icon: <Book className="h-8 w-8 text-[#00D122]" />,
     
     title: "Bookmarks",
     description:
       "Providing essential academic materials and curated content for better learning.",
   },
   {
-    icon: <Calendar className="h-8 w-8 text-orange-500" />,
+    icon: <Calendar className="h-8 w-8 text-[#00D122]" />,
     
     title: "Full Day Sessions",
     description:
       "Engaging sessions to ensure students make the most of their school hours.",
   },
   {
-    icon: <Users className="h-8 w-8 text-orange-500" />,
+    icon: <Users className="h-8 w-8 text-[#00D122]" />,
     
     title: "Meet a Volunteer",
     description:
@@ -180,43 +180,45 @@ const Navbar = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/50"></div>
  
         {/* Topbar */}
-        <div className=" absolute right-0  top-0    w-full  text-white z-50 shadow-md p-2 bg-black-900 backdrop-blur-md">
-      <div className="  flex items-center justify-between px-6 py-4">
+        <div className=" absolute right-0  top-0 px-20   w-full  text-white z-50 shadow-md p-2 bg-black backdrop-blur-md ">
+      <div className="  flex items-center justify-between   py-4  ">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-4 text-2xl font-bold tracking-wide">
+        
   <Image
     src={Logo}
     className="  "
     alt="Logo"
-    width={150} // Adjust width for better alignment
-    height={120} // Adjust height for better alignment
+    width={100} // Adjust width for better alignment
+  
   />
-   {/* <span className="text-white dark:text-white text-2xl">My School ITALY</span> */}
-</Link>
+ 
  
  
         {/* Desktop Navigation */}
-        <nav    className="hidden md:flex space-x-6 items-center" style={{ color: "white" }}>
+        <nav    className="hidden md:flex space-x-6 items-center " style={{ color: "white" }}>
           <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
             Home
           </Link>
           <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
-            About Us
+            About
           </Link>
           <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
-            Admissions
+            Our Services
+          </Link>
+          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
+           Contact Us
           </Link>
  
           {/* Login Button */}
         
           <Button
             // onClick={handleLoginClick}
-            variant={"default"}
+             
            
-          
-            className="text-m font-semibold"
+            onClick={handleLoginClick}
+            className="text-m font-semibold bg-[#00D122] hover:bg-[#029300]"
           >
-             Contact Us
+             Login
           </Button>
         
         </nav>
@@ -267,15 +269,15 @@ const Navbar = () => {
             <li>
              
               <Button
-               variant={"secondary"}
+               
                 // onClick={() => {
                 //   setIsMobileMenuOpen(false);
                 //   handleLoginClick();
                 // }}
-                className="px-6 py-2    transition duration-200 text-sm font-medium"
-               
+                className="px-6 py-2    transition duration-200 text-sm font-medium bg-[#00D122] hover:bg-[#029300]"
+                onClick={handleLoginClick}
               >
-                Contact Us
+                Login
             
               </Button>
             </li>
@@ -297,18 +299,18 @@ const Navbar = () => {
        
           <div className="mt-6 flex gap-4">
             
-              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition"    onClick={handleLoginClick}>
+              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition bg-[#00D122] hover:bg-[#029300]"    onClick={handleLoginClick}>
         
-                Login
+              Enquiry
               </Button>
             
-            <Link href="">
+            {/* <Link href="">
               <Button variant={"outline"}>
               
               Enrol Child
               </Button>
              
-            </Link>
+            </Link> */}
           </div>
         </div>
       </header>
@@ -346,10 +348,10 @@ const Navbar = () => {
       {/* Right Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-left'>
         <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About Our School</h5>
-        <div className="h-[2px] w-36 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
+        <div className="h-[2px] w-36 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
      
-        <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
-          My School ITALY is a <span className="text-orange-500">trusted & leading institution.</span>
+        <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
+          My School ITALY is a <span className="text-[#00D122]">trusted & leading institution.</span>
        
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
@@ -358,7 +360,7 @@ const Navbar = () => {
           holistic development. Our skilled educators and well-structured curriculum aim to nurture
           creativity, critical thinking, and excellence. Join us to shape your child's bright future.
         </p>
-        <Button type={"button"}  >
+        <Button type={"button"}  className="bg-[#00c9ea] hover:bg-[#014357]">
      
           Learn More
     
@@ -370,10 +372,10 @@ const Navbar = () => {
       {/* Left Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
         <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About My School ITALY</h5>
-        <div className="h-[2px] w-44 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
+        <div className="h-[2px] w-44 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
   
-        <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
-          A Place Where <span className="text-orange-500 ">Excellence Meets Education.</span>
+        <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
+          A Place Where <span className="text-[#00D122] ">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
           My School ITALY School is committed to providing exceptional education that nurtures
@@ -381,7 +383,7 @@ const Navbar = () => {
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
         </p>
-        <Button  >
+        <Button   className="bg-[#00c9ea] hover:bg-[#014357]">
       
           Discover More
       
@@ -403,8 +405,8 @@ const Navbar = () => {
    <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
       {/* Section Header */}
       <div className="text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2 dark:text-white">Our Teachers</h2>
-        <div className="h-[2px] w-52 bg-orange-500 mx-auto mb-4"></div>
+        <h2 className="text-4xl font-bold text-[#014357] mb-2 dark:text-white">Our Teachers</h2>
+        <div className="h-[2px] w-52 bg-[#00c9ea] mx-auto mb-4"></div>
      
         <p className="text-gray-600 mb-6 dark:text-white">
           Meet the incredible faculty members shaping the future of our students.
@@ -448,7 +450,7 @@ const Navbar = () => {
       {/* View All Button */}
       <div className="text-center mt-8">
        
-        <Button  variant={"default"} className="px-6 py-3    font-medium text-sm    transition">
+        <Button  variant={"default"} className="px-6 py-3    font-medium text-sm    transition bg-[#00c9ea] hover:bg-[#014357]" >
           All Teachers
         </Button>
        
@@ -459,8 +461,8 @@ const Navbar = () => {
  
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4 dark:text-black">Our Services</h2>
-        <div className="h-[2px] w-48 bg-orange-500 mb-8 mx-auto"></div>
+        <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-black">Our Services</h2>
+        <div className="h-[2px] w-48 bg-[#00c9ea] mb-3 mx-auto"></div>
  
         <p className="text-gray-600 mb-12">
           Explore the services we offer to help our students achieve excellence.
@@ -514,8 +516,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
         {/* Title */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold">Contact With Us</h2>
-          <div className="h-[2px] w-72 bg-orange-500 mx-auto my-4"></div>
+          <h2 className="text-4xl text-[#014357]  font-bold">Contact With Us</h2>
+          <div className="h-[2px] w-72 bg-[#00c9ea] mx-auto my-4"></div>
     
           <p className="text-gray-600 dark:text-white">
             Feel free to get in touch with us for any queries or information.
@@ -588,7 +590,7 @@ const Navbar = () => {
           
             <Button
              variant={"default"}
-              className="     "
+              className="    bg-[#00c9ea] hover:bg-[#014357] "
            
             >
               Send Message
@@ -612,7 +614,7 @@ const Navbar = () => {
       ></iframe>
     </section>
  
-    <footer className="bg-blue-950 text-white py-12">
+    <footer className="bg-[#014357] text-white py-12">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Candidate Info */}
         <div>
@@ -622,15 +624,15 @@ const Navbar = () => {
           </p>
           <ul className="space-y-2">
             <li className="flex items-center">
-              <span className="text-orange-500 mr-2">📍</span> Road-7, House-62, Dhaka.
+              <span className="text-[#00D122] mr-2">📍</span> Road-7, House-62, Dhaka.
            
             </li>
             <li className="flex items-center">
-              <span className="text-orange-500 mr-2">📞</span> +770 698 784 235
+              <span className="text-[#00D122] mr-2">📞</span> +770 698 784 235
           
             </li>
             <li className="flex items-center">
-              <span className="text-orange-500 mr-2">📧</span> exam@gmail.com
+              <span className="text-[#00D122] mr-2">📧</span> exam@gmail.com
            
             </li>
           </ul>
@@ -642,31 +644,31 @@ const Navbar = () => {
           <ul className="space-y-2">
             <li>
              
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Search Engine Optimization
               </a>
             </li>
             <li>
              
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Pay Per Click Management
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Real Time Analytics
               </a>
             </li>
             <li>
           
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Free SEO Analysis
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Company & Contact Info
               </a>
             </li>
@@ -681,7 +683,7 @@ const Navbar = () => {
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                
-                <a href="#" className="block text-white hover:text-orange-500 font-medium">
+                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
                   3 Ways to Transform Your Blog Into
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -691,7 +693,7 @@ const Navbar = () => {
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                 
-                <a href="#" className="block text-white hover:text-orange-500 font-medium">
+                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
                   How Important Is Design To Business
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -701,7 +703,7 @@ const Navbar = () => {
               {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
               <div>
                 
-                <a href="#" className="block text-white hover:text-orange-500 font-medium">
+                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
                   Your Small Business Web Design Solution
                 </a>
                 <p className="text-gray-400 text-sm">October 16, 2024</p>
@@ -716,31 +718,31 @@ const Navbar = () => {
           <ul className="space-y-2">
             <li>
              
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Search Engine Optimization
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Pay Per Click Management
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Real Time Analytics
               </a>
             </li>
             <li>
             
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Free SEO Analysis
               </a>
             </li>
             <li>
               
-              <a href="#" className="hover:text-orange-500 transition">
+              <a href="#" className="hover:text-[#00D122] transition">
                 Company & Contact Info
               </a>
             </li>
@@ -752,20 +754,17 @@ const Navbar = () => {
       <div className="border-t border-gray-700 mt-12 pt-6">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © Eduzone 2024. All Rights Reserved.
+            © NEUROPI 2025. All Rights Reserved.
           </p>
-          {/* <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">F</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">X</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">L</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">P</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">T</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">F</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">X</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">L</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">P</a>
-            <a href="#" className="text-orange-500 text-lg hover:text-red-700 transition">T</a>
-          </div> */}
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">N</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">E</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">U</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">R</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">O</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">P</a>
+            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">I</a> 
+          </div>
         </div>
       </div>
     </footer>

@@ -3,20 +3,19 @@
 import React, { useEffect,useState, useRef } from "react";
 import { Book, Calendar, GraduationCap, Languages, Menu, Users, Utensils, X } from "lucide-react";
 import Image from "next/image";
-import MyImage from "../../public/myschool10.webp";
+import MyImage from "../../public/student1.jpg";
 import { Link } from "react-scroll";
-import BookImage from "../../public/MYSCHOOL14.webp";
-import BookImageSecond from '../../public/my-school-italy-1.webp';
-import MiddleImage from '../../public/my-school-italy-1.webp'
-
+import BookImage from "../../public/student1.jpg";
+import BookImageSecond from '../../public/landingiamge.webp';
+import MiddleImage from '../../public/student1.jpg';
+import { MapPin, Phone, Mail } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import AOS from 'aos';
-import Logo from '../../public/Neuropi-logo.jpg';
-
+import Logo from '../../public/header.png';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -28,11 +27,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import 'aos/dist/aos.css';
-
- 
- 
- 
-// Menu items
+import BrightwheelHero from "../landingHeader/page";
+import TabsDemo from "../(content)/tabs/page";
+import { BrainCircuit, Clock, Library, Wallet } from "lucide-react";
  
 const teachers = [
   {
@@ -75,6 +72,7 @@ const teachers = [
   },
  
 ];
+
 const servicesData = [
   {
     icon: <GraduationCap className="h-8 w-8 text-[#00D122]" />,
@@ -114,30 +112,36 @@ const servicesData = [
   {
     icon: <Users className="h-8 w-8 text-[#00D122]" />,
     
-    title: "Meet a Volunteer",
+    title: "Personalized Teaching",
     description:
-      "Connect with professionals and alumni for mentoring and guidance.",
+      "Enhance learning experiences with personalized teaching tailored to each student's unique needs.",
   },
 ];
 const cardData = [
   {
-    icon: "📚",
-    title: "Free Online Course",
-    description: "Education is the best way to make a beautiful and wonderful country.",
+    icon: <BrainCircuit size={32} className="text-[#00c9ea]" />, // Neuroscience icon
+    title: "Neuroscience-Based Assessments",
+    description: "Harness the power of brain science with neuroscience-based assessments designed to measure cognitive abilities, decision-making, and behavioral patterns.",
   },
   {
-    icon: "🎓",
-    title: "Best University Teachers",
-    description: "Education is the best way to make a beautiful and wonderful country.",
+    icon: <Clock size={32} className="text-[#00c9ea]" />, // Clock icon for time-saving
+    title: "Easy to Use & Save Time",
+    description: "Our intuitive, all-in-one solution simplifies tasks and streamlines workflows, helping you save valuable time.",
   },
   {
-    icon: "🏛️",
-    title: "Awesome Environment",
-    description: "Education is the best way to make a beautiful and wonderful country.",
+    icon: <Library size={32} className="text-[#00c9ea]" />, // Library icon
+    title: "Automatic Class & Library Management",
+    description: "Streamline your development process with automatic class and library management. Eliminate manual dependency handling, reduce errors, and ensure seamless integration of required modules.",
+  },
+  {
+    icon: <Wallet size={32} className="text-[#00c9ea]" />, // Wallet icon for payroll
+    title: "Automatic Payroll Processing",
+    description: "Simplify payroll management with an automated system that ensures accurate salary calculations, tax deductions, and timely payments.",
   },
 ];
+
  
-const Navbar = () => {
+const LandingPage = () => {
  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -195,53 +199,47 @@ const Navbar = () => {
   };
   return (
     <>
-    <div className="container-fluid w-full overflow-hidden">
-      <header
-        className="relative min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: `url(${MyImage.src})` }}
-      >
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/50"></div>
- 
-        {/* Topbar */}
-        <div className=" fixed right-0  top-0 px-20   w-full  text-white z-50 shadow-md p-2 bg-black backdrop-blur-md ">
-      <div className="  flex items-center justify-between   py-4 sticky top-0  ">
-        {/* Logo */}
+<div className="container-fluid w-full overflow-hidden">
+  <div className="sticky top-0 left-0 w-full flex items-center justify-between bg-white shadow-md py-2 px-6 z-50">
+
+      
         
-  <Image
-    src={Logo}
-    className="  "
-    alt="Logo"
-    width={100} // Adjust width for better alignment
-  
-  />
- 
- 
- 
+      <Image
+        src={Logo}
+        className="  "
+        alt="Logo"
+        width={140}  
+      
+      />
+     
+    
+     <div className="  ">
         {/* Desktop Navigation */}
-        <nav    className="hidden md:flex space-x-6 items-center  z-50 " style={{ color: "white" }}>
-          <Link to="/" className="hover:text-gray-300 text-m font-semibold transition duration-500 pb-2">
+        <nav    className="hidden md:flex space-x-6 items-center   z-50 " style={{ color: "white" }}>
+          <Link to="home" 
+           activeClass="border-b-2 text-[#00D122] border-[#00D122]" 
+          className="hover:text-[#00D122] text-m text-black font-semibold transition duration-500">
             Home
           </Link>
      
   
-  <Link 
+  {/* <Link 
   to="About" 
   smooth={true} 
   duration={1000}    
   spy={true}
-  activeClass="border-b-2 border-white"  
-  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-500 pb-2"
+  activeClass="border-b-2 text-[#00D122] border-[#00D122]"  
+  className="cursor-pointer hover:text-[#00D122] text-m text-black font-semibold transition duration-500"
 >
   About
-</Link>
+</Link> */}
 <Link 
   to="Services" 
   smooth={true} 
   duration={1000} 
   spy={true}
-  activeClass="border-b-2 border-white"  
-  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-200 pb-2"
+  activeClass="border-b-2 text-[#00D122] border-[#00D122]"  
+  className="cursor-pointer hover:text-[#00D122] text-black text-m font-semibold transition duration-200 "
 >
   Our Services
 </Link>
@@ -250,8 +248,8 @@ const Navbar = () => {
   smooth={true} 
   duration={1000} 
   spy={true}
-  activeClass="border-b-2 border-white"  
-  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-200 pb-2"
+  activeClass="border-b-2 text-[#00D122] border-[#00D122]"  
+  className="cursor-pointer hover:text-[#00D122]  text-black text-m font-semibold transition duration-200"
 >
   Contact Us
 </Link>
@@ -279,22 +277,21 @@ const Navbar = () => {
           {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
         </Button>
       
-      </div>
- 
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
+
+         {/* Mobile Navigation */}
+         {isMobileMenuOpen && (
         <nav className="md:hidden bg-gray-800 border-t w-full border-gray-700">
           <ul className="flex flex-col items-center py-4 space-y-4" style={{ color: "white" }}>
             <li>
               <Link
-                href="/"
+                
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-gray-300  text-white text-lg transition"
               >
                 Home
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -302,7 +299,7 @@ const Navbar = () => {
               >
                 About Us
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/admissions"
@@ -331,12 +328,44 @@ const Navbar = () => {
           </ul>
         </nav>
       )}
+      </div>
+       
+     </div>
+ 
+      <BrightwheelHero />
+  
+      {/* <header
+        className="relative min-h-screen bg-cover bg-[#00c9ea]  bg-center"
+        style={{ backgroundImage: `url(${MyImage.src})` }}
+      >
+      
+        <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/10"></div>
+ 
+        
+        <div className=" fixed right-0  top-0 px-20   w-full  text-white z-50 shadow-2xl p-2 bg-white backdrop-blur-md ">
+      <div className="  flex items-center justify-between  my-2  sticky top-0  ">
+      
+        
+  <Image
+    src={Logo}
+    className="  "
+    alt="Logo"
+    width={100}  
+  
+  />
+ 
+
+ 
+   
+ </div>
+ 
+
     </div>
  
-        {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto ">
+       
+        <div className="absolute inset-0 flex flex-col  mt-[14%] items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto ">
           <div  className="relative"  >
-          <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-md ">
+          <h1 className="text-6xl sm:text-7xl font-bold text-white drop-shadow-md ">
             Welcome to NeuroPi
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
@@ -353,14 +382,14 @@ const Navbar = () => {
          
             
               {showForm&& ( <div
-      className="  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50  right-0"
-      onClick={handleFormClose} // Clicking outside closes the form
+   className="absolute flex items-center justify-end top-1/3 right-0 transform -translate-y-1/2 z-50"
+      onClick={handleFormClose}  
     >
       <Card
         className="relative w-[400px] bg-white shadow-lg rounded-lg p-6"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()}  
       >
-        {/* Close (X) Button */}
+    
         <button
          onClick={handleFormClose}
           className="absolute top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300"
@@ -381,7 +410,7 @@ const Navbar = () => {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" type="number" placeholder="1234567890" required />
+                <Input id="phone" type="text" placeholder="1234567890" required />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -397,7 +426,7 @@ const Navbar = () => {
               </div>
               
             </div>
-            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 mt-5">
+            <Button type="submit" className="w-full bg-[#00c9ea] hover:bg-[#00c9ea] mt-5">
                Submit
               </Button>
           </form>
@@ -406,29 +435,36 @@ const Navbar = () => {
     </div>)}
           </div>
         </div>
-      </header>
+      </header> */}
  
       {/* Cards Section */}
       <section className=" py-16">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 ">
-          {cardData.map((card, index) => (
-            <div
-              data-aos='fade-down' data-aos-duration={`${300 + index * 300}`}
-              key={index}
-              className="bg-gray-50   text-center rounded-lg shadow-lg p-6 dark:text-black"
-            >
-              <div className="text-4xl mb-4">{card.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-black">{card.title}</h3>
-              <p className="text-sm dark:text-black">{card.description}</p>
-            </div>
-          ))}
-        </div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+  {cardData.map((card, index) => (
+    <div
+      data-aos="fade-down"
+      data-aos-duration={`${300 + index * 300}`}
+      key={index}
+      className="bg-white text-center rounded-lg shadow-lg p-6 dark:text-black flex flex-col items-center"
+    >
+      {/* Centered Icon */}
+      <div className="flex items-center justify-center w-16 h-16 rounded-full   mb-4">
+        {card.icon}
+      </div>
+
+      {/* Card Content */}
+      <h3 className="text-xl font-semibold mb-2 dark:text-black">{card.title}</h3>
+      <p className="text-sm dark:text-black">{card.description}</p>
+    </div>
+  ))}
+</div>
+
       </section>
  
  <div id='About'>
  
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
-      {/* Left Image Section */}
+      {/* <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
+  
       <div data-aos='fade-right' className="flex-1">
         <Image
           src={BookImage}
@@ -438,7 +474,7 @@ const Navbar = () => {
         />
       </div>
  
-      {/* Right Text Section */}
+    
       <div className="flex-1 text-center md:text-left" data-aos='fade-left'>
         <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About Our School</h5>
         <div className="h-[2px] w-36 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
@@ -459,10 +495,10 @@ const Navbar = () => {
     
         </Button>
       </div>
-    </section>
+    </section> */}
  
     <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12" >
-      {/* Left Text Section */}
+   
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
         <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About NeuroPi</h5>
         <div className="h-[2px] w-44 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
@@ -482,8 +518,7 @@ const Navbar = () => {
       
         </Button>
       </div>
- 
-      {/* Right Image Section */}
+  
       <div className="flex-1" data-aos='fade-left'>
         <Image
           src={BookImageSecond}
@@ -495,8 +530,8 @@ const Navbar = () => {
     </section>
    
  
-   <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
-      {/* Section Header */}
+   {/* <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
+ 
       <div className="text-center">
         <h2 className="text-4xl font-bold text-[#014357] mb-2 dark:text-white">Our Teachers</h2>
         <div className="h-[2px] w-52 bg-[#00c9ea] mx-auto mb-4"></div>
@@ -505,8 +540,7 @@ const Navbar = () => {
           Meet the incredible faculty members shaping the future of our students.
         </p>
       </div>
- 
-      {/* Carousel */}
+  
       <Swiper
         spaceBetween={30}
         slidesPerView={1}
@@ -539,8 +573,7 @@ const Navbar = () => {
           </SwiperSlide>
         ))}
       </Swiper>
- 
-      {/* View All Button */}
+  
       <div className="text-center mt-8">
        
         <Button  variant={"default"} className="px-6 py-3    font-medium text-sm    transition bg-[#00c9ea] hover:bg-[#014357]" >
@@ -548,10 +581,18 @@ const Navbar = () => {
         </Button>
        
       </div>
-    </section>
+    </section> */}
  
     </div>
- 
+    <div className="flex flex-col items-center justify-center text-center my-12 mx-auto">
+  <h1 className="text-3xl font-bold text-gray-800">
+    Your Complete Childcare Software System
+  </h1>
+  {/* Bottom Border */}
+  <div className="h-[2px] w-[40%] bg-[#00c9ea] mt-2 rounded-full"></div>
+</div>
+
+ <TabsDemo />
     <section className="py-16 bg-white" id="Services">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-black">Our Services</h2>
@@ -582,7 +623,7 @@ const Navbar = () => {
             <Image
               src={MiddleImage}
               alt="Graduation"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg  "
             />
           </div>
  
@@ -605,97 +646,59 @@ const Navbar = () => {
     </section>
  
  
-    <section className="py-16 " id="Contact">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
-        {/* Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl text-[#014357]  font-bold">Contact With Us</h2>
-          <div className="h-[2px] w-72 bg-[#00c9ea] mx-auto my-4"></div>
-    
-          <p className="text-gray-600 dark:text-white">
-            Feel free to get in touch with us for any queries or information.
-          </p>
-        </div>
- 
-        {/* Contact Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Address */}
-          <div className="bg-white p-6 shadow-md rounded-md text-center">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
-                <span className="text-xl text-gray-700">📍</span>
-              </div>
-            </div>
-            <p className="text-gray-800 font-medium">100 Feet Road,Madhapur,Hyderabad</p>
-          </div>
- 
-          {/* Phone */}
-          <div className="bg-white p-6 shadow-md rounded-md text-center">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
-                <span className="text-xl text-gray-700">📞</span>
-              </div>
-            </div>
-            <p className="text-gray-800 font-medium">+91 91770 24333</p>
-     
-          </div>
- 
-          {/* Email */}
-          <div className="bg-white p-6 shadow-md rounded-md text-center">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full">
-                <span className="text-xl text-gray-700">📧</span>
-              </div>
-            </div>
-       
-            <p className="text-gray-800 font-medium">Info@karyahub.com</p>
+    <section className="py-16" id="Contact">
+  <div className="max-w-7xl mx-auto px-6 sm:px-12">
+    {/* Title */}
+    <div className="text-center mb-12">
+      <h2 className="text-4xl text-[#014357] font-bold">Connect With Us</h2>
+      <div className="h-[2px] w-72 bg-[#00c9ea] mx-auto my-4"></div>
+
+      <p className="text-gray-600 dark:text-white">
+        Feel free to get in touch with us for any queries or information.
+      </p>
+    </div>
+
+    {/* Contact Info */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {/* Address Card */}
+      <div className="bg-gradient-to-br from-white to-gray-100 p-6 shadow-lg rounded-xl space-y-5 text-center hover:scale-105 transition duration-300">
+        <div className="flex items-center justify-center mb-2">
+          <div className="w-12 h-12  bg-[#000000] text-white flex items-center justify-center rounded-full shadow-md">
+            <MapPin size={28} />
           </div>
         </div>
- 
-        {/* Contact Form */}
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Name */}
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="col-span-1 w-full p-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {/* Comments */}
-          <textarea
-            placeholder="Your Comments"
-            rows="4"
-            className="col-span-1 md:col-span-2 w-full p-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {/* Email */}
-          <input
-            type="email"
-            placeholder="Email"
-            className="col-span-1 w-full p-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {/* Website */}
-          <input
-            type="text"
-            placeholder="Website"
-            className="col-span-1 w-full p-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {/* Submit Button */}
-          <div className="col-span-1 md:col-span-2 text-center">
-          
-            <Button
-             variant={"default"}
-              className="    bg-[#00c9ea] hover:bg-[#014357] "
-           
-            >
-              Send Message
-        
-            </Button>
-          </div>
-        </form>
+        <span className="text-2xl font-semibold pb-4">Address</span>
+        <p className="text-gray-800  font-semibold text-lg">100 Feet Road, Madhapur, Hyderabad</p>
       </div>
-    </section>
-    <section className="relative w-full h-[40vh] mb-5 pb-5 max-w-7xl mx-auto">
+
+      {/* Phone Card */}
+      <div className="bg-gradient-to-br from-white to-gray-100 p-6 shadow-lg space-y-5 rounded-xl text-center hover:scale-105 transition duration-300">
+        <div className="flex items-center justify-center mb-2">
+          <div className="w-12 h-12  bg-[#000000] text-white flex items-center justify-center rounded-full shadow-md">
+            <Phone size={28} />
+          </div>
+        </div>
+        <span className="text-2xl font-semibold pb-4">Phone</span>
+        <p className="text-gray-800  font-semibold text-lg">+91 91770 24333</p>
+      </div>
+
+      {/* Email Card */}
+      <div className="bg-gradient-to-br from-white to-gray-100 p-6 shadow-lg space-y-5 rounded-xl text-center hover:scale-105 transition duration-300">
+        <div className="flex items-center justify-center mb-2">
+          <div className="w-12 h-12 bg-[#000000] text-white flex items-center justify-center rounded-full shadow-md">
+            <Mail size={28} />
+          </div>
+        </div>
+        <span className="text-2xl font-semibold pb-4">Email</span>
+        <p className="text-gray-800 font-semibold text-lg">Info@karyahub.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+    {/* <section className="relative w-full h-[40vh] mb-5 pb-5 max-w-7xl mx-auto">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.8200864367905!2d78.3761349!3d17.4683232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93c69d117a9d%3A0xcb96668338dda37c!2sMy%20School%20ITALY%20%7C%20Hitex!5e0!3m2!1sen!2sin!4v1736426341876!5m2!1sen!2sin" width="600" height="450" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d289013.4512351236!2d78.24323585499164!3d17.412608637322133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ae058f89a5%3A0xdcb857c29158809e!2sKaryahub%20Solutions%20Private%20Limited!5e1!3m2!1sen!2sin!4v1740745400625!5m2!1sen!2sin" 
+      
         width="600"
         height="450"
         style={{ border: 0 }}
@@ -705,7 +708,7 @@ const Navbar = () => {
         className="w-full h-full"
         title="NeuroPi Solutions Location"
       ></iframe>
-    </section>
+    </section> */}
  
     <footer className="bg-[#014357] text-white py-3">
      
@@ -733,6 +736,6 @@ const Navbar = () => {
   );
 };
  
-export default Navbar;
+export default LandingPage;
  
  

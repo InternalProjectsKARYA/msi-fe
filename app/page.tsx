@@ -11,17 +11,18 @@ const CountdownEffect = () => {
   const [isCounting, setIsCounting] = useState(false);
   const [showCircle, setShowCircle] = useState(true);
   const particles = useRef<any[]>([]);
-  
-  // Audio refs for countdown sounds
-  const threeSound = useRef<HTMLAudioElement | null>(null);
-  const twoSound = useRef<HTMLAudioElement | null>(null);
-  const oneSound = useRef<HTMLAudioElement | null>(null);
+  const countdownAudio = useRef<HTMLAudioElement | null>(null);
+ 
   const router = useRouter();
   useEffect(() => {
+    countdownAudio.current = new Audio("/audio/countdown.wav");  
+    countdownAudio.current.load(); // Ensure it's preloaded
     setTimeout(() => {
-    router.push('/myschoolitaly')
+    router.push('/neuropi')
     }, 6000);
   }, []);
+
+ 
 
   const baseColor = "#ffffff";
   const activeColor = "#ffffff";
@@ -129,10 +130,10 @@ const CountdownEffect = () => {
     if (isCounting) return;
     setIsCounting(true);
     setShowCircle(true);
-    
+  
     // Start with full circle (0 offset)
     setProgress(100);
-    
+  
     // Animate the progress from 100 to 0 over 3 seconds
     gsap.fromTo(
       "#progress-indicator",
@@ -143,9 +144,16 @@ const CountdownEffect = () => {
         ease: "linear"
       }
     );
-
+  
+    const playAudio = () => {
+      if (countdownAudio.current) {
+        countdownAudio.current.currentTime = 0; 
+        countdownAudio.current.play().catch((e) => console.log("Audio play error:", e));
+      }
+    };
+  
     const texts = document.querySelectorAll("#countdown span");
-    
+  
     // Enhanced animation options with straight appearance (no rotation)
     const countDownOption = { 
       opacity: 1, 
@@ -153,22 +161,18 @@ const CountdownEffect = () => {
       duration: 0.6, 
       ease: "elastic.out(1, 0.5)" // More bouncy animation
     };
-
+  
     // First number animation - straight appearance
     gsap.fromTo(texts[0], 
       { opacity: 0, scale: 7 }, 
       {
         ...countDownOption,
         onStart: () => {
-          // Play the "three" sound
-          if (threeSound.current) {
-            threeSound.current.currentTime = 0;
-            threeSound.current.play().catch(e => console.log("Audio play error:", e));
-          }
-        },
+          playAudio();  // Play audio only when "3" appears
+        }
       }
     );
-
+  
     // Second number animation - straight appearance
     gsap.fromTo(texts[1], 
       { opacity: 0, scale: 7 }, 
@@ -177,15 +181,10 @@ const CountdownEffect = () => {
         delay: 1,
         onStart: () => {
           gsap.to(texts[0], { opacity: 0, scale: 0.5, duration: 0.3 });
-          // Play the "two" sound
-          if (twoSound.current) {
-            twoSound.current.currentTime = 0;
-            twoSound.current.play().catch(e => console.log("Audio play error:", e));
-          }
         },
       }
     );
-
+  
     // Third number animation - straight appearance
     gsap.fromTo(texts[2], 
       { opacity: 0, scale: 7 }, 
@@ -194,15 +193,10 @@ const CountdownEffect = () => {
         delay: 2,
         onStart: () => {
           gsap.to(texts[1], { opacity: 0, scale: 0.5, duration: 0.3 });
-          // Play the "one" sound
-          if (oneSound.current) {
-            oneSound.current.currentTime = 0;
-            oneSound.current.play().catch(e => console.log("Audio play error:", e));
-          }
         },
       }
     );
-
+  
     // Final explosion animation
     gsap.to("#ring", {
       duration: 1,
@@ -219,6 +213,7 @@ const CountdownEffect = () => {
       },
     });
   };
+  
 
   useEffect(() => {
     initCanvas();
@@ -230,11 +225,11 @@ const CountdownEffect = () => {
     }, 500);
 
     window.addEventListener("resize", initCanvas);
-    window.addEventListener("click", countStart);
+    // window.addEventListener("click", countStart);
 
     return () => {
       window.removeEventListener("resize", initCanvas);
-      window.removeEventListener("click", countStart);
+      // window.removeEventListener("click", countStart);
     };
   }, []);
 
@@ -285,3 +280,17 @@ const CountdownEffect = () => {
 };
 
 export default CountdownEffect;
+
+
+// import React from 'react'
+// import SparklesPreview from './(others-withoutlayout)/myschoolitaly/page'
+
+// const page = () => {
+//   return (
+//     <div>
+//       <SparklesPreview />
+//     </div>
+//   )
+// }
+
+// export default page

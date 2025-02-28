@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import img from "../../../public/modify/NEURO_libriy.png"
 import gsap from "gsap";

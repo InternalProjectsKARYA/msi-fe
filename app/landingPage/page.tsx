@@ -4,11 +4,11 @@ import React, { useEffect,useState, useRef } from "react";
 import { Book, Calendar, GraduationCap, Languages, Menu, Users, Utensils, X } from "lucide-react";
 import Image from "next/image";
 import MyImage from "../../public/myschool10.webp";
-import Link from "next/link";
+import { Link } from "react-scroll";
 import BookImage from "../../public/MYSCHOOL14.webp";
 import BookImageSecond from '../../public/my-school-italy-1.webp';
 import MiddleImage from '../../public/my-school-italy-1.webp'
- 
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,9 +16,19 @@ import { Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import AOS from 'aos';
 import Logo from '../../public/Neuropi-logo.jpg';
- 
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import 'aos/dist/aos.css';
-import { Button } from "../../components/ui/button";
+
  
  
  
@@ -169,6 +179,20 @@ const Navbar = () => {
     });
   }, []);
  
+  const [showForm, setShowForm] = useState(false);
+
+  const handleLoginClicked = () => {
+    setShowForm(true);
+  };
+
+  const handleFormClose = () => {
+    setShowForm(false);
+  };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent page reload
+    console.log("Form submitted");
+    setShowForm(false); // Close form on submit
+  };
   return (
     <>
     <div className="container-fluid w-full overflow-hidden">
@@ -180,8 +204,8 @@ const Navbar = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/50"></div>
  
         {/* Topbar */}
-        <div className=" absolute right-0  top-0 px-20   w-full  text-white z-50 shadow-md p-2 bg-black backdrop-blur-md ">
-      <div className="  flex items-center justify-between   py-4  ">
+        <div className=" fixed right-0  top-0 px-20   w-full  text-white z-50 shadow-md p-2 bg-black backdrop-blur-md ">
+      <div className="  flex items-center justify-between   py-4 sticky top-0  ">
         {/* Logo */}
         
   <Image
@@ -195,20 +219,43 @@ const Navbar = () => {
  
  
         {/* Desktop Navigation */}
-        <nav    className="hidden md:flex space-x-6 items-center " style={{ color: "white" }}>
-          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
+        <nav    className="hidden md:flex space-x-6 items-center  z-50 " style={{ color: "white" }}>
+          <Link to="/" className="hover:text-gray-300 text-m font-semibold transition duration-500 pb-2">
             Home
           </Link>
-          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
-            About
-          </Link>
-          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
-            Our Services
-          </Link>
-          <Link href="/" className="hover:text-gray-300 text-m font-semibold transition duration-200">
-           Contact Us
-          </Link>
- 
+     
+  
+  <Link 
+  to="About" 
+  smooth={true} 
+  duration={1000}    
+  spy={true}
+  activeClass="border-b-2 border-white"  
+  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-500 pb-2"
+>
+  About
+</Link>
+<Link 
+  to="Services" 
+  smooth={true} 
+  duration={1000} 
+  spy={true}
+  activeClass="border-b-2 border-white"  
+  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-200 pb-2"
+>
+  Our Services
+</Link>
+<Link 
+  to="Contact" 
+  smooth={true} 
+  duration={1000} 
+  spy={true}
+  activeClass="border-b-2 border-white"  
+  className="cursor-pointer hover:text-gray-300 text-m font-semibold transition duration-200 pb-2"
+>
+  Contact Us
+</Link>
+
           {/* Login Button */}
         
           <Button
@@ -287,30 +334,76 @@ const Navbar = () => {
     </div>
  
         {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto">
-          <div    >
+        <div className="absolute inset-0 flex flex-col justify-center items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto ">
+          <div  className="relative"  >
           <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-md ">
-            Welcome to My School ITALY
+            Welcome to NeuroPi
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
             A place where excellence meets education. Join us to build a brighter future for your child.
           </p>
           </div>
        
-          <div className="mt-6 flex gap-4">
+          <div className="mt-6 flex gap-4 ">
             
-              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition bg-[#00D122] hover:bg-[#029300]"    onClick={handleLoginClick}>
+              <Button  variant="default" className="px-6 py-3   text-sm font-medium rounded   transition bg-[#00D122] hover:bg-[#029300]"    onClick={handleLoginClicked}>
         
               Enquiry
               </Button>
+         
             
-            {/* <Link href="">
-              <Button variant={"outline"}>
+              {showForm&& ( <div
+      className="  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50  right-0"
+      onClick={handleFormClose} // Clicking outside closes the form
+    >
+      <Card
+        className="relative w-[400px] bg-white shadow-lg rounded-lg p-6"
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+      >
+        {/* Close (X) Button */}
+        <button
+         onClick={handleFormClose}
+          className="absolute top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300"
+        >
+          <X className="w-5 h-5 text-gray-600" />
+        </button>
+
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">Enquiry Form</CardTitle>
+          <CardDescription>We will get in touch with you shortly</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-4 grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="name">Name</Label>
+                <Input id="name" type="text" placeholder="John Doe" required />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input id="phone" type="number" placeholder="1234567890" required />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="m@example.com" required />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="location">Location</Label>
+                <Input id="location" type="text" placeholder="City, Country" required />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="description">Description</Label>
+                <Input id="description" type="text" placeholder="Enter your message" required />
+              </div>
               
-              Enrol Child
+            </div>
+            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 mt-5">
+               Submit
               </Button>
-             
-            </Link> */}
+          </form>
+        </CardContent>
+      </Card>
+    </div>)}
           </div>
         </div>
       </header>
@@ -332,7 +425,7 @@ const Navbar = () => {
         </div>
       </section>
  
- 
+ <div id='About'>
  
       <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
       {/* Left Image Section */}
@@ -351,12 +444,12 @@ const Navbar = () => {
         <div className="h-[2px] w-36 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
      
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
-          My School ITALY is a <span className="text-[#00D122]">trusted & leading institution.</span>
+          NeuroPi is a <span className="text-[#00D122]">trusted & leading institution.</span>
        
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          My School ITALY School is dedicated to providing top-notch education with an emphasis on
-          My School ITALY School is dedicated to providing top-notch education with an emphasis on
+          NeuroPi School is dedicated to providing top-notch education with an emphasis on
+          NeuroPi School is dedicated to providing top-notch education with an emphasis on
           holistic development. Our skilled educators and well-structured curriculum aim to nurture
           creativity, critical thinking, and excellence. Join us to shape your child's bright future.
         </p>
@@ -368,18 +461,18 @@ const Navbar = () => {
       </div>
     </section>
  
-    <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
+    <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12" >
       {/* Left Text Section */}
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
-        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About My School ITALY</h5>
+        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About NeuroPi</h5>
         <div className="h-[2px] w-44 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
   
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
           A Place Where <span className="text-[#00D122] ">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          My School ITALY School is committed to providing exceptional education that nurtures
-          My School ITALY School is committed to providing exceptional education that nurtures
+          NeuroPi School is committed to providing exceptional education that nurtures
+          NeuroPi School is committed to providing exceptional education that nurtures
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
         </p>
@@ -457,9 +550,9 @@ const Navbar = () => {
       </div>
     </section>
  
+    </div>
  
- 
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white" id="Services">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-black">Our Services</h2>
         <div className="h-[2px] w-48 bg-[#00c9ea] mb-3 mx-auto"></div>
@@ -512,7 +605,7 @@ const Navbar = () => {
     </section>
  
  
-    <section className="py-16 ">
+    <section className="py-16 " id="Contact">
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
         {/* Title */}
         <div className="text-center mb-12">
@@ -533,7 +626,7 @@ const Navbar = () => {
                 <span className="text-xl text-gray-700">📍</span>
               </div>
             </div>
-            <p className="text-gray-800 font-medium">Road-12, Block-D, Ulipur Kurigram, Dhaka</p>
+            <p className="text-gray-800 font-medium">100 Feet Road,Madhapur,Hyderabad</p>
           </div>
  
           {/* Phone */}
@@ -543,7 +636,7 @@ const Navbar = () => {
                 <span className="text-xl text-gray-700">📞</span>
               </div>
             </div>
-            <p className="text-gray-800 font-medium">+088 078 968 745</p>
+            <p className="text-gray-800 font-medium">+91 91770 24333</p>
      
           </div>
  
@@ -555,7 +648,7 @@ const Navbar = () => {
               </div>
             </div>
        
-            <p className="text-gray-800 font-medium">exam@gmail.com</p>
+            <p className="text-gray-800 font-medium">Info@karyahub.com</p>
           </div>
         </div>
  
@@ -610,151 +703,18 @@ const Navbar = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full"
-        title="My School ITALY Solutions Location"
+        title="NeuroPi Solutions Location"
       ></iframe>
     </section>
  
-    <footer className="bg-[#014357] text-white py-12">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Candidate Info */}
-        <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Candidate Info</h3>
-          <p className="text-gray-300 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag.
-          </p>
-          <ul className="space-y-2">
-            <li className="flex items-center">
-              <span className="text-[#00D122] mr-2">📍</span> Road-7, House-62, Dhaka.
-           
-            </li>
-            <li className="flex items-center">
-              <span className="text-[#00D122] mr-2">📞</span> +770 698 784 235
-          
-            </li>
-            <li className="flex items-center">
-              <span className="text-[#00D122] mr-2">📧</span> exam@gmail.com
-           
-            </li>
-          </ul>
-        </div>
- 
-        {/* Quick Link */}
-        <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Quick Link</h3>
-          <ul className="space-y-2">
-            <li>
-             
-              <a href="#" className="hover:text-[#00D122] transition">
-                Search Engine Optimization
-              </a>
-            </li>
-            <li>
-             
-              <a href="#" className="hover:text-[#00D122] transition">
-                Pay Per Click Management
-              </a>
-            </li>
-            <li>
-            
-              <a href="#" className="hover:text-[#00D122] transition">
-                Real Time Analytics
-              </a>
-            </li>
-            <li>
-          
-              <a href="#" className="hover:text-[#00D122] transition">
-                Free SEO Analysis
-              </a>
-            </li>
-            <li>
-              
-              <a href="#" className="hover:text-[#00D122] transition">
-                Company & Contact Info
-              </a>
-            </li>
-          </ul>
-        </div>
- 
-        {/* Popular Post */}
-        <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Popular Post</h3>
-          <ul className="space-y-4">
-            <li className="flex space-x-4">
-              {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
-              <div>
-               
-                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
-                  3 Ways to Transform Your Blog Into
-                </a>
-                <p className="text-gray-400 text-sm">October 16, 2024</p>
-              </div>
-            </li>
-            <li className="flex space-x-4">
-              {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
-              <div>
-                
-                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
-                  How Important Is Design To Business
-                </a>
-                <p className="text-gray-400 text-sm">October 16, 2024</p>
-              </div>
-            </li>
-            <li className="flex space-x-4">
-              {/* <Image src="/placeholder.jpg" alt="Post Thumbnail" className="w-16 h-16 object-cover rounded" /> */}
-              <div>
-                
-                <a href="#" className="block text-white hover:text-[#00D122] font-medium">
-                  Your Small Business Web Design Solution
-                </a>
-                <p className="text-gray-400 text-sm">October 16, 2024</p>
-              </div>
-            </li>
-          </ul>
-        </div>
- 
-        {/* Help Link */}
-        <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: "white" }}>Help Link</h3>
-          <ul className="space-y-2">
-            <li>
-             
-              <a href="#" className="hover:text-[#00D122] transition">
-                Search Engine Optimization
-              </a>
-            </li>
-            <li>
-            
-              <a href="#" className="hover:text-[#00D122] transition">
-                Pay Per Click Management
-              </a>
-            </li>
-            <li>
-              
-              <a href="#" className="hover:text-[#00D122] transition">
-                Real Time Analytics
-              </a>
-            </li>
-            <li>
-            
-              <a href="#" className="hover:text-[#00D122] transition">
-                Free SEO Analysis
-              </a>
-            </li>
-            <li>
-              
-              <a href="#" className="hover:text-[#00D122] transition">
-                Company & Contact Info
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <footer className="bg-[#014357] text-white py-3">
+     
  
       {/* Footer Bottom */}
-      <div className="border-t border-gray-700 mt-12 pt-6">
+      <div className="border-t border-gray-700 mt-6 pt-2">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © NEUROPI 2025. All Rights Reserved.
+            © NEUROPI 2025.Powered By KARYAHUB SOLUTIONS. All Rights Reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">N</a>

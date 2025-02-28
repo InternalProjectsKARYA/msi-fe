@@ -33,15 +33,14 @@ const ChatSidebar = ({ onChatSelect }) => {
   );
 
   return (
-    <div className="border-r rounded-lg border-gray-300  bg-[#fbe9ea] p-4 h-full">
+    <div className="border-r rounded-lg border-gray-300  bg-[#e8f5fb] p-4 h-full">
       <h2 className="text-lg font-bold mb-3">All Chats</h2>
       <Input
         placeholder="Search ..."
-        className="max-w-sm mb-4"
+        className="max-w-sm mb-4 bg-white"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-
       <h3 className="text-md font-semibold my-3">Online Now</h3>
       <div className="flex space-x-2 mb-4">
         {filteredUsers.map((user) => (
@@ -83,6 +82,7 @@ const ChatSidebar = ({ onChatSelect }) => {
   );
 };
 
+ 
 /* ------------------- ChatArea ------------------- */
 const ChatArea = ({ selectedChat, onBack }) => {
   const messages = [
@@ -92,23 +92,34 @@ const ChatArea = ({ selectedChat, onBack }) => {
     // ... more
   ];
 
-  return (
+  // Track window width to determine if it's mobile
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+  const isMobile = windowWidth < 1024;
 
-    
-<>
-     <Button
-              variant="outline"
-              className=" mb-2"
-              onClick={onBack}
-            >
-              Back
-              </Button>
-    <div className="flex-1 flex flex-col p-2  bg-[#fff6d9] rounded-lg h-full">
+  return (
+    <div className="flex-1 flex flex-col p-2 bg-[#e8f5fb] rounded-lg h-full">
       <div className="flex-grow flex flex-col overflow-hidden">
         <CardHeader className="flex items-center justify-between">
-          {/* On small screens, show a back button */}
           <div className="flex items-center">
-           
+            {/* Show Back button only on mobile */}
+            {isMobile && (
+              <Button
+                variant="outline"
+                className="mr-2"
+                onClick={onBack}
+              >
+                Back
+              </Button>
+            )}
             <h2 className="text-xl font-bold flex gap-4">
               <Avatar className="h-12 w-12">
                 <AvatarImage
@@ -158,7 +169,6 @@ const ChatArea = ({ selectedChat, onBack }) => {
         <Button className="ml-2">Send</Button>
       </div>
     </div>
-    </>
   );
 };
 

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Edit2, Trash2 } from "lucide-react";
 
 const StaffLeaveRequests = () => {
-  // Sample leave requests for staff
+  // Sample leave requests for staff 
   const leaveRequests = [
     {
       id: "1",
@@ -178,7 +178,7 @@ const StaffLeaveRequests = () => {
       <Card className="rounded-md border overflow-x-auto">
         <Table className="table-auto w-full min-w-full">
           <TableHeader>
-            <TableRow className="bg-[#c0b9cc]">
+            <TableRow className="bg-[#ffebb0]">
               <TableHead>Staff ID</TableHead>
               <TableHead>Staff Name</TableHead>
               <TableHead>Leave Type</TableHead>
@@ -191,7 +191,7 @@ const StaffLeaveRequests = () => {
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="bg-[#ebe8ef]">
+          <TableBody className="bg-[#fff9e6]">
             {paginatedData.map((request) => (
               <TableRow key={request.id}>
                 <TableCell>{request.staffId}</TableCell>

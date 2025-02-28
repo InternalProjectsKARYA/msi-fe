@@ -5,6 +5,10 @@ module.exports = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    nextScriptWorkers: false,
+    turbo: {},
+  },
   devIndicators: {
     buildActivity: false,
     autoPrerender: false,

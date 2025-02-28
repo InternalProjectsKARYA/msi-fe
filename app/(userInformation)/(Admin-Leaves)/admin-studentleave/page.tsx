@@ -104,8 +104,8 @@ const StudentLeaveRequests = () => {
   <div className="col-span-12">
     <Card className="rounded-md border overflow-x-auto">
       <Table className="table-auto w-full min-w-full">
-        <TableHeader>
-          <TableRow className="bg-[#ffebb0]">
+        <TableHeader> 
+          <TableRow className="bg-[#d5e2c5]">
             <TableHead className="whitespace-nowrap">Student ID</TableHead>
             <TableHead className="whitespace-nowrap">Student Name</TableHead>
             <TableHead className="whitespace-nowrap">Leave Type</TableHead>
@@ -118,7 +118,7 @@ const StudentLeaveRequests = () => {
             <TableHead className="whitespace-nowrap">Action</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="bg-[#fff9e6]">
+        <TableBody className="bg-[#f2f6ec]">
           {paginatedData.map((request) => (
             <TableRow key={request.id}>
               <TableCell className="whitespace-nowrap">{request.studentId}</TableCell>

@@ -1,14 +1,23 @@
 "use client";
 import { FallingTextAnimation } from "@/components/ui/falling-text-animation";
 import { SparklesCore } from "@/components/ui/sparkles";
-import React from "react";
+ 
+import { useEffect, useRef, useState } from "react";
+ 
+import { useRouter } from "next/navigation";
  
 
 export default function SparklesPreview() {
+    const router = useRouter();
+   useEffect(()=> {
+      setTimeout(() => {
+        router.push("/landingPage");
+      }, 4500);
+   },[])
   return (
     <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden ">
       <div className="md:text-2xl text-sm lg:text-3xl font-bold text-center text-white  relative z-20" >
-        <FallingTextAnimation text="MySchoolITALY" /> 
+        <FallingTextAnimation text="NEUROPI" /> 
       </div>
       <div className="w-[90rem] h-40 relative">
         {/* Gradients */}

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
 import { Input } from "@/components/ui/input";
-import MyImage from '../../../public/sclnew.jpg';
+import MyImage from '../../../public/my-school-italy-1.webp';
 import styles from './login.module.css';
 import axiosInstance from '@/lib/axiosInstance';
 import { useAuthContext } from '@/lib/AuthProvider';
@@ -23,11 +23,13 @@ import { toast } from 'sonner';
 import { Toaster } from 'sonner';
 import { AuroraBackgroundDemo } from "@/app/(others-withoutlayout)/aniamtion-bg/page";
 import { Checkbox } from "@/components/ui/checkbox";
+import BackgroundGradientAnimationDemo from "@/app/(others)/bg-gradient/page";
 
 
 export default function ForgotPassword() {
   const router = useRouter();
  
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
 
   const [loading, setLoading] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -103,10 +105,14 @@ export default function ForgotPassword() {
 
   return (
     <> 
-    
+        <div className="absolute inset-0 z-0">
+        {/* <AuroraBackgroundDemo /> */}
+        {/* <AnimatedBackground /> */}
+        <BackgroundGradientAnimationDemo />
+      </div>
       <div className="flex flex-col items-center justify-center min-h-screen relative px-4">
-     
-     <Card className="relative z-10 flex w-full sm:w-[80%] md:w-[90%] lg:w-[80%] xl:w-[70%]  h-[80vh] sm:h-auto md:h-[80vh] flex-col md:flex-row overflow-hidden">
+    
+     <Card className="relative z-10 flex w-full sm:w-[74%] md:w-[74%] lg:w-[74%] xl:w-[74%]   h-[70vh] sm:h-[75vh] md:h-[75vh] flex-col md:flex-row overflow-hidden">
        {/* Image Column - Hidden on mobile and tablet, visible on larger screens */}
        <div className="hidden lg:block relative w-full lg:w-[60%] h-full overflow-hidden z-50">
          <Image
@@ -116,12 +122,12 @@ export default function ForgotPassword() {
            objectFit="cover"
            className="rounded-l-lg animateSlideTop"
          />
-         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50 rounded-l-lg"></div>
-         <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center space-y-4">
+         <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/0 rounded-l-lg"></div>
+         <div className="absolute top-1/5 pt-5 left-1/2 transform -translate-x-1/2  flex flex-col items-center justify-center text-center space-y-4">
            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white whitespace-nowrap animateSlideIn">
               MyschoolITALY
            </h1>
-           <p className="text-xl lg:text-2xl font-semibold text-white mt-2 animateFadeIn">
+           <p className="text-sm lg:text-sm font-semibold text-white mt-2 animateFadeIn">
              Sign in to access your dashboard
            </p>
          </div>
@@ -129,37 +135,34 @@ export default function ForgotPassword() {
  
        {/* Login Form - Full width on mobile and tablet, partial width on larger screens */}
        <div className="flex items-center justify-center w-full lg:w-[40%] p-3 sm:p-5 md:p-8">
-       <div className="absolute inset-0 z-0">
+       {/* <div className="absolute inset-0 z-0">
         <AuroraBackgroundDemo />
-      </div>
+      </div> */}
          <div className={`${styles.animateSlideIn} w-full max-w-md`}>
-           <CardHeader className="text-center pt-3 sm:pt-4 md:pt-6 lg:hidden">
+           {/* <CardHeader className="text-center pt-3 sm:pt-4 md:pt-6 lg:hidden">
              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl font-bold mb-2" > MyschoolITALY</h1>
              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-4">
                Sign in to access your dashboard
              </p>
-           </CardHeader>
- 
-           <CardContent className="p-2 sm:p-4 md:p-6">
-           <div className="text-center pb-8">
+           </CardHeader> */}
+           <div className="relative mb-[0px] z-10 flex justify-center">
+                <video
+                  ref={videoRef}
+                  className="w-44 h-44 rounded-full object-cover border-4 border-white shadow-lg"
+                  muted
+                  playsInline
+                >
+                  <source src="/videos/passwordHidden.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+           <CardContent className="p-2 sm:p-2 md:p-2">
+           <div className="text-center pb-6">
   <h2 className="text-lg sm:text-xl md:text-xl lg:text-3xl font-bold mb-2 lg:block whitespace-nowrap">
     Welcome Back! 👋
   </h2>
-  <p className="">Please sign in to your account</p>
-
-  {/* ✅ List of Emails and Common Password in Two Columns */}
-  <div className="mt-4 text-xs text-gray-500 grid grid-cols-2 gap-x-6 gap-y-1 text-left justify-center max-w-sm mx-auto whitespace-nowrap">
-    <p><strong>Admin:</strong> admin@gmail.com</p>
-    <p><strong>Teacher:</strong> teacher@gmail.com</p>
-    <p><strong>Student:</strong> student@gmail.com</p>
-    <p><strong>Librarian:</strong> librarian@gmail.com</p>
-    <p><strong>Accountant:</strong> accountant@gmail.com</p>
-  </div>
-
-  {/* 🔒 Common Password Below */}
-  {/* <p className="mt-2 text-xs text-gray-600">
-    <strong>🔒 Common Password:</strong> <span className="font-mono">School@55</span>
-  </p> */}
+  {/* <p className="">Please sign in to your account</p> */}
+ 
 </div>
 
 
@@ -167,7 +170,7 @@ export default function ForgotPassword() {
 
          
              <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} onKeyDown={handleKeyDown}>
-               <div className="grid w-full items-center gap-3 sm:gap-4 md:gap-6">
+               <div className="grid w-full items-center gap-3 sm:gap-4 md:gap-4">
                  <div className="flex flex-col space-y-1 z-50">
                    <Input
                      id="email"
@@ -181,10 +184,21 @@ export default function ForgotPassword() {
                    <Input
                      id="password"
                      type={showPassword ? 'text' : 'password'}  
-                     placeholder="Password: School@55"
+                     placeholder="Password "
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                      className=" z-50  "
+                     onFocus={() => {
+                 
+                      videoRef.current?.play(); // Start playing the video
+                    }}
+                    onBlur={() => {
+                   
+                      if (videoRef.current) {
+                        videoRef.current.pause(); // Pause the video
+                        videoRef.current.currentTime = 0; // Reset to the beginning
+                      }
+                    }}
                    />
                    <button
                      type="button"
@@ -197,14 +211,14 @@ export default function ForgotPassword() {
                  <div className="flex justify-between items-center w-full mx-2">
       <div className="flex items-center space-x-2">
         <Checkbox id="remember-me" />
-        <label htmlFor="remember-me" className="text-xs sm:text-sm md:text-base">
+        <label htmlFor="remember-me" className="text-xs sm:text-xs md:text-base">
           Remember Me
         </label>
       </div>
 
       <Button
         variant="link"
-        className="text-right text-xs sm:text-sm md:text-base self-end"
+        className="text-right text-xs sm:text-xs md:text-base self-end"
         onClick={(e) => {
           e.preventDefault();
           router.push("/Auth/forgotpassword");
@@ -225,7 +239,22 @@ export default function ForgotPassword() {
          </div>
        </div>
      </Card>
-     <RunningBoy />
+     <div className="   mx-auto  py-4 ">
+     
+        
+        <div className="   ">
+          <div className="flex flex-wrap space-x-6 text-xs text-gray-500 whitespace-nowrap  ">
+            <p>* NOTE:</p>
+            <p><strong>Admin:</strong> admin@gmail.com</p>
+            <p><strong>Teacher:</strong> teacher@gmail.com</p>
+            <p><strong>Student:</strong> student@gmail.com</p>
+            <p><strong>Librarian:</strong> librarian@gmail.com</p>
+            <p><strong>Accountant:</strong> accountant@gmail.com</p>
+            <p><strong>🔒 Common Password:</strong> <span className="font-mono">School@55</span></p>
+          </div>
+        </div>
+      </div>
+     {/* <RunningBoy /> */}
      <Toaster />
    </div>
    </>

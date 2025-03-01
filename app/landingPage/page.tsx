@@ -690,7 +690,7 @@ const LandingPage = () => {
           </div>
         </div>
         <span className="text-2xl font-semibold pb-4">Email</span>
-        <p className="text-gray-800 font-semibold text-lg">Info@karyahub.com</p>
+        <p className="text-gray-800 font-semibold text-lg">Info@neuropi.net</p>
       </div>
     </div>
   </div>

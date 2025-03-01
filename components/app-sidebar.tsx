@@ -313,7 +313,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../public/logosidebar.jpg";
+import Logo from "../public/Neuro pi_TEXT_11zon.jpg";
 import backgroundImage from "../public/schoolitaly.c5.jpg";
 import {
   Sidebar,
@@ -701,10 +701,10 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <div className="bg-[white]">
-      <Image src={Logo} alt="Logo" className="  mb-4" />
+      <div className="bg-white z-50   flex justify-center items-center  ">
+      <Image src={Logo} alt="Logo" className="h-14 w-40 " />
       </div>
-   
+  
       <SidebarContent>
         <Image src={backgroundImage} alt="Background" className="absolute inset-0 w-full z-0 h-full object-cover opacity-25" />
         {renderSidebarContent()}

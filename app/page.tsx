@@ -12,17 +12,38 @@ const CountdownEffect = () => {
   const [showCircle, setShowCircle] = useState(true);
   const particles = useRef<any[]>([]);
   const countdownAudio = useRef<HTMLAudioElement | null>(null);
- 
+  const [hasInteracted, setHasInteracted] = useState(false);
   const router = useRouter();
+  // useEffect(() => {
+  //   countdownAudio.current = new Audio("/audio/countdown.wav");  
+  //   countdownAudio.current.load(); // Ensure it's preloaded
+  //   setTimeout(() => {
+  //   // router.push('/neuropi')
+  //   }, 6000);
+  // }, []);
+
+  const [showButton, setShowButton] = useState(true); 
+
   useEffect(() => {
-    countdownAudio.current = new Audio("/audio/countdown.wav");  
-    countdownAudio.current.load(); // Ensure it's preloaded
+    countdownAudio.current = new Audio("/audio/countdown.wav");
+    countdownAudio.current.load(); // Preload audio
     setTimeout(() => {
-    router.push('/neuropi')
-    }, 6000);
+        router.push('/neuropi')
+        }, 6000);
+    return () => {
+      if (countdownAudio.current) {
+        countdownAudio.current.pause();
+        countdownAudio.current.currentTime = 0;
+      }
+    };
   }, []);
 
- 
+  const playAudio = () => {
+    if (countdownAudio.current) {
+      countdownAudio.current.currentTime = 0;
+      countdownAudio.current.play().catch((e) => console.error("Audio play error:", e));
+    }
+  };
 
   const baseColor = "#ffffff";
   const activeColor = "#ffffff";
@@ -126,14 +147,15 @@ const CountdownEffect = () => {
     requestAnimationFrame(frame);
   };
 
+
+
   const countStart = () => {
     if (isCounting) return;
     setIsCounting(true);
     setShowCircle(true);
-  
-    // Start with full circle (0 offset)
+    setShowButton(false);
     setProgress(100);
-  
+    playAudio();
     // Animate the progress from 100 to 0 over 3 seconds
     gsap.fromTo(
       "#progress-indicator",
@@ -144,13 +166,7 @@ const CountdownEffect = () => {
         ease: "linear"
       }
     );
-  
-    const playAudio = () => {
-      if (countdownAudio.current) {
-        countdownAudio.current.currentTime = 0; 
-        countdownAudio.current.play().catch((e) => console.log("Audio play error:", e));
-      }
-    };
+ 
   
     const texts = document.querySelectorAll("#countdown span");
   
@@ -167,9 +183,9 @@ const CountdownEffect = () => {
       { opacity: 0, scale: 7 }, 
       {
         ...countDownOption,
-        onStart: () => {
-          playAudio();  // Play audio only when "3" appears
-        }
+        // onStart: () => {
+        //   playAudio();  // Play audio only when "3" appears
+        // }
       }
     );
   
@@ -215,14 +231,15 @@ const CountdownEffect = () => {
   };
   
 
+
   useEffect(() => {
     initCanvas();
     renderParticles();
     
     // Auto-start the countdown
-    setTimeout(() => {
-      countStart();
-    }, 500);
+    // setTimeout(() => {
+    //   countStart();
+    // }, 500);
 
     window.addEventListener("resize", initCanvas);
     // window.addEventListener("click", countStart);
@@ -236,7 +253,16 @@ const CountdownEffect = () => {
   return (
     <div className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
-
+      {/* Start Countdown Button (only visible before countdown starts) */}
+      {showButton && (
+        <button
+          onClick={countStart}
+     
+          className=" bottom-20 z-50 font-bold flex justify-center items-center px-6 py-1 bg-green-500 text-black rounded-md text-lg font-semibold hover:bg-green-700 hover:text-white"
+        >
+          Launch<span className="ml-2"> 🚀</span> 
+        </button>
+      )}
       {/* SVG Circular Progress Bar - Larger size */}
       {showCircle && (
         <svg id="ring" className="absolute" width="300" height="300">

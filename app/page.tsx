@@ -27,9 +27,7 @@ const CountdownEffect = () => {
   useEffect(() => {
     countdownAudio.current = new Audio("/audio/countdown.wav");
     countdownAudio.current.load(); // Preload audio
-    setTimeout(() => {
-        router.push('/neuropi')
-        }, 6000);
+ 
     return () => {
       if (countdownAudio.current) {
         countdownAudio.current.pause();
@@ -150,6 +148,9 @@ const CountdownEffect = () => {
 
 
   const countStart = () => {
+    setTimeout(() => {
+      router.push('/neuropi')
+      }, 6000); 
     if (isCounting) return;
     setIsCounting(true);
     setShowCircle(true);

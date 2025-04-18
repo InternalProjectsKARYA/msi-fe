@@ -41,7 +41,7 @@ export default function BrightwheelHero() {
         <div className="max-w-xl">
           <p className="text-[#014357] font-medium mb-2">#1 Neuro Science based School Management System</p>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 whitespace-nowrap">
-           Welcome to NeuroPi
+           Welcome to EFANISH
           </h1>
           <p className="text-white text-xl mb-6">Innovative tools to streamline your day</p>
           
@@ -65,7 +65,7 @@ export default function BrightwheelHero() {
                     <path d="M12 8V16M8 12H16" stroke="#014357" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
-                <span className="text-gray-800"> I want NeuroPi for my school</span>
+                <span className="text-gray-800"> I want EFANISH for my school</span>
               </div>
               <ArrowRight className="text-indigo-600" />
             </Link>
@@ -91,7 +91,7 @@ export default function BrightwheelHero() {
                     />
                   </svg>
                 </div>
-                <span className="text-gray-800">My school already uses NeuroPi</span>
+                <span className="text-gray-800">My school already uses EFANISH</span>
               </div>
               <ArrowRight className="text-indigo-600" />
             </Link>
@@ -124,7 +124,7 @@ export default function BrightwheelHero() {
           </div>
 
           <p className="text-[#014357]  font-semibold">
-          Already use NeuroPi? {" "}
+          Already use EFANISH? {" "}
             <Link href="/Auth/login" className="text-white underline font-bold">
             Join your school
             </Link>
@@ -136,7 +136,7 @@ export default function BrightwheelHero() {
       <Image
         ref={firstImageRef}
         src={ImageHeader}
-        alt="NeuroPi app screenshot"
+        alt="EFANISH app screenshot"
         className="object-cover h-[60vh] w-auto"
       />
 
@@ -144,7 +144,7 @@ export default function BrightwheelHero() {
       <Image
         ref={secondImageRef}
         src={ImageHeadetwo}
-        alt="NeuroPi app screenshot"
+        alt="EFANISH app screenshot"
         className="absolute bottom-[-30%] right-0 object-cover h-[50vh] w-auto z-10"
       />
     </div>

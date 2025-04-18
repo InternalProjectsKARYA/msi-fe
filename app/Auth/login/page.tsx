@@ -125,7 +125,7 @@ export default function ForgotPassword() {
          <div className="absolute inset-0 bg-gradient-to-b from-black/100 to-black/0 rounded-l-lg"></div>
          <div className="absolute top-1/5 pt-5 left-1/2 transform -translate-x-1/2  flex flex-col items-center justify-center text-center space-y-4">
            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white whitespace-nowrap animateSlideIn">
-           NEUROPI
+           EFANISH
            </h1>
            <p className="text-sm lg:text-sm font-semibold text-white mt-2 animateFadeIn">
              Sign in to access your dashboard

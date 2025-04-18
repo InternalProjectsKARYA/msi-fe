@@ -39,18 +39,18 @@ export default function SparklesPreview() {
             <div className="relative w-80 h-60 mt-10">
         <Image
           src="/whitelogo.png"  
-          alt="NeuroPi Logo"
+          alt="EFANISH Logo"
           layout="fill"
           objectFit="contain"  
           className="rounded-lg shadow-lg"
         />
       </div>
       <div className="md:text-2xl text-sm lg:text-3xl font-bold text-center text-white relative z-20">
-        <FallingTextAnimation text="NEUROPI" />
+        <FallingTextAnimation text="EFANISH" />
 
         {/* Letter-by-letter Animation */}
         <span ref={textRef} className="text-2xl font-bold text-white">
-          {Array.from("Let's join NeuroPi for a revolutionary journey").map((letter, index) => (
+          {Array.from("Let's join EFANISH for a revolutionary journey").map((letter, index) => (
             <span key={index} className="inline-block opacity-0">
               {letter === " " ? "\u00A0" : letter}
             </span>

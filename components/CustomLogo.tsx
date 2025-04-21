@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../public/EFANISH LOGO.png';
+import logo from '../public/efanishlogo.png';
 import Image from 'next/image';
 
 const CustomLogo = ({ height, width }) => {

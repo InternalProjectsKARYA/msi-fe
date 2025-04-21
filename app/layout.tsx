@@ -44,7 +44,26 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+    <div className="flex flex-col items-center justify-center h-screen text-center px-4 text-lg font-semibold text-gray-800 bg-gradient-to-r from-orange-300 to-red-300 md:hidden">
+  <span>Please open in desktop mode for a better experience.</span>
+  <div>
+  <span> For app, open  </span>
+  <a
+     href="https://play.google.com/store"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-500 underline"
+  >
+      PlayStore
+  </a>
+  </div>
+
+</div>
+
+
+          <div className="hidden md:block">
             {children}
+          </div>
           </ThemeProvider>
           </AuthProvider>
           <Toaster />

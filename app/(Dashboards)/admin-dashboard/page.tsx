@@ -450,7 +450,7 @@ const chartConfigGraph = {
         Access to admin
       </CardDescription>
     </div>
-    <div className="w-full overflow-hidden">
+    {/* <div className="w-full overflow-hidden">
       <video
         className="w-full h-[6vh]  "
         src="/videos/boybg.webm"
@@ -465,7 +465,7 @@ const chartConfigGraph = {
         <track kind="captions" />
         Your browser does not support the video tag.
       </video>
-    </div>
+    </div> */}
   </div>
 </CardHeader>
 

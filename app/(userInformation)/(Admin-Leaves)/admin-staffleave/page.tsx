@@ -254,7 +254,7 @@ const StaffLeaveRequests = () => {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="bg-[#b6e1f3]"
+          className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors"
         >
           Previous
         </Button>
@@ -275,7 +275,7 @@ const StaffLeaveRequests = () => {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="bg-[#159ED9]"
+          className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors"
         >
           Next
         </Button>

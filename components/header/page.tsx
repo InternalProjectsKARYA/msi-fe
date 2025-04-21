@@ -227,7 +227,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between p-2 py-3.5  bg-gradient-to-r from-[#b6e1f3] to-[#159ED9] dark:from-neutral-800 dark:to-neutral-700 shadow w-full z-10 
+      <div className="flex items-center justify-between p-2 py-3.5  bg-gradient-to-r from-[#dbeafe] to-[#fecdd3] dark:from-neutral-800 dark:to-neutral-700 shadow w-full z-10 
   
       ">
         
@@ -248,9 +248,9 @@ const Header: React.FC = () => {
               placeholder="ask..."
               className="max-w-sm h-8 bg-white"
             /> */}
-            <Button onClick={() => router.push("/ai-chat")} className='h-8'>Ask AI</Button>
+            {/* <Button onClick={() => router.push("/ai-chat")} className='h-8'>Ask AI</Button> */}
           </div>
-          <ModeToggle />
+          {/* <ModeToggle /> */}
  
           <DropdownMenu>
             <DropdownMenuTrigger  asChild>

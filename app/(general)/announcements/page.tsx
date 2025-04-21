@@ -431,7 +431,9 @@ export default function AnnouncementsList() {
                 href="#"
                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                 className={
-                  currentPage === 1 ? "pointer-events-none opacity-50 bg-[#b6e1f3]" : "bg-[#b6e1f3]"
+                  currentPage === 1
+                    ? "pointer-events-none opacity-50 bg-[#dbeafe]"
+                    : "bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors "
                 }
               />
             </PaginationItem>
@@ -451,8 +453,11 @@ export default function AnnouncementsList() {
                 href="#"
                 onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                 className={
-                  currentPage === totalPages ? "pointer-events-none opacity-50 bg-[#159ED9]" : "bg-[#159ED9]"
+                  currentPage === totalPages
+                    ? "pointer-events-none opacity-50 bg-[#fecdd3]"
+                    : "bg-[#fecdd3] hover:bg-[#fda4af] transition-colors"
                 }
+                
               />
             </PaginationItem>
           </PaginationContent>

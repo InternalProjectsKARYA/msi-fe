@@ -38,7 +38,7 @@ export type Teacher = {
 }
 
 const teacherTableData: Teacher[] = [
-  { id: "A1B2", Teacher: "Nithiic:\Users\Venka Reddy\Downloads\teaching-7.pngn Reddy", Class: "10th Grade", Email: "arjunr@example.com", Phone: "9876543210", Subject: "Mathematics", status: "Active", avatar: "teaching-1.jpg" },
+  { id: "A1B2", Teacher: "Nithiin Reddy", Class: "10th Grade", Email: "arjunr@example.com", Phone: "9876543210", Subject: "Mathematics", status: "Active", avatar: "teaching-1.jpg" },
   { id: "C3D4", Teacher: "Lakshmi Menon", Class: "9th Grade", Email: "lakshmim@example.com", Phone: "9876543221", Subject: "Science", status: "Active", avatar: "teaching-2.jpg" },
   { id: "G7H8", Teacher: "Meera Nair", Class: "7th Grade", Email: "meeran@example.com", Phone: "9876543243", Subject: "History", status: "Active", avatar: "teaching-3.jpg" },
   { id: "I9J1", Teacher: "Priya ", Class: "6th Grade", Email: "rahuls@example.com", Phone: "9876543254", Subject: "Geography", status: "Active", avatar: "teaching-4.jpg" },

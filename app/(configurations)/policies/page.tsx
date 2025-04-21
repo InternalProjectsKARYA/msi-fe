@@ -247,6 +247,7 @@ export default function Policy() {
               size="sm"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
+              className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors"
             >
               Previous
             </Button>
@@ -255,6 +256,7 @@ export default function Policy() {
               size="sm"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
+              className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors"
             >
               Next
             </Button>

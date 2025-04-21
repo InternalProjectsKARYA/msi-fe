@@ -342,10 +342,10 @@ export default function AdvancedStudentResultsTable() {
         {/* <h2 className="text-xl font-bold">Student Results</h2> */}
         <div className="flex items-center space-x-2">
           <Select onValueChange={(value) => setSelectedClass(value)} >
-            <SelectTrigger className="w-[180px] bg-[#f6dabd]">
+            <SelectTrigger className="w-[180px] ">
               <SelectValue placeholder="Select class" />
             </SelectTrigger>
-            <SelectContent className=' bg-[#f6dabd]'>
+            <SelectContent className=' '>
               <SelectItem value="10A">Class 10A</SelectItem>
               <SelectItem value="10B">Class 10B</SelectItem>
               <SelectItem value="10C">Class 10C</SelectItem>
@@ -355,14 +355,14 @@ export default function AdvancedStudentResultsTable() {
             placeholder="Search by name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-[200px] bg-[#c0b9cc]"
+            className="w-[200px]"
           />
         </div>
       </div>
 
       <div className="rounded-md border">
         <Table>
-          <TableHeader className='bg-[#d5e2c5]'>
+          <TableHeader className='bg-gray-200'>
             <TableRow>
               <TableHead>Roll No</TableHead>
               <TableHead>Student</TableHead>
@@ -376,7 +376,7 @@ export default function AdvancedStudentResultsTable() {
               <TableHead>Overall %</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className='bg-[#f2f6ec]'>
+          <TableBody className=''>
             {currentStudents.map((student) => (
               <TableRow key={student.id}>
                 <TableCell>{student.rollNo}</TableCell>
@@ -419,7 +419,7 @@ export default function AdvancedStudentResultsTable() {
             variant="outline"
             onClick={() => setCurrentPage(page => Math.max(1, page - 1))}
             disabled={currentPage === 1}
-            className='bg-[#b6e1f3]'
+            className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-22"
           >
             <ChevronLeft className="h-4 w-4" />
             Previous
@@ -428,7 +428,7 @@ export default function AdvancedStudentResultsTable() {
             variant="outline"
             onClick={() => setCurrentPage(page => Math.min(totalPages, page + 1))}
             disabled={currentPage === totalPages}
-            className='bg-[#159ED9]'
+            className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-22"
           >
             Next
             <ChevronRight className="h-4 w-4" />

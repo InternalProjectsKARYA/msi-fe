@@ -33,8 +33,8 @@ const topPerformers = [
       attendance: "77.3%",
       category: "Best in Marks",
       classroom: "Room A1",  // Added classroom info
-      bgColor: "bg-green-100",
-      bg:'bg-[#fcf3ea]',
+      // bgColor: "bg-green-100",
+      // bg:'bg-[#fcf3ea]',
     },
     {
       name: "Lea Jabulani",
@@ -44,9 +44,9 @@ const topPerformers = [
       attendance: "75.3%",
       category: "Best in Attendance",
       classroom: "Room B2",  // Added classroom info
-      bgColor: "bg-orange-100",
+      // bgColor: "bg-orange-100",
       
-      bg:'bg-[#e8f5fb]',
+      // bg:'bg-[#e8f5fb]',
     },
     {
       name: "Conny Niang",
@@ -56,9 +56,9 @@ const topPerformers = [
       attendance: "80.2%",
       category: "Most Improved in Marks",
       classroom: "Room C3",  // Added classroom info
-      bgColor: "bg-pink-100",
+      // bgColor: "bg-pink-100",
       
-      bg:'bg-[#ffebb0]',
+      // bg:'bg-[#ffebb0]',
     },
     {
       name: "Yao Ming",
@@ -68,9 +68,9 @@ const topPerformers = [
       attendance: "88.8%",
       category: "Most Improved in Attendance",
       classroom: "Room D4",  // Added classroom info
-      bgColor: "bg-yellow-100",
+      // bgColor: "bg-yellow-100",
       
-      bg:'bg-[#b6e1f3]',
+      // bg:'bg-[#b6e1f3]',
     },
   ];
   
@@ -81,8 +81,8 @@ const metrics = [
     trend: "+4.5%",
     icon: Users,
     trendColor: "text-purple-600",
-    iconBg: "bg-purple-100",
-    bg:'bg-[#c0b9cc]'
+    // iconBg: "bg-purple-100",
+    // bg:'bg-[#c0b9cc]'
   },
   {
     title: "Student Exam Attendance",
@@ -90,8 +90,8 @@ const metrics = [
     trend: "+1.2%",
     icon: Calendar,
     trendColor: "text-yellow-600",
-    iconBg: "bg-yellow-100",
-      bg:'bg-[#ffc000]'
+    // iconBg: "bg-yellow-100",
+    //   bg:'bg-[#ffc000]'
   },
   {
     title: "Exam Average",
@@ -99,8 +99,8 @@ const metrics = [
     trend: "+7.2%",
     icon: GraduationCap,
     trendColor: "text-blue-600",
-    iconBg: "bg-blue-100",
-      bg:'bg-[#159ed9]'
+    // iconBg: "bg-blue-100",
+    //   bg:'bg-[#159ed9]'
   },
 ]
 const studentDetails = [
@@ -111,7 +111,7 @@ const studentDetails = [
     gpa: "77.3%",
     attendance: "GPA",
     avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yXaDkFqkxbcbjXKTqZ7hCCRp8rTMNS.png",
-    bgColor: "bg-red-100",
+    // bgColor: "bg-red-100",
   },
   {
     name: "Bianca Shangwe",
@@ -120,7 +120,7 @@ const studentDetails = [
     gpa: "67.7%",
     attendance: "GPA",
     avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yXaDkFqkxbcbjXKTqZ7hCCRp8rTMNS.png",
-    bgColor: "bg-gray-100",
+    // bgColor: "bg-gray-100",
   },
   {
     name: "Alpha Kenya",
@@ -129,7 +129,7 @@ const studentDetails = [
     gpa: "79.6%",
     attendance: "GPA",
     avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yXaDkFqkxbcbjXKTqZ7hCCRp8rTMNS.png",
-    bgColor: "bg-green-100",
+    // bgColor: "bg-green-100",
   },
 ]
 const averageScores = [
@@ -337,19 +337,19 @@ export default function StudentDashboard() {
       </CardHeader>
         <div className="grid grid-cols-2 gap-4 max-w-xs ">
           <Select>
-            <SelectTrigger  className="bg-[#c0b9cc]">
+            <SelectTrigger>
               <SelectValue placeholder="Select Year" />
             </SelectTrigger>
-            <SelectContent className="bg-[#c0b9cc]">
+            <SelectContent>
               <SelectItem value="2024">2024</SelectItem>
               <SelectItem value="2023">2023</SelectItem>
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger  className="bg-[#ffebb0]">
+            <SelectTrigger  >
               <SelectValue placeholder="Select ClassRoom" />
             </SelectTrigger>
-            <SelectContent className="bg-[#ffebb0]">
+            <SelectContent >
               {[1, 2, 3, 4, 5].map((grade) => (
                 <SelectItem key={grade} value={grade.toString()}>
                   ClassRoom {grade}
@@ -400,10 +400,10 @@ export default function StudentDashboard() {
             <CardTitle>Student Details</CardTitle>
             <div className="flex items-center gap-2">
               <Select defaultValue="1">
-                <SelectTrigger className="w-24 bg-[#f4b9bc]">
+                <SelectTrigger className="w-24 ">
                   <SelectValue placeholder="Term 1" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#f4b9bc]">
+                <SelectContent className="">
                   {[1, 2, 3, 4, 5].map((grade) => (
                     <SelectItem key={grade} value={grade.toString()}>
                       Term {grade}
@@ -436,10 +436,10 @@ export default function StudentDashboard() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Average Score</CardTitle>
             <Select defaultValue="1">
-          <SelectTrigger className="w-24 bg-[#d5e2c5]">
+          <SelectTrigger className="w-24 ">
             <SelectValue placeholder="Term 1" />
           </SelectTrigger>
-          <SelectContent className="bg-[#d5e2c5]">
+          <SelectContent className="">
             {[1, 2, 3, 4, 5].map((grade) => (
               <SelectItem key={grade} value={grade.toString()}>
                 Term {grade}

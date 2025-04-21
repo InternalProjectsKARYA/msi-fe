@@ -1,9 +1,8 @@
 import React, { ReactNode } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
- 
 import Header from '@/components/header/page';
- 
+
 
 interface LayoutProps {
   children: ReactNode;

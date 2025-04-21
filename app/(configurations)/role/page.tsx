@@ -180,7 +180,7 @@ export default function Role() {
             onChange={(event) =>
               table.getColumn("role_name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm bg-[#b6e1f3]"
+            className="max-w-sm "
           />
           <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
             <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -201,7 +201,7 @@ export default function Role() {
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-[#f6dabd] text-black">
+                    <TableHead key={header.id} className="bg-gray-200 text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -210,7 +210,7 @@ export default function Role() {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-[#fcf3ea]">
+            <TableBody className="">
               {table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
@@ -238,7 +238,7 @@ export default function Role() {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="bg-[#b6e1f3]"
+            className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-20"
           >
             Previous
           </Button>
@@ -247,7 +247,7 @@ export default function Role() {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="bg-[#159ED9]"
+            className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-20"
           >
             Next
           </Button>

@@ -184,7 +184,7 @@ export default function Policy() {
               onChange={(event) =>
                 table.getColumn("police_description")?.setFilterValue(event.target.value)
               }
-              className="max-w-sm bg-[#c0b9cc]"
+              className="max-w-sm"
             />
             <DropdownMenu>
               <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
@@ -218,7 +218,7 @@ export default function Policy() {
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
-                      <TableHead key={header.id} className="bg-[#f6dabd] text-black">
+                      <TableHead key={header.id} className="bg-gray-200 text-black">
                         {header.isPlaceholder
                           ? null
                           : flexRender(header.column.columnDef.header, header.getContext())}
@@ -227,7 +227,7 @@ export default function Policy() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className='bg-[#fcf3ea]'>
+              <TableBody className=''>
                 {table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (
@@ -244,19 +244,17 @@ export default function Policy() {
           <div className="flex items-center justify-end space-x-2 py-4">
             <Button
               variant="outline"
-              size="sm"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
-              className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors"
+              className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-20"
             >
               Previous
             </Button>
             <Button
               variant="outline"
-              size="sm"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
-              className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors"
+              className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-20"
             >
               Next
             </Button>

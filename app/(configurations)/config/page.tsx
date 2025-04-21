@@ -102,7 +102,7 @@ const Config = () => {
   return (
     <main className="flex grid grid-cols-1 lg:grid-cols-1">
       <TooltipProvider>
-        <Card className='bg-[#e8f5fb]'>
+        <Card className=''>
           <CardHeader>
             <CardTitle className="text-2xl font-bold">Configurations</CardTitle>
           </CardHeader>

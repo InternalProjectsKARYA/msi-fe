@@ -63,7 +63,7 @@ export default function SchoolPayrollComponent() {
           <Button
             variant={"outline"}
             className={cn(
-              "w-full sm:w-64 justify-start text-left font-normal bg-[#d5e2c5]",
+              "w-full sm:w-64 justify-start text-left font-normal",
               !selectedYear && "text-muted-foreground"
             )}
           >
@@ -72,7 +72,7 @@ export default function SchoolPayrollComponent() {
             {selectedYear ? selectedYear : "Pick a year"}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-64 p-0 bg-[#d5e2c5]" align="start">
+        <PopoverContent className="w-64 p-0 " align="start">
           <div className="grid grid-cols-2 gap-2 p-2">
             {years.map((year) => (
               <button
@@ -89,7 +89,7 @@ export default function SchoolPayrollComponent() {
           </div>
         </PopoverContent>
       </Popover>
-      <Button variant={"outline"} className="bg-[#f4b9bc]">
+      <Button variant={"outline"} className="">
         <Download className="h-4 w-4 mr-2" />
         Generate Report
       </Button>
@@ -104,15 +104,15 @@ export default function SchoolPayrollComponent() {
         <h3 className="text-lg font-semibold p-4">Salary Details</h3>
         <Table>
           <TableHeader>
-            <TableRow className="bg-[#c0b9cc]">
-              <TableHead>Month</TableHead>
-              <TableHead>Salary</TableHead>
-              <TableHead className="text-right">Net Pay</TableHead>
-              <TableHead className="text-right">Payment Date</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+            <TableRow className="bg-gray-200">
+              <TableHead className="text-black">Month</TableHead>
+              <TableHead className="text-black">Salary</TableHead>
+              <TableHead className="text-right text-black">Net Pay</TableHead>
+              <TableHead className="text-right text-black">Payment Date</TableHead>
+              <TableHead className="text-right text-black">Actions</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="bg-[#ebe8ef]">
+          <TableBody className="">
             {paginatedData.map((staff) => (
               <TableRow key={staff.id}>
                 <TableCell>{staff.month}</TableCell>
@@ -148,7 +148,7 @@ export default function SchoolPayrollComponent() {
 
     {/* Deductions Card (col-span-4) */}
     <div className="col-span-12 lg:col-span-4">
-      <Card className="rounded-md w-full p-6 bg-[#ffebb0]">
+      <Card className="rounded-md w-full p-6 ">
         <h3 className="text-lg font-semibold">Deductions for May</h3>
         <p className="text-sm text-muted-foreground mb-6">
           Salary deductions for the month of May.
@@ -213,9 +213,9 @@ export default function SchoolPayrollComponent() {
     <div className="flex items-center space-x-2">
       <Button
         variant="outline"
-        size="sm"
         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
         disabled={currentPage === 1}
+        className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-20" 
       >
         Previous
       </Button>
@@ -231,9 +231,9 @@ export default function SchoolPayrollComponent() {
       ))}
       <Button
         variant="outline"
-        size="sm"
         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
         disabled={currentPage === totalPages}
+        className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-20"
       >
         Next
       </Button>

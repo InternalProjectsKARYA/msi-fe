@@ -239,7 +239,7 @@ const resetEditingState = () => {
               placeholder="Filter by class"
               value={(classTable.getColumn("class_standards")?.getFilterValue() as string) ?? ""}
               onChange={(e) => classTable.getColumn("class_standards")?.setFilterValue(e.target.value)}
-              className="max-w-sm bg-[#f6dabd]"
+              className="max-w-sm"
             />
             <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
               <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -256,7 +256,7 @@ const resetEditingState = () => {
               {classTable.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-[#b6e1f3] text-black">
+                    <TableHead key={header.id} className="bg-gray-200 text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -265,7 +265,7 @@ const resetEditingState = () => {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-[#e8f5fb]">
+            <TableBody className="">
               {classTable.getRowModel().rows.length ? (
                 classTable.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
@@ -317,7 +317,7 @@ const resetEditingState = () => {
               placeholder="Filter by section"
               value={(sectionTable.getColumn("section_name")?.getFilterValue() as string) ?? ""}
               onChange={(e) => sectionTable.getColumn("section_name")?.setFilterValue(e.target.value)}
-              className="max-w-sm bg-[#c0b9cc]"
+              className="max-w-sm"
             />
             <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
               <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -334,7 +334,7 @@ const resetEditingState = () => {
               {sectionTable.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-[#ffebb0] text-black">
+                    <TableHead key={header.id} className="bg-gray-200 text-black">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -343,7 +343,7 @@ const resetEditingState = () => {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-[#fff9e6]">
+            <TableBody className="">
               {sectionTable.getRowModel().rows.length ? (
                 sectionTable.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>

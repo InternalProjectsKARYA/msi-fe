@@ -291,7 +291,7 @@ function Fee() {
     {/* Table Container */}
     <div className="overflow-x-auto">
       <Table>
-        <TableHeader className="bg-[#d5e2c5] dark:bg-gray-800">
+        <TableHeader className="bg-gray-200 ">
           <TableRow>
             <TableHead>Class</TableHead>
             <TableHead>Annual Fee</TableHead>
@@ -307,7 +307,7 @@ function Fee() {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="bg-[#f2f6ec]">
+        <TableBody className="">
           {tableData.length > 0 ? (
             tableData.map((data, index) => (
               <TableRow key={index}>

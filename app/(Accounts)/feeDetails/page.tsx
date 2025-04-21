@@ -199,10 +199,10 @@ const FeeDetails = () => {
       {/* Info Cards for Students, Teachers, etc */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Total Students Card */}
-        <Card className="  shadow-lg rounded-md bg-[#f2f6ec]">
+        <Card className="  shadow-lg rounded-md ">
           <CardHeader className="p-5">
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex flex-row items-center p-4 rounded bg-[#79a345]">
+              <div className="flex flex-row items-center p-4 rounded bg-[#79a345d1]">
               <FaBook className=" text-3xl text-[#f2f6ec]" />
               </div>
               <h3 className="font-bold text-xl">Total students</h3>
@@ -224,10 +224,10 @@ const FeeDetails = () => {
    
 
         {/* Authors Card */}
-        <Card className="  shadow-lg rounded-md bg-[#fbe9ea]">
+        <Card className="  shadow-lg rounded-md ">
           <CardHeader className="p-5">
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex flex-row items-center p-4 bg-[#da1e28] rounded">
+              <div className="flex flex-row items-center p-4 bg-[#da1e27b6] rounded">
                 <FaBookReader className=" text-3xl text-[#fbe9ea]" /> {/* Book reader icon */}
               </div>
               <h3 className="font-bold text-xl">Paid</h3>
@@ -247,10 +247,10 @@ const FeeDetails = () => {
         </Card>
 
      {/* Publishers Card */}
-     <Card className="  shadow-lg rounded-md bg-[#fff9e6]">
+     <Card className="  shadow-lg rounded-md ">
           <CardHeader className="p-5">
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex flex-row items-center p-4 rounded bg-[#ffc000]">
+              <div className="flex flex-row items-center p-4 rounded bg-[#ffbf00c6]">
                 <FaBook className=" text-3xl text-[#fff9e6]" /> {/* Book icon */}
               </div>
               <h3 className="font-bold text-xl">Due</h3>
@@ -270,10 +270,10 @@ const FeeDetails = () => {
         </Card>
 
         {/* Catalog Card */}
-        <Card className="  shadow-lg rounded-md bg-[#e8f5fb]">
+        <Card className="  shadow-lg rounded-md ">
           <CardHeader className="p-5">
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex    items-center p-4 rounded bg-[#159ed9]">
+              <div className="flex    items-center p-4 rounded bg-[#159ed9a9]">
                 <FaChalkboardTeacher className=" text-3xl text-[#e8f5fb]" /> {/* Teacher icon */}
               </div>
               <h3 className="font-bold text-xl">Upcoming dues</h3>
@@ -293,10 +293,10 @@ const FeeDetails = () => {
         </Card>
 
         {/* Book Assign Card */}
-        <Card className="  shadow-lg rounded-md bg-[#ebe8ef]">
+        <Card className="  shadow-lg rounded-md ">
           <CardHeader className="p-5">
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex flex-row items-center p-4 rounded bg-[#351c5a]">
+              <div className="flex flex-row items-center p-4 rounded bg-[#351c5aa6]">
                 <FaUsers className=" text-3xl text-[#ebe8ef]" /> {/* Users icon */}
               </div>
               <h3 className="font-bold text-xl">Pending</h3>
@@ -325,7 +325,7 @@ const FeeDetails = () => {
   
 <div className='p-4 ' >
 <Table>
-  <TableHeader  className='bg-[#f4b9bc] dark:bg-gray-800'>
+  <TableHeader  className='bg-gray-200'>
     <TableRow>
       <TableHead className="w-[100px]">ID</TableHead>
       <TableHead className="w-[200px]">Student Name</TableHead>
@@ -334,7 +334,7 @@ const FeeDetails = () => {
      
     </TableRow>
   </TableHeader>
-  <TableBody className='bg-[#fbe9ea]'>
+  <TableBody className=''>
     {recentlyAddedFeeDetails.map((item,index) => (
       <TableRow key={index}>
         <TableCell className="font-medium">{item.bookId}</TableCell>
@@ -369,7 +369,7 @@ const FeeDetails = () => {
     <CardHeader className="p-3 px-4 text-xl font-bold  ">Pending dues</CardHeader>
     <div className='p-4'>
     <Table>
-      <TableHeader  className='bg-[#c0b9cc] dark:bg-gray-800'>
+      <TableHeader  className='bg-gray-200'>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead className="w-[200px]">Student name</TableHead>
@@ -377,7 +377,7 @@ const FeeDetails = () => {
           <TableHead className="text-right">Last date</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody className='bg-[#ebe8ef]'>
+      <TableBody className=''>
         {addedFeeDetails.map((item,index) => (
           <TableRow key={index}>
             <TableCell className="font-medium">{item.bookId}</TableCell>

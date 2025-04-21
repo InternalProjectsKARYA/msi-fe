@@ -192,7 +192,7 @@ export default function Holidays() {
             onChange={(event) =>
               table.getColumn("holiday_name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm bg-[#b6e1f3]"
+            className="max-w-sm"
           />
 
           <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
@@ -214,14 +214,14 @@ export default function Holidays() {
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-[#d5e2c5] text-black">
+                    <TableHead key={header.id} className="bg-gray-200 text-black">
                       {flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-[#f2f6ec]">
+            <TableBody className="">
               {table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (

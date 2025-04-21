@@ -4,7 +4,7 @@ import { SparklesCore } from "@/components/ui/sparkles";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+
 
 export default function SparklesPreview() {
   const textRef = useRef<HTMLSpanElement | null>(null);
@@ -35,16 +35,8 @@ export default function SparklesPreview() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-black flex flex-col items-center   overflow-hidden">
-            <div className="relative w-80 h-60 mt-10">
-        <Image
-          src="/whitelogo.png"  
-          alt="EFANISH Logo"
-          layout="fill"
-          objectFit="contain"  
-          className="rounded-lg shadow-lg"
-        />
-      </div>
+    <div className="min-h-screen w-full bg-black flex flex-col items-center  justify-center  overflow-hidden">
+           
       <div className="md:text-2xl text-sm lg:text-3xl font-bold text-center text-white relative z-20">
         <FallingTextAnimation text="EFANISH" />
 

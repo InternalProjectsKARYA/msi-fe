@@ -30,7 +30,7 @@ import 'aos/dist/aos.css';
 import BrightwheelHero from "../landingHeader/page";
 import TabsDemo from "../(content)/tabs/page";
 import { BrainCircuit, Clock, Library, Wallet } from "lucide-react";
- 
+import CustomLogo from "@/components/CustomLogo"; 
 const teachers = [
   {
     id: 1,
@@ -204,13 +204,7 @@ const LandingPage = () => {
 
       
         
-      <Image
-        src={Logo}
-        className="  "
-        alt="Logo"
-        width={140}  
-      
-      />
+  <CustomLogo height={16} width={40}/>
      
     
      <div className="  ">

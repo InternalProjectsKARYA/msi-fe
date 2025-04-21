@@ -359,7 +359,7 @@ import {
   IdCard,
 } from "lucide-react";
 import { FiBookOpen, FiCalendar, FiFileText, FiGrid, FiSun, FiUserCheck } from "react-icons/fi";
-
+import CustomLogo from "./CustomLogo";
 export function AppSidebar() {
   const router = useRouter();
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -702,7 +702,8 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <div className="bg-white z-50   flex justify-center items-center  ">
-      <Image src={Logo} alt="Logo" className="h-14 w-40 " />
+      {/* <Image src={Logo} alt="Logo" className="h-14 w-40 " /> */}
+      <CustomLogo height={14} width={24}/>
       </div>
   
       <SidebarContent>

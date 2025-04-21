@@ -36,21 +36,21 @@ export type Student = {
 };
 
 const StudentTableData: Student[] = [
-  { id: "NS1", Student: "Aarav Patel", Class: "Nursery", Email: "aarav.patel@example.com", Phone: "9123456789", status: "Active", Gender: "Male", Parent: "Rajesh Patel", avatar: "https://i.pravatar.cc/150?img=1" },
-  { id: "NS2", Student: "Meera Sharma", Class: "Nursery", Email: "meera.sharma@example.com", Phone: "9876543210", status: "Active", Gender: "Female", Parent: "Suman Sharma", avatar: "https://i.pravatar.cc/150?img=2" },
-  { id: "KG1", Student: "Rohan Gupta", Class: "Kindergarten", Email: "rohan.gupta@example.com", Phone: "9234567891", status: "Active", Gender: "Male", Parent: "Vikram Gupta", avatar: "https://i.pravatar.cc/150?img=3" },
-  { id: "LKG1", Student: "Ananya Verma", Class: "LKG", Email: "ananya.verma@example.com", Phone: "9354678912", status: "Active", Gender: "Female", Parent: "Preeti Verma", avatar: "https://i.pravatar.cc/150?img=4" },
-  { id: "UKG1", Student: "Kabir Mehta", Class: "UKG", Email: "kabir.mehta@example.com", Phone: "9445567893", status: "Active", Gender: "Male", Parent: "Anil Mehta", avatar: "https://i.pravatar.cc/150?img=5" },
-  { id: "P1", Student: "Nisha Reddy", Class: "1st Grade", Email: "nisha.reddy@example.com", Phone: "9556678914", status: "Active", Gender: "Female", Parent: "Ramesh Reddy", avatar: "https://i.pravatar.cc/150?img=6" },
-  { id: "P2", Student: "Aryan Singh", Class: "2nd Grade", Email: "aryan.singh@example.com", Phone: "9667789123", status: "Active", Gender: "Male", Parent: "Manoj Singh", avatar: "https://i.pravatar.cc/150?img=7" },
-  { id: "P3", Student: "Diya Nair", Class: "3rd Grade", Email: "diya.nair@example.com", Phone: "9778891234", status: "Active", Gender: "Female", Parent: "Nandita Nair", avatar: "https://i.pravatar.cc/150?img=8" },
-  { id: "P4", Student: "Karan Malhotra", Class: "4th Grade", Email: "karan.malhotra@example.com", Phone: "9889912345", status: "Active", Gender: "Male", Parent: "Rohit Malhotra", avatar: "https://i.pravatar.cc/150?img=9" },
-  { id: "P5", Student: "Sanya Iyer", Class: "5th Grade", Email: "sanya.iyer@example.com", Phone: "9991023456", status: "Active", Gender: "Female", Parent: "Priya Iyer", avatar: "https://i.pravatar.cc/150?img=10" },
-  { id: "LKG2", Student: "Aditya Bansal", Class: "LKG", Email: "aditya.bansal@example.com", Phone: "9123456780", status: "Active", Gender: "Male", Parent: "Rajeev Bansal", avatar: "https://i.pravatar.cc/150?img=11" },
-  { id: "UKG2", Student: "Sneha Pillai", Class: "UKG", Email: "sneha.pillai@example.com", Phone: "9234567890", status: "Active", Gender: "Female", Parent: "Shalini Pillai", avatar: "https://i.pravatar.cc/150?img=12" },
-  { id: "P6", Student: "Ishaan Kulkarni", Class: "1st Grade", Email: "ishaan.kulkarni@example.com", Phone: "9345678901", status: "Active", Gender: "Male", Parent: "Vinay Kulkarni", avatar: "https://i.pravatar.cc/150?img=13" },
-  { id: "P7", Student: "Riya Saxena", Class: "2nd Grade", Email: "riya.saxena@example.com", Phone: "9456789012", status: "Active", Gender: "Female", Parent: "Anita Saxena", avatar: "https://i.pravatar.cc/150?img=14" },
-  { id: "P8", Student: "Arjun Das", Class: "3rd Grade", Email: "arjun.das@example.com", Phone: "9567890123", status: "Active", Gender: "Male", Parent: "Ashok Das", avatar: "https://i.pravatar.cc/150?img=15" },
+  { id: "NS1", Student: "Aarav Patel", Class: "Nursery", Email: "aarav.patel@example.com", Phone: "9123456789", status: "Active", Gender: "Male", Parent: "Rajesh Patel", avatar: "/student4.jpg" },
+  { id: "NS2", Student: "Meera Sharma", Class: "Nursery", Email: "meera.sharma@example.com", Phone: "9876543210", status: "Active", Gender: "Female", Parent: "Suman Sharma", avatar: "/student5.jpg" },
+  { id: "KG1", Student: "Rohan Gupta", Class: "Kindergarten", Email: "rohan.gupta@example.com", Phone: "9234567891", status: "Active", Gender: "Male", Parent: "Vikram Gupta", avatar: "/student6.jpg" },
+  { id: "LKG1", Student: "Ananya Verma", Class: "LKG", Email: "ananya.verma@example.com", Phone: "9354678912", status: "Active", Gender: "Female", Parent: "Preeti Verma", avatar:  "/student6.jpg" },
+  { id: "UKG1", Student: "Kabir Mehta", Class: "UKG", Email: "kabir.mehta@example.com", Phone: "9445567893", status: "Active", Gender: "Male", Parent: "Anil Mehta", avatar:  "/student8.jpg" },
+  { id: "P1", Student: "Nisha Reddy", Class: "1st Grade", Email: "nisha.reddy@example.com", Phone: "9556678914", status: "Active", Gender: "Female", Parent: "Ramesh Reddy", avatar:  "/student.jfif" },
+  { id: "P2", Student: "Aryan Singh", Class: "2nd Grade", Email: "aryan.singh@example.com", Phone: "9667789123", status: "Active", Gender: "Male", Parent: "Manoj Singh", avatar: "/images.jfif" },
+  { id: "P3", Student: "Diya Nair", Class: "3rd Grade", Email: "diya.nair@example.com", Phone: "9778891234", status: "Active", Gender: "Female", Parent: "Nandita Nair", avatar: "/student10.jfif" },
+  { id: "P4", Student: "Karan Malhotra", Class: "4th Grade", Email: "karan.malhotra@example.com", Phone: "9889912345", status: "Active", Gender: "Male", Parent: "Rohit Malhotra", avatar:"/student4.jpg"},
+  { id: "P5", Student: "Sanya Iyer", Class: "5th Grade", Email: "sanya.iyer@example.com", Phone: "9991023456", status: "Active", Gender: "Female", Parent: "Priya Iyer", avatar:  "/student5.jpg" },
+  { id: "LKG2", Student: "Aditya Bansal", Class: "LKG", Email: "aditya.bansal@example.com", Phone: "9123456780", status: "Active", Gender: "Male", Parent: "Rajeev Bansal", avatar: "/student6.jpg" },
+  { id: "UKG2", Student: "Sneha Pillai", Class: "UKG", Email: "sneha.pillai@example.com", Phone: "9234567890", status: "Active", Gender: "Female", Parent: "Shalini Pillai", avatar: "/student6.jpg"},
+  { id: "P6", Student: "Ishaan Kulkarni", Class: "1st Grade", Email: "ishaan.kulkarni@example.com", Phone: "9345678901", status: "Active", Gender: "Male", Parent: "Vinay Kulkarni", avatar:"/student8.jpg" },
+  { id: "P7", Student: "Riya Saxena", Class: "2nd Grade", Email: "riya.saxena@example.com", Phone: "9456789012", status: "Active", Gender: "Female", Parent: "Anita Saxena", avatar: "/student.jfif" },
+  { id: "P8", Student: "Arjun Das", Class: "3rd Grade", Email: "arjun.das@example.com", Phone: "9567890123", status: "Active", Gender: "Male", Parent: "Ashok Das", avatar:  "/images.jfif" },
 ];
 
 export default function StudentsGridAndList() {
@@ -141,7 +141,7 @@ export default function StudentsGridAndList() {
                 key={student.id}
                 data-aos="flip-right"
                 data-aos-duration={`${300 + index * 100}`}
-                className="bg-[#ebf1e3]"
+                className="bg-white"
               >
                 <CardHeader className="flex flex-row justify-between items-center">
                   <Badge variant={student.status === "Active" ? "default" : "secondary"}>{student.status}</Badge>
@@ -179,7 +179,7 @@ export default function StudentsGridAndList() {
         <TabsContent value="list">
           <Card>
             <Table>
-              <TableHeader className="bg-[#d5e2c5]">
+              <TableHeader className="bg-gray-200">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
@@ -195,7 +195,7 @@ export default function StudentsGridAndList() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className="bg-[#f2f6ec]">
+              <TableBody >
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row, index) => (
                     <TableRow

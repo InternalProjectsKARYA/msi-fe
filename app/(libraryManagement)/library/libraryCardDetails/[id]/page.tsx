@@ -202,7 +202,7 @@ export default function LibraryCardDetails() {
           onChange={(event) =>
             table.getColumn("bookName")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-[#b6e1f3]"
+          className="max-w-sm "
         />
         <Button variant="outline" className="ml-auto mr-2" onClick={() => {}}>
           <Download className="mr-2 h-4 w-4" />
@@ -212,7 +212,7 @@ export default function LibraryCardDetails() {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="bg-[#ffebb0]">
+          <TableHeader className="bg-gray-200">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -228,7 +228,7 @@ export default function LibraryCardDetails() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="bg-[#fff9e6]">
+          <TableBody >
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

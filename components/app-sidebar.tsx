@@ -344,7 +344,7 @@ export function AppSidebar() {
       <SidebarGroupContent>
         <SidebarMenu>
           {section.items.map((item) => {
-            const isActive = pathname.startsWith(item.href || "");
+            const isActive = pathname === item.href 
             const isSubmenuActive = item.subItems?.some((subItem) =>
               pathname.startsWith(subItem.href || "")
             );

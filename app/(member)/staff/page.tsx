@@ -38,16 +38,16 @@ export type Staff = {
 }
 
 const staffTableData: Staff[] = [
-  { id: "S001", Staff: "Amit Kumar", Department: "Administration", Gender: "Male", Email: "amit.kumar@example.com", Phone: "9123456789", status: "Active", Reporting: "John Doe", avatar: "https://i.pravatar.cc/150?img=51" },
-  { id: "S002", Staff: "Priya Sharma", Department: "Finance", Gender: "Female", Email: "priya.sharma@example.com", Phone: "9876543210", status: "Active", Reporting: "Jane Smith", avatar: "https://i.pravatar.cc/150?img=52" },
-  { id: "S003", Staff: "Rahul Verma", Department: "IT Support", Gender: "Male", Email: "rahul.verma@example.com", Phone: "9234567891", status: "Active", Reporting: "Mike Johnson", avatar: "https://i.pravatar.cc/150?img=53" },
-  { id: "S004", Staff: "Anjali Mehta", Department: "Human Resources", Gender: "Female", Email: "anjali.mehta@example.com", Phone: "9354678912", status: "Active", Reporting: "Sarah Brown", avatar: "https://i.pravatar.cc/150?img=54" },
-  { id: "S005", Staff: "Ramesh Gupta", Department: "Security", Gender: "Male", Email: "ramesh.gupta@example.com", Phone: "9445567893", status: "Inactive", Reporting: "David Wilson", avatar: "https://i.pravatar.cc/150?img=55" },
-  { id: "S006", Staff: "Sneha Patel", Department: "Library", Gender: "Female", Email: "sneha.patel@example.com", Phone: "9556678914", status: "Active", Reporting: "Emily Davis", avatar: "https://i.pravatar.cc/150?img=56" },
-  { id: "S007", Staff: "Vikram Das", Department: "Transport", Gender: "Male", Email: "vikram.das@example.com", Phone: "9667789123", status: "Active", Reporting: "Robert Taylor", avatar: "https://i.pravatar.cc/150?img=57" },
-  { id: "S008", Staff: "Pooja Iyer", Department: "Cafeteria", Gender: "Female", Email: "pooja.iyer@example.com", Phone: "9778891234", status: "Inactive", Reporting: "Linda Anderson", avatar: "https://i.pravatar.cc/150?img=58" },
+  { id: "S001", Staff: "Amit Kumar", Department: "Administration", Gender: "Male", Email: "amit.kumar@example.com", Phone: "9123456789", status: "Active", Reporting: "John Doe", avatar: "/staff1.jpg" },
+  { id: "S002", Staff: "Priya Sharma", Department: "Finance", Gender: "Female", Email: "priya.sharma@example.com", Phone: "9876543210", status: "Active", Reporting: "Jane Smith", avatar: "/staff3.jpg" },
+  { id: "S003", Staff: "Rahul Verma", Department: "IT Support", Gender: "Male", Email: "rahul.verma@example.com", Phone: "9234567891", status: "Active", Reporting: "Mike Johnson", avatar: "/staff2.jpg" },
+  { id: "S004", Staff: "Anjali Mehta", Department: "Human Resources", Gender: "Female", Email: "anjali.mehta@example.com", Phone: "9354678912", status: "Active", Reporting: "Sarah Brown", avatar: "staff4.jpg" },
+  { id: "S005", Staff: "Ramesh Gupta", Department: "Security", Gender: "Male", Email: "ramesh.gupta@example.com", Phone: "9445567893", status: "Inactive", Reporting: "David Wilson", avatar: "staff5.jpg" },
+  { id: "S006", Staff: "Sneha Patel", Department: "Library", Gender: "Female", Email: "sneha.patel@example.com", Phone: "9556678914", status: "Active", Reporting: "Emily Davis", avatar: "staff6.jpg" },
+  { id: "S007", Staff: "Vikram Das", Department: "Transport", Gender: "Male", Email: "vikram.das@example.com", Phone: "9667789123", status: "Active", Reporting: "Robert Taylor", avatar: "staff7.jpg" },
+  { id: "S008", Staff: "Pooja Iyer", Department: "Cafeteria", Gender: "Female", Email: "pooja.iyer@example.com", Phone: "9778891234", status: "Inactive", Reporting: "Linda Anderson", avatar: "staff3.jpg" },
   { id: "S009", Staff: "Arun Malhotra", Department: "Maintenance", Gender: "Male", Email: "arun.malhotra@example.com", Phone: "9889912345", status: "Active", Reporting: "Michael Lee", avatar: "https://i.pravatar.cc/150?img=59" },
-  { id: "S010", Staff: "Neha Jain", Department: "Counseling", Gender: "Female", Email: "neha.jain@example.com", Phone: "9991023456", status: "Active", Reporting: "Karen White", avatar: "https://i.pravatar.cc/150?img=60" },
+  { id: "S010", Staff: "Neha Jain", Department: "Counseling", Gender: "Female", Email: "neha.jain@example.com", Phone: "9991023456", status: "Active", Reporting: "Karen White", avatar: "staff8.jpg" },
 ]
 
 export default function StaffsGridAndList() {
@@ -149,7 +149,7 @@ export default function StaffsGridAndList() {
                 key={staff.id}
                 data-aos="fade-up"
                 data-aos-duration={`${300 + index * 100}`}
-                className="bg-[#fff6d9]"
+                className="bg-white"
               >
                 <CardHeader className="flex flex-row justify-between items-center">
                   <Badge variant={staff.status === "Active" ? "default" : "secondary"}>
@@ -192,7 +192,7 @@ export default function StaffsGridAndList() {
         <TabsContent value="list">
           <Card>
             <Table>
-              <TableHeader className="bg-[#ffebb0]">
+              <TableHeader className="bg-gray-200">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
@@ -208,7 +208,7 @@ export default function StaffsGridAndList() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className="bg-[#fff9e6]">
+              <TableBody >
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row, index) => (
                     <TableRow

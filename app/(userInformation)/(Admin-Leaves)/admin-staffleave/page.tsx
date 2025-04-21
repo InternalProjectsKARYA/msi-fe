@@ -169,7 +169,7 @@ const StaffLeaveRequests = () => {
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="max-w-xs bg-[#ebf1e3]"
+        className="max-w-xs "
       />
     </div>
   
@@ -178,7 +178,7 @@ const StaffLeaveRequests = () => {
       <Card className="rounded-md border overflow-x-auto">
         <Table className="table-auto w-full min-w-full">
           <TableHeader>
-            <TableRow className="bg-[#ffebb0]">
+            <TableRow className="bg-gray-200">
               <TableHead>Staff ID</TableHead>
               <TableHead>Staff Name</TableHead>
               <TableHead>Leave Type</TableHead>
@@ -191,7 +191,7 @@ const StaffLeaveRequests = () => {
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="bg-[#fff9e6]">
+          <TableBody >
             {paginatedData.map((request) => (
               <TableRow key={request.id}>
                 <TableCell>{request.staffId}</TableCell>

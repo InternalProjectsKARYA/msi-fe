@@ -38,19 +38,21 @@ export type Teacher = {
 }
 
 const teacherTableData: Teacher[] = [
-  { id: "A1B2", Teacher: "Gautami Reddy", Class: "10th Grade", Email: "arjunr@example.com", Phone: "9876543210", Subject: "Mathematics", status: "Active", avatar: "https://i.pravatar.cc/150?img=32" },
-  { id: "C3D4", Teacher: "Lakshmi Menon", Class: "9th Grade", Email: "lakshmim@example.com", Phone: "9876543221", Subject: "Science", status: "Active", avatar: "https://i.pravatar.cc/150?img=33" },
-  { id: "G7H8", Teacher: "Meera Nair", Class: "7th Grade", Email: "meeran@example.com", Phone: "9876543243", Subject: "History", status: "Active", avatar: "https://i.pravatar.cc/150?img=35" },
-  { id: "I9J1", Teacher: "Priya ", Class: "6th Grade", Email: "rahuls@example.com", Phone: "9876543254", Subject: "Geography", status: "Active", avatar: "https://i.pravatar.cc/150?img=36" },
-  { id: "M4N5", Teacher: "Vikram Rathore", Class: "10th Grade", Email: "vikramr@example.com", Phone: "9876543276", Subject: "Chemistry", status: "Inactive", avatar: "https://i.pravatar.cc/150?img=38" },
-  { id: "S1T2", Teacher: "Priya Iyer", Class: "7th Grade", Email: "priyai@example.com", Phone: "9876543211", Subject: "Art", status: "Active", avatar: "https://i.pravatar.cc/150?img=41" },
-  { id: "W5X6", Teacher: "Deepika Patel", Class: "11th Grade", Email: "deepikap@example.com", Phone: "9876543233", Subject: "Mathematics", status: "Active", avatar: "https://i.pravatar.cc/150?img=43" },
-  { id: "Y7Z8", Teacher: "Rajeev Menon", Class: "10th Grade", Email: "rajeevm@example.com", Phone: "9876543244", Subject: "Physical Education", status: "Active", avatar: "https://i.pravatar.cc/150?img=44" },
-  { id: "A9B1", Teacher: "Shreya Kapoor", Class: "9th Grade", Email: "shreyak@example.com", Phone: "9876543255", Subject: "Chemistry", status: "Inactive", avatar: "https://i.pravatar.cc/150?img=45" },
-  { id: "E4F5", Teacher: "Pooja Mishra", Class: "7th Grade", Email: "poojam@example.com", Phone: "9876543277", Subject: "English", status: "Active", avatar: "https://i.pravatar.cc/150?img=47" },
-  { id: "G6H7", Teacher: "Aditya Rao", Class: "6th Grade", Email: "adityar@example.com", Phone: "9876543288", Subject: "History", status: "Inactive", avatar: "https://i.pravatar.cc/150?img=48" },
-  { id: "I8J9", Teacher: "Nisha Singh", Class: "11th Grade", Email: "nishas@example.com", Phone: "9876543299", Subject: "Physics", status: "Active", avatar: "https://i.pravatar.cc/150?img=49" },
+  { id: "A1B2", Teacher: "Nithiic:\Users\Venka Reddy\Downloads\teaching-7.pngn Reddy", Class: "10th Grade", Email: "arjunr@example.com", Phone: "9876543210", Subject: "Mathematics", status: "Active", avatar: "teaching-1.jpg" },
+  { id: "C3D4", Teacher: "Lakshmi Menon", Class: "9th Grade", Email: "lakshmim@example.com", Phone: "9876543221", Subject: "Science", status: "Active", avatar: "teaching-2.jpg" },
+  { id: "G7H8", Teacher: "Meera Nair", Class: "7th Grade", Email: "meeran@example.com", Phone: "9876543243", Subject: "History", status: "Active", avatar: "teaching-3.jpg" },
+  { id: "I9J1", Teacher: "Priya ", Class: "6th Grade", Email: "rahuls@example.com", Phone: "9876543254", Subject: "Geography", status: "Active", avatar: "teaching-4.jpg" },
+  { id: "M4N5", Teacher: "Vikram Rathore", Class: "10th Grade", Email: "vikramr@example.com", Phone: "9876543276", Subject: "Chemistry", status: "Inactive", avatar: "teaching-5.jpg" },
+  { id: "S1T2", Teacher: "Priya Iyer", Class: "7th Grade", Email: "priyai@example.com", Phone: "9876543211", Subject: "Art", status: "Active", avatar: "teaching-1.jpg" },
+  { id: "W5X6", Teacher: "Deepika Patel", Class: "11th Grade", Email: "deepikap@example.com", Phone: "9876543233", Subject: "Mathematics", status: "Active", avatar: "teaching-6.png" },
+  { id: "Y7Z8", Teacher: "Rajeev Menon", Class: "10th Grade", Email: "rajeevm@example.com", Phone: "9876543244", Subject: "Physical Education", status: "Active", avatar: "teaching-7.png" },
+  { id: "A9B1", Teacher: "Shreya Kapoor", Class: "9th Grade", Email: "shreyak@example.com", Phone: "9876543255", Subject: "Chemistry", status: "Inactive", avatar: "teaching-2.jpg" },
+  { id: "E4F5", Teacher: "Pooja Mishra", Class: "7th Grade", Email: "poojam@example.com", Phone: "9876543277", Subject: "English", status: "Active", avatar: "teaching-5.jpg" },
+  { id: "G6H7", Teacher: "Aditya Rao", Class: "6th Grade", Email: "adityar@example.com", Phone: "9876543288", Subject: "History", status: "Inactive", avatar: "teaching-7.png" },
+  { id: "I8J9", Teacher: "Nisha Singh", Class: "11th Grade", Email: "nishas@example.com", Phone: "9876543299", Subject: "Physics", status: "Active", avatar: "teaching-3.jpg" },
 ]
+ 
+ 
 
 export default function TeachersGridAndList() {
   const router = useRouter()
@@ -154,7 +156,7 @@ export default function TeachersGridAndList() {
                 key={teacher.id}
                 data-aos="fade-up"
                 data-aos-duration={`${300 + index * 100}`}
-                className="bg-[#f9dddf]"
+                className="bg-white"
               >
                 <CardHeader className="flex flex-row justify-between items-center">
                   <Badge variant={teacher.status === "Active" ? "default" : "secondary"}>
@@ -198,7 +200,7 @@ export default function TeachersGridAndList() {
         <TabsContent value="list">
           <Card>
             <Table>
-              <TableHeader className="bg-[#f4b9bc]">
+              <TableHeader className="bg-gray-200">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
@@ -214,7 +216,7 @@ export default function TeachersGridAndList() {
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className="bg-[#fbe9ea]">
+              <TableBody >
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row, index) => (
                     <TableRow

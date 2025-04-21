@@ -118,19 +118,19 @@ function StudentLeaves() {
   {/* Statistics Section */}
   <div className="col-span-1 md:col-span-2 lg:col-span-3">
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      <Card className="p-4 bg-red-50 dark:bg-neutral-900 text-center">
+      <Card className="p-4 dark:bg-neutral-900 text-center">
         <div className="text-4xl font-bold">{leaveStats.totalLeaves}</div>
         <div className="text-lg font-semibold text-gray-600">Sick Leaves</div>
       </Card>
-      <Card className="p-4 bg-green-50 dark:bg-neutral-900 text-center">
+      <Card className="p-4  dark:bg-neutral-900 text-center">
         <div className="text-4xl font-bold">{leaveStats.teacherLeaves}</div>
         <div className="text-lg font-semibold text-gray-600">Casual Leaves</div>
       </Card>
-      <Card className="p-4 bg-blue-50 dark:bg-neutral-900 text-center">
+      <Card className="p-4  dark:bg-neutral-900 text-center">
         <div className="text-4xl font-bold">{leaveStats.studentLeaves}</div>
         <div className="text-lg font-semibold text-gray-600">Cultural/Co-curricular Leave</div>
       </Card>
-      <Card className="p-4 bg-purple-50 dark:bg-neutral-900 text-center">
+      <Card className="p-4  dark:bg-neutral-900 text-center">
         <div className="text-4xl font-bold">{leaveStats.nonTeachingStaffLeaves}</div>
         <div className="text-lg font-semibold text-gray-600">Exam Preparation Leaves</div>
       </Card>
@@ -250,7 +250,7 @@ function StudentLeaves() {
     <Card className="overflow-x-auto">
       <Table>
         <TableHeader>
-          <TableRow className="bg-[#b6e1f3] dark:bg-neutral-200">
+          <TableRow className="bg-gray-200 dark:bg-neutral-200">
             <TableHead>Name</TableHead>
             <TableHead>Leave Type</TableHead>
             <TableHead>From</TableHead>
@@ -259,7 +259,7 @@ function StudentLeaves() {
             <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="bg-[#e8f5fb]">
+        <TableBody >
           {paginatedData.map((leave) => (
             <TableRow key={leave.id}>
               <TableCell>{leave.name}</TableCell>
@@ -300,7 +300,7 @@ function StudentLeaves() {
           size="sm"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="bg-[#b6e1f3]"
+          className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-20" 
         >
           Previous
         </Button>
@@ -321,7 +321,7 @@ function StudentLeaves() {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="bg-[#159ED9]"
+         className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-20"
         >
           Next
         </Button>

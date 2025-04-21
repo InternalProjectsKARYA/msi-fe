@@ -45,7 +45,7 @@ const announcements = [
     event_description:
       "Join us for our annual day celebration filled with performances and awards.",
     avatar: "https://i.pravatar.cc/150?img=1",
-    bg:"bg-[#fcf3ea]"
+
   
   },
   {
@@ -55,7 +55,7 @@ const announcements = [
     event_description:
       "Discuss your child's progress with their teachers in our quarterly meeting.",
     avatar: "https://i.pravatar.cc/150?img=2",
-     bg:"bg-[#e8f5fb]"
+    
   },
   {
     event_id: 3,
@@ -64,7 +64,7 @@ const announcements = [
     event_description:
       "Explore innovative projects at our annual science fair. Open to all grades.",
     avatar: "https://i.pravatar.cc/150?img=3",
-     bg:"bg-[#ebe8ef]"
+    
   },
   {
     event_id: 4,
@@ -73,7 +73,7 @@ const announcements = [
     event_description:
       "Cheer for your house in various athletic events during our sports day.",
     avatar: "https://i.pravatar.cc/150?img=4",
-     bg:"bg-[#fff9e6]"
+     
   },
   {
     event_id: 5,
@@ -82,7 +82,7 @@ const announcements = [
     event_description:
       "Discover new worlds at our annual book fair. Special discounts for students!",
     avatar: "https://i.pravatar.cc/150?img=5",
-     bg:"bg-[#fbe9ea]"
+ 
   },
   {
     event_id: 6,
@@ -91,7 +91,7 @@ const announcements = [
     event_description:
       "Learn about various career paths from industry experts. For grades 9-12.",
     avatar: "https://i.pravatar.cc/150?img=6",
-     bg:"bg-[#f2f6ec]"
+     
   },
   {
     event_id: 7,
@@ -100,7 +100,7 @@ const announcements = [
     event_description:
       "Admire the creativity of our students at the annual art exhibition.",
     avatar: "https://i.pravatar.cc/150?img=7",
-     bg:"bg-[#fcf3ea]"
+    
   },
   {
     event_id: 8,
@@ -109,7 +109,7 @@ const announcements = [
     event_description:
       "Participate in eco-friendly activities and learn about sustainability.",
     avatar: "https://i.pravatar.cc/150?img=8",
-     bg:"bg-[#e8f5fb]"
+    
   },
   {
     event_id: 9,
@@ -118,7 +118,7 @@ const announcements = [
     event_description:
       "Enjoy performances by our talented music students and special guests.",
     avatar: "https://i.pravatar.cc/150?img=9",
-     bg:"bg-[#ebe8ef]"
+    
   },
   {
     event_id: 10,
@@ -127,7 +127,7 @@ const announcements = [
     event_description:
       "Celebrate the achievements of our graduating class of 2023.",
     avatar: "https://i.pravatar.cc/150?img=10",
-     bg:"bg-[#fff9e6]"
+    
   },
 ];
 
@@ -181,7 +181,7 @@ export default function AnnouncementsList() {
           {currentAnnouncements.map((announcement) => (
             <Card
               key={announcement.event_id}
-              className={`flex flex-col sm:flex-row items-start sm:items-center p-3 px-4 shadow-md ${announcement.bg} rounded-lg border border-gray-200 dark:bg-gray-800`}
+              className={`flex flex-col sm:flex-row items-start sm:items-center p-3 px-4 shadow-md  rounded-lg border border-gray-200 dark:bg-gray-800`}
             >
               <div className="flex items-center sm:mr-4 mb-3 sm:mb-0">
                 <Avatar>

@@ -62,22 +62,22 @@ const LeaveManagement = () => {
       <h2 className="text-lg font-semibold mb-4">Leaves Today</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Total Applied Leaves */}
-        <Card className="p-4 bg-[#c0b9cc] text-center shadow-md">
+        <Card className="p-4  text-center shadow-md">
           <div className="text-4xl font-bold">{leaveStats.totalLeaves}</div>
           <div className="text-lg font-semibold text-gray-700">Total Applied Leaves</div>
         </Card>
         {/* Teacher Leaves */}
-        <Card className="p-4 bg-[#f4b9bc] text-center shadow-md">
+        <Card className="p-4  text-center shadow-md">
           <div className="text-4xl font-bold">{leaveStats.teacherLeaves}</div>
           <div className="text-lg font-semibold text-gray-700">Teacher Leaves</div>
         </Card>
         {/* Student Leaves */}
-        <Card className="p-4 bg-[#d5e2c5] text-center shadow-md">
+        <Card className="p-4  text-center shadow-md">
           <div className="text-4xl font-bold">{leaveStats.studentLeaves}</div>
           <div className="text-lg font-semibold text-gray-700">Student Leaves</div>
         </Card>
         {/* Non-Teaching Staff Leaves */}
-        <Card className="p-4 bg-[#ffebb0] text-center shadow-md">
+        <Card className="p-4  text-center shadow-md">
           <div className="text-4xl font-bold">{leaveStats.nonTeachingStaffLeaves}</div>
           <div className="text-lg font-semibold text-gray-700">Non-Teaching Staff Leaves</div>
         </Card>

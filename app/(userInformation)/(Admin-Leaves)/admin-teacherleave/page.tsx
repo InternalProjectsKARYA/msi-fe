@@ -241,7 +241,7 @@ const AdminTeacherAttendance = () => {
         placeholder="Search by name ..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="max-w-xs bg-[#c0b9cc]"
+        className="max-w-xs "
       />
     </div>
   
@@ -251,7 +251,7 @@ const AdminTeacherAttendance = () => {
         <div className="w-full overflow-x-auto">
           <Table className="table-auto min-w-full">
             <TableHeader>
-              <TableRow className="bg-[#f4b9bc]">
+              <TableRow className="bg-gray-200">
                 <TableHead className="whitespace-nowrap">ID</TableHead>
                 <TableHead className="whitespace-nowrap">Teacher</TableHead>
                 <TableHead className="whitespace-nowrap">Leave Type</TableHead>
@@ -264,7 +264,7 @@ const AdminTeacherAttendance = () => {
                 <TableHead className="whitespace-nowrap">Action</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="bg-[#fbe9ea]">
+            <TableBody >
               {paginatedData.map((request) => (
                 <TableRow key={request.id}>
                   <TableCell className="whitespace-nowrap">{request.teacherId}</TableCell>

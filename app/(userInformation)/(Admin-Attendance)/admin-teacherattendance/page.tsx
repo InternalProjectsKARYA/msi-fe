@@ -150,13 +150,13 @@ const TeacherAttendance = () => {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="max-w-sm bg-[#e8f5fb]"
+              className="max-w-sm "
             />
               </div>
               <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="bg-[#ebe8ef]">
+                <Button variant="outline" >
                   Filter by Department <ChevronDown className="  h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -173,7 +173,7 @@ const TeacherAttendance = () => {
           </div>
         </div>
         <Table>
-          <TableHeader className="bg-[#f6dabd]">
+          <TableHeader className="bg-gray-200">
             {tableInstance.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -184,7 +184,7 @@ const TeacherAttendance = () => {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="bg-[#fcf3ea]">
+          <TableBody className="">
             {tableInstance.getRowModel().rows.length ? (
               tableInstance.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
@@ -217,7 +217,7 @@ const TeacherAttendance = () => {
             size="sm"
             onClick={() => tableInstance.previousPage()}
             disabled={!tableInstance.getCanPreviousPage()}
-            className="bg-[#b6e1f3]"
+            className="bg-[#dbeafe] hover:bg-[#bfdbfe] transition-colors w-20" 
           >
             Previous
           </Button>
@@ -226,7 +226,7 @@ const TeacherAttendance = () => {
             size="sm"
             onClick={() => tableInstance.nextPage()}
             disabled={!tableInstance.getCanNextPage()}
-            className="bg-[#159ED9]"
+           className="bg-[#fecdd3] hover:bg-[#fda4af] transition-colors w-20"
           >
             Next
           </Button>

@@ -96,7 +96,7 @@ const StudentLeaveRequests = () => {
       placeholder="Search..."
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
-      className="max-w-xs bg-[#b6e1f3]"
+      className="max-w-xs "
     />
   </div>
 
@@ -105,7 +105,7 @@ const StudentLeaveRequests = () => {
     <Card className="rounded-md border overflow-x-auto">
       <Table className="table-auto w-full min-w-full">
         <TableHeader> 
-          <TableRow className="bg-[#d5e2c5]">
+          <TableRow className="bg-gray-200">
             <TableHead className="whitespace-nowrap">Student ID</TableHead>
             <TableHead className="whitespace-nowrap">Student Name</TableHead>
             <TableHead className="whitespace-nowrap">Leave Type</TableHead>
@@ -118,7 +118,7 @@ const StudentLeaveRequests = () => {
             <TableHead className="whitespace-nowrap">Action</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="bg-[#f2f6ec]">
+        <TableBody >
           {paginatedData.map((request) => (
             <TableRow key={request.id}>
               <TableCell className="whitespace-nowrap">{request.studentId}</TableCell>

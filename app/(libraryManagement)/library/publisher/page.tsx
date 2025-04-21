@@ -165,7 +165,7 @@ export default function Publisher() {
               placeholder="Filter by Publisher..."
               value={(table.getColumn("publisher_name")?.getFilterValue() as string) ?? ""}
               onChange={(e) => table.getColumn("publisher_name")?.setFilterValue(e.target.value)}
-              className="max-w-sm bg-[#d5e2c5]"
+              className="max-w-sm "
             />
             <div className="flex justify-end mt-3 space-x-4 mb-4 ml-auto">
               <Button variant="ghost" className="h-10 w-10 p-0" aria-label="Download">
@@ -182,7 +182,7 @@ export default function Publisher() {
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className="bg-[#f4b9bc] dark:bg-gray-800">
+                    <TableHead key={header.id} className="bg-gray-200 dark:bg-gray-800">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -191,7 +191,7 @@ export default function Publisher() {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-[#fbe9ea]">
+            <TableBody >
               {table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>

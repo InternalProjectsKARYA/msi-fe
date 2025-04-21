@@ -340,7 +340,7 @@ export default  function StudentAttendance() {
               events={attendanceEvents}
               startAccessor="start"
               endAccessor="end"
-              className="bg-[#fbe9ea] rounded"
+              className="rounded"
               style={{ height: "100%", padding: "10px" }}
               views={["month", "week", "day"]}
               view={view}

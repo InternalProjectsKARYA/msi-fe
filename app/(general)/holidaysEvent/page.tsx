@@ -317,7 +317,7 @@ const EventCalendar = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 ">
       <Card className="col-span-1 lg:col-span-12 space-y-6">
-        <div className="flex flex-wrap items-center p-4 gap-4 justify-between bg-[#f4b9bc]">
+        <div className="flex flex-wrap items-center p-4 gap-4 justify-between bg-white">
           <div>
             <CardHeader className="p-0">
               <h2 className="text-xl font-bold">Holidays</h2>
@@ -342,7 +342,7 @@ const EventCalendar = () => {
               // events={holidays}
               startAccessor="start"
               endAccessor="end"
-              className="bg-[#e8f5fb] rounded"
+              className="bg-white rounded"
               style={{ height: "100%", padding: "10px" }}
               views={["month", "week", "day"]}
               view={view}

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
 import { Input } from "@/components/ui/input";
-import MyImage from '../../../public/my-school-italy-1.webp';
+import MyImage from '../../../public/schoollogin.jpg';
 import styles from './login.module.css';
 import axiosInstance from '@/lib/axiosInstance';
 import { useAuthContext } from '@/lib/AuthProvider';
@@ -128,8 +128,10 @@ export default function ForgotPassword() {
            EFANISH
            </h1>
            <p className="text-sm lg:text-sm font-semibold text-white mt-2 animateFadeIn">
-             Sign in to access your dashboard
-           </p>
+           Smart solutions for smarter schools.
+           {/* Where education meets innovation. */}
+</p>
+
          </div>
        </div>
  
@@ -145,7 +147,7 @@ export default function ForgotPassword() {
                Sign in to access your dashboard
              </p>
            </CardHeader> */}
-           <div className="relative mb-[0px] z-10 flex justify-center">
+           {/* <div className="relative mb-[0px] z-10 flex justify-center">
                 <video
                   ref={videoRef}
                   className="w-44 h-44 rounded-full object-cover border-4 border-white shadow-lg"
@@ -155,13 +157,13 @@ export default function ForgotPassword() {
                   <source src="/videos/passwordHidden.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              </div>
-           <CardContent className="p-2 sm:p-2 md:p-2">
+              </div> */}
+           <CardContent className="p-2 sm:p-2 md:p-4">
            <div className="text-center pb-6">
-  <h2 className="text-lg sm:text-xl md:text-xl lg:text-3xl font-bold mb-2 lg:block whitespace-nowrap">
+  <h2 className="text-lg sm:text-xl md:text-xl lg:text-4xl font-bold mb-2 lg:block whitespace-nowrap">
     Welcome Back! 👋
   </h2>
-  {/* <p className="">Please sign in to your account</p> */}
+  <p className="">Please sign in to your account</p>
  
 </div>
 

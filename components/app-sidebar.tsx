@@ -425,8 +425,8 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className="bg-[radial-gradient(circle_at_center,_#fecdd3,_#dbeafe)] dark:bg-none">
-      <div className="  z-50   flex justify-center items-center  ">
+    <Sidebar collapsible="icon" className="bg-[radial-gradient(circle_at_center,_#c2e9fb,_white)] dark:bg-none">
+      <div className="  z-50   flex justify-center items-center">
       {/* <Image src={Logo} alt="Logo" className="h-14 w-40 " /> */}
       <div className=" my-4">
       <CustomLogo height={10} width={26}/>

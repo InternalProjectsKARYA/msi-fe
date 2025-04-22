@@ -227,9 +227,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between p-2 py-3.5  bg-gradient-to-r from-[#dbeafe] to-[#fecdd3] dark:from-neutral-800 dark:to-neutral-700 shadow w-full z-10 
-  
-      ">
+      <div className="flex items-center justify-between p-2 py-3.5  bg-[radial-gradient(circle_at_center,_#c2e9fb,_white)]  shadow w-full z-10">
         
         {/*     */}
         <div className='flex items-center'>

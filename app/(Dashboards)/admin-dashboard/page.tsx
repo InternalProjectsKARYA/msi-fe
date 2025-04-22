@@ -124,7 +124,7 @@ const AdminDashboard = () => {
       total: "3654",
       active: "3643",
       inactive: "11",
-      badge: { color: "#79A345", value: "1.2%" },
+      badge: { color: "#6FAF88", value: "1.2%" }, // Medium sage green
       icon: GraduationCap
     },
     {
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
       total: "284",
       active: "254",
       inactive: "30",
-      badge: { color: "#da1e28", value: "1.2%" },
+      badge: { color: "#EC789E", value: "1.2%" }, // Medium blush rose
       icon: Users
     },
     {
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
       total: "162",
       active: "161",
       inactive: "02",
-      badge: { color: "#ffc000", value: "1.2%" },
+      badge: { color: "#F9BD69", value: "1.2%" }, // Warm amber
       icon: UserCog
     },
     {
@@ -148,10 +148,11 @@ const AdminDashboard = () => {
       total: "82",
       active: "81",
       inactive: "01",
-      badge: { color: "#0d5f82", value: "1.2%" },
+      badge: { color: "#4EB5DE", value: "1.2%" }, // Medium sky blue
       icon: BookOpen
     }
   ];
+  
  
  
 
@@ -515,26 +516,21 @@ const chartConfigGraph = {
 
 
           {/* Welcome Card */}
-          <Card className="text-white bg-[#351C5A] dark:bg-gray-800 relative overflow-hidden p-2">
+          <Card className="text-white relative overflow-hidden p-2 bg-gradient-to-br from-[#74ebd5] to-[#ACB6E5]">
         {/* Background Design */}
-        {/* <div className="absolute top-0 left-0 right-0 bottom-0 z-0">
+        <div className="absolute top-0 left-0 right-0 bottom-0 z-0">
             <div className="absolute top-[-25%] left-[-1%] w-16 h-16 border-4 border-yellow-400 dark:border-white rounded-full"></div>
             <div className="absolute top-20 right-12 w-10 h-10 border-4 border-blue-400 dark:border-white rounded-full"></div>
             <div className="absolute bottom-[-20%] left-[18%] w-14 h-14 border-4 border-purple-400 dark:border-white rounded-full"></div>
             <div className="absolute bottom-[10%] right-[7%] w-12 h-12 border-4 border-red-400 dark:border-white rounded-full"></div>
-            <div className="absolute bottom-[-15%] left-[20%] w-16 h-16 border-4 border-green-400 dark:border-white rounded-full"></div>
-            <div className="absolute top-[-20%] right-[2%] w-16 h-16 border-4 border-green-400 dark:border-white rounded-full"></div>
-          </div> */}
-          <Image
-        src={backgroundImage}
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0 "
-        style={{ opacity: 0.5 }}
-      />
-            <CardHeader className='relative z-10  shadow-lg p-4'>
+            <div className="absolute bottom-[-15%] left-[20%] w-16 h-16 border-4 border-black-400 dark:border-white rounded-full"></div>
+            <div className="absolute top-[-20%] right-[2%] w-16 h-16 border-4 border-white-400 dark:border-white rounded-full"></div>
+          </div> 
+  
+            <CardHeader className='relative z-10 p-2'>
               <div className="flex flex-col sm:flex-row sm:items-center ">
               <div
-  className="bg-white p-1 px-4 rounded-lg shadow-[0px_4px_20px_rgba(255,255,255,0.5),_0px_2px_10px_rgba(255,255,255,0.3),_0px_1px_5px_rgba(255,255,255,0.1)]"
+  className="bg-white p-1 px-4 rounded-lg  "
 >
   <h2 className="text-xl font-semibold text-black">
     Lets get started, {user?.user_name || "Admin"} !
@@ -550,90 +546,94 @@ const chartConfigGraph = {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-1 ">
   {data.map((item, index) => (
-    <Card
-      key={index}
-      className={`relative overflow-hidden  ${
-        item.title === "Students"
-          ? "bg-[#d5e2c5] dark:bg-black  "
-          : item.title === "Teaching Staff"
-          ? "bg-[#f4b9bc] dark:bg-black "
-          : item.title === "Non-Teaching Staff"
-          ? "bg-[#ffebb0] text-white dark:bg-black "
-          : item.title === "Subjects"
-          ? "bg-[#b6e1f3] text-white dark:bg-black "
-          :""
-      }`}
-    >
-      <CardHeader
-        className={`flex flex-row items-center justify-between pb-2 ${
-          item.title === "Students"
-            ? "bg-[#d5e2c5] dark:bg-black "
-            : item.title === "Teaching Staff"
-            ? "bg-[#f4b9bc] dark:bg-black "
-            : item.title === "Non-Teaching Staff"
-          ? "bg-[#ffebb0] text-white dark:bg-black "
-          : item.title === "Subjects"
-          ? "bg-[#b6e1f3] text-white dark:bg-black "
-          :""
-        }`}
-      >
-        <div className="flex items-center space-x-2 my-2  ">
-          <div
-            className="p-3 rounded-lg "
-            style={{ backgroundColor: item.badge.color }}
-          >
-            <item.icon
-              className="w-8 h-8 "
-              style={{
-                color:
-                  item.title === "Students "
-                    ? "#C8D6AB   "  
-                    : item.title === "Teaching Staff"
-                    ? "#E6A8B5"  
-                    : item.title === "Non-Teaching Staff"
-                    ? "#FFE0A6"  
-                    : item.title === "Subjects"
-                    ? "#B6A1C7"  
-                    : "",
-              }}
-              ></item.icon>
-          </div>
-          <div>
-            <h4 className="text-2xl font-bold">{item.total}</h4>
-            <h3 className="text-sm font-medium">{item.title}</h3>
-          </div>
-        </div>
-        <div
-          className="mt-3 px-2 py-1 rounded-full text-sm font-semibold  "
-          style={{
-            color: item.badge.color,
-            backgroundColor: `${item.badge.color}20`, // Light background for badge
-          }}
-        >
-          {item.badge.value}
-        </div>
-      </CardHeader>
-      <div className="px-5">
-        <Separator />
-      </div>
+  <Card
+  key={index}
+  className={`relative overflow-hidden
 
-      <CardContent>
-        <div className="space-y-2 mt-2">
-          <div className="text-sm text-muted-foreground space-y-1">
-            <div className="flex justify-between">
-              <span>Active</span>
-              <span className="font-medium text-foreground">{item.active}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Inactive</span>
-              <span className="font-medium text-foreground">
-                {item.inactive}
-              </span>
-            </div>
-          </div>
+  `
+  }
+>
+{/* ${
+    item.title === "Students"
+      ? "bg-[#E3F2FD] dark:bg-black"  
+      : item.title === "Teaching Staff"
+      ? "bg-[#FCEFEF] dark:bg-black" 
+      : item.title === "Non-Teaching Staff"
+      ? "bg-[#FFF4E5] dark:bg-black" 
+      : item.title === "Subjects"
+      ? "bg-[#E6F4EA] dark:bg-black"  
+      : ""
+  } */}
+  <CardHeader
+    className={`flex flex-row items-center justify-between pb-2 `}
+  >
+    {/* ${
+      item.title === "Students"
+        ? "bg-[#E3F2FD] dark:bg-black"
+        : item.title === "Teaching Staff"
+        ? "bg-[#FCEFEF] dark:bg-black"
+        : item.title === "Non-Teaching Staff"
+        ? "bg-[#FFF4E5] dark:bg-black"
+        : item.title === "Subjects"
+        ? "bg-[#E6F4EA] dark:bg-black"
+        : ""
+    } */}
+    <div className="flex items-center space-x-2 my-2">
+      <div
+        className="p-3 rounded-lg"
+        style={{ backgroundColor: item.badge.color }}
+      >
+        <item.icon
+          className="w-8 h-8"
+          style={{
+            color:
+              item.title === "Students"
+                ? "#ffffff" // Soft blue
+                : item.title === "Teaching Staff"
+                ? "#ffffff" // Soft rose pink
+                : item.title === "Non-Teaching Staff"
+                ? "#ffffff" // Warm nude yellow
+                : item.title === "Subjects"
+                ? "#ffffff" // Soft green
+                : "",
+          }}
+        ></item.icon>
+      </div>
+      <div>
+        <h4 className="text-2xl font-bold">{item.total}</h4>
+        <h3 className="text-sm font-medium">{item.title}</h3>
+      </div>
+    </div>
+    <div
+      className="mt-3 px-2 py-1 rounded-full text-sm font-semibold"
+      style={{
+        color: item.badge.color,
+        backgroundColor: `${item.badge.color}20`,
+      }}
+    >
+      {item.badge.value}
+    </div>
+  </CardHeader>
+  <div className="px-5">
+    <Separator />
+  </div>
+
+  <CardContent>
+    <div className="space-y-2 mt-2">
+      <div className="text-sm text-muted-foreground space-y-1">
+        <div className="flex justify-between">
+          <span>Active</span>
+          <span className="font-medium text-foreground">{item.active}</span>
         </div>
-      </CardContent>
-    </Card>
+        <div className="flex justify-between">
+          <span>Inactive</span>
+          <span className="font-medium text-foreground">{item.inactive}</span>
+        </div>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+
   ))}
 </div>
 
@@ -644,7 +644,7 @@ const chartConfigGraph = {
             {/* Left Column - Events and Bar Chart */}
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
-            <div className="flex justify-between  bg-[#dcf0f9] dark:bg-neutral-800 p-4">
+            <div className="flex justify-between   bg-gradient-to-b from-[#c2e9fb] to-white p-4">
       <h1 className="text-xl font-semibold">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
@@ -655,7 +655,10 @@ const chartConfigGraph = {
     
   {fetchedAnnouncements.slice(0, 4).map((event, index) => (
         <div
-          className={`border-l-4 px-3 py-1 my-4 dark:border-l-gray-500 ${
+          className={`border-l-4 px-3 py-1 my-4 dark:border-l-gray-500 `}
+          key={index}
+        >
+          {/* ${
             index % 4 === 0
               ? "border-l-blue-500 dark:border-l-gray-500"
               : index % 4 === 1
@@ -663,9 +666,7 @@ const chartConfigGraph = {
               : index % 4 === 2
               ? "border-l-yellow-500 dark:border-l-gray-500"
               : "border-l-red-500 dark:border-l-gray-500"
-          }`}
-          key={index}
-        >
+          } */}
           <div className="flex gap-4">
             <div className="text-sm">
               <p className="text-left text-lg font-semibold">{event.event_title}</p>
@@ -676,7 +677,9 @@ const chartConfigGraph = {
             </div>
           </div>
           <div 
-            className={`border-b-2 mt-2    ${
+            className={`border-b-2 mt-2    `}
+          />
+          {/* ${
               index % 4 === 0
                 ? "border-blue-500 dark:border-gray-500"
                 : index % 4 === 1
@@ -684,8 +687,7 @@ const chartConfigGraph = {
                 : index % 4 === 2
                 ? "border-yellow-500 dark:border-gray-500"
                 : "border-red-500 dark:border-gray-500"
-            }`}
-          />
+            } */}
           <div className="flex my-2 justify-between">
             <p className="text-sm text-gray-500 flex items-center">
               <Clock className="w-3 mr-2" />
@@ -713,7 +715,7 @@ const chartConfigGraph = {
  
 <Card>
       <CardHeader className='p-0'>
-        <div className='flex justify-between items-center mb-3 bg-[#fce7f3] dark:bg-neutral-800 p-4'>
+        <div className='flex justify-between items-center mb-3 bg-gradient-to-b from-[#c2e9fb] to-white p-4'>
         <CardTitle>Teacher & Student Attendance</CardTitle>
         <Button className='cursor-pointer' variant={"outline"}  onClick={handleChartClick}>{dateRange}</Button>
         </div>
@@ -755,7 +757,7 @@ const chartConfigGraph = {
             <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
 
             <Card className="w-full ">
-            <CardHeader className='p-4 bg-[#ebf1e3] dark:bg-neutral-800'>
+            <CardHeader className='p-4 bg-gradient-to-b from-[#c2e9fb] to-white'>
                   <h1 className="font-semibold md:text-xl  ">Quick Announcement</h1>
               
                 </CardHeader>
@@ -793,7 +795,7 @@ const chartConfigGraph = {
 
               <Card className="">
       {/* Header Section */}
-      <CardHeader className="flex  flex-row justify-between p-3   bg-[#e1dde6] dark:bg-neutral-800">
+      <CardHeader className="flex  flex-row justify-between p-3   bg-gradient-to-b from-[#c2e9fb] to-white">
         <CardTitle className="text-xl font-semibold">Leave Requests</CardTitle>
         <div className='space-x-2'>
         <Link href="/admin-leave">
@@ -879,7 +881,7 @@ const chartConfigGraph = {
       <CardContent className="w-full p-0">
         <Tabs defaultValue="student" className="w-full">
           {/* Header Row */}
-          <div className="flex items-center justify-between bg-[#fbeddf] dark:bg-neutral-800">
+          <div className="flex items-center justify-between bg-gradient-to-b from-[#c2e9fb] to-white">
             <CardHeader>
               <CardTitle>Leaves Graph</CardTitle>
             </CardHeader>
@@ -1022,7 +1024,7 @@ const chartConfigGraph = {
 
   
     <Card>
-                <CardHeader className='p-4 pl-5 bg-[#f9dddf] dark:bg-neutral-800'>
+                <CardHeader className='p-4 pl-5 bg-gradient-to-b from-[#c2e9fb] to-white'>
                   <h1 className="font-semibold md:text-xl">Quick Links</h1>
                 </CardHeader>
               
@@ -1030,7 +1032,7 @@ const chartConfigGraph = {
                 {QuickLinks.map((item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col items-center justify-center p-3 rounded-lg dark:bg-nuetral-800 ${item.bg_color} dark:bg-gray-800 w-full h-[10vh] cursor-pointer`}
+                  className={`flex flex-col items-center justify-center p-3 rounded-lg dark:bg-nuetral-800  bg-gray-100 dark:bg-gray-800 w-full h-[10vh] cursor-pointer`}
                   onClick={() => router.push(item.link)}
                 >
                   <div className={`flex items-center justify-center w-10 h-10 ${item.icon_color} dark:bg-gray-500  rounded-full shadow-md`}>

@@ -342,14 +342,15 @@ const handleEditProfile =() => {
   {data.map((item, index) => (
     <Card
       key={index}
-      className={`relative overflow-hidden  ${
+      className={`relative overflow-hidden  `}
+    >
+      {/* ${
         item.title === "Total Students"
           ? "bg-[#d5e2c5] dark:bg-black"
           : item.title === "Total Classes"
           ? "bg-[#b6e1f3] dark:bg-black text-white"
           : ""
-      }`}
-    >
+      } */}
       <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div className="flex items-center space-x-2 my-2">
           <div
@@ -395,7 +396,7 @@ const handleEditProfile =() => {
 
 <div className="grid grid-cols-12 gap-4">
   <Card className="col-span-12 w-full overflow-hidden">
-    <div className="px-6 py-4 flex items-center justify-between bg-[#fce7f3] dark:bg-neutral-800">
+    <div className="px-6 py-4 flex items-center justify-between bg-gradient-to-b from-gray-100 to-white">
       <h2 className="text-xl font-semibold">Today's Class</h2>
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <ChevronLeft className="h-4 w-4 cursor-pointer" />
@@ -423,16 +424,16 @@ const handleEditProfile =() => {
                   className={`inline-flex px-3 py-1 rounded-md text-white text-sm mb-3 
                     ${
                       classItem.variant === "red"
-                        ? "bg-red-500"
+                        ? "bg-red-400"
                         : classItem.variant === "blue"
-                        ? "bg-blue-500"
+                        ? "bg-blue-400"
                         : classItem.variant === "green"
-                        ? "bg-green-500"
+                        ? "bg-green-400"
                         : classItem.variant === "orange"
-                        ? "bg-orange-500"
+                        ? "bg-orange-400"
                         : classItem.variant === "purple"
-                        ? "bg-purple-500"
-                        : "bg-yellow-500"
+                        ? "bg-purple-400"
+                        : "bg-yellow-400"
                     }`}
                 >
                   {classItem.time}
@@ -455,7 +456,7 @@ const handleEditProfile =() => {
 
   {/* Lessons and Syllabus */}
   <Card className='w-full'>
-    <CardHeader className='bg-[#d1fae5] dark:bg-neutral-800 p-4 px-5'>
+    <CardHeader className='bg-gradient-to-b from-gray-100 to-white p-4 px-5'>
     <div className='flex justify-between w-full'>
    <div className='text-lg font-semibold'>Lesson/Syllabus</div>
    <Button variant="outline">View all</Button>
@@ -489,7 +490,7 @@ const handleEditProfile =() => {
     <Card key={idx} className="p-5">
       <div>
         {/* Class Info */}
-        <p className="px-2 py-1 bg-gray-50 my-2 text-center dark:text-black">
+        <p className="px-2 py-1 bg-gradient-to-b from-gray-100 to-white my-2 text-center dark:text-black">
           {item.className}
         </p>
         {/* Class Title */}
@@ -515,7 +516,7 @@ const handleEditProfile =() => {
     {/* Left Column */}
     <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
-            <div className="flex justify-between  bg-[#dcf0f9] dark:bg-neutral-800 p-5">
+            <div className="flex justify-between  bg-gradient-to-b from-gray-100 to-white p-5">
       <h1 className="text-xl font-semibold">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
@@ -526,7 +527,10 @@ const handleEditProfile =() => {
     
   {fetchedAnnouncements.slice(0, 4).map((event, index) => (
         <div
-          className={`border-l-4 px-3 py-1 my-2 ${
+          className={`border-l-4 px-3 py-1 my-2 `}
+          key={index}
+        >
+          {/* ${
             index % 4 === 0
               ? "border-l-blue-500"
               : index % 4 === 1
@@ -534,9 +538,7 @@ const handleEditProfile =() => {
               : index % 4 === 2
               ? "border-l-yellow-500"
               : "border-l-red-500"
-          }`}
-          key={index}
-        >
+          } */}
           <div className="flex gap-4">
             <div className="text-sm">
               <p className="text-left text-lg font-semibold">{event.event_title}</p>
@@ -547,7 +549,9 @@ const handleEditProfile =() => {
             </div>
           </div>
           <div 
-            className={`border-b-2 mt-2 ${
+            className={`border-b-2 mt-2 `}
+          />
+          {/* ${
               index % 4 === 0
                 ? "border-blue-500"
                 : index % 4 === 1
@@ -555,8 +559,7 @@ const handleEditProfile =() => {
                 : index % 4 === 2
                 ? "border-yellow-500"
                 : "border-red-500"
-            }`}
-          />
+            } */}
           <div className="flex my-2 justify-between">
             <p className="text-sm text-gray-500 flex items-center">
               <Clock className="w-3 mr-2" />
@@ -592,7 +595,7 @@ const handleEditProfile =() => {
          
          <CardContent className="w-full  p-0 ">
          <Tabs defaultValue="student" className="w-full">
-           <div className='flex items-center justify-between bg-[#fbeddf] dark:bg-neutral-800 px-5'>
+           <div className='flex items-center justify-between bg-gradient-to-b from-gray-100 to-white px-5'>
            <CardHeader className=' p-4 '>
            <CardTitle>Leaves Graph</CardTitle>
            <CardDescription>
@@ -613,7 +616,7 @@ const handleEditProfile =() => {
  <div className="w-1/2 flex flex-col gap-4 p-4">
    {Attendence.map((data, index) => (
      <div
-       className="flex justify-center bg-gray-50 dark:bg-gray-800 rounded items-center h-[70px]"
+       className="flex justify-center bg-gradient-to-b from-gray-100 to-white rounded items-center h-[70px]"
        key={index}
      >
        <div>
@@ -655,7 +658,7 @@ const handleEditProfile =() => {
 
   
         <Card className="col-span-1">
-  <div className='flex items-center justify-between w-full  p-5 bg-[#dcfce7] dark:bg-neutral-800'>
+  <div className='flex items-center justify-between w-full  p-5 bg-gradient-to-b from-gray-100 to-white'>
                         <p className='text-base font-semibold'>Notice board</p>
                         <Button variant="outline" className='text-xs'>
                         View All

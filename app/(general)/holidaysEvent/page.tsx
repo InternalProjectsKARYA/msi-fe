@@ -330,7 +330,7 @@ const EventCalendar = () => {
           </div>
           
           {userRole === "admin" && (
-        <Button onClick={handleAddEvent} className="btn w-32 bg-[#da1e28]">
+        <Button onClick={handleAddEvent} className="btn w-32  "variant="gradientBlueWhite">
         Add Holiday
       </Button>
       )}

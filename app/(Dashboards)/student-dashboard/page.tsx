@@ -217,7 +217,7 @@ const NoticeBoard = [
       icon: Calendar,
       used: 5,
       available: 10,
-      color: "bg-blue-50 dark:bg-blue-950",
+      color: "  dark:bg-blue-950",
       iconColor: "text-blue-500",
       barColor: "bg-blue-500",
     },
@@ -226,7 +226,7 @@ const NoticeBoard = [
       icon: Briefcase,
       used: 5,
       available: 10,
-      color: "bg-green-50 dark:bg-green-950",
+      color: "  dark:bg-green-950",
       iconColor: "text-green-500",
       barColor: "bg-green-500",
     },
@@ -277,14 +277,14 @@ const NoticeBoard = [
   <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     {/* Apply Leave and Raise a Request Section */}
     <div className="md:col-span-1 flex flex-col gap-4">
-      <Card className="flex justify-between items-center border p-4 h-[65px]  bg-[#d5e2c5] rounded-lg shadow-sm cursor-pointer" onClick={() => router.push('/leaves')}>
+      <Card className="flex justify-between items-center border p-4 h-[65px]   rounded-lg shadow-sm cursor-pointer" onClick={() => router.push('/leaves')}>
         <div className="flex items-center space-x-2">
           <Calendar1 className="w-5 h-5" />
           <p className="text-sm font-medium">Apply Leave</p>
         </div>
         <ChevronRight className="w-5 h-5" />
       </Card>
-      <Card className="flex justify-between items-center border p-4 h-[65px] rounded-lg  bg-[#ffebb0] shadow-sm">
+      <Card className="flex justify-between items-center border p-4 h-[65px] rounded-lg    shadow-sm">
         <div className="flex items-center space-x-2">
           <Calendar1 className="w-5 h-5" />
           <p className="text-sm font-medium">Raise a Request</p>
@@ -331,10 +331,10 @@ const NoticeBoard = [
         {/* Quick Actions */}
         <div className="col-span-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
   {[
-    { icon: ScrollText, label: 'Pay Fees', color: 'bg-blue-700' },
-    { icon: GraduationCapIcon, label: 'Exam Result', color: 'bg-green-700' },
-    { icon: Calendar1, label: 'Calendar', color: 'bg-yellow-700' },
-    { icon: CalendarArrowUpIcon, label: 'Attendance', color: 'bg-red-700' },
+    { icon: ScrollText, label: 'Pay Fees', color: 'bg-gray-500' },
+    { icon: GraduationCapIcon, label: 'Exam Result', color: 'bg-gray-500' },
+    { icon: Calendar1, label: 'Calendar', color: 'bg-gray-500' },
+    { icon: CalendarArrowUpIcon, label: 'Attendance', color: 'bg-gray-500' },
   ].map((action, index) => (
     <Card
       key={index}
@@ -359,7 +359,7 @@ const NoticeBoard = [
 
 <div className="grid grid-cols-12 gap-4">
   <Card className="col-span-12  my-5">
-    <CardHeader className="bg-[#d1fae5] p-4">
+    <CardHeader className="bg-gradient-to-b from-gray-100 to-white p-4">
       <CardTitle className="text-xl font-semibold dark:text-black">
         Today's Classes
       </CardTitle>
@@ -452,7 +452,7 @@ const NoticeBoard = [
     {/* Left Column: Upcoming Events */}
     <div className="col-span-1 lg:col-span-4 flex flex-col space-y-6">
             <Card>
-            <div className="flex justify-between   bg-[#fce7f3] p-4">
+            <div className="flex justify-between   bg-gradient-to-b from-gray-100 to-white p-4">
       <h1 className="text-xl font-semibold dark:text-black">Upcoming Events</h1>
       <Link href="/announcements">
         <Button variant="outline" size="sm">View All</Button>
@@ -526,7 +526,7 @@ const NoticeBoard = [
     <div className="col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Attendance and Leave Status */}
       <Card className="p-0">
-        <div className="flex justify-between p-4 items-center bg-[#dcf0f9] mb-4 ">
+        <div className="flex justify-between p-4 items-center bg-gradient-to-b from-gray-100 to-white mb-4 ">
           <h2 className="text-xl font-semibold dark:text-black">Leave Status</h2>
           <Button variant="ghost" className="p-0 border-none">
             <span className="sr-only">Open menu</span>
@@ -555,7 +555,7 @@ const NoticeBoard = [
         <Calendar    className="w-full" />
       </Card> */}
         <Card >
-            <div className='flex items-center justify-between w-full p-4   bg-[#fef3c7]'>
+            <div className='flex items-center justify-between w-full p-4   bg-gradient-to-b from-gray-100 to-white'>
                       <p className='text-lg font-semibold dark:text-black'>Home Works</p>
                       <div>
                       <DropdownMenu>
@@ -635,7 +635,7 @@ const NoticeBoard = [
 
    
     <Card className="col-span-1">
-<div className='flex items-center justify-between w-full  p-4  bg-[#ecfccb]'>
+<div className='flex items-center justify-between w-full  p-4  bg-gradient-to-b from-gray-100 to-white'>
                       <p className='text-base font-semibold dark:text-black'>Notice board</p>
                       <Button variant="outline">View All</Button>
                   </div>
@@ -665,7 +665,7 @@ const NoticeBoard = [
                    </div>
                    </Card>
                    <Card>
-  <CardHeader className="flex items-center gap-2 space-y-0   p-4 sm:flex-row bg-[#f9dddf]">
+  <CardHeader className="flex items-center gap-2 space-y-0   p-4 sm:flex-row bg-gradient-to-b from-gray-100 to-white">
     <div className="grid flex-1 gap-1 text-center sm:text-left ">
       <CardTitle className='dark:text-black'>Student Exam Results</CardTitle>
       <CardDescription>Showing scores for {timeRange.toUpperCase()}</CardDescription>

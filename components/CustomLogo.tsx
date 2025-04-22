@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../public/efanishlogo.png';
+import logo from '../public/Neuro pi_TEXT_11zon.jpg';
 import Image from 'next/image';
 
 const CustomLogo = ({ height, width }) => {

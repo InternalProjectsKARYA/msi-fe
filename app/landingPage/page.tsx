@@ -360,7 +360,7 @@ const LandingPage = () => {
         <div className="absolute inset-0 flex flex-col  mt-[14%] items-start text-left z-10 px-6 sm:px-12 max-w-7xl mx-auto ">
           <div  className="relative"  >
           <h1 className="text-6xl sm:text-7xl font-bold text-white drop-shadow-md ">
-            Welcome to EFANISH
+            Welcome to NeuroPi
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
             A place where excellence meets education. Join us to build a brighter future for your child.
@@ -474,12 +474,12 @@ const LandingPage = () => {
         <div className="h-[2px] w-36 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
      
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
-          EFANISH is a <span className="text-[#00D122]">trusted & leading institution.</span>
+          NeuroPi is a <span className="text-[#00D122]">trusted & leading institution.</span>
        
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          EFANISH School is dedicated to providing top-notch education with an emphasis on
-          EFANISH School is dedicated to providing top-notch education with an emphasis on
+          NeuroPi School is dedicated to providing top-notch education with an emphasis on
+          NeuroPi School is dedicated to providing top-notch education with an emphasis on
           holistic development. Our skilled educators and well-structured curriculum aim to nurture
           creativity, critical thinking, and excellence. Join us to shape your child's bright future.
         </p>
@@ -494,15 +494,15 @@ const LandingPage = () => {
     <section className="max-w-7xl mx-auto px-6 sm:px-12 py-16 flex flex-col md:flex-row items-center gap-12" >
    
       <div className="flex-1 text-center md:text-left" data-aos='fade-right'>
-        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About EFANISH</h5>
+        <h5 className="text-lg font-medium text-gray-600 mb-2 dark:text-white">About NeuroPi</h5>
         <div className="h-[2px] w-44 bg-[#00c9ea] mb-4 mx-auto md:mx-0"></div>
   
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-white">
           A Place Where <span className="text-[#00D122] ">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          EFANISH School is committed to providing exceptional education that nurtures
-          EFANISH School is committed to providing exceptional education that nurtures
+          NeuroPi School is committed to providing exceptional education that nurtures
+          NeuroPi School is committed to providing exceptional education that nurtures
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
         </p>
@@ -684,7 +684,7 @@ const LandingPage = () => {
           </div>
         </div>
         <span className="text-2xl font-semibold pb-4">Email</span>
-        <p className="text-gray-800 font-semibold text-lg">Info@EFANISH.net</p>
+        <p className="text-gray-800 font-semibold text-lg">Info@NeuroPi.net</p>
       </div>
     </div>
   </div>
@@ -700,7 +700,7 @@ const LandingPage = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full"
-        title="EFANISH Solutions Location"
+        title="NeuroPi Solutions Location"
       ></iframe>
     </section> */}
  
@@ -711,7 +711,7 @@ const LandingPage = () => {
       <div className="border-t border-gray-700 mt-6 pt-2">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © EFANISH 2025.Powered By KARYAHUB SOLUTIONS. All Rights Reserved.
+            © NeuroPi 2025.Powered By KARYAHUB SOLUTIONS. All Rights Reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">N</a>

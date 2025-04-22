@@ -18,7 +18,7 @@
 //   //   countdownAudio.current = new Audio("/audio/countdown.wav");  
 //   //   countdownAudio.current.load(); // Ensure it's preloaded
 //   //   setTimeout(() => {
-//   //   // router.push('/EFANISH')
+//   //   // router.push('/NeuroPi')
 //   //   }, 6000);
 //   // }, []);
 
@@ -149,7 +149,7 @@
 
 //   const countStart = () => {
 //     setTimeout(() => {
-//       router.push('/EFANISH')
+//       router.push('/NeuroPi')
 //       }, 6000); 
 //     if (isCounting) return;
 //     setIsCounting(true);

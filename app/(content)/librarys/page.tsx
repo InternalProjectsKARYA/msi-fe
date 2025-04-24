@@ -4,7 +4,7 @@ import img from "../../../public/modify/NEURO_libriy.png"
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
-export default function LibraryLanding() {
+export default function LibrarySection() {
     const firstImageRef = useRef<HTMLImageElement | null>(null);
     //const secondImageRef = useRef<HTMLImageElement | null>(null);
     useEffect(() => {
@@ -19,10 +19,10 @@ export default function LibraryLanding() {
   },[]);
   return (
     <section className="container mx-auto px-6 py-16">
-      <div className="flex flex-col md:flex-row items-center gap-10">
+      <div className="flex lg:flex-row md:flex-wrap items-center gap-10 lg:flex-nowrap">
         
         {/* Left Content */}
-        <div className="md:w-1/2">
+        <div className="lg:w-1/2">
           <h2 className="text-3xl font-bold mb-4">
           Library Management in a School Management System
           </h2>
@@ -39,7 +39,7 @@ export default function LibraryLanding() {
         </div>
 
         {/* Right Content (Image) */}
-        <div className="md:w-1/2 flex justify-center hidden md:block relative bg-[#e9f5fc82]  h-[60vh]">
+        <div className="lg:w-1/2 flex justify-center hidden md:block relative bg-[#e9f5fc82]  h-[60vh]">
           <Image 
             src={img} // Make sure to put your image in the public folder or use a proper path
             ref={firstImageRef}

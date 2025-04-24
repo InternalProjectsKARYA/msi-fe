@@ -32,14 +32,14 @@ export default function BrightwheelHero() {
   }, []);
   
   return (
-<div className="bg-gradient-to-r from-[#00c9ea] via-[#0072ff] to-[#00c9ea] min-h-screen">
+<div className="bg-gradient-to-r from-[#00c9ea] via-[#0073ffbb] to-[#00c9ea] min-h-screen">
 
  
 
       {/* Hero Section */}
-      <div className="container mx-auto px-10 pt-12 pb-20 md:pt-16 md:pb-24 grid md:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto px-10 pt-12 pb-20 md:pt-16 md:pb-24 grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div className="max-w-xl">
-          <p className="text-[#014357] font-medium mb-2">#1 Neuro Science based School Management System</p>
+          <p className="text-[#014357] font-medium mb-2 w-[max-content]">#1 Neuro Science based School Management System</p>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 whitespace-nowrap">
            Welcome to NeuroPi
           </h1>

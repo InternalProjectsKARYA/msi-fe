@@ -6,20 +6,20 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import FeaturesSection from "../overview/page"
-import DevelopmentSection from "../learning/page"
-import DevelopmentSections from "../communication/page"
+import OverviewSection from "../overview/page"
+import LearningSection from "../learning/page"
+import CommunicationSection from "../communication/page"
 import DevelopmentSectionss from "../librarys/page"
-import Development from "../assessments/page"
-import Developments from "../payrolls/page"
-import LibraryLanding from "../librarys/page"
+import AssessmentSection from "../assessments/page"
+import PayrollSection from "../payrolls/page"
+import LibrarySection from "../librarys/page"
 
 
 export default function TabsDemo() {  // ⬅ Changed to default export
   return (
     <div className="flex justify-center">
     
-      <Tabs defaultValue="overview" className="w-[1200px]">
+      <Tabs defaultValue="overview" className="w-[1200px] md:w-[690px] lg:w-[1200px]">
         <TabsList className="grid w-full grid-cols-6"> {/* Adjusted grid-cols */}
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="learning">Learning</TabsTrigger>
@@ -30,22 +30,22 @@ export default function TabsDemo() {  // ⬅ Changed to default export
         </TabsList>
         {/* Example TabsContent */}
          <TabsContent value="overview">
-          <FeaturesSection />
+          <OverviewSection />
         </TabsContent>
          <TabsContent value="learning">
-          <DevelopmentSection />
+          <LearningSection />
         </TabsContent>
        <TabsContent value="communication">
-          <DevelopmentSections/>
+          <CommunicationSection/>
         </TabsContent>
         <TabsContent value="library">
-          <LibraryLanding/>
+          <LibrarySection/>
         </TabsContent>
         <TabsContent value="assessment">
-          <Development/>
+          <AssessmentSection/>
         </TabsContent>
         <TabsContent value="payroll">
-          <Developments/>
+          <PayrollSection/>
         </TabsContent>  
       </Tabs>
     </div>

@@ -212,7 +212,7 @@ const LandingPage = () => {
         <nav    className="hidden md:flex space-x-6 items-center   z-50 " style={{ color: "white" }}>
           <Link to="home" 
            activeClass="border-b-2 text-[#00D122] border-[#00D122]" 
-          className="hover:text-[#00D122] text-m text-black font-semibold transition duration-500">
+          className="cursor-pointer hover:text-[#00D122] text-m text-black font-semibold transition duration-500">
             Home
           </Link>
      
@@ -433,7 +433,7 @@ const LandingPage = () => {
  
       {/* Cards Section */}
       <section className=" py-16">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-8">
   {cardData.map((card, index) => (
     <div
       data-aos="fade-down"
@@ -501,7 +501,6 @@ const LandingPage = () => {
           A Place Where <span className="text-[#00D122] ">Excellence Meets Education.</span>
         </h2>
         <p className="text-gray-600 leading-relaxed mb-6 dark:text-white">
-          NeuroPi School is committed to providing exceptional education that nurtures
           NeuroPi School is committed to providing exceptional education that nurtures
           creativity, critical thinking, and leadership qualities. With state-of-the-art facilities
           and experienced faculty, we aim to empower every student to achieve academic and personal success.
@@ -578,7 +577,7 @@ const LandingPage = () => {
     </section> */}
  
     </div>
-    <div className="flex flex-col items-center justify-center text-center my-12 mx-auto">
+    <div className="flex flex-col items-center justify-center text-center my-12  mx-auto">
   <h1 className="text-3xl font-bold text-gray-800">
     Your Complete Childcare Software System
   </h1>
@@ -588,7 +587,7 @@ const LandingPage = () => {
 
  <TabsDemo />
     <section className="py-16 bg-white" id="Services">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#014357] mb-4 dark:text-black">Our Services</h2>
         <div className="h-[2px] w-48 bg-[#00c9ea] mb-3 mx-auto"></div>
  
@@ -714,13 +713,13 @@ const LandingPage = () => {
             © NeuroPi 2025.Powered By KARYAHUB SOLUTIONS. All Rights Reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">N</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">E</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">U</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">R</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">O</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">P</a>
-            <a href="#" className="text-[#00D122] text-lg hover:text-red-700 transition">I</a> 
+            <a  className="text-[#00D122] text-lg ">N</a>
+            <a  className="text-[#00D122] text-lg ">E</a>
+            <a  className="text-[#00D122] text-lg ">U</a>
+            <a  className="text-[#00D122] text-lg ">R</a>
+            <a  className="text-[#00D122] text-lg ">O</a>
+            <a  className="text-[#00D122] text-lg ">P</a>
+            <a  className="text-[#00D122] text-lg ">I</a> 
           </div>
         </div>
       </div>

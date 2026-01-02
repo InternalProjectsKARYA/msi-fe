@@ -731,6 +731,9 @@ const LandingPage = () => {
  
 export default LandingPage;
  
+
+
+
 //  import React from 'react'
 // import SparklesPreview from './(others-withoutlayout)/neuropi/page'
  

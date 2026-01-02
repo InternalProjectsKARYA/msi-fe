@@ -1,14 +1,29 @@
-import React from 'react';
-import logo from '../public/Neuro pi_TEXT_11zon.jpg';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
+import logo from "../public/Neuro pi_TEXT_11zon.jpg";
 
-const CustomLogo = ({ height, width }) => {
+type CustomLogoProps = {
+  height?: number;
+  width?: number;
+  className?: string;
+};
+
+// Match Tailwind spacing scale: 1 => 4px.
+const SIZE_SCALE = 4;
+
+const CustomLogo = ({ height = 14, width = 26, className }: CustomLogoProps) => {
+  const pixelHeight = height * SIZE_SCALE;
+  const pixelWidth = width * SIZE_SCALE;
+
   return (
-    <div>
+    <div className={`relative ${className || ""}`} style={{ height: pixelHeight, width: pixelWidth }}>
       <Image
         src={logo}
         alt="logo"
-       className={`h-${height} w-${width}`}
+        fill
+        className="object-contain"
+        sizes={`${pixelWidth}px`}
+        priority
       />
     </div>
   );

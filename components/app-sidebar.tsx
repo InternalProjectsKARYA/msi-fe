@@ -429,7 +429,7 @@ export function AppSidebar() {
       <div className="  z-50   flex justify-center items-center">
       {/* <Image src={Logo} alt="Logo" className="h-14 w-40 " /> */}
       <div className=" my-4">
-      <CustomLogo height={10} width={26}/>
+      <CustomLogo height={20} width={40} />
       </div>
       </div>
   
